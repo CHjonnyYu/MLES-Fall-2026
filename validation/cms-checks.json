@@ -1,0 +1,11 @@
+{
+  "checks": "server.test_app",
+  "tests": 7,
+  "result": "passed",
+  "browser": {
+    "administrator_login": "passed",
+    "mobile_horizontal_overflow": false,
+    "javascript_errors": []
+  },
+  "production": "pending GCP deployment"
+}

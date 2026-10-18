@@ -1,0 +1,14 @@
+.git
+.DS_Store
+.env*
+**/__pycache__
+**/.ipynb_checkpoints
+**/*.aux
+**/*.log
+**/*.toc
+**/*.bbl
+**/*.blg
+artifacts
+local-secrets.json
+catalog.json
+catalog.lock
