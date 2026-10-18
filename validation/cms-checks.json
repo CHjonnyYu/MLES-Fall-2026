@@ -7,5 +7,6 @@
     "mobile_horizontal_overflow": false,
     "javascript_errors": []
   },
-  "production": "pending GCP deployment"
+  "production": "passed authenticated GCP smoke test including cloud upload, draft isolation, and all three deck return links",
+  "ready_revision": "mles-course-00002-xm9"
 }

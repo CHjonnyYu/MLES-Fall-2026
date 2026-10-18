@@ -1,0 +1,18 @@
+{
+  "project": "ncku-mles-fall-2026",
+  "region": "asia-east1",
+  "service": "mles-course",
+  "bucket": "ncku-mles-fall-2026-content",
+  "url": "https://mles-course-vgqg4abvka-de.a.run.app",
+  "latest_ready_revision": "mles-course-00002-xm9",
+  "traffic": [
+    {
+      "latestRevision": true,
+      "percent": 100,
+      "revisionName": "mles-course-00002-xm9"
+    }
+  ],
+  "persistence": "private versioned Cloud Storage bucket",
+  "authentication": "password hashes + signed HttpOnly secure sessions; per-account role checks",
+  "secrets": "Google Secret Manager; no password or secret value in this record"
+}

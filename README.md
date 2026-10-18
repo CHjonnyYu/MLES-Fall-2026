@@ -5,7 +5,7 @@ Monday 14:00–17:00 · English-medium instruction
 
 ## Course website
 
-https://CHjonnyYu.github.io/MLES-Fall-2026/
+https://mles-course-vgqg4abvka-de.a.run.app/
 
 The full-semester portal is `index.html`. For an offline copy, download the repository ZIP, extract it, and open `index.html` in a browser. Slides use embedded CSS, JavaScript, and explanatory SVGs. Logos are local assets.
 
@@ -20,6 +20,25 @@ The full-semester portal is `index.html`. For an offline copy, download the repo
 Every deck contains a complete 60-minute facilitation plan: 30 slides with 2-minute cues. Explanation, hand calculation, classroom interaction, and notebook practice share those 60 minutes. The deck is not intended to have a separate additional hour of practice appended to it.
 
 Slide keys: arrows navigate, N opens speaker notes, R reveals an answer, O toggles overview, F requests fullscreen. Print from the browser for a 16:9 PDF.
+
+## Teaching-team administration
+
+The GCP administration panel is https://mles-course-vgqg4abvka-de.a.run.app/admin/ .
+The instructor can sign in with the provisioned administrator account and add
+individual teaching-assistant accounts. Passwords and session secrets are not
+included in this repository.
+
+Choose a week to edit its title, Monday date, learning focus, and course phase.
+Add a file or HTTPS resource link, choose Draft or Published, and save. Drafts
+are visible only to the signed-in teaching team. Published additions appear
+below the week's prepared materials on the student site. A stale editing form
+returns a conflict instead of replacing a newer edit.
+
+Administrators can create, disable, or reset teaching-team accounts. Assistants
+can manage course content but cannot manage accounts. Recent actions are logged.
+Cloud Run hosts the service; a private versioned Cloud Storage bucket preserves
+edits and uploads across deployments. Secret Manager supplies startup secrets.
+See [deployment instructions](deployment/README.md) for operation and recovery.
 
 ## Notebooks
 

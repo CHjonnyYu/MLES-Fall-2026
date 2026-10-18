@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-19",
+  "url": "https://mles-course-vgqg4abvka-de.a.run.app",
+  "homepage": 200,
+  "weeks": 18,
+  "adminLogin": "passed",
+  "secureSessionCookie": true,
+  "anonymousAdminBlocked": true,
+  "privateSourceBlocked": true,
+  "cloudUpload": "passed",
+  "draftAccessControl": "passed",
+  "temporaryResourceRemoved": true,
+  "deployedDecks": [
+    {
+      "hour": 1,
+      "slides": 30,
+      "navigation": true,
+      "returnToCourse": true
+    },
+    {
+      "hour": 2,
+      "slides": 30,
+      "navigation": true,
+      "returnToCourse": true
+    },
+    {
+      "hour": 3,
+      "slides": 30,
+      "navigation": true,
+      "returnToCourse": true
+    }
+  ],
+  "mobileHorizontalOverflow": false,
+  "javascriptErrors": []
+}

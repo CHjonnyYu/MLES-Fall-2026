@@ -29,6 +29,8 @@ class CourseCMSChecks(unittest.TestCase):
     def revision(self):return self.app.extensions['course_store'].load()['revision']
 
     def test_access_and_csrf(self):
+        self.assertEqual(self.client.get('/').status_code,200)
+        self.assertEqual(self.client.get('/index.html').status_code,200)
         self.assertEqual(self.client.get('/admin/').status_code,302)
         self.login()
         self.assertEqual(self.client.get('/admin/').status_code,200)

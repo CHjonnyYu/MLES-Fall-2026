@@ -338,6 +338,7 @@ def create_app(overrides=None):
         return response
 
     @app.get('/')
+    @app.get('/index.html')
     def home():return send_from_directory(ROOT,'index.html')
 
     @app.get('/<path:filename>')
