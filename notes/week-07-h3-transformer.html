@@ -1,0 +1,243 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>W07 H3: Build and Inspect a Tiny Transformer</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-07-h3-transformer.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-07-h3-transformer.ipynb">Open in Colab</a></nav><section><h1>W07 H3: Build and Inspect a Tiny Transformer</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Teaching date:</strong> Monday 19 October 2026. <strong>Guided notebook time:</strong> 40 minutes within a 60-minute module.</p>
+<h3>What you will be able to explain</h3>
+<p>- Trace embeddings, positional information, masked attention, and a feed-forward block.</p>
+<p>- Train a tiny decoder on synthetic sequences with shifted targets.</p>
+<p>- Test causality and permutation behavior, and document the limits of the experiment.</p>
+<h3>Start here, even if this is your first notebook</h3>
+<p>1. In Colab choose <strong>Runtime &gt; Change runtime type &gt; CPU</strong>. In Jupyter choose a Python 3 kernel.</p>
+<p>2. Run cells from top to bottom with <strong>Shift+Enter</strong>. Read the Markdown before each code cell.</p>
+<p>3. The setup installs only missing free packages. A network connection is needed for first installation; the data itself is generated locally.</p>
+<p>4. If a variable is undefined, restart the kernel and run all earlier cells. Do not skip a setup cell.</p>
+<p>5. Save a personal copy before changing parameters. Every core cell is complete: there are no hidden files, tokens, paid services, or unfinished code blocks.</p>
+<p><strong>Data:</strong> synthetic teaching data, not engineering measurements. Record your actual output; a model is not required to outperform a baseline.</p>
+<p><strong>Practice policy:</strong> in-class exercise and optional Homework extension, not a new weekly graded assignment.</p></section>
+<section><h2>Mechanism reference: our complete decoder block</h2>
+<p>Token IDs index learned vectors. Add a learned position vector, split projected queries/keys/values into heads, compute causal attention, and concatenate/project heads back to model width. Our pre-normalization block is</p>
+<p>$$u=x+\operatorname{Attention}(\operatorname{LayerNorm}(x)),$$</p>
+<p>$$y=u+\operatorname{FFN}(\operatorname{LayerNorm}(u)).$$</p>
+<p>The feed-forward network expands width 32 to 128, applies GELU, and returns to 32. It uses shared parameters independently at each position. Attention mixes positions; the MLP transforms local features. Residual additions provide an identity route and require matching widths.</p>
+<p>This decoder-only teaching variant differs from the original 2017 encoder-decoder with post-normalization and ReLU. Cross-entropy receives raw logits and shifted targets. Training processes known positions in parallel under a mask; generation appends unknown next tokens sequentially.</p></section>
+<section><h2>1. Set up a CPU experiment</h2>
+<p>Run independently of H1 and H2. This toy decoder is an educational implementation, not a pretrained LLM.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+
+if importlib.util.find_spec(&quot;torch&quot;) is None:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, &quot;torch&quot;])
+import torch
+from torch import nn
+import copy, time
+torch.set_num_threads(1)
+torch.manual_seed(SEED)
+torch.use_deterministic_algorithms(True)
+device = torch.device(&quot;cpu&quot;)
+print(&quot;PyTorch:&quot;, torch.__version__, &quot;Device:&quot;, device)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> CPU is sufficient. Generation is not evidence of factual knowledge.</p></section>
+<section><h2>2. Define a reproducible symbolic sequence task</h2>
+<p>We use a small repeating process with eight symbolic states. Training, validation, and test are separate generated streams with different seeds and small random perturbations. The target at each position is the next token; inputs never include that target position. No natural-language corpus is downloaded.</p></section>
+<section><pre><code>VOCAB, CONTEXT = 8, 16
+def make_stream(seed,n=1800):
+    generator=np.random.default_rng(seed)
+    motif=np.array([0,1,2,3,4,5,6,7,6,5,4,3,2,1],dtype=np.int64)
+    stream=np.resize(motif,n).copy()
+    corrupt=generator.random(n)&lt;0.04
+    stream[corrupt]=generator.integers(0,VOCAB,corrupt.sum())
+    return torch.tensor(stream,dtype=torch.long)
+train_stream=make_stream(SEED)
+val_stream=make_stream(SEED+1,600)
+test_stream=make_stream(SEED+2,600)
+def windows(stream):
+    # Nonoverlapping blocks here keep sample accounting easy to inspect.
+    starts=range(0,len(stream)-CONTEXT,CONTEXT)
+    return (torch.stack([stream[i:i+CONTEXT] for i in starts]),
+            torch.stack([stream[i+1:i+CONTEXT+1] for i in starts]))
+train_x,train_y=windows(train_stream)
+val_x,val_y=windows(val_stream)
+test_x,test_y=windows(test_stream)
+print(&quot;Example input:&quot;,train_x[0].tolist())
+print(&quot;Shifted target:&quot;,train_y[0].tolist())
+assert torch.equal(train_x[0,1:],train_y[0,:-1])
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The final target token lies just beyond the input window. Do not report performance as generalization to a different physical process: all streams share the same motif.</p></section>
+<section><h2>3. Write attention with explicit axes and masks</h2>
+<p>Representations have shape (B,T,D). Split D into H heads of width d=D/H. Attention scores have shape (B,H,T,T), with query positions on rows and key positions on columns. Store weights for inspection, but detach them so diagnostic storage does not retain training graphs.</p></section>
+<section><pre><code>class CausalAttention(nn.Module):
+    def __init__(self,d_model=32,heads=4):
+        super().__init__()
+        assert d_model%heads==0
+        self.heads,self.d_head=heads,d_model//heads
+        self.qkv=nn.Linear(d_model,3*d_model)
+        self.proj=nn.Linear(d_model,d_model)
+        self.last_weights=None
+    def forward(self,x):
+        B,T,D=x.shape
+        q,k,v=self.qkv(x).chunk(3,dim=-1)
+        def split(z): return z.reshape(B,T,self.heads,self.d_head).transpose(1,2)
+        q,k,v=map(split,(q,k,v))
+        scores=q@k.transpose(-2,-1)/(self.d_head**0.5)
+        allowed=torch.ones(T,T,dtype=torch.bool,device=x.device).tril()
+        weights=scores.masked_fill(~allowed,float(&quot;-inf&quot;)).softmax(dim=-1)
+        self.last_weights=weights.detach()
+        mixed=(weights@v).transpose(1,2).contiguous().reshape(B,T,D)
+        return self.proj(mixed)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The softmax dimension is the last dimension: source keys. Upper-triangular weights must be exactly zero.</p></section>
+<section><h2>4. Complete the block and output head</h2>
+<p>This is a <strong>pre-normalization decoder-only</strong> block, a common educational variant. The 2017 paper used a full encoder-decoder with post-normalization. Residual paths preserve an identity route; the feed-forward network transforms each position separately with shared weights.</p></section>
+<section><pre><code>class Block(nn.Module):
+    def __init__(self,d=32,heads=4):
+        super().__init__()
+        self.ln1,self.ln2=nn.LayerNorm(d),nn.LayerNorm(d)
+        self.attn=CausalAttention(d,heads)
+        self.ff=nn.Sequential(nn.Linear(d,4*d),nn.GELU(),nn.Linear(4*d,d))
+    def forward(self,x):
+        x=x+self.attn(self.ln1(x))
+        return x+self.ff(self.ln2(x))
+
+class TinyTransformer(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.tokens=nn.Embedding(VOCAB,32)
+        self.positions=nn.Embedding(CONTEXT,32)
+        self.block=Block()
+        self.norm=nn.LayerNorm(32)
+        self.head=nn.Linear(32,VOCAB)
+    def forward(self,ids,use_positions=True):
+        B,T=ids.shape
+        assert T&lt;=CONTEXT
+        x=self.tokens(ids)
+        if use_positions: x=x+self.positions(torch.arange(T,device=ids.device))[None,:,:]
+        return self.head(self.norm(self.block(x)))
+
+torch.manual_seed(SEED)
+model=TinyTransformer().to(device)
+print(&quot;Parameters:&quot;,sum(p.numel() for p in model.parameters()))
+assert model(train_x[:2]).shape==(2,CONTEXT,VOCAB)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The model returns logits (B,T,V), not token IDs or probabilities. The vocabulary size is eight, not the embedding width 32.</p></section>
+<section><h2>5. Establish a training-only bigram baseline</h2>
+<p>A bigram baseline estimates P(next|current) from training transitions. Add-one smoothing avoids zero probabilities. Our motif contains ambiguous next states, so longer context may help. Compare NLL in nats/token on identical test targets.</p></section>
+<section><pre><code>counts=np.ones((VOCAB,VOCAB),dtype=np.float64)
+for a,b in zip(train_stream[:-1],train_stream[1:]): counts[int(a),int(b)]+=1
+bigram=counts/counts.sum(axis=1,keepdims=True)
+def bigram_nll(x,y): return float(-np.log(bigram[x.numpy(),y.numpy()]).mean())
+print(&quot;Uniform baseline NLL:&quot;,np.log(VOCAB))
+print(&quot;Bigram validation NLL:&quot;,bigram_nll(val_x,val_y))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> A uniform eight-token model has NLL log(8), about 2.079. This is a mathematical reference, not a measured model score.</p></section>
+<section><h2>6. Train with shifted-target cross-entropy</h2>
+<p>All positions train in parallel, but the causal mask prevents future access. Flatten (B,T,V) into (B*T,V) for cross-entropy. Select the best state using validation NLL and inspect test only after selection.</p></section>
+<section><pre><code>criterion=nn.CrossEntropyLoss()
+optimizer=torch.optim.AdamW(model.parameters(),lr=0.003,weight_decay=0.01)
+best,best_state=float(&quot;inf&quot;),None
+curve=[]
+start=time.perf_counter()
+for epoch in range(45):
+    model.train()
+    order=torch.randperm(len(train_x))
+    losses=[]
+    for batch in order.split(16):
+        optimizer.zero_grad()
+        logits=model(train_x[batch])
+        loss=criterion(logits.reshape(-1,VOCAB),train_y[batch].reshape(-1))
+        loss.backward(); nn.utils.clip_grad_norm_(model.parameters(),1.0); optimizer.step()
+        losses.append(loss.item())
+    model.eval()
+    with torch.no_grad():
+        val_loss=criterion(model(val_x).reshape(-1,VOCAB),val_y.reshape(-1)).item()
+    curve.append((float(np.mean(losses)),val_loss))
+    if val_loss&lt;best: best,best_state=val_loss,copy.deepcopy(model.state_dict())
+model.load_state_dict(best_state)
+print(&quot;Training seconds:&quot;,round(time.perf_counter()-start,2))
+plt.plot(curve); plt.legend([&quot;train NLL&quot;,&quot;validation NLL&quot;])
+plt.xlabel(&quot;Epoch&quot;); plt.ylabel(&quot;Nats/token&quot;); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The validation curve determines the retained checkpoint. If you change architecture, do not tune against test NLL.</p></section>
+<section><h2>7. Evaluate and inspect a head</h2>
+<p>NLL measures probability assigned to true next tokens. Accuracy measures the fraction of argmax choices that are correct. Inspect a real trained attention matrix and state what its axes mean.</p></section>
+<section><pre><code>model.eval()
+with torch.no_grad():
+    logits=model(test_x)
+    test_nll=criterion(logits.reshape(-1,VOCAB),test_y.reshape(-1)).item()
+    accuracy=(logits.argmax(-1)==test_y).float().mean().item()
+print({&quot;bigram_test_nll&quot;:bigram_nll(test_x,test_y),&quot;transformer_test_nll&quot;:test_nll,
+       &quot;transformer_test_accuracy&quot;:accuracy})
+head=model.block.attn.last_weights[0,0].numpy()
+assert np.all(head[np.triu_indices(CONTEXT,1)]==0)
+plt.figure(figsize=(6,5)); plt.imshow(head,cmap=&quot;YlGnBu&quot;,vmin=0,vmax=1)
+plt.xlabel(&quot;Key/source position&quot;); plt.ylabel(&quot;Query/destination position&quot;)
+plt.title(&quot;Actual trained weights: test example 0, head 0&quot;); plt.colorbar(); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The heatmap is an actual run output. The zero upper triangle is a mask property, not a relationship the model discovered.</p></section>
+<section><h2>8. Perform a future-token intervention</h2>
+<p>Change only tokens at positions &gt;=8. Under causal attention, logits at positions 0 through 7 must remain unchanged because the changed tokens lie in their future. This checks architecture behavior even if model accuracy is poor.</p></section>
+<section><pre><code>original=test_x[:1].clone()
+changed=original.clone(); changed[:,8:]=(changed[:,8:]+3)%VOCAB
+with torch.no_grad():
+    old_logits=model(original)
+    new_logits=model(changed)
+prefix_error=(old_logits[:,:8]-new_logits[:,:8]).abs().max().item()
+print(&quot;Maximum earlier-logit change:&quot;,prefix_error)
+assert torch.allclose(old_logits[:,:8],new_logits[:,:8],atol=1e-6)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> A passing test supports the no-future-access property for this implementation and example. It does not validate the dataset or guarantee every possible deployment behavior.</p></section>
+<section><h2>9. Show why unmasked attention needs position information</h2>
+<p>For unmasked self-attention without positions, permuting token rows permutes output rows in the same way. We test the isolated mathematical operation. A causal mask itself introduces an order constraint, so do not apply this permutation claim unchanged to a masked decoder.</p></section>
+<section><pre><code>z=torch.tensor([[1.,0.],[0.,1.],[1.,1.]])
+p=torch.tensor([2,0,1])
+def unmasked_attention(z): return (z@z.T/(z.shape[-1]**0.5)).softmax(-1)@z
+assert torch.allclose(unmasked_attention(z[p]),unmasked_attention(z)[p],atol=1e-6)
+print(&quot;Unmasked attention is permutation-equivariant without positions.&quot;)
+with torch.no_grad():
+    no_position_nll=criterion(model(test_x,use_positions=False).reshape(-1,VOCAB),test_y.reshape(-1)).item()
+print(&quot;Remove learned positions at inference NLL:&quot;,no_position_nll)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Removing positions from a trained model is an inference intervention, not a fair retraining comparison. It may worsen, improve, or barely change this toy task; report the observed result.</p></section>
+<section><h2>10. Generate sequentially from a prefix</h2>
+<p>Training processes many known target positions together. Autoregressive generation still produces one new token at a time and feeds it back. Cropping retains only CONTEXT tokens; learned absolute positions restart in each cropped window in this teaching implementation.</p></section>
+<section><pre><code>generated=test_x[:1,:4].clone()
+for _ in range(20):
+    with torch.no_grad():
+        next_logits=model(generated[:,-CONTEXT:])[:,-1,:]
+        next_id=next_logits.argmax(-1,keepdim=True)
+    generated=torch.cat([generated,next_id],dim=1)
+print(&quot;Generated symbolic sequence:&quot;,generated[0].tolist())
+record={&quot;seed&quot;:SEED,&quot;vocab&quot;:VOCAB,&quot;context&quot;:CONTEXT,&quot;torch&quot;:torch.__version__,
+        &quot;architecture&quot;:&quot;one-block pre-norm decoder; 4 heads; width 32; learned positions&quot;,
+        &quot;training_data_sha256&quot;:hashlib.sha256(train_stream.numpy().tobytes()).hexdigest(),
+        &quot;validation_nll&quot;:best,&quot;test_nll&quot;:test_nll,&quot;test_accuracy&quot;:accuracy,
+        &quot;bigram_test_nll&quot;:bigram_nll(test_x,test_y),&quot;causal_prefix_max_error&quot;:prefix_error,
+        &quot;position_removal_nll&quot;:no_position_nll,&quot;generated_tokens&quot;:generated[0].tolist()}
+(ARTIFACTS/&quot;w07-h3-transformer.json&quot;).write_text(json.dumps(record,indent=2))
+torch.save(model.state_dict(),ARTIFACTS/&quot;w07-h3-transformer.pt&quot;)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> These symbols demonstrate sequence modeling only. A token generator does not automatically have tools, memory management, permissions, or verification required by an agent.</p></section>
+<section><h2>11. Independent experiment and exit ticket</h2>
+<p>Choose <strong>one</strong> intervention: change heads from 4 to 2 in Block; change CONTEXT from 16 to 8; or change the corruption rate from 0.04 to 0.10. Make a prediction, rerun from data/model creation, and compare validation NLL before observing test results.</p>
+<p><strong>Explain back:</strong></p>
+<p>1. Where are the learned parameters in the block? Which weights are computed dynamically for each input?</p>
+<p>2. Why does parallel training not imply parallel generation of unknown next tokens?</p>
+<p>3. What does O(T^2) refer to in dense attention? At T=16, scores per head are 256; doubling T produces 1024.</p>
+<p>4. Why is an attention heatmap not a causal explanation? Name one controlled intervention you performed.</p>
+<p>5. Why is this small decoder not an LLM or a complete agent?</p>
+<p><strong>Stop when:</strong> you have baseline and Transformer NLL, a trained head plot, a passing causal test, and an evidence JSON.</p>
+<h3>Sources</h3>
+<p>- <a href="https://arxiv.org/abs/1706.03762">Vaswani et al., Attention Is All You Need</a></p>
+<p>- <a href="https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html">Dive into Deep Learning: Transformer architecture</a></p>
+<p>- <a href="https://github.com/karpathy/ng-video-lecture">Karpathy, ng-video-lecture</a></p></section></body></html>

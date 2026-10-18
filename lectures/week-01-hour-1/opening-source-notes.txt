@@ -1,0 +1,83 @@
+W01-H1 OPENING REDESIGN - SOURCE AND CROSSWALK NOTES
+Generated: 2026-08-26
+
+STATUS
+This is a redesigned HTML opening based on the instructor's prior Course Introduction 2022/2025 material. It is not a template-faithful PowerPoint update.
+
+ORIGINAL-TO-NEW CONTENT CROSSWALK
+Original slides 3-8: AI timeline, speed, impact, and data-center scale
+  -> New slides 2, 5, and 6: interface-to-computation shift, semester architecture, and milestone map.
+Original slides 9-10: AlphaGo and AlphaStar examples
+  -> New slide 13: Deep Blue versus AlphaGo mechanism comparison with policy, value, MCTS, and self-play.
+Original slide 12: AI timeline
+  -> New slides 6-12: Turing/Dartmouth, symbolic AI, perceptron, expert-system brittleness, statistical learning, and deep learning.
+Original slides 13-18: autonomous vehicles, vision, robotics, warehouse systems
+  -> New slides 2 and 17: capability is reframed as model-plus-tool systems with explicit verification and permission boundaries.
+Original slides 15 and 45: generative models and image generation
+  -> New slides 15-16: autoregressive/diffusion mechanisms and foundation-model pretraining/post-training.
+Original slide 20: AI vs Data / classical programming versus machine learning
+  -> New slides 8, 9, and 11: symbolic rules, perceptron learning, and empirical risk minimization.
+Original slides 26-38: ML task families
+  -> Retained later in the current course deck rather than overloading the historical opening.
+Original slides 40-49: instructor experience and research applications
+  -> New slides 1, 4, and 5: instructor identity, evidence contract, and engineering-centered semester progression.
+
+PRIMARY AND AUTHORITATIVE SOURCES
+Turing, A. M. Computing Machinery and Intelligence. Mind 59(236), 1950.
+https://academic.oup.com/mind/article/LIX/236/433/986238
+
+Dartmouth College. Artificial Intelligence (AI) Coined at Dartmouth.
+https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth
+
+Rosenblatt, F. The Perceptron. Cornell Aeronautical Laboratory Report, 1957.
+https://bpb-us-e2.wpmucdn.com/websites.umass.edu/dist/a/27637/files/2016/03/rosenblatt-1957.pdf
+
+Rumelhart, D. E., Hinton, G. E., and Williams, R. J. Learning representations by back-propagating errors. Nature 323, 1986.
+https://www.nature.com/articles/323533a0
+
+IBM Annual Report 1997. Deep Blue account.
+https://www.ibm.com/investor/att/pdf/IBM_Annual_Report_1997.pdf
+
+Krizhevsky, A., Sutskever, I., and Hinton, G. E. ImageNet Classification with Deep Convolutional Neural Networks. NIPS 2012.
+https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf
+
+Silver, D. et al. Mastering the game of Go with deep neural networks and tree search. Nature 529, 2016.
+https://research.google/pubs/mastering-the-game-of-go-with-deep-neural-networks-and-tree-search/
+
+Vaswani, A. et al. Attention Is All You Need. NIPS 2017.
+https://research.google/pubs/attention-is-all-you-need/
+
+Brown, T. et al. Language Models are Few-Shot Learners. 2020.
+https://openai.com/index/language-models-are-few-shot-learners/
+
+Ouyang, L. et al. Training language models to follow instructions with human feedback. 2022.
+https://cdn.openai.com/papers/Training_language_models_to_follow_instructions_with_human_feedback.pdf
+
+Yao, S. et al. ReAct: Synergizing Reasoning and Acting in Language Models. 2022.
+https://arxiv.org/abs/2210.03629
+
+Schick, T. et al. Toolformer: Language Models Can Teach Themselves to Use Tools. 2023.
+https://arxiv.org/abs/2302.04761
+
+OpenAI. Agentic AI Foundation announcement. 2025.
+https://openai.com/index/agentic-ai-foundation/
+
+IMAGE 2.0 ASSETS
+keynote-ai-shift.png
+  Teaching purpose: AI changes the engineering control surface while evidence and approval remain human responsibilities.
+keynote-dartmouth-1956.png
+  Teaching purpose: conceptual historical reconstruction separating the 1956 workshop from a present-day narrator.
+keynote-ai-winter.png
+  Teaching purpose: rule-system success inside a narrow domain and brittleness at unseen boundaries.
+keynote-statistical-learning.png
+  Teaching purpose: measurement-to-feature-to-model-to-held-out-evaluation pipeline.
+
+Existing generated assets reused once in the redesigned opening:
+hero-evidence.png
+deep-semester-architecture.png
+deep-symbolic-learning.png
+deep-learning-forces.png
+deep-rl-alphago.png
+generative-mechanisms.png
+deep-foundation-model.png
+agent-evolution.png

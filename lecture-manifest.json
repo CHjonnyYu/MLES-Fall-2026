@@ -1,0 +1,29 @@
+[
+  {
+    "id": "week-07-hour-1",
+    "title": "Sequential Data and LSTM",
+    "hour": 1,
+    "notebook": "week-07-h1-sequences-lstm.ipynb",
+    "source": "sequence",
+    "slides": 30,
+    "minutes": 60
+  },
+  {
+    "id": "week-07-hour-2",
+    "title": "Why Attention, and How It Works",
+    "hour": 2,
+    "notebook": "week-07-h2-attention.ipynb",
+    "source": "attention",
+    "slides": 30,
+    "minutes": 60
+  },
+  {
+    "id": "week-07-hour-3",
+    "title": "From Attention to a Transformer",
+    "hour": 3,
+    "notebook": "week-07-h3-transformer.ipynb",
+    "source": "transformer",
+    "slides": 30,
+    "minutes": 60
+  }
+]

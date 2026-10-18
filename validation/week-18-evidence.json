@@ -1,0 +1,22 @@
+{
+  "week": 18,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "attention_context": [
+      8.022241853595718,
+      5.988879073202141
+    ],
+    "components": {
+      "predictor": "maps input tokens to next-token logits",
+      "tool": "executes a validated operation",
+      "controller": "chooses or validates the next bounded step",
+      "evidence": "records inputs, outputs, configuration and checks",
+      "human": "authorizes consequential actions and judges limits"
+    },
+    "reproducibility": "same data, code, configuration and environment record",
+    "interpretability": "explain the computation and test selected interventions",
+    "limit": "attention weights alone do not prove causation"
+  }
+}

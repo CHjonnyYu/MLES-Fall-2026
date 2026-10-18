@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Week 1, Hour 1: Machine Learning in Engineering Science, Fall 2026." />
+  <title>W01 H1 | Machine Learning in Engineering Science</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans+Condensed:wght@500;600;700&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="keynote-opening.css" />
+</head>
+<body>
+  <div class="deck-shell">
+    <main class="deck" id="deck" aria-live="polite">
+
+      <section class="slide kn-slide kn-cover active" data-duration="1" data-cue="" data-section="Course introduction"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/keynote-ai-shift.png" alt="Instructor supervising an AI-enabled engineering workflow with a physical bridge and evidence checkpoints" /><div class="kn-gradient kn-gradient-left"></div><div class="kn-hero-copy"><p class="kn-kicker">W01 · H1 · FALL 2026</p><h1>Machine Learning<br />in Engineering Science</h1><p class="kn-deck-subtitle">From prediction to evidence—and from models to bounded agents.</p><p class="kn-instructor">Prof. Chi-Hua Jonny Yu · Monday 14:00–17:00</p></div><p class="kn-source">Visual: Image 2.0 conceptual illustration · 2026-08-26</p><aside class="notes"><strong>1 minute.</strong> Open with the course promise: students build, test, reproduce, and explain computational evidence, not merely call AI tools. [Sources] Fall 2026 syllabus; original Course Introduction 2022/2025; keynote-ai-shift.png.</aside></section>
+<section class="slide kn-slide kn-dark kn-impact-words" data-duration="3" data-cue="" data-section="Course introduction"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><header class="kn-title-wide"><p class="kn-kicker">WHY THIS COURSE CHANGED</p><h2>AI changed the interface to computation.</h2></header><div class="kn-word-rail"><div><strong>Speed</strong><span>Draft code, models, and analyses in minutes.</span></div><div><strong>Scope</strong><span>Work across language, images, data, and tools.</span></div><div><strong>Agency</strong><span>Select and execute multi-step actions.</span></div></div><p class="kn-thesis">The bottleneck moved from producing an output to deciding whether the output deserves trust.</p><p class="kn-source">Continuity: original introduction slides 4–8, “Speed / Impact”</p><aside class="notes"><strong>3 minutes.</strong> Preserve the original Speed/Impact thesis, but update the mechanism. Generative models lower the cost of candidate outputs; engineering value now depends on verification and consequence-aware decisions. [Sources] Original Course Introduction 2022/2025 slides 4–8.</aside></section>
+<section class="slide kn-slide kn-question" data-duration="3" data-cue="" data-section="Course introduction"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><div class="kn-question-number">92<span>%</span></div><div class="kn-question-copy"><p class="kn-kicker">PREDICT BEFORE WE EXPLAIN</p><h2>A bridge classifier reports 92% accuracy.</h2><p>Would you approve an inspection decision?</p></div><div class="kn-evidence-gap"><span>Which bridge?</span><span>Which split?</span><span>Which errors?</span><span>Which uncertainty?</span><span>Which cost?</span></div><p class="kn-source">Synthetic teaching scenario; no real bridge performance claim</p><aside class="notes"><strong>3 minutes.</strong> Poll the room. Expected answer: insufficient evidence. Accuracy omits prevalence, split integrity, false-negative cost, uncertainty, and deployment conditions. [Sources] Synthetic teaching scenario.</aside></section>
+<section class="slide kn-slide kn-visual-right kn-promise" data-duration="2" data-cue="" data-section="Course introduction"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/hero-evidence.png" alt="Engineering model outputs connected to evidence, reproducibility, and decisions" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">COURSE PROMISE</p><h2>Build results that another engineer can rerun, challenge, and explain.</h2><p class="kn-lead">A model is useful only when its data, assumptions, errors, and decision boundary are inspectable.</p></header><div class="kn-proof-line"><span>Reproduce</span><i></i><span>Interpret</span><i></i><span>Decide</span></div><p class="kn-source">Course evidence contract · visual generated for W01-H1</p><aside class="notes"><strong>2 minutes.</strong> Every important result needs a rerunnable artifact, evaluation tied to the decision, error inspection, and a bounded claim. [Sources] Fall 2026 syllabus; hero-evidence.png.</aside></section>
+<section class="slide kn-slide kn-semester" data-duration="2" data-cue="" data-section="Course introduction"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/deep-semester-architecture.png" alt="Measurements, machine learning, deep learning, notebooks, agents, and evidence gates across the semester" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">SEMESTER ARCHITECTURE</p><h2>Foundations first. Agents later.</h2></header><div class="kn-semester-path"><span>Data</span><b>→</b><span>ML</span><b>→</b><span>Deep learning</span><b>→</b><span>Generative AI</span><b>→</b><span>Agents</span></div><p class="kn-caption-left">Reproducibility and interpretability constrain every layer.</p><p class="kn-source">Fall 2026 course plan · Image 2.0 conceptual architecture</p><aside class="notes"><strong>2 minutes.</strong> Vibe coding and agents are applications built on data, ML evaluation, and neural-network foundations. [Sources] Fall 2026 syllabus; deep-semester-architecture.png.</aside></section>
+<section class="slide kn-slide kn-dark kn-history-map" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><header class="kn-title-wide"><p class="kn-kicker">SEVENTY-SIX YEARS IN ONE VIEW</p><h2>AI progressed by changing how behavior is specified.</h2></header><div class="kn-timeline"><article><b>1950</b><span>Turing tests machine intelligence</span></article><article><b>1956</b><span>AI becomes a named field</span></article><article><b>1957</b><span>Perceptron learns a boundary</span></article><article><b>1986</b><span>Backprop learns representations</span></article><article><b>1997</b><span>Deep Blue scales search</span></article><article><b>2012</b><span>AlexNet aligns data, GPUs, CNNs</span></article><article><b>2016</b><span>AlphaGo learns and searches</span></article><article><b>2017</b><span>Transformer scales attention</span></article><article><b>2020–22</b><span>Few-shot and instruction LLMs</span></article><article><b>2023–26</b><span>Retrieval, tools, agents</span></article></div><p class="kn-history-claim">Rules did not disappear. Search did not disappear. Models accumulated into larger systems.</p><p class="kn-source">Turing 1950 · Dartmouth 1956 · Rumelhart 1986 · IBM 1997 · AlexNet 2012 · AlphaGo 2016 · Transformer 2017</p><aside class="notes"><strong>3 minutes.</strong> Use this as a map. Rules, examples, objectives, prompts, and tool policies are different ways to specify behavior. [Sources] Primary sources mapped in opening-source-notes.txt.</aside></section>
+<section class="slide kn-slide kn-historical" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/keynote-dartmouth-1956.png" alt="Conceptual reconstruction of the 1956 Dartmouth AI workshop with the modern instructor shown separately as narrator" /><div class="kn-gradient kn-gradient-top-left"></div><div class="kn-year-hero"><p class="kn-kicker">1950 → 1956</p><h2>From “Can machines think?” to a research program.</h2><p>Turing reframed the question as observable behavior. Dartmouth proposed language, abstraction, problem solving, and self-improvement as machine capabilities.</p></div><div class="kn-year-stamp">1956</div><p class="kn-source">Historical reconstruction, not an archival photograph · Turing, Mind (1950) · Dartmouth proposal/workshop</p><aside class="notes"><strong>3 minutes.</strong> Turing's 1950 paper introduced the imitation game. McCarthy's 1955 proposal named AI; the 1956 Dartmouth workshop helped establish the field. [Sources] Turing 1950; Dartmouth AI history; keynote-dartmouth-1956.png.</aside></section>
+<section class="slide kn-slide kn-symbolic" data-duration="2" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/deep-symbolic-learning.png" alt="Symbolic rules and traceable inference contrasted with trainable statistical learning" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">SYMBOLIC AI</p><h2>Intelligence was first encoded as symbols, rules, and search.</h2><p class="kn-lead">Facts + inference rules → a traceable conclusion.</p></header><div class="kn-rule-example"><span>IF vibration ↑</span><b>AND</b><span>temperature ↑</span><b>THEN</b><span>inspect bearing</span></div><p class="kn-caption-left">Strength: explicit logic. Boundary: coverage depends on rules humans anticipated.</p><p class="kn-source">Conceptual illustration; example rule is synthetic</p><aside class="notes"><strong>2 minutes.</strong> Symbolic AI gives inspectable inference but has a knowledge-acquisition and coverage burden. Modern systems still need explicit constraints for units, permissions, and safety. [Sources] Original AI-vs-Data slide; deep-symbolic-learning.png.</aside></section>
+<section class="slide kn-slide kn-perceptron" data-duration="2" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><header class="kn-copy-left"><p class="kn-kicker">1957 · THE PERCEPTRON</p><h2>A machine could learn a boundary from examples.</h2><div class="kn-equation">ŷ = 𝟙[wᵀx + b ≥ 0]</div><p class="kn-lead">Learning adjusts <i>w</i> and <i>b</i>; it does not write a separate rule for every point.</p></header><svg class="kn-boundary" viewBox="0 0 650 520" role="img" aria-label="Two classes separated by a learned linear decision boundary"><defs><linearGradient id="regionA" x1="0" x2="1"><stop stop-color="#183658" stop-opacity=".32"/><stop offset="1" stop-color="#183658" stop-opacity=".02"/></linearGradient></defs><rect x="20" y="20" width="610" height="480" rx="8" fill="#fbf7ef" stroke="#d7ccbd"/><path d="M20,500 L20,210 L630,70 L630,500 Z" fill="url(#regionA)"/><line x1="35" y1="390" x2="615" y2="118" stroke="#e4002b" stroke-width="8"/><g fill="#1e7690" stroke="#fff" stroke-width="4"><circle cx="120" cy="355" r="15"/><circle cx="190" cy="320" r="15"/><circle cx="250" cy="382" r="15"/><circle cx="310" cy="315" r="15"/><circle cx="390" cy="340" r="15"/></g><g fill="#d78b27" stroke="#fff" stroke-width="4"><circle cx="175" cy="135" r="15"/><circle cx="260" cy="180" r="15"/><circle cx="345" cy="130" r="15"/><circle cx="430" cy="210" r="15"/><circle cx="515" cy="150" r="15"/></g><text x="410" y="92" fill="#7f2635" font-size="25" font-family="IBM Plex Mono">wᵀx + b = 0</text><text x="42" y="62" fill="#30485b" font-size="23" font-family="IBM Plex Mono">held-out point?</text><circle cx="365" cy="255" r="18" fill="#fff" stroke="#7f2635" stroke-width="7"/></svg><p class="kn-source">Rosenblatt, The Perceptron, Cornell Aeronautical Laboratory report (1957)</p><aside class="notes"><strong>2 minutes.</strong> A perceptron learns a linear separator. Ask how to classify the outlined point and what happens when classes are not linearly separable. [Sources] Rosenblatt 1957.</aside></section>
+<section class="slide kn-slide kn-winter" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/keynote-ai-winter.png" alt="A narrow successful rule corridor collapsing under unseen cases and combinatorial rule growth" /><div class="kn-gradient kn-gradient-top-left-dark"></div><header class="kn-year-hero"><p class="kn-kicker">EXPERT SYSTEMS · AI WINTERS</p><h2>Narrow competence was mistaken for general intelligence.</h2><p>Rule systems could excel inside a defined domain. Outside it, coverage, maintenance, and brittle assumptions became visible.</p></header><div class="kn-winter-equation">More cases → more rules → more interactions → harder validation</div><p class="kn-source">Conceptual mechanism; AI winter denotes periods of reduced confidence and funding</p><aside class="notes"><strong>3 minutes.</strong> Expert systems were valuable, but scaling knowledge acquisition and exceptions was difficult. Progress was episodic because expectations, compute, data, and evaluation were misaligned. [Sources] Historical synthesis; keynote-ai-winter.png.</aside></section>
+<section class="slide kn-slide kn-statistical" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/keynote-statistical-learning.png" alt="Bridge measurements becoming a feature space, optimized prediction surface, uncertainty, and held-out evaluation" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">THE STATISTICAL-LEARNING TURN</p><h2>Behavior moved from handwritten rules to fitted functions.</h2><div class="kn-equation">f̂ = arg min<sub>f∈ℱ</sub> [ empirical loss + regularization ]</div><p class="kn-lead">Examples define the pattern; held-out data challenges whether it generalizes.</p></header><p class="kn-source">Conceptual illustration; no measured performance values</p><aside class="notes"><strong>3 minutes.</strong> Training estimates parameters; held-out data tests generalization. Connect to regression, classification, trees, kernels, and ensembles. [Sources] Course textbook; keynote-statistical-learning.png.</aside></section>
+<section class="slide kn-slide kn-deep-learning" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/deep-learning-forces.png" alt="Large labeled data, GPU compute, and hierarchical feature learning converging in a deep neural model" /><div class="kn-top-band"></div><header class="kn-title-band"><p class="kn-kicker">1986 → 2012 · DEEP LEARNING</p><h2>Backpropagation became transformative when data, compute, and representation learning aligned.</h2></header><div class="kn-three-labels"><span>Data</span><span>GPU compute</span><span>Learned representations</span></div><div class="kn-metric-callout"><b>15.3%</b><span>AlexNet top-5 test error in ILSVRC-2012</span><em>vs. 26.2% runner-up</em></div><p class="kn-source">Rumelhart, Hinton & Williams (1986) · Krizhevsky, Sutskever & Hinton (2012)</p><aside class="notes"><strong>3 minutes.</strong> Backprop adjusts weights and lets hidden units learn features. AlexNet combined a large benchmark, GPU implementation, CNNs, and regularization. [Sources] Rumelhart et al. 1986; Krizhevsky et al. 2012.</aside></section>
+<section class="slide kn-slide kn-alphago" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/deep-rl-alphago.png" alt="Policy and value networks guiding Monte Carlo tree search, self-play, reward, and Go-board actions" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">1997 DEEP BLUE → 2016 ALPHAGO</p><h2>Search became stronger when learning guided where to search.</h2></header><div class="kn-versus"><div><b>Deep Blue</b><span>Large-scale search + hand-engineered evaluation</span></div><div><b>AlphaGo</b><span>Policy network + value network + MCTS + self-play</span></div></div><p class="kn-caption-left">Reinforcement learning optimizes sequential decisions through feedback—not just one prediction.</p><p class="kn-source">IBM Deep Blue (1997) · Silver et al., Nature (2016)</p><aside class="notes"><strong>3 minutes.</strong> Deep Blue used massive search with engineered evaluation. AlphaGo combined expert-game supervision, self-play RL, policy/value networks, and MCTS. [Sources] IBM 1997; Silver et al. 2016.</aside></section>
+<section class="slide kn-slide kn-dark kn-transformer" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><header class="kn-title-wide"><p class="kn-kicker">2017 · TRANSFORMER</p><h2>Attention made context parallel.</h2></header><div class="kn-attention-equation">Attention(Q,K,V) = softmax(QKᵀ / √d<sub>k</sub>)V</div><svg class="kn-attention-map" viewBox="0 0 1300 380" role="img" aria-label="Self-attention connects tokens to context with different weights"><defs><linearGradient id="attnLine" x1="0" x2="1"><stop stop-color="#29a3b5"/><stop offset="1" stop-color="#e4002b"/></linearGradient></defs><g font-family="IBM Plex Mono" font-size="28" fill="#f8f4ef"><text x="70" y="70">sensor</text><text x="70" y="145">reports</text><text x="70" y="220">bearing</text><text x="70" y="295">vibration</text><text x="1120" y="185" fill="#f3b23a">inspect</text></g><g fill="none" stroke="url(#attnLine)"><path d="M190 60 C560 60 760 160 1110 175" stroke-width="3" opacity=".35"/><path d="M190 135 C560 135 760 170 1110 180" stroke-width="6" opacity=".55"/><path d="M190 210 C560 210 760 185 1110 185" stroke-width="12" opacity=".9"/><path d="M190 285 C560 285 760 200 1110 190" stroke-width="18"/></g><g fill="#f8f4ef"><circle cx="190" cy="60" r="8"/><circle cx="190" cy="135" r="8"/><circle cx="190" cy="210" r="8"/><circle cx="190" cy="285" r="8"/><circle cx="1110" cy="183" r="12" fill="#f3b23a"/></g></svg><p class="kn-transformer-claim">Self-attention learns which parts of context should influence each representation.</p><p class="kn-source">Vaswani et al., Attention Is All You Need, NIPS (2017)</p><aside class="notes"><strong>3 minutes.</strong> The dot product scores relevance, softmax normalizes weights, and weighted values create contextual representations. [Sources] Vaswani et al. 2017.</aside></section>
+<section class="slide kn-slide kn-generative" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/generative-mechanisms.png" alt="Autoregressive token generation and diffusion denoising shown as different stochastic processes" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">2014 → 2020s · GENERATIVE MODELS</p><h2>The target changed from predicting labels to modeling distributions.</h2></header><div class="kn-gen-defs"><p><b>Autoregressive</b><span>Predict the next element given prior context.</span></p><p><b>Diffusion</b><span>Reverse a progressive noising process.</span></p></div><p class="kn-caption-left">Seed, decoding, temperature, or guidance can change the sample.</p><p class="kn-source">Goodfellow et al. (2014) · Ho et al. (2020)</p><aside class="notes"><strong>3 minutes.</strong> Autoregressive models factorize sequences; diffusion learns reverse denoising. Reproducibility must record inference settings. [Sources] Goodfellow 2014; Ho 2020.</aside></section>
+<section class="slide kn-slide kn-foundation" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/deep-foundation-model.png" alt="Multimodal pretraining, instruction alignment, retrieval, scientific tools, agent loop, and human approval" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">2020 → 2022 · FOUNDATION MODELS</p><h2>One pretrained model became an interface for many tasks.</h2></header><div class="kn-stage-rail"><span><b>Pretraining</b>next-token and multimodal prediction</span><span><b>In-context use</b>instructions and few-shot examples</span><span><b>Post-training</b>human demonstrations and preferences</span></div><p class="kn-caption-left">GPT-3 demonstrated broad few-shot behavior; InstructGPT improved instruction following with human feedback.</p><p class="kn-source">Brown et al. (2020) · Ouyang et al. / OpenAI InstructGPT (2022)</p><aside class="notes"><strong>3 minutes.</strong> GPT-3 supplied tasks in context without gradient updates. InstructGPT added demonstrations, preference comparisons, a reward model, and RLHF. [Sources] Brown et al. 2020; Ouyang et al. 2022.</aside></section>
+<section class="slide kn-slide kn-agent" data-duration="3" data-cue="" data-section="AI history"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><img class="kn-bg" src="assets/agent-evolution.png" alt="Evolution from chat to retrieval, deterministic tools, and a bounded agent that plans and acts" /><div class="kn-gradient kn-gradient-left-light"></div><header class="kn-copy-left"><p class="kn-kicker">2022 → 2026 · FROM ANSWERS TO ACTIONS</p><h2>An agent is a system around a model.</h2></header><div class="kn-agent-stack"><span>Model</span><b>+</b><span>Context</span><b>+</b><span>Retrieval</span><b>+</b><span>Tools</span><b>+</b><span>State</span><b>+</b><span>Permissions</span></div><p class="kn-caption-left">Tool access increases capability and the cost of error. Evaluate the trajectory, not only the final sentence.</p><p class="kn-source">ReAct (2022) · Toolformer (2023) · agent interoperability work (2025–26)</p><aside class="notes"><strong>3 minutes.</strong> Production agents add retrieval, state, permissions, tools, and approval. Infrastructure standards do not prove reliability. [Sources] ReAct 2022; Toolformer 2023; OpenAI AAIF 2025.</aside></section>
+<section class="slide kn-slide kn-dark kn-lessons" data-duration="2" data-cue="" data-section="Course introduction"><div class="kn-brand" aria-label="NCKU and LAiMM"><img src="assets/ncku.png" alt="National Cheng Kung University" /><span></span><img src="assets/laimm.png" alt="LAiMM Laboratory" /></div><header class="kn-title-wide"><p class="kn-kicker">WHAT THE HISTORY TEACHES</p><h2>Capability changes. Evidence obligations accumulate.</h2></header><div class="kn-lessons-line"><div><b>Rules</b><span>Make constraints explicit</span></div><i></i><div><b>Learning</b><span>Generalizes from examples</span></div><i></i><div><b>Generation</b><span>Samples plausible outputs</span></div><i></i><div><b>Agents</b><span>Act through tools and state</span></div></div><blockquote>Every new layer creates a new failure surface.</blockquote><div class="kn-next">NEXT · SOFTWARE 1.0 → 2.0 → 3.0</div><p class="kn-source">Synthesis for this course</p><aside class="notes"><strong>2 minutes.</strong> Ask for one evidence obligation per layer: rule coverage, split/generalization, stochastic configuration/grounding, and trajectory/permission checks. [Sources] Course synthesis.</aside></section>
+
+      <section class="slide section-slide dark" data-duration="1" data-cue="16:00-17:00" data-section="Software paradigms">
+        <img class="full-bleed" src="assets/software-stack.png" alt="Three-layer engineering software architecture with deterministic code, learned models, and an agent layer" />
+        <div class="image-shade left-heavy"></div>
+        <div class="section-copy"><p class="section-number">02</p><p class="eyebrow">SOFTWARE PARADIGMS</p><h2>Software is changing again</h2><blockquote>Each new layer changes who specifies behavior - and what evidence must be checked.</blockquote></div>
+        <aside class="notes"><strong>1 minute.</strong> Transition from adoption to architecture. Tell students that "Software 1.0, 2.0, and 3.0" is a useful conceptual lens, not a formal standard. The layers coexist. The teaching question is: where does behavior come from, and where must constraints and verification live?</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="17:00-19:00" data-section="Software paradigms">
+        <header><p class="eyebrow">SOFTWARE 1.0</p><h2>Humans specify the behavior directly</h2></header>
+        <div class="two-col visual">
+          <div class="code-card">
+            <div class="equation">y = f<sub>rules</sub>(x)</div>
+            <pre><code>stress_MPa = stress_Pa / 1e6
+allowable = yield_MPa / gamma
+
+if stress_MPa &gt; allowable:
+    return "STOP"
+return "CONTINUE"</code></pre>
+          </div>
+          <div class="flow-diagram">
+            <div class="flow-node">Sensor<br /><small>Pa</small></div><span>→</span><div class="flow-node">Convert<br /><small>MPa</small></div><span>→</span><div class="flow-node">Compare<br /><small>σ &gt; σ<sub>y</sub>/γ?</small></div>
+            <div class="branch"><b>YES → STOP</b><b>NO → CONTINUE</b></div>
+            <div class="tradeoffs"><p><strong>Strength:</strong> deterministic and auditable</p><p><strong>Limit:</strong> every relevant rule must be authored</p></div>
+          </div>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> Define Software 1.0 as behavior explicitly encoded in source code. Walk through the unit conversion before the decision rule; this is where engineering invariants belong. Ask what happens if a new failure mechanism is not represented. The limitation is coverage, not value. Deterministic code remains essential for units, bounds, solver calls, access control, and safety interlocks.</aside>
+      </section>
+
+      <section class="slide deep-tech-slide deep-right software-training-deep" data-duration="2" data-cue="19:00-21:00" data-section="Software paradigms">
+        <header><p class="eyebrow">SOFTWARE 2.0</p><h2>Data and optimization specify behavior</h2></header>
+        <img class="deep-tech-bg" src="assets/deep-software-training.png" alt="Software 2.0 training loop with data splits, prediction, loss surface, gradients, optimization, validation, uncertainty, and frozen model artifact" />
+        <div class="deep-tech-scrim" aria-hidden="true"></div>
+        <div class="deep-tech-caption" aria-label="Software 2.0 optimization">
+          <p><b>Specify</b><span>Examples and an objective define desired behavior statistically.</span></p>
+          <p><b>Optimize</b><span>Backpropagated gradients update parameters to reduce training loss.</span></p>
+          <p><b>Challenge</b><span>Held-out validation, calibration, and frozen artifacts test generalization.</span></p>
+        </div>
+        <div class="training-visual visual">
+          <div class="math-panel"><span>Learn parameters</span><div class="equation large">θ* = arg min<sub>θ</sub> Σ<sub>i</sub> L(f<sub>θ</sub>(x<sub>i</sub>), y<sub>i</sub>) + λΩ(θ)</div></div>
+          <div class="training-loop">
+            <div class="flow-node maroon-node">Experience<br /><small>(x, y)</small></div><span>→</span><div class="flow-node blue-node">Model<br /><small>f<sub>θ</sub></small></div><span>→</span><div class="flow-node amber-node">Loss<br /><small>L(ŷ, y)</small></div><span>→</span><div class="flow-node teal-node">Optimizer<br /><small>update θ</small></div>
+            <svg viewBox="0 0 900 90"><path d="M820 20 C820 75 220 78 220 30" /><polygon points="210,31 230,20 228,42" /></svg>
+          </div>
+          <div class="definition-grid"><span><b>Data</b> defines observed experience</span><span><b>Labels</b> define operational truth</span><span><b>Loss</b> prices mistakes</span><span><b>Optimization</b> searches parameters</span></div>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> Read the objective from right to left: regularization controls complexity; the loss prices prediction errors; the sum aggregates observed examples; optimization selects parameters. Stress that the algorithm sees labels, not physical truth directly. If labels are delayed, noisy, or defined by a proxy, the model learns that operational definition.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="21:00-23:00" data-section="Software paradigms">
+        <header><p class="eyebrow">TRAINING SEMANTICS</p><h2>Optimization changes weights - not reality</h2></header>
+        <div class="lever-grid visual">
+          <article><span class="lever-icon">D</span><h3>Dataset</h3><p>Which operating conditions are visible?</p><small>Missing regime → unsupported prediction</small></article>
+          <article><span class="lever-icon">Y</span><h3>Label</h3><p>What event counts as "damage"?</p><small>Proxy label → proxy behavior</small></article>
+          <article><span class="lever-icon">L</span><h3>Loss</h3><p>Which errors receive more penalty?</p><small>Symmetric loss → symmetric incentives</small></article>
+          <article><span class="lever-icon">S</span><h3>Split</h3><p>What future situation is simulated?</p><small>Random rows may leak bridge identity</small></article>
+        </div>
+        <div class="takeaway"><span>Diagnostic rule</span> When a model fails, inspect the learning problem before tuning the architecture.</div>
+        <aside class="notes"><strong>2 minutes.</strong> Use the four levers as a debugging checklist. Architecture tuning cannot create missing operating regimes, correct a poor label definition, or undo a contaminated test split. Ask students which lever controls the cost of a false negative. The immediate answer is the loss during training and the threshold/metric during evaluation; both must reflect the engineering decision.</aside>
+      </section>
+
+      <section class="slide image-split" data-duration="2" data-cue="23:00-25:00" data-section="Software paradigms">
+        <img class="split-image right" src="assets/software-stack.png" alt="Stacked deterministic, learned, and agent software layers" />
+        <div class="split-copy light-copy">
+          <p class="eyebrow">SOFTWARE 3.0</p><h2>Models coordinate tools through language</h2>
+          <div class="agent-pipeline visual"><span>Intent</span><i>→</i><span>Plan</span><i>→</i><span>Tool</span><i>→</i><span>Artifact</span><i>→</i><span class="gate">Human gate</span></div>
+          <div class="definition-box"><b>Working definition</b><p>A model selects the next action from context, invokes bounded tools, observes results, and stops under explicit criteria.</p></div>
+          <p class="citation-note">Conceptual lineage: Karpathy, <a href="https://www.youtube.com/watch?v=LCEmiRjPEtQ" target="_blank" rel="noreferrer">Software Is Changing (Again), 2025</a>.</p>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> Define Software 3.0 operationally rather than as "AI that does everything." Language expresses intent and context; a model proposes or selects actions; deterministic tools perform bounded operations; artifacts are inspected at gates. The model is part of a control loop. This framing makes permissions, logging, stop conditions, and acceptance tests visible.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="25:00-27:00" data-section="Software paradigms">
+        <header><p class="eyebrow">ARCHITECTURE PRINCIPLE</p><h2>The layers accumulate; they do not replace one another</h2></header>
+        <div class="layer-table visual">
+          <div class="table-head"><span>Layer</span><span>Owns</span><span>Bridge-monitoring example</span><span>Must not own alone</span></div>
+          <div class="table-row s1"><b>1.0 · Rules</b><span>invariants + interfaces</span><span>units, limits, solver API</span><span>unknown-pattern inference</span></div>
+          <div class="table-row s2"><b>2.0 · Model</b><span>statistical estimate</span><span>damage probability + uncertainty</span><span>safety authorization</span></div>
+          <div class="table-row s3"><b>3.0 · Agent</b><span>workflow coordination</span><span>load data, run model, draft report</span><span>unreviewed deployment</span></div>
+        </div>
+        <div class="stack-equation"><span>Safe system</span><b>=</b><span>constraints</span><b>+</b><span>estimates</span><b>+</b><span>orchestration</span><b>+</b><span>accountable approval</span></div>
+        <aside class="notes"><strong>2 minutes.</strong> Walk across the rows. Rules enforce non-negotiable invariants. Models estimate uncertain quantities. Agents coordinate steps and artifacts. Human or institutional authority approves consequential actions. Give a failure example for each misplaced responsibility: units delegated to an LLM, a classifier treated as a safety interlock, or an agent allowed to deploy without acceptance evidence.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="27:00-29:00" data-section="Agents">
+        <header><p class="eyebrow">WORKFLOW OR AGENT?</p><h2>The difference is who selects the next action</h2></header>
+        <div class="workflow-agent visual">
+          <article>
+            <h3>Fixed workflow</h3><p class="sub">Control flow is authored in advance.</p>
+            <div class="fixed-flow"><span>Load</span><i>→</i><span>Clean</span><i>→</i><span>Fit</span><i>→</i><span>Report</span></div>
+            <div class="formal">a<sub>t</sub> = π<sub>rules</sub>(step<sub>t</sub>)</div>
+          </article>
+          <article>
+            <h3>Agentic workflow</h3><p class="sub">A model selects actions from state and observations.</p>
+            <div class="agent-cycle"><span>State s<sub>t</sub></span><i>→</i><span>Action a<sub>t</sub></span><i>→</i><span>Observation o<sub>t+1</sub></span><i>↺</i></div>
+            <div class="formal">a<sub>t</sub> ∼ π<sub>model</sub>(· | s<sub>t</sub>)</div>
+          </article>
+        </div>
+        <div class="takeaway"><span>Design choice</span> Prefer a fixed workflow when the valid path is known; add agency only where adaptation creates measurable value.</div>
+        <aside class="notes"><strong>2 minutes.</strong> Contrast deterministic routing with model-selected routing. Agency is not a quality badge. If the process is known and stable, a fixed workflow is easier to test and audit. Use an agent when the next step depends on unstructured evidence or unexpected observations. Even then, bound the available actions and record the state-action-observation trace.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="29:00-31:00" data-section="Agents">
+        <header><p class="eyebrow">CONTROL LOOP</p><h2>An agent needs a stop condition, not just a prompt</h2></header>
+        <div class="agent-loop visual">
+          <svg viewBox="0 0 1400 500" role="img" aria-label="Agent loop with goal, plan, action, observation, reflection, gate, and stop condition">
+            <path class="loop-path" d="M160 250 C180 80 430 40 590 120 C720 15 1010 65 1045 220 C1220 235 1255 400 1090 440 C930 505 690 450 645 350 C460 465 215 420 160 250Z" />
+            <g class="loop-node" transform="translate(80 205)"><rect width="170" height="90" rx="18"/><text x="85" y="38">GOAL</text><text class="small" x="85" y="65">acceptance criteria</text></g>
+            <g class="loop-node" transform="translate(330 80)"><rect width="170" height="90" rx="18"/><text x="85" y="38">PLAN</text><text class="small" x="85" y="65">bounded actions</text></g>
+            <g class="loop-node" transform="translate(620 55)"><rect width="170" height="90" rx="18"/><text x="85" y="38">ACT</text><text class="small" x="85" y="65">invoke tool</text></g>
+            <g class="loop-node" transform="translate(910 105)"><rect width="190" height="90" rx="18"/><text x="95" y="38">OBSERVE</text><text class="small" x="95" y="65">capture artifact</text></g>
+            <g class="loop-node" transform="translate(1040 315)"><rect width="190" height="90" rx="18"/><text x="95" y="38">REFLECT</text><text class="small" x="95" y="65">compare evidence</text></g>
+            <g class="loop-node gate-node" transform="translate(690 350)"><rect width="170" height="90" rx="18"/><text x="85" y="38">GATE</text><text class="small" x="85" y="65">human / policy</text></g>
+            <g class="loop-node stop-node" transform="translate(365 325)"><rect width="190" height="90" rx="18"/><text x="95" y="38">STOP</text><text class="small" x="95" y="65">pass · fail · budget</text></g>
+          </svg>
+          <div class="loop-rules"><span>Max actions</span><span>Allowed tools</span><span>Evidence schema</span><span>Escalation owner</span></div>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> A prompt describes intent; a control loop governs behavior. Define at least four boundaries before execution: maximum actions or cost, allowed tools, required evidence schema, and escalation owner. Stop can mean success, explicit failure, exhausted budget, or insufficient evidence. An agent that loops until it finds a pleasing answer is not robust.</aside>
+      </section>
+
+      <section class="slide image-slide interactive" data-duration="2" data-cue="31:00-33:00" data-section="Agents">
+        <img class="full-bleed muted" src="assets/agent-permissions.png" alt="Four progressively stronger permission gates for an engineering AI agent" />
+        <div class="top-band"><p class="eyebrow">PRESS R · AUTONOMY BOUNDARY</p><h2>Permission must grow with consequence</h2></div>
+        <div class="permission-strip visual">
+          <div><b>READ</b><span>source + scope</span></div><i>→</i><div><b>WRITE</b><span>diff + provenance</span></div><i>→</i><div><b>EXECUTE</b><span>sandbox + logs</span></div><i>→</i><div class="locked"><b>DEPLOY</b><span>acceptance + owner</span></div>
+        </div>
+        <div class="permission-question reveal-item">A notebook can run in Colab. Does that imply it may overwrite the canonical dataset? <strong>No.</strong></div>
+        <aside class="notes"><strong>2 minutes.</strong> Ask students to assign a permission level to a Colab notebook that trains a model and exports a report. Reveal the distinction: execution permission does not imply write access to canonical data, and neither implies deployment authority. Explain the evidence escalation: read needs source/scope; write needs a reviewable diff and provenance; execute needs isolation and logs; deploy needs acceptance evidence and an accountable owner.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="33:00-35:00" data-section="Agents">
+        <header><p class="eyebrow">EMPIRICAL SIGNAL · PROVIDER-SPECIFIC</p><h2>Humans plan; coding agents increasingly execute</h2></header>
+        <div class="decision-bars visual">
+          <article><h3>Planning decisions</h3><div class="split-bar"><i class="human" style="--value:70%">Human ≈70%</i><i class="agent">Agent ≈30%</i></div><p>What to build · approach · completion criteria</p></article>
+          <article><h3>Execution decisions</h3><div class="split-bar"><i class="human" style="--value:20%">Human ≈20%</i><i class="agent">Agent ≈80%</i></div><p>Files · code · commands · implementation details</p></article>
+        </div>
+        <div class="scope-card"><b>Evidence boundary</b><span>Privacy-preserving classifier over ~400,000 Claude Code sessions, Oct 2025-Apr 2026. This is not a universal law for all tools or users.</span></div>
+        <p class="source">Source: Anthropic, <a href="https://www.anthropic.com/research/claude-code-expertise" target="_blank" rel="noreferrer">Agentic coding and persistent returns to expertise</a>, June 2026.</p>
+        <aside class="notes"><strong>2 minutes.</strong> Read the scope before the result. The study infers decisions from one provider's sessions, so it supports a pattern, not a universal percentage. The useful design implication is division of labor: students should own problem formulation, constraints, evidence, and acceptance; agents may handle much implementation. Domain expertise remains valuable because it improves instructions and verification.</aside>
+      </section>
+
+      <section class="slide section-slide" data-duration="1" data-cue="35:00-36:00" data-section="ML foundations">
+        <div class="nested-fields visual">
+          <div class="field ai"><span>ARTIFICIAL INTELLIGENCE</span><div class="field ml"><span>MACHINE LEARNING</span><div class="field dl"><span>DEEP LEARNING</span></div></div></div>
+          <div class="agent-dependency"><b>Agentic system</b><span>models</span><span>data</span><span>tools</span><span>evaluation</span><span>governance</span></div>
+        </div>
+        <div class="section-copy left"><p class="section-number">03</p><p class="eyebrow">FOUNDATIONS</p><h2>Machine learning remains the core</h2><blockquote>Tool fluency without model literacy produces fast, unauditable mistakes.</blockquote></div>
+        <aside class="notes"><strong>1 minute.</strong> Transition back to the course core. An agentic application may use a foundation model, classical predictors, retrieval, deterministic tools, and policy gates. Students need ML literacy to choose data, objectives, splits, metrics, and explanations. Vibe coding is an implementation mode inside this larger system.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="36:00-38:00" data-section="ML foundations">
+        <header><p class="eyebrow">MITCHELL'S DEFINITION</p><h2>Specify learning before selecting an algorithm</h2></header>
+        <div class="tpe visual">
+          <div class="tpe-card t"><b>T</b><h3>Task</h3><p>Classify each bridge/time window as damage or no damage.</p></div>
+          <div class="tpe-card p"><b>P</b><h3>Performance</h3><p>Recall at an acceptable false-alarm rate, evaluated on unseen bridges.</p></div>
+          <div class="tpe-card e"><b>E</b><h3>Experience</h3><p>Labeled vibration windows with bridge ID, sensor, load, time, and units.</p></div>
+        </div>
+        <div class="mitchell-quote">A program learns from <b>E</b> with respect to <b>T</b> and <b>P</b> if performance at T, as measured by P, improves with E.</div>
+        <p class="source">Adapted from Tom M. Mitchell, <em>Machine Learning</em>, 1997.</p>
+        <aside class="notes"><strong>2 minutes.</strong> Make students say T, P, and E aloud for the bridge case. Correct vague versions: "detect damage" is not enough unless the prediction unit and output are defined; "accuracy" may not encode safety cost; "sensor data" omits labels, metadata, and sampling structure. Algorithm choice begins only after the learning problem is operationally specified.</aside>
+      </section>
+
+      <section class="slide interactive" data-duration="2" data-cue="38:00-40:00" data-section="ML foundations">
+        <header><p class="eyebrow">INTERACTIVE DEMO · DRAG THE THRESHOLD</p><h2>Move the threshold. Watch every cell change.</h2></header>
+        <div class="threshold-demo visual" id="thresholdDemo">
+          <div class="threshold-panel">
+            <div class="threshold-control">
+              <label for="thresholdSlider">Decision threshold τ <output id="thresholdValue">0.50</output></label>
+              <input id="thresholdSlider" type="range" min="10" max="90" step="5" value="50" />
+              <div class="threshold-extremes"><span>lower τ: more alarms</span><span>higher τ: fewer alarms</span></div>
+            </div>
+            <div class="score-legend"><span><i class="actual-positive"></i>Actual damaged</span><span><i class="actual-negative"></i>Actual healthy</span><span><i class="predicted-ring"></i>Predicted damage</span></div>
+            <div class="score-ruler" id="scoreRuler" aria-label="Twenty classified cases placed by model score">
+              <div class="prediction-zone negative-zone">predict healthy</div>
+              <div class="prediction-zone positive-zone">predict damage</div>
+              <div class="threshold-marker" id="thresholdMarker"><b>τ</b></div>
+              <div class="score-axis"><span>0.0</span><span>model score p(damage)</span><span>1.0</span></div>
+            </div>
+          </div>
+          <div class="interactive-confusion">
+            <div class="matrix-grid">
+              <div></div><b>Predicted damage</b><b>Predicted healthy</b>
+              <b>Actual damage</b>
+              <button class="matrix-cell tp" type="button" data-kind="tp"><small>TRUE POSITIVE</small><strong id="tpCount">0</strong><span>damage caught</span></button>
+              <button class="matrix-cell fn" type="button" data-kind="fn"><small>FALSE NEGATIVE</small><strong id="fnCount">0</strong><span>damage missed</span></button>
+              <b>Actual healthy</b>
+              <button class="matrix-cell fp" type="button" data-kind="fp"><small>FALSE POSITIVE</small><strong id="fpCount">0</strong><span>false alarm</span></button>
+              <button class="matrix-cell tn" type="button" data-kind="tn"><small>TRUE NEGATIVE</small><strong id="tnCount">0</strong><span>correct clearance</span></button>
+            </div>
+            <div class="matrix-explain" id="matrixExplain"><b>Click TP, FN, FP, or TN.</b><span>The first word tells whether the prediction is correct; the second tells the predicted class.</span></div>
+          </div>
+          <div class="live-metrics">
+            <article><small>Recall = Sensitivity = TPR</small><strong id="metricRecall">-</strong><span>TP / (TP + FN)</span></article>
+            <article><small>Precision = PPV</small><strong id="metricPrecision">-</strong><span>TP / (TP + FP)</span></article>
+            <article><small>Specificity = TNR</small><strong id="metricSpecificity">-</strong><span>TN / (TN + FP)</span></article>
+            <article><small>Accuracy</small><strong id="metricAccuracy">-</strong><span>(TP + TN) / N</span></article>
+            <article><small>F1 score</small><strong id="metricF1">-</strong><span>2TP / (2TP + FP + FN)</span></article>
+          </div>
+        </div>
+        <aside class="notes"><strong>2-minute core; optional 4-minute extension.</strong> Drag the threshold down and ask which cells increase: TP and FP. Drag it up and observe FN and TN. Click each matrix cell to read its engineering interpretation. Emphasize that recall and sensitivity are the same quantity: among all actual damaged cases, how many were caught? Precision asks a different denominator: among all alarms, how many were truly damaged?</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="40:00-42:00" data-section="ML foundations">
+        <header><p class="eyebrow">SUPERVISED LEARNING · REGRESSION</p><h2>Residual structure is evidence the model missed something</h2></header>
+        <div class="regression visual">
+          <div class="reg-formula"><div class="equation">ŷ = f<sub>θ</sub>(x)</div><div class="equation">e<sub>i</sub> = y<sub>i</sub> - ŷ<sub>i</sub></div><p>Predict: remaining fatigue life (cycles)</p></div>
+          <svg class="residual-plot" viewBox="0 0 800 420" role="img" aria-label="Residual plot showing curvature and increasing variance">
+            <path class="axis" d="M65 30V360H750M65 195H750" /><text x="345" y="405">predicted value →</text><text transform="translate(22 255) rotate(-90)">residual e</text>
+            <path class="trend" d="M90 255 C250 145 430 140 720 255" />
+            <g class="residual-points"><circle cx="110" cy="235" r="7"/><circle cx="145" cy="210" r="7"/><circle cx="185" cy="190" r="7"/><circle cx="230" cy="175" r="7"/><circle cx="280" cy="155" r="7"/><circle cx="330" cy="165" r="7"/><circle cx="390" cy="140" r="7"/><circle cx="440" cy="175" r="7"/><circle cx="500" cy="135" r="7"/><circle cx="540" cy="210" r="7"/><circle cx="585" cy="125" r="7"/><circle cx="620" cy="255" r="7"/><circle cx="660" cy="90" r="7"/><circle cx="705" cy="300" r="7"/></g>
+          </svg>
+          <div class="residual-flags"><span>curvature → misspecified relationship</span><span>funnel → non-constant variance</span><span>isolated points → inspect provenance</span></div>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> A single RMSE compresses error structure. In a well-specified mean model, residuals should not show systematic curvature; increasing spread suggests heteroscedasticity and changing uncertainty. Do not automatically delete outliers. First inspect whether they are measurement errors, rare but valid regimes, or the exact failure cases the model must handle. Always compare against a simple baseline.</aside>
+      </section>
+
+      <section class="slide interactive" data-duration="2" data-cue="42:00-44:00" data-section="ML foundations">
+        <header><p class="eyebrow">UNSUPERVISED LEARNING · PRESS R</p><h2>Algorithms discover structure; engineers assign meaning</h2></header>
+        <div class="cluster-lesson visual">
+          <svg viewBox="0 0 760 430" role="img" aria-label="Three clusters distorted by different feature scales">
+            <path class="axis" d="M60 35V370H720M60 370H720" /><text x="300" y="415">temperature (°C)</text><text transform="translate(20 280) rotate(-90)">vibration (m/s²)</text>
+            <g class="cluster c1"><circle cx="160" cy="285" r="10"/><circle cx="195" cy="260" r="10"/><circle cx="220" cy="300" r="10"/><circle cx="180" cy="325" r="10"/></g>
+            <g class="cluster c2"><circle cx="390" cy="180" r="10"/><circle cx="420" cy="155" r="10"/><circle cx="445" cy="200" r="10"/><circle cx="370" cy="220" r="10"/></g>
+            <g class="cluster c3"><circle cx="590" cy="265" r="10"/><circle cx="630" cy="230" r="10"/><circle cx="655" cy="285" r="10"/><circle cx="610" cy="315" r="10"/></g>
+          </svg>
+          <div class="cluster-questions">
+            <h3>Before naming clusters:</h3>
+            <ol><li>What distance is used?</li><li>Are units and scales comparable?</li><li>Why this number of clusters?</li><li>Is structure stable across resampling?</li></ol>
+            <div class="reveal-item standardize"><b>Standardize</b><span>z<sub>ij</sub> = (x<sub>ij</sub> - μ<sub>j</sub>) / σ<sub>j</sub></span><small>Fit μ and σ on training data only.</small></div>
+          </div>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> Ask whether the three groups are three damage modes. The answer is unknown. Clustering identifies structure under a chosen representation and distance; semantics require domain evidence. Press R to reveal standardization. Point out that even unsupervised preprocessing must respect the evaluation split when the cluster representation feeds a downstream model.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="44:00-46:00" data-section="Evidence">
+        <header><p class="eyebrow">EVALUATION DESIGN</p><h2>The split defines the claim you are allowed to make</h2></header>
+        <div class="split-design visual">
+          <div class="partition random"><h3>Random rows</h3><div class="blocks"><i class="train"></i><i class="test"></i><i class="train"></i><i class="val"></i><i class="train"></i><i class="test"></i></div><p>Valid only when rows are independent and deployment is exchangeable.</p></div>
+          <div class="partition group"><h3>Group split</h3><div class="blocks"><i class="train wide">Bridge A</i><i class="val wide">Bridge B</i><i class="test wide">Bridge C</i></div><p>Tests generalization to an unseen asset.</p></div>
+          <div class="partition time"><h3>Time split</h3><div class="timeline"><i class="train">past</i><i class="val">recent</i><i class="test">future</i></div><p>Tests forecasting under temporal drift.</p></div>
+        </div>
+        <div class="split-contract"><span><b>TRAIN</b> fit parameters</span><span><b>VALIDATION</b> choose model / threshold</span><span><b>TEST</b> estimate once, after choices are frozen</span></div>
+        <aside class="notes"><strong>2 minutes.</strong> The split is a simulation of deployment. Random rows are often invalid for repeated sensor windows because neighboring windows and bridge identity leak across partitions. Group split supports an unseen-bridge claim; time split supports a future-period claim. The test set is not a dashboard consulted after every change. Repeated test use converts it into validation data.</aside>
+      </section>
+
+      <section class="slide interactive" data-duration="2" data-cue="46:00-48:00" data-section="Evidence">
+        <header><p class="eyebrow">DATA LEAKAGE · PRESS R</p><h2>Preprocessing can quietly train on the test set</h2></header>
+        <div class="leakage visual">
+          <article class="wrong-pipeline"><h3>Wrong</h3><div class="pipeline"><span>All data</span><i>→</i><span class="danger">fit scaler</span><i>→</i><span>split</span><i>→</i><span>score</span></div><p>Test statistics influence the transform.</p><div class="leak-arrow">test information ↗</div></article>
+          <article class="right-pipeline reveal-item"><h3>Correct</h3><div class="pipeline"><span>split</span><i>→</i><span>fit scaler on train</span><i>→</i><span>transform val/test</span><i>→</i><span>score</span></div><pre><code>pipe = make_pipeline(StandardScaler(), model)
+pipe.fit(X_train, y_train)
+pipe.score(X_test, y_test)</code></pre></article>
+        </div>
+        <div class="takeaway"><span>Rule</span> Any step that learns from data belongs inside the train-only pipeline.</div>
+        <p class="source">Source: scikit-learn, <a href="https://scikit-learn.org/stable/common_pitfalls.html" target="_blank" rel="noreferrer">Common pitfalls and recommended practices</a>.</p>
+        <aside class="notes"><strong>2 minutes.</strong> Leakage is information that would not be available at prediction time entering model construction. Scaling looks harmless, but fitting mean and variance on all rows exposes test distribution. The same risk applies to imputation, feature selection, PCA, and target-derived features. Reveal the correct pipeline and emphasize that the pipeline itself is the evaluated model.</aside>
+      </section>
+
+      <section class="slide interactive" data-duration="2" data-cue="48:00-50:00" data-section="Evidence">
+        <header><p class="eyebrow">INTERACTIVE METRIC LAB · SELECT A SCENARIO</p><h2>The same problem looks different through each metric</h2></header>
+        <div class="metric-lab visual" id="metricLab">
+          <div class="scenario-panel">
+            <div class="preset-buttons" role="group" aria-label="Classification scenarios">
+              <button type="button" data-preset="balanced">Balanced test</button>
+              <button type="button" data-preset="rare">92% accuracy trap</button>
+              <button type="button" data-preset="safety">Safety-first threshold</button>
+            </div>
+            <div class="mini-matrix">
+              <div></div><b>Pred +</b><b>Pred -</b>
+              <b>Actual +</b><span class="tp">TP <strong id="labTp">-</strong></span><span class="fn">FN <strong id="labFn">-</strong></span>
+              <b>Actual -</b><span class="fp">FP <strong id="labFp">-</strong></span><span class="tn">TN <strong id="labTn">-</strong></span>
+            </div>
+            <div class="scenario-narrative" id="labNarrative"></div>
+            <div class="baseline-reminder"><b>Always compare:</b> majority · simple statistical model · physics/rule baseline</div>
+          </div>
+          <div class="metric-glossary">
+            <article><small>Recall · Sensitivity · TPR</small><strong id="labRecall">-</strong><span>Of actual damage, how much did we catch?</span><code>TP/(TP+FN)</code></article>
+            <article><small>Precision · PPV</small><strong id="labPrecision">-</strong><span>Of alarms, how many were real?</span><code>TP/(TP+FP)</code></article>
+            <article><small>Specificity · TNR</small><strong id="labSpecificity">-</strong><span>Of healthy cases, how many were cleared?</span><code>TN/(TN+FP)</code></article>
+            <article><small>Negative predictive value</small><strong id="labNpv">-</strong><span>Of clearances, how many were healthy?</span><code>TN/(TN+FN)</code></article>
+            <article><small>Accuracy</small><strong id="labAccuracy">-</strong><span>What fraction of all decisions were correct?</span><code>(TP+TN)/N</code></article>
+            <article><small>F1 score</small><strong id="labF1">-</strong><span>Harmonic balance of precision and recall.</span><code>2TP/(2TP+FP+FN)</code></article>
+            <article><small>False positive rate · FPR</small><strong id="labFpr">-</strong><span>Healthy cases incorrectly alarmed.</span><code>FP/(FP+TN)</code></article>
+            <article><small>False negative rate · FNR</small><strong id="labFnr">-</strong><span>Damaged cases incorrectly cleared.</span><code>FN/(FN+TP)</code></article>
+          </div>
+        </div>
+        <div class="metric-rule"><b>No metric is universally best.</b> Choose the denominator and error cost that match the engineering decision.</div>
+        <aside class="notes"><strong>2-minute core; optional 5-minute extension.</strong> Start with the 92% accuracy trap. The model predicts every case as healthy: accuracy is 92%, specificity is 100%, but recall is 0% because all eight damaged cases are missed. Then select safety-first: recall becomes 100%, but precision falls because more healthy cases trigger alarms. Use the balanced case to compare the denominators. Sensitivity and recall are synonyms; specificity measures the negative class, not the opposite of precision.</aside>
+      </section>
+
+      <section class="slide image-slide" data-duration="2" data-cue="50:00-52:00" data-section="Evidence">
+        <img class="full-bleed muted" src="assets/reproducibility.png" alt="Two engineering teams reproduce the same result from one sealed evidence package" />
+        <div class="top-band"><p class="eyebrow">REPRODUCIBILITY</p><h2>A result must travel with the conditions that created it</h2></div>
+        <div class="repro-stack visual"><span>data hash</span><span>split IDs</span><span>environment</span><span>seed + config</span><span>code + command</span><span>outputs + tolerance</span></div>
+        <div class="repro-contract"><b>Course contract</b><span>Same evidence package → same result within a declared tolerance.</span><span>Independent route → same conclusion is stronger replication evidence.</span></div>
+        <aside class="notes"><strong>2 minutes.</strong> Define the course's operational standard. A notebook alone is insufficient: data version, exact split membership, environment, random seed and configuration, command, outputs, and numerical tolerance are all part of the result. Exact bitwise identity may be unrealistic on different accelerators; declare an appropriate tolerance. Independent implementation or data that supports the same conclusion is stronger replication evidence.</aside>
+      </section>
+
+      <section class="slide image-split" data-duration="2" data-cue="52:00-54:00" data-section="Interpretability">
+        <img class="split-image left focus-left" src="assets/interpretability-causality.png" alt="Model attribution analysis contrasted with a physical intervention experiment" />
+        <div class="split-copy right-copy light-copy">
+          <p class="eyebrow">INTERPRETABILITY</p><h2>Start with the decision question</h2>
+          <div class="interpret-questions visual">
+            <div><b>Global</b><span>What patterns does the model use overall?</span><small>summary importance · partial dependence</small></div>
+            <div><b>Local</b><span>Why this prediction?</span><small>feature attribution · counterfactual probe</small></div>
+            <div><b>Error</b><span>Where does it fail?</span><small>residual slices · subgroup analysis</small></div>
+            <div><b>Action</b><span>Can a human use the explanation safely?</span><small>stability · fidelity · domain plausibility</small></div>
+          </div>
+          <p class="citation-note">NIST distinguishes explainability of mechanisms from interpretation in the system's functional context.</p>
+        </div>
+        <aside class="notes"><strong>2 minutes.</strong> Interpretability is not one chart. Choose a method from the question. Global summaries describe average behavior; local attributions address one prediction; error analysis identifies failure regimes; action-focused interpretation tests whether the explanation supports a safe decision. Always check stability, fidelity to the model, and domain plausibility. An attractive explanation can still be unstable or misleading.</aside>
+      </section>
+
+      <section class="slide" data-duration="2" data-cue="54:00-56:00" data-section="Interpretability">
+        <header><p class="eyebrow">INFERENCE BOUNDARY</p><h2>Attribution is not causality</h2></header>
+        <div class="causal-split visual">
+          <article class="attribution-side"><h3>Prediction explanation</h3><div class="causal-graph"><span>Temperature</span><i>→</i><span>Model score</span><i>←</i><span>Traffic</span><b class="confound">Weather ↗ ↖</b></div><div class="equation">φ<sub>j</sub>: allocate a prediction among features</div><p>Question: "Which observed features influenced this model output?"</p></article>
+          <article class="causality-side"><h3>Causal effect</h3><div class="intervention"><span>do(x = x')</span><i>→</i><span>physical/system change</span><i>→</i><span>outcome</span></div><div class="equation">E[Y | do(X=x')] - E[Y | do(X=x)]</div><p>Question: "What would change if we intervened?"</p></article>
+        </div>
+        <div class="boundary-line"><span>Requires observational model + assumptions</span><b>≠</b><span>Requires identification, experiment, or defensible causal design</span></div>
+        <p class="source">References: <a href="https://shap.readthedocs.io/" target="_blank" rel="noreferrer">SHAP documentation</a>; Judea Pearl, <em>Causality</em>; <a href="https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/" target="_blank" rel="noreferrer">NIST AI RMF</a>.</p>
+        <aside class="notes"><strong>2 minutes.</strong> A feature attribution explains the fitted model under its data distribution; it does not prove that changing the feature changes the physical outcome. Weather can influence both temperature and traffic, creating associations. A causal claim requires identification assumptions, an experiment, or another defensible causal design. Ask: if temperature has high SHAP value, should we cool the sensor to prevent damage? No - the attribution does not establish that intervention effect.</aside>
+      </section>
+
+      <section class="slide image-slide interactive" data-duration="4" data-cue="56:00-60:00" data-section="Synthesis">
+        <img class="full-bleed muted" src="assets/pair-audit.png" alt="Students and instructor audit evidence for a bridge damage model" />
+        <div class="top-band"><p class="eyebrow">PAIR AUDIT · 4 MINUTES</p><h2>Turn "92%" into an auditable claim</h2></div>
+        <div class="audit-board visual">
+          <div class="audit-checks"><span>□ provenance + units</span><span>□ prediction unit</span><span>□ group/time split</span><span>□ baseline</span><span>□ error-cost metric</span><span>□ uncertainty</span><span>□ reproducibility package</span><span>□ decision owner</span></div>
+          <div class="exit-ticket"><h3>Exit ticket</h3><ol><li>Which Software layer owns units?</li><li>What claim does the test split support?</li><li>What evidence separates attribution from causality?</li></ol><div class="reveal-item answer">1.0 constraints · deployment-matched generalization · intervention/identification evidence</div></div>
+        </div>
+        <div class="next-hour"><b>Next:</b> ML evidence in practice - reproducible notebooks, baselines, and interpretable diagnostics.</div>
+        <aside class="notes"><strong>4 minutes.</strong> Give pairs two minutes to audit the opening claim using the eight boxes. Ask one pair for the strongest missing item and another for the correct evaluation split. Use the exit ticket as a rapid verbal check, then press R for the compact answers. Close by stating the standard for the course: every result must identify its data, split, baseline, metric, uncertainty, reproducibility conditions, interpretation boundary, and decision owner.</aside>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+  <nav class="controls" aria-label="Slide controls">
+    <button type="button" data-action="prev" aria-label="Previous slide">←</button>
+    <button type="button" data-action="next" aria-label="Next slide">→</button>
+    <button type="button" data-action="reveal" title="Reveal answer (R)">R</button>
+    <button type="button" data-action="overview" title="Overview (O)">O</button>
+    <button type="button" data-action="notes" title="Speaker notes (N)">N</button>
+    <button type="button" data-action="fullscreen" title="Fullscreen (F)">F</button>
+  </nav>
+  <aside class="notes-panel" id="notesPanel" aria-label="Speaker notes"><div class="notes-head"><b>Speaker notes</b><button type="button" data-action="notes">×</button></div><div id="notesContent"></div></aside>
+  <div class="overview-panel" id="overviewPanel" aria-label="Slide overview"><div class="overview-head"><b>Week 1 · Hour 1</b><span>Choose a slide · O to close</span></div><div class="overview-grid" id="overviewGrid"></div></div>
+  <div class="help">← → navigate · R reveal · O overview · N notes · F fullscreen</div>
+  <script src="deck.js"></script>
+</body>
+</html>

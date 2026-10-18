@@ -1,0 +1,648 @@
+{
+  "date": "2026-10-19",
+  "browser": "headless installed Google Chrome via Playwright",
+  "slidesRendered": 90,
+  "slides": [
+    {
+      "hour": 1,
+      "slide": 1,
+      "title": "Order changes the learning problem",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 2,
+      "title": "Three mechanisms, one learning path",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 3,
+      "title": "The same values can tell different stories",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 4,
+      "title": "Define the forecast origin",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 5,
+      "title": "One sample is an entire window",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 6,
+      "title": "Targets determine the output structure",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 7,
+      "title": "Split time before selecting a model",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 8,
+      "title": "Fit normalization on the training past",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 9,
+      "title": "Persistence is a serious baseline",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 10,
+      "title": "A recurrent state summarizes the past",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 11,
+      "title": "Learning must cross the time chain",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 12,
+      "title": "LSTM adds a separate memory path",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 13,
+      "title": "A gate is a learned vector of coefficients",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 14,
+      "title": "The forget gate controls retained memory",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 15,
+      "title": "The input gate controls the write",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 16,
+      "title": "The cell update adds two paths",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 17,
+      "title": "The output gate exposes memory",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 18,
+      "title": "Trace one numerical cell update",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 19,
+      "title": "Predict before moving a gate",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 20,
+      "title": "Open the sequence notebook",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 21,
+      "title": "Check the window indices",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 22,
+      "title": "Compare linear memory with learned state",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 23,
+      "title": "Map the implementation to tensor axes",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 24,
+      "title": "Training and selection use different data",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 25,
+      "title": "A loss curve must come from the run",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 26,
+      "title": "Judge errors in the original units",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 27,
+      "title": "A trained gate can be reconstructed",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 28,
+      "title": "Reproduce one controlled change",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 29,
+      "title": "LSTM helps; it does not guarantee memory",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 1,
+      "slide": 30,
+      "title": "Exit: explain the compression problem",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 1,
+      "title": "Retrieve what the current output needs",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 2,
+      "title": "One context can be a bottleneck",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 3,
+      "title": "Alignment is output-dependent",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 4,
+      "title": "Attention predates the Transformer",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 5,
+      "title": "Keep the full set of encoder states",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 6,
+      "title": "A query specifies what to look for",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 7,
+      "title": "Keys address; values carry content",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 8,
+      "title": "A score is a compatibility function",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 9,
+      "title": "Additive attention learns a scoring network",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 10,
+      "title": "Scaled dot products control score magnitude",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 11,
+      "title": "Softmax allocates a unit total weight",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 12,
+      "title": "Retrieval is a weighted sum",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 13,
+      "title": "Read matrix axes before the formula",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 14,
+      "title": "Work one example: choose Q, K, and V",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 15,
+      "title": "Work one example: scores become weights",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 16,
+      "title": "Work one example: combine value coordinates",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 17,
+      "title": "Change the query; keep memory fixed",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 18,
+      "title": "Self-attention uses one source sequence",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 19,
+      "title": "Cross-attention connects two streams",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 20,
+      "title": "Causal masking hides future keys",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 21,
+      "title": "Padding masks hide nonexistent tokens",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 22,
+      "title": "An all-masked row is undefined",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 23,
+      "title": "Attention exposes a short information path",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 24,
+      "title": "Dense attention has a quadratic score grid",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 25,
+      "title": "Open the attention notebook",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 26,
+      "title": "Test causality and normalization",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 27,
+      "title": "Compare two implementations of one operation",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 28,
+      "title": "Routing weights are not causal explanations",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 29,
+      "title": "Explain the mechanism before the architecture",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 2,
+      "slide": 30,
+      "title": "Exit: attention needs an architecture around it",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 1,
+      "title": "Build a model around attention",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 2,
+      "title": "Tokens are discrete input units",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 3,
+      "title": "Position information supplies order",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 4,
+      "title": "There are several position mechanisms",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 5,
+      "title": "Multiple heads learn multiple projections",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 6,
+      "title": "Concatenate heads, then project",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 7,
+      "title": "The feed-forward network transforms each token",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 8,
+      "title": "Residual paths preserve an identity route",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 9,
+      "title": "Normalization placement changes the block",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 10,
+      "title": "An encoder uses bidirectional context",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 11,
+      "title": "A decoder-only model hides the future",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 12,
+      "title": "The original model had encoder and decoder",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 13,
+      "title": "Predict the next token at every position",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 14,
+      "title": "Cross-entropy scores the true next token",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 15,
+      "title": "Training is parallel across known positions",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 16,
+      "title": "Open a tiny model you can inspect",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 17,
+      "title": "Define what generalization means here",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 18,
+      "title": "Read the four-dimensional score tensor",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 19,
+      "title": "Trace the model before training",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 20,
+      "title": "Fit a training-only bigram baseline",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 21,
+      "title": "Select by validation, evaluate test afterward",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 22,
+      "title": "Inspect actual learned attention",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 23,
+      "title": "A future intervention must preserve earlier logits",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 24,
+      "title": "Test the position claim precisely",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 25,
+      "title": "Generate one token, then append it",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 26,
+      "title": "Long context has a measurable cost",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 27,
+      "title": "Choose models using task evidence",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 28,
+      "title": "A token generator is one agent component",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 29,
+      "title": "Preserve the experiment, not just a score",
+      "position": "absolute",
+      "issues": []
+    },
+    {
+      "hour": 3,
+      "slide": 30,
+      "title": "Exit: explain the complete causal chain",
+      "position": "absolute",
+      "issues": []
+    }
+  ],
+  "interactiveChecks": [
+    "gate change",
+    "query change",
+    "temperature change",
+    "speaker notes",
+    "mobile portal",
+    "week anchor"
+  ],
+  "consoleErrors": [],
+  "failures": [],
+  "screenshotArchive": "90 full-slide renders retained on the authoring host"
+}

@@ -1,0 +1,21 @@
+\chapter{Transformers and Large Language Models}\label{chap:llm}
+\courseweek{Week 12.} This unit provides the minimum technical frame required to use LLMs in an engineering workflow without confusing fluent output with verified knowledge.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Describe tokenization, next-token prediction, and attention at a high level.
+  \item Explain why a language model can produce useful text without a guaranteed factual basis.
+  \item Distinguish prompting, retrieval, fine-tuning, and tool use.
+  \item Identify an engineering task for which an LLM should assist rather than decide.
+\end{itemize}
+\end{learningbox}
+
+\section{Attention and next-token prediction}
+Transformers use attention to weight relationships among tokens in a context sequence \citep{vaswani2017}. Language-model training commonly predicts the next token. This objective can produce broadly useful representations, but it does not create a built-in source of current, task-specific, or verified information.
+
+\section{Use a bounded role}
+An LLM may summarize a lab note, propose code changes, draft a test plan, or translate a structured result into prose. The workflow must state what the model may access, which claims require retrieval or calculation, and how a human checks the result. Prompting is a form of interface design, not evidence.
+
+\begin{labbox}
+\textbf{Week 12:} use a small prompt experiment to compare an unconstrained request with a request that specifies context, output format, and verification step. Record failure modes rather than ranking models by style.
+\end{labbox}

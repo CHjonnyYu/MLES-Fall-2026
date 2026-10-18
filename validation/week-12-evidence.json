@@ -1,0 +1,16 @@
+{
+  "week": 12,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "cases": 4,
+    "statuses": [
+      "ok",
+      "rejected",
+      "invalid data",
+      "invalid data"
+    ],
+    "policy": "deterministic teaching simulator"
+  }
+}

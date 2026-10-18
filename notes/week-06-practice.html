@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week 06: Unsupervised learning and representation</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-06-practice.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-06-practice.ipynb">Open in Colab</a></nav><section><h1>Week 06: Unsupervised learning and representation</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Purpose:</strong> a fully worked, self-paced in-class practice with an optional extension. Weeks 11 and 18 are optional examination-readiness materials. These notebooks do not create weekly graded assignments.</p>
+<p><strong>Before running:</strong> choose a Python 3 kernel in Jupyter or a CPU runtime in Colab. Run every cell from top to bottom with Shift+Enter. Setup installs missing free packages. No API key or external dataset download is required.</p>
+<p><strong>Learning target:</strong> complete the calculation, inspect intermediate values, and explain why the protocol supports a limited claim.</p>
+<p><strong>Time:</strong> about 25-45 minutes including reading, prediction, execution, and explain-back.</p></section>
+<section><h2>1. Set up and record the environment</h2>
+<p>Keep the seed fixed for the first run. Record actual outputs and package versions rather than copying a claimed performance number.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The environment cell must finish before any analysis cell. Restart and run all if a variable is missing.</p></section>
+<section><h2>2. Generate unlabeled structure</h2>
+<p>The model receives only X. Generating labels are retained solely for optional teaching comparisons and never passed into fitting.</p></section>
+<section><pre><code>from sklearn.datasets import make_blobs
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+X,hidden_labels=make_blobs(n_samples=360,n_features=5,centers=3,cluster_std=1.4,random_state=SEED)
+Xtr,Xte=train_test_split(X,test_size=.25,random_state=SEED)
+scaler=StandardScaler().fit(Xtr)
+Ztr,Zte=scaler.transform(Xtr),scaler.transform(Xte)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> No target is available to the clustering algorithm. Preprocessing still learns statistics and must fit training only.</p></section>
+<section><h2>3. Fit PCA and inspect retained variation</h2>
+<p>PCA chooses orthogonal directions of maximum training variance. Two components simplify plotting but may discard useful information.</p></section>
+<section><pre><code>pca=PCA(n_components=2).fit(Ztr)
+P=pca.transform(Zte)
+print(&quot;Explained variance ratios:&quot;,pca.explained_variance_ratio_)
+plt.scatter(P[:,0],P[:,1]); plt.xlabel(&quot;PC1&quot;); plt.ylabel(&quot;PC2&quot;); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Explained variance is not prediction accuracy or a guarantee of physically meaningful factors.</p></section>
+<section><h2>4. Cluster in the original standardized space</h2>
+<p>K-means finds geometric groups under a chosen distance and k. Labels are arbitrary IDs; cluster 0 is not an engineering diagnosis.</p></section>
+<section><pre><code>kmeans=KMeans(n_clusters=3,n_init=10,random_state=SEED).fit(Ztr)
+groups=kmeans.predict(Zte)
+plt.scatter(P[:,0],P[:,1],c=groups,cmap=&quot;viridis&quot;); plt.xlabel(&quot;PC1&quot;); plt.ylabel(&quot;PC2&quot;); plt.show()
+summary={&quot;test_silhouette&quot;:float(silhouette_score(Zte,groups)),
+         &quot;retained_training_variance&quot;:float(pca.explained_variance_ratio_.sum())}
+print(summary)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> A high silhouette supports separation in this representation, not a causal or semantic interpretation of clusters.</p></section>
+<section><h2>6. Preserve your evidence</h2>
+<p>Export a JSON record with a seed, package version, and measured result. Download the artifacts directory before leaving Colab; runtime storage is temporary.</p></section>
+<section><pre><code>record={&quot;week&quot;:6,&quot;seed&quot;:SEED,&quot;numpy&quot;:np.__version__,&quot;python&quot;:platform.python_version(),&quot;result&quot;:summary}
+(ARTIFACTS/&quot;week-06-evidence.json&quot;).write_text(json.dumps(record,indent=2))
+print(json.dumps(record,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The evidence file must match the result you actually obtained. A saved screenshot alone does not permit rerunning the calculation.</p></section>
+<section><h2>7. Try one change and explain it</h2>
+<p>1. Predict the effect of one change before editing code. Change one parameter, input, or boundary condition only.</p>
+<p>2. Rerun all cells in a fresh kernel. Keep the original evidence record and compare the observed difference.</p>
+<p>3. Explain the result using the mechanism, not just the final number.</p>
+<p>4. Name one assumption that limits the claim, and a new test that could challenge it.</p>
+<p><strong>Troubleshooting:</strong> if installation fails, restore network access; if a variable is undefined, run earlier cells; if your output differs, compare package versions, seed, and data construction. Do not repeatedly edit code until a preferred score appears.</p>
+<p><strong>Completion criterion:</strong> one executed notebook, one evidence JSON, and a brief claim/evidence/limitation statement.</p>
+<h3>Reference documentation</h3>
+<p>- <a href="https://numpy.org/doc/stable/user/">NumPy user guide</a></p>
+<p>- <a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn user guide</a></p>
+<p>- <a href="https://github.com/CHjonnyYu/MLES-Fall-2026">Course repository</a></p></section></body></html>

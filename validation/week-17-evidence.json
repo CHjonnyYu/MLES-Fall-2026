@@ -1,0 +1,23 @@
+{
+  "week": 17,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "result_card": {
+      "task": "mean of a generated normal sample",
+      "seed": 2026,
+      "n": 100,
+      "observed_mean": 0.04499318856271756,
+      "units": "dimensionless synthetic",
+      "limitation": "one random sample; no real engineering measurement",
+      "file_sha256": "59efef423a6be36a5a0390b155be1192c25cb2fc301597d56d2fef22abce6aab"
+    },
+    "oral_questions": [
+      "What exactly was measured?",
+      "Can another person rerun it?",
+      "What would falsify the claim?"
+    ],
+    "AI_use": "Disclose any AI assistance and the checks you performed."
+  }
+}

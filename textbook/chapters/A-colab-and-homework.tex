@@ -1,0 +1,25 @@
+\chapter{Colab Conventions and Homework Milestones}
+\section{Colab conventions}
+Every student notebook should begin with a short environment cell, use a declared random seed where relevant, and provide a CPU-compatible path. Optional accelerator cells must not be required for assessment. Notebooks should obtain public data from a documented source or a course repository path; they must not include credentials, personal data, or hidden instructor solutions.
+
+The course website opens each notebook through a public GitHub repository using the Colab URL pattern defined by \verb|\CourseRepo| in \texttt{main.tex}. Replace that one configuration value when the repository is created. The notebook source remains the canonical student artifact; the rendered website is an access layer.
+
+\section{Homework milestones}
+\begin{tabularx}{\textwidth}{@{}p{.16\textwidth} p{.22\textwidth} X@{}}
+\toprule
+\textbf{Homework} & \textbf{Timing} & \textbf{Evidence required} \\
+\midrule
+ML Problem Brief & Week 5 & Decision context, target, features, split proposal, metric, and one risk. \\
+ML Workflow & Week 10 & Executable notebook, baseline, evaluation, error analysis, and bounded conclusion. \\
+Final Agent Plan & Week 14 & Goal, tools, stop condition, approval point, failure cases, and test plan. \\
+Demo Readiness & Week 16 & Reproducible run, evaluation cases, trace, limitation, and rollback or safe fallback. \\
+\bottomrule
+\end{tabularx}
+
+\section{Submission rule}
+An AI tool can assist with code, prose, or debugging, but the student remains responsible for the submitted claim. Work that uses AI assistance should identify the assistance when it materially shaped the artifact, then show the validation performed by the student.
+
+\section{Runtime-aware Lab design}
+Colab can load notebooks from GitHub, but its free resource limits, hardware availability, and runtime lifetime change over time. Runtimes are ephemeral, so a notebook must install or check any required package, fetch only documented public data, and write important outputs to a student-controlled location only when the student explicitly chooses to do so \citep{googlecolab2026}. Core Labs in this course are CPU-first; any GPU cell is optional and cannot be necessary for a graded result.
+
+The current reference implementation uses scikit-learn for core ML workflows and PyTorch only after neural-network foundations. Rather than pinning the course to a fragile hosted-runtime version, each notebook records the actual package versions at execution time. This makes a future result diagnosable when managed environments change \citep{sklearn2026,pytorch2026}.

@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week 14: Agent testing and human oversight</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-14-practice.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-14-practice.ipynb">Open in Colab</a></nav><section><h1>Week 14: Agent testing and human oversight</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Purpose:</strong> a fully worked, self-paced in-class practice with an optional extension. Weeks 11 and 18 are optional examination-readiness materials. These notebooks do not create weekly graded assignments.</p>
+<p><strong>Before running:</strong> choose a Python 3 kernel in Jupyter or a CPU runtime in Colab. Run every cell from top to bottom with Shift+Enter. Setup installs missing free packages. No API key or external dataset download is required.</p>
+<p><strong>Learning target:</strong> complete the calculation, inspect intermediate values, and explain why the protocol supports a limited claim.</p>
+<p><strong>Time:</strong> about 25-45 minutes including reading, prediction, execution, and explain-back.</p></section>
+<section><h2>1. Set up and record the environment</h2>
+<p>Keep the seed fixed for the first run. Record actual outputs and package versions rather than copying a claimed performance number.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The environment cell must finish before any analysis cell. Restart and run all if a variable is missing.</p></section>
+<section><h2>2. Declare permissions and a finite budget</h2>
+<p>Use an offline state machine. It demonstrates agent safety boundaries without requiring paid inference or accessing real files.</p></section>
+<section><pre><code>policy={&quot;allowed_tools&quot;:{&quot;add&quot;},&quot;budget&quot;:3}
+def execute_plan(plan):
+    trace=[]
+    if len(plan)&gt;policy[&quot;budget&quot;]: return {&quot;status&quot;:&quot;budget exceeded&quot;,&quot;trace&quot;:trace}
+    for request in plan:
+        if request.get(&quot;tool&quot;) not in policy[&quot;allowed_tools&quot;]:
+            return {&quot;status&quot;:&quot;needs human review&quot;,&quot;trace&quot;:trace}
+        values=request.get(&quot;values&quot;)
+        if not isinstance(values,list) or not values or not all(type(v) in (int,float) and np.isfinite(v) for v in values):
+            return {&quot;status&quot;:&quot;invalid input&quot;,&quot;trace&quot;:trace}
+        trace.append({&quot;tool&quot;:&quot;add&quot;,&quot;result&quot;:float(sum(values))})
+    return {&quot;status&quot;:&quot;complete&quot;,&quot;trace&quot;:trace}
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> No tool can be enabled merely by a sentence in retrieved text.</p></section>
+<section><h2>3. Probe boundary conditions</h2>
+<p>Test valid actions, forbidden actions, invalid data, and an over-budget plan as separate failure modes.</p></section>
+<section><pre><code>tests=[([{&quot;tool&quot;:&quot;add&quot;,&quot;values&quot;:[1,2]}],&quot;complete&quot;),
+       ([{&quot;tool&quot;:&quot;send_email&quot;,&quot;values&quot;:[1]}],&quot;needs human review&quot;),
+       ([{&quot;tool&quot;:&quot;add&quot;,&quot;values&quot;:[&quot;ignore rules&quot;]}],&quot;invalid input&quot;),
+       ([{&quot;tool&quot;:&quot;add&quot;,&quot;values&quot;:[1]}]*4,&quot;budget exceeded&quot;)]
+results=[execute_plan(plan)[&quot;status&quot;] for plan,_ in tests]
+assert results==[expected for _,expected in tests]
+print(results)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The tests establish behavior only for this deterministic implementation and the supplied cases.</p></section>
+<section><h2>4. Write an oversight record</h2>
+<p>Capture what a human must inspect before granting a new capability. These are simulated operations, so no external message is sent.</p></section>
+<section><pre><code>summary={&quot;tests_passed&quot;:len(tests),&quot;simulated&quot;:True,&quot;allowed_tools&quot;:sorted(policy[&quot;allowed_tools&quot;]),
+         &quot;human_review&quot;:&quot;Inspect tool identity, arguments, purpose, and consequence before changing permissions.&quot;}
+print(json.dumps(summary,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Explain how audit logs, stopping rules, and user approval differ from a vague instruction to be careful.</p></section>
+<section><h2>6. Preserve your evidence</h2>
+<p>Export a JSON record with a seed, package version, and measured result. Download the artifacts directory before leaving Colab; runtime storage is temporary.</p></section>
+<section><pre><code>record={&quot;week&quot;:14,&quot;seed&quot;:SEED,&quot;numpy&quot;:np.__version__,&quot;python&quot;:platform.python_version(),&quot;result&quot;:summary}
+(ARTIFACTS/&quot;week-14-evidence.json&quot;).write_text(json.dumps(record,indent=2))
+print(json.dumps(record,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The evidence file must match the result you actually obtained. A saved screenshot alone does not permit rerunning the calculation.</p></section>
+<section><h2>7. Try one change and explain it</h2>
+<p>1. Predict the effect of one change before editing code. Change one parameter, input, or boundary condition only.</p>
+<p>2. Rerun all cells in a fresh kernel. Keep the original evidence record and compare the observed difference.</p>
+<p>3. Explain the result using the mechanism, not just the final number.</p>
+<p>4. Name one assumption that limits the claim, and a new test that could challenge it.</p>
+<p><strong>Troubleshooting:</strong> if installation fails, restore network access; if a variable is undefined, run earlier cells; if your output differs, compare package versions, seed, and data construction. Do not repeatedly edit code until a preferred score appears.</p>
+<p><strong>Completion criterion:</strong> one executed notebook, one evidence JSON, and a brief claim/evidence/limitation statement.</p>
+<h3>Reference documentation</h3>
+<p>- <a href="https://numpy.org/doc/stable/user/">NumPy user guide</a></p>
+<p>- <a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn user guide</a></p>
+<p>- <a href="https://github.com/CHjonnyYu/MLES-Fall-2026">Course repository</a></p></section></body></html>

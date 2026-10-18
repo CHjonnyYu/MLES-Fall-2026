@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-19",
+  "data": "actual CPU execution of the matching W07 notebooks",
+  "plots": {
+    "h1-training-loss.png": "H1 measured train/validation loss; 24 epochs",
+    "h1-forecast-residuals.png": "H1 held-out rolling one-step forecasts and residuals",
+    "h1-learned-gates.png": "H1 reconstructed trained cell at first test input",
+    "h3-training-loss.png": "H3 measured train/validation NLL; 45 epochs",
+    "h3-trained-attention.png": "H3 trained head 0, test example 0"
+  },
+  "caution": "Synthetic teaching datasets; not experimental engineering measurements."
+}

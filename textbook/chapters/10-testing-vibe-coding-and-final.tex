@@ -1,0 +1,27 @@
+\chapter{Testing, Vibe Coding, and the Final Project}\label{chap:testing}
+\courseweek{Weeks 15--18.} Vibe coding is a fast way to express an intent to an AI coding tool. It does not transfer accountability. The course uses it as an implementation technique within a testable engineering workflow.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Turn a natural-language change request into observable acceptance criteria.
+  \item Review an AI-generated patch for data flow, assumptions, and failure behaviour.
+  \item Design a small test suite before or alongside an agent implementation.
+  \item Demonstrate a final workflow with evidence, limits, and a rollback path.
+\end{itemize}
+\end{learningbox}
+
+\section{Vibe coding with boundaries}
+A responsible request names the intended user, input/output contract, constraints, and tests. After a tool proposes code, inspect the diff, run the relevant notebook cells or tests, and explain what changed. Avoid asking a model to make broad changes to an unexamined codebase. Prefer small, reversible changes with a visible before/after result.
+
+\section{Evaluation before demonstration}
+The final project needs a compact evaluation set that includes ordinary cases, edge cases, and known failure cases. For each case, record expected behaviour, actual behaviour, evidence, and follow-up action. A polished demo without a reproducible trace does not clear the project requirement.
+
+\section{Final assessment}
+The final project demonstration explains the problem boundary, agent or workflow design, evidence from tests, remaining limitations, and a next safe step. The written examination checks conceptual transfer. The oral examination can ask students to reason about a tool contract, an AI-generated patch, an evaluation trace, a rollback, or an unexpected failure.
+
+\begin{labbox}
+\textbf{Weeks 15--17:} use the project studio to build in small steps. Preserve the baseline, record every meaningful change, and rehearse the explanation of one failure case before the final demonstration.
+\end{labbox}
+
+\section{Risk-aware evaluation}
+For the final project, evaluate more than apparent task completion. Include an ordinary case, an adverse or ambiguous case, a tool failure, and a case that must escalate to a human. Record the risk, expected behaviour, observed behaviour, evidence, and mitigation. This course-level practice is consistent with the lifecycle emphasis of the NIST Generative AI Profile, while remaining small enough for a student project \citep{nistgenai2024}.

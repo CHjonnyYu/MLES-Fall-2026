@@ -1,0 +1,21 @@
+\chapter{Neural Networks and Deep Learning Foundations}\label{chap:neural}
+\courseweek{Week 7.} Deep learning learns representations through composed differentiable functions. The course focuses on the training loop, loss surface, and diagnostic signals needed to use a neural network responsibly.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Describe a forward pass, loss, gradient, and parameter update.
+  \item Relate activation functions and network capacity to optimization behaviour.
+  \item Read a training curve for divergence, underfitting, and overfitting.
+  \item Compare a neural baseline with a classical baseline under the same protocol.
+\end{itemize}
+\end{learningbox}
+
+\section{A compact mathematical view}
+For one layer, $h=\phi(Wx+b)$, where $W$ and $b$ are learned parameters and $\phi$ is a nonlinear activation. A loss $\mathcal{L}(y,\hat y)$ measures discrepancy. Backpropagation applies the chain rule to compute $\nabla_\theta \mathcal{L}$ efficiently \citep{rumelhart1986}. Gradient-based optimization then updates parameters, for example $\theta\leftarrow\theta-\eta\nabla_\theta\mathcal{L}$.
+
+\section{Training is an experiment}
+Fix seeds where possible, retain the split, log loss and metric traces, and compare a neural network to a simpler baseline. A training curve is not a certificate of generalization. It is an instrument that helps identify whether the next action is to inspect data, change capacity, regularize, or stop.
+
+\begin{labbox}
+\textbf{Week 7:} train a small PyTorch network on a compact dataset using CPU or optional Colab acceleration. Keep the network deliberately small. Compare it to a classical baseline and write what the extra capacity changed.
+\end{labbox}

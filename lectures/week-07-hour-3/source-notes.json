@@ -1,0 +1,452 @@
+[
+  {
+    "slide": 1,
+    "title": "Build a model around attention",
+    "minutes": 2,
+    "visual_purpose": "A Transformer block combines information mixing with local transformation and stable update paths.",
+    "visual_kind": "block",
+    "asset": null,
+    "notes": "State this hour\u2019s evidence: a trained tiny decoder, a baseline comparison, a real head plot, and a future-token intervention. The model uses synthetic symbols and is not a pretrained LLM.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 2,
+    "title": "Tokens are discrete input units",
+    "minutes": 2,
+    "visual_purpose": "Token IDs index learned vectors; IDs do not encode numeric magnitude.",
+    "visual_kind": "table",
+    "asset": null,
+    "notes": "Our notebook vocabulary has eight symbolic states. Real language tokenization often uses subword units, not complete words. Embedding width and vocabulary size are different quantities.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 3,
+    "title": "Position information supplies order",
+    "minutes": 2,
+    "visual_purpose": "Unmasked attention alone is permutation-equivariant when positions are absent.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "State the precise equivariance claim for unmasked self-attention with shared projections. A causal mask introduces order constraints, so the claim is not directly the same for a masked decoder. The notebook tests the unmasked operation separately.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 4,
+    "title": "There are several position mechanisms",
+    "minutes": 2,
+    "visual_purpose": "The teaching model adds learned position vectors; the original Transformer used sinusoidal encodings.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Learned absolute positions are bounded by the allocated context table. Sinusoidal and rotary approaches are alternatives with different behavior. Do not claim every modern LLM simply adds the same sinusoidal encoding.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 5,
+    "title": "Multiple heads learn multiple projections",
+    "minutes": 2,
+    "visual_purpose": "Each head routes information in its own learned query/key/value subspace.",
+    "visual_kind": "multihead",
+    "asset": null,
+    "notes": "Different heads can learn different patterns but are not assigned fixed human roles. The notebook uses model width 32 and four heads of width 8. Every head has its own projected representation.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 6,
+    "title": "Concatenate heads, then project",
+    "minutes": 2,
+    "visual_purpose": "Head outputs are joined and mixed by a learned output projection.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "With fixed total width D, increasing head count reduces per-head width; it does not automatically multiply total width. Emphasize that projection weights are learned and attention weights are input-dependent.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 7,
+    "title": "The feed-forward network transforms each token",
+    "minutes": 2,
+    "visual_purpose": "The same nonlinear MLP is applied independently at each position.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Attention mixes information between positions. The tokenwise MLP transforms features locally and adds nonlinearity. Our notebook uses GELU; the original 2017 formulation used ReLU.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 8,
+    "title": "Residual paths preserve an identity route",
+    "minutes": 2,
+    "visual_purpose": "A sublayer adds a learned update to its input representation.",
+    "visual_kind": "residual-block",
+    "asset": null,
+    "notes": "Shapes must match for addition. This provides an identity path and helps optimization; it does not mean the sublayer is optional after training. The diagram highlights the bypass separately from the update.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 9,
+    "title": "Normalization placement changes the block",
+    "minutes": 2,
+    "visual_purpose": "Our teaching decoder normalizes before each sublayer.",
+    "visual_kind": "block",
+    "asset": null,
+    "notes": "This is pre-normalization. The original Transformer used post-normalization and a full encoder-decoder. Label the variant explicitly so students do not treat a modern educational block as a verbatim copy of the 2017 figure.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 10,
+    "title": "An encoder uses bidirectional context",
+    "minutes": 2,
+    "visual_purpose": "Encoder self-attention can access all valid input positions.",
+    "visual_kind": "heatmap",
+    "asset": null,
+    "notes": "This illustrative matrix shows full-context access. A padding mask may still apply. Full access is suitable when the entire observed input is available, but future unknown observations cannot be treated as valid inputs in forecasting.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 11,
+    "title": "A decoder-only model hides the future",
+    "minutes": 2,
+    "visual_purpose": "Masked self-attention supports next-token prediction from a prefix.",
+    "visual_kind": "mask",
+    "asset": null,
+    "notes": "Our tiny model has a causal self-attention block and no cross-attention sublayer. Input position i predicts the next token i+1, so position i itself is visible. Explain diagonal access.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 12,
+    "title": "The original model had encoder and decoder",
+    "minutes": 2,
+    "visual_purpose": "Decoder queries can retrieve from the separate encoder outputs.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Vaswani et al. introduced an encoder-decoder translation model. Decoder-only is a later architecture family commonly used for generative language modeling. Architecture choice follows the task, not a single mandatory recipe.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 13,
+    "title": "Predict the next token at every position",
+    "minutes": 2,
+    "visual_purpose": "Shift targets one step ahead of inputs.",
+    "visual_kind": "windows",
+    "asset": null,
+    "notes": "The final target lies beyond the input sequence. The mask prevents a position from seeing its own next-token answer elsewhere in the input. Students verify the shifted-target assertion in notebook Step 2.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 14,
+    "title": "Cross-entropy scores the true next token",
+    "minutes": 2,
+    "visual_purpose": "The model should assign high probability to observed next-token targets.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "These bars are mathematical examples: uniform eight-way probability, probability .5, and probability .8, giving negative log probabilities. They are not trained-model results. Nats/token uses the natural logarithm.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 15,
+    "title": "Training is parallel across known positions",
+    "minutes": 2,
+    "visual_purpose": "The causal mask permits computing many training losses together.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Parallel computation during teacher-forced training does not make arbitrary autoregressive generation parallel. During generation each next input depends on the token just produced. Cached states may reduce repeated work but do not remove that dependency.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 16,
+    "title": "Open a tiny model you can inspect",
+    "minutes": 2,
+    "visual_purpose": "One block, width 32, four heads, and eight symbols keep the experiment small.",
+    "visual_kind": "table",
+    "asset": null,
+    "notes": "Launch H3 notebook. Setup does not depend on earlier saved files. All data are generated locally. The objective is mechanism and testing rather than producing fluent natural language.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 17,
+    "title": "Define what generalization means here",
+    "minutes": 2,
+    "visual_purpose": "Separate streams use different noise seeds but share the same synthetic process.",
+    "visual_kind": "split",
+    "asset": null,
+    "notes": "These streams are separate generated realizations of the same motif. They are not disjoint natural-language documents or evidence of transfer to a new engineering domain. State the scope before looking at loss values.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 18,
+    "title": "Read the four-dimensional score tensor",
+    "minutes": 2,
+    "visual_purpose": "Every head produces a query-by-key grid for each example.",
+    "visual_kind": "tensor",
+    "asset": null,
+    "notes": "Read the split and transpose operations in CausalAttention. Explain why the final softmax dimension is keys. A transpose error can produce a plausible shape with the wrong meaning.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 19,
+    "title": "Trace the model before training",
+    "minutes": 2,
+    "visual_purpose": "The output has one vocabulary-logit vector per input position.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Run the shape assertion. Logits are unrestricted real scores, not probabilities. Cross-entropy accepts logits directly, so a separate softmax before nn.CrossEntropyLoss is unnecessary.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 20,
+    "title": "Fit a training-only bigram baseline",
+    "minutes": 2,
+    "visual_purpose": "Estimate the next state from the current state using transition counts.",
+    "visual_kind": "heatmap",
+    "asset": null,
+    "notes": "The slide matrix is illustrative; run the actual training counts in Step 5. Add-one smoothing avoids zero test probability. The motif can have ambiguous next states, so longer context may outperform a bigram.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 21,
+    "title": "Select by validation, evaluate test afterward",
+    "minutes": 2,
+    "visual_purpose": "Keep the checkpoint with lowest validation negative log-likelihood.",
+    "visual_kind": "actual notebook result",
+    "asset": "h3-training-loss.png",
+    "notes": "Run Step 6. AdamW updates parameters; clipping controls gradient magnitude. Students should record the actual training duration and loss curve rather than copy a predetermined score.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 22,
+    "title": "Inspect actual learned attention",
+    "minutes": 2,
+    "visual_purpose": "Rows are receiving positions; columns are source positions.",
+    "visual_kind": "actual notebook result",
+    "asset": "h3-trained-attention.png",
+    "notes": "Run Step 7. The plot is a real output of the students\u2019 training run. Do not interpret a zero upper triangle as a learned dependency: masking enforces it. Compare multiple heads if time permits.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 23,
+    "title": "A future intervention must preserve earlier logits",
+    "minutes": 2,
+    "visual_purpose": "Change tokens after position 7; logits at positions 0\u20137 should remain identical.",
+    "visual_kind": "intervention",
+    "asset": null,
+    "notes": "Run the causality assertion in Step 8. This is a behavioral check of the computation, independent of accuracy. Use model.eval and no_grad to remove irrelevant stochastic effects. The test covers the supplied intervention, not every hypothetical failure.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 24,
+    "title": "Test the position claim precisely",
+    "minutes": 2,
+    "visual_purpose": "Permute inputs to unmasked attention without positional information.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Run the isolated equivariance assertion. Then remove positions at inference in the trained model and record NLL. An inference intervention is not a fair comparison to a separately trained no-position model; make that distinction explicit.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 25,
+    "title": "Generate one token, then append it",
+    "minutes": 2,
+    "visual_purpose": "Autoregressive decoding grows the prefix sequentially.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Run Step 10. The notebook uses argmax for a deterministic demonstration. Temperature sampling would change diversity. Cropped windows reuse learned absolute position indices, which is a limitation of the simple implementation.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 26,
+    "title": "Long context has a measurable cost",
+    "minutes": 2,
+    "visual_purpose": "Dense attention pair counts grow as T\u00b2 at fixed head count.",
+    "visual_kind": "complexity",
+    "asset": null,
+    "notes": "Distinguish pair-count scaling, memory storage, and elapsed time. Fused attention implementations can reduce intermediate memory use. Do not claim our tiny CPU timing predicts an industrial LLM\u2019s latency.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 27,
+    "title": "Choose models using task evidence",
+    "minutes": 2,
+    "visual_purpose": "Streaming state, context length, data size, and compute budget all matter.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Neither architecture wins universally. LSTM is useful when compact streaming state is appropriate; dense Transformers provide flexible context mixing with context-dependent costs. Baseline evidence decides the engineering choice.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 28,
+    "title": "A token generator is one agent component",
+    "minutes": 2,
+    "visual_purpose": "An agent also needs tools, state management, permissions, and a stopping rule.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Connect this week to the later agent units. No tool execution or persistent planning emerges merely because a Transformer can generate tokens. The tiny notebook does not call external services or perform consequential actions.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 29,
+    "title": "Preserve the experiment, not just a score",
+    "minutes": 2,
+    "visual_purpose": "Record data identity, configuration, baseline, checkpoint, and observed tests.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Students save the evidence JSON and model state. Ask them to name one controlled change and one unsupported broader claim. Explain which artifacts disappear when a Colab session ends.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 30,
+    "title": "Exit: explain the complete causal chain",
+    "minutes": 2,
+    "visual_purpose": "Sequence \u2192 memory \u2192 retrieval \u2192 representation \u2192 prediction \u2192 evidence.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Final oral check: explain one LSTM update, compute an attention context, describe the complete Transformer block, and explain the future-token test. Require one evidence file from each module and a limitation. This closes three hours without introducing a new graded weekly assignment.",
+    "sources": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html",
+      "https://github.com/karpathy/ng-video-lecture"
+    ],
+    "generated": "2026-10-19"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "seed": 2026,
+  "window": 24,
+  "train_end": 960,
+  "validation_end": 1280,
+  "forecast_protocol": "rolling one-step, observed history available",
+  "data_sha256": "63031c218115cd3927e01240789368c7ef8e04ec38a498d5d2fda1c89f8989c7",
+  "numpy": "2.5.4",
+  "torch": "2.14.1",
+  "python": "3.12.14",
+  "normalization": {
+    "mean": 0.19525092840194702,
+    "std": 0.766844630241394
+  },
+  "metrics": {
+    "Persistence": {
+      "MAE": 0.1894906461238861,
+      "RMSE": 0.23212140159046635
+    },
+    "Ridge": {
+      "MAE": 0.129806250333786,
+      "RMSE": 0.16180884988807478
+    },
+    "LSTM": {
+      "MAE": 0.1527927815914154,
+      "RMSE": 0.1937378060441406
+    }
+  }
+}

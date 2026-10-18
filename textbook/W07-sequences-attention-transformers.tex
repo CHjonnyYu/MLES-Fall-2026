@@ -1,0 +1,308 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\newcommand{\courseweek}[1]{\textbf{#1}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\title{Machine Learning in Engineering Science\\Sequential Data, LSTM, Attention, and Transformers}
+\author{Chi-Hua Jonny Yu\\NCKU / LAiMM}
+\date{Fall 2026 -- Week 7 -- 19 October 2026}
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Sequential Data, LSTM, Attention, and Transformers}
+\label{chap:sequences-attention}
+\courseweek{Week 7: Monday 19 October 2026, 14:00--17:00.}
+
+The three one-hour modules follow one question: how can a learned model use
+earlier information to make a defensible prediction? Hour 1 develops recurrent
+memory, Hour 2 develops query-dependent retrieval, and Hour 3 assembles and
+tests a causal Transformer. About 90 minutes of explanation and worked
+reasoning are combined with 90 minutes of prediction, guided computation,
+experimentation, and explain-back across the three hours.
+
+\section{Learning outcomes and evidence}
+Students should be able to define a forecast origin and horizon; construct
+windows without future leakage; trace every LSTM gate; compute attention
+scores, weights, and a context vector; distinguish self-attention from
+cross-attention; explain positional information, multi-head attention,
+residuals, and feed-forward layers; and test a decoder's causal behavior.
+The three independent CPU notebooks compare an LSTM against baselines,
+verify attention arithmetic, and train and inspect a small Transformer.
+All data are synthetic or self-contained. No paid API or GPU is required.
+These are class exercises, not additional weekly graded assignments.
+
+\section{Hour 1: ordered observations and recurrent memory}
+\subsection{Order, sampling, and the prediction task}
+A sequence is an ordered collection $x_1,\ldots,x_T$ in which order is part
+of the problem definition. Sensor samples, process events, and language
+tokens are examples. $(1,2,4,8)$ and $(8,1,4,2)$ have the same multiset and
+mean but different transitions. A representation that discards order
+cannot recover those transitions from the values alone. Equally spaced
+samples and irregular events also require different sampling assumptions.
+A sequence model does not automatically infer omitted time intervals.
+
+In the example, the forecast origin is immediately before observing $x_t$.
+With window length $L$,
+\[X_t=(x_{t-L},\ldots,x_{t-1}),\qquad y_t=x_t.\]
+The Python slice \texttt{signal[t-L:t]} excludes index $t$. Every input
+index must be strictly less than the target index. This is a one-sample
+horizon. A fixed-origin multi-step forecast cannot use later actual values
+that would not yet have been observed.
+
+With $B$ histories, $T$ time steps, and $F$ features at each step, batch-first
+input has shape $(B,T,F)$. Many-to-one predicts one value per history;
+many-to-many predicts outputs at multiple positions. Batch size is not
+sequence length, and an ID is not necessarily a physical feature.
+
+\subsection{Chronological splits and available information}
+The synthetic sensor uses 1600 samples, window length 24, training targets
+before index 960, validation targets 960--1279, and test targets 1280 onward.
+This produces 936 training, 320 validation, and 320 test windows.
+Target periods are disjoint. A test window may use earlier observed
+validation or test sensor history. This is explicitly a rolling one-step
+protocol, not a forecast of all future values from one initial origin.
+
+Normalization learns statistics, so fit it on training observations only:
+\[z_t=(x_t-\mu_{\mathrm{train}})/\sigma_{\mathrm{train}}.\]
+Global means can leak future distribution information even without labels.
+Random splits of heavily overlapping windows can produce nearly identical
+training and test histories. For multiple devices or people, group separation
+may be needed in addition to temporal separation.
+
+\subsection{Baselines and error interpretation}
+Persistence uses $\hat x_t=x_{t-1}$ and has no fitted parameters. Ridge
+regression uses a regularized linear map of the flattened history window.
+Select regularization on validation, then compare the same test targets:
+\[
+\operatorname{MAE}=\frac1N\sum_n|\hat y_n-y_n|,\quad
+\operatorname{RMSE}=\sqrt{\frac1N\sum_n(\hat y_n-y_n)^2}.
+\]
+Report original target units and inspect residuals against time or operating
+range. RMSE emphasizes large errors. Neither score alone reveals every
+failure. A linear model can outperform an LSTM on a small, structured signal;
+report the observed comparison rather than choosing the more complex name.
+
+\subsection{RNN state and learning through time}
+A basic recurrent network reuses one update at every time step:
+\[h_t=\tanh(W_xx_t+W_hh_{t-1}+b).\]
+Unrolling displays repeated applications of shared parameters. The state
+is a learned summary, not necessarily an interpretable physical variable.
+Backpropagation through time includes products of Jacobians:
+\[\frac{\partial h_t}{\partial h_{t-k}}=J_tJ_{t-1}\cdots J_{t-k+1}.\]
+Repeated contractions may shrink gradients, and repeated expansions may
+amplify them. A scalar example $0.9^{100}$ illustrates one contraction
+mechanism but not a complete nonlinear Jacobian product. Gradient clipping
+limits large gradient magnitude; it does not itself solve vanishing gradients.
+
+\subsection{The complete LSTM mechanism}
+An LSTM separates cell memory $c_t$ from hidden output $h_t$. With
+$u_t=[h_{t-1};x_t]$, a standard cell uses
+\begin{align}
+f_t&=\sigma(W_fu_t+b_f), & i_t&=\sigma(W_iu_t+b_i),\\
+g_t&=\tanh(W_gu_t+b_g), & o_t&=\sigma(W_ou_t+b_o),\\
+c_t&=f_t\odot c_{t-1}+i_t\odot g_t, &
+h_t&=o_t\odot\tanh(c_t).
+\end{align}
+Here $\sigma(z)=1/(1+e^{-z})$ and $\odot$ is elementwise multiplication.
+Each gate is a vector of coefficients, generally one per hidden dimension.
+The forget gate retains old cell content; the input gate scales a signed
+candidate write; the output gate exposes a filtered view of the updated cell.
+The additive memory path can improve gradient flow but does not guarantee
+unlimited retention or eliminate every optimization difficulty. The direct
+cell-state path contains products of forget gates when their other
+dependencies are held fixed; the full derivative is more complicated.
+
+Choose illustrative values $c_{t-1}=0.8$, $f_t=0.9$, $i_t=0.2$,
+$g_t=-0.5$, and $o_t=0.7$. Then
+\[c_t=0.72-0.10=0.62,\qquad h_t=0.7\tanh(0.62)\approx0.386.\]
+These are hand-chosen teaching values, not training outputs. If $f_t=1$,
+new content can still change the cell. Changing $o_t$ changes hidden output
+without changing this cell update. Predict those effects before using sliders.
+
+\subsection{Implementation, selection, and reproducibility}
+With \texttt{batch\_first=True}, input/output layouts are $(B,T,F)$ and
+$(B,T,H)$. Ordinary non-projected hidden and cell states retain layout
+$(\mathrm{layers}\times\mathrm{directions},B,H)$. PyTorch concatenates
+gate chunks in input, forget, candidate, output order. The notebook
+reconstructs a learned cell and compares it numerically with \texttt{nn.LSTM}.
+Training updates use training data, validation selects a checkpoint, and
+test is evaluated afterward. Save raw data identity, seed, versions, window,
+split boundaries, normalization, model state, baselines, and measured errors.
+A seed alone does not guarantee bitwise agreement across environments.
+
+\section{Hour 2: why attention is useful and how it works}
+\subsection{The fixed-context bottleneck}
+A final-state encoder compresses a source sequence into one fixed-width
+context. Different output steps may need different earlier details.
+Attention makes encoder states addressable and forms a context for each
+query. It does not guarantee correct retrieval or unlimited context.
+Attention can be combined with recurrence: Bahdanau and colleagues used
+recurrent sequence-to-sequence modeling in a 2014 preprint presented in
+2015. The Transformer architecture came later. Distinguish a retrieval
+mechanism from the entire architecture that uses it.
+
+\subsection{Queries, keys, values, and shapes}
+Queries encode a retrieval need. Keys encode matching information, while
+the corresponding value rows carry content to combine. For $N_q$ queries,
+$N_k$ keys, key width $d_k$, and value width $d_v$,
+\[Q\in\mathbb R^{N_q\times d_k},\quad
+K\in\mathbb R^{N_k\times d_k},\quad V\in\mathbb R^{N_k\times d_v}.\]
+Values need not equal keys or have their width. A natural-language question
+is not the same object as the query vector produced by a learned projection.
+
+Additive attention can use
+\[e_{ij}=v_a^\top\tanh(W_qq_i+W_kk_j+b).\]
+Scaled dot-product attention uses
+\[S=QK^\top/\sqrt{d_k},\quad
+A_{ij}=\frac{\exp(S_{ij})}{\sum_m\exp(S_{im})},\quad C=AV.\]
+Scores compare, row-wise softmax normalizes, and value multiplication
+retrieves. Rows are query destinations and columns are key sources.
+The context has shape $(N_q,d_v)$.
+
+Under independent zero-mean unit-variance coordinate assumptions, the raw
+dot-product variance grows with $d_k$. Scaling by $\sqrt{d_k}$ controls
+that growth; it is not cosine normalization. Stable softmax subtracts the
+row maximum before exponentiation without changing normalized probabilities.
+Before later projections and residuals, the weighted context lies within
+the convex hull of the available values.
+
+\subsection{An attention calculation with no hidden steps}
+Choose teaching vectors
+\[Q=\begin{bmatrix}1&0\end{bmatrix},\quad
+K=\begin{bmatrix}1&0\\0&1\\1&1\end{bmatrix},\quad
+V=\begin{bmatrix}10&0\\0&10\\10&10\end{bmatrix}.\]
+Raw dot products are $(1,0,1)$ and scaled scores are approximately
+$(0.7071,0,0.7071)$. Softmax gives weights
+$(0.4011,0.1978,0.4011)$. The zero raw score does not give zero weight,
+because $\exp(0)=1$. Combining corresponding value coordinates gives
+\begin{align*}
+C_1&=0.4011(10)+0.1978(0)+0.4011(10)\approx8.0222,\\
+C_2&=0.4011(0)+0.1978(10)+0.4011(10)\approx5.9889.
+\end{align*}
+Use full precision in code. Change only the query and predict the new
+ranking. An optional positive temperature divides the scores: below one
+sharpens weights, above one softens them. The standard example uses one.
+
+\subsection{Self-attention, cross-attention, and masks}
+Self-attention projects one sequence $X$ into $Q=XW_Q$, $K=XW_K$, and
+$V=XW_V$. Cross-attention derives queries from one stream and keys/values
+from another. An encoder-decoder model uses decoder queries with encoder
+memory. A decoder-only model normally has no separate source encoder.
+
+In causal next-token training, input position $i$ predicts token $i+1$,
+so it may access itself and earlier inputs: $j\le i$. Set future scores
+to $-\infty$ before softmax, yielding zero weights. Padding masks hide
+nonexistent tokens instead. Combine permissions and exclude padded query
+outputs from loss. An all-masked row has no valid normalization; prevent
+it or specify a deliberate special case. Mask conventions differ across
+APIs. PyTorch scaled-dot-product attention uses Boolean True for allowed
+entries, whereas some other attention calls use True for blocked entries.
+
+\subsection{Benefits, costs, and interpretation}
+One dense attention layer provides a direct query-to-key computational
+path to a distant position. Known query operations can run in parallel.
+Dense score interactions involve $T^2$ pairs per head: doubling context
+length quadruples pair count. Exact fused implementations can reduce
+intermediate memory without changing dense pair-count scaling.
+
+Attention weights describe routing within the computation; they do not
+prove causal importance. Keep $Q$ and $K$ fixed and change $V$: weights
+stay identical but the result can change. Removing and renormalizing a
+source is a different intervention. Explain what a particular experiment
+supports rather than interpreting an attractive heatmap as a complete
+causal explanation.
+
+\section{Hour 3: assemble and test a Transformer}
+\subsection{Tokens and position}
+Token IDs index learned vectors; their numeric magnitude has no inherent
+semantic distance. The teaching model has eight symbolic tokens, width 32,
+four heads, and context length 16. Vocabulary size and embedding width differ.
+Unmasked attention without positional information is permutation-equivariant:
+permuting input rows permutes outputs correspondingly. Order must therefore
+be represented deliberately. Our model adds learned absolute position
+vectors. The original Transformer used sinusoidal encodings; other position
+mechanisms also exist. A causal mask already introduces order constraints,
+so do not apply the unmasked equivariance claim unchanged to a masked model.
+
+\subsection{Heads, nonlinear transformations, and residual paths}
+Each head uses learned projections and its own routing weights. Concatenate
+head outputs and apply a learned output projection. At fixed total width
+$D$, $H$ heads have width $D/H$ in this implementation. More heads do not
+automatically multiply the total width, and heads have no assigned semantic
+roles. Attention mixes positions, while a shared tokenwise MLP transforms
+features independently at each position. The notebook expands to $4D$,
+applies GELU, and projects back to $D$.
+
+Residual addition requires matching dimensions and preserves an identity
+route. The teaching decoder uses pre-normalization:
+\begin{align*}
+u&=x+\operatorname{Attention}(\operatorname{LN}(x)),\\
+y&=u+\operatorname{FFN}(\operatorname{LN}(u)).
+\end{align*}
+The 2017 paper used a full encoder-decoder with post-normalization and
+ReLU. Our one-block decoder is an explicitly identified educational
+variant, not a verbatim copy of that architecture. Its causal self-attention
+has no encoder-decoder cross-attention sublayer.
+
+\subsection{Objective, baseline, and generation}
+Shift targets one token ahead. Logits have shape $(B,T,V)$, and
+cross-entropy minimizes
+\[\mathcal L=-\frac1{BT}\sum_{b,t}\log p_\theta(y_{b,t}\mid x_{b,\le t}).\]
+Pass logits directly to \texttt{nn.CrossEntropyLoss}. Training computes
+many known positions in parallel under the causal mask. During generation,
+the model predicts one unknown token, appends it, and repeats. Parallel
+training does not imply arbitrary autoregressive generation is parallel.
+
+Separate synthetic streams use seeds 2026, 2027, and 2028 but share one
+motif with small random perturbations. This is generalization to new
+realizations of that process, not transfer to a different engineering
+domain. A training-only smoothed bigram model is the reference. Uniform
+prediction over eight tokens has NLL $\log 8\approx2.079$ nats/token.
+Select a checkpoint by validation NLL; evaluate test afterward.
+
+\subsection{Behavioral checks and limits}
+Plot an actual trained attention head with query rows and key columns.
+Upper-triangle zeros are mask constraints, not learned discoveries.
+Change tokens only at positions 8 onward and compare logits at positions
+0--7. They should remain unchanged within the declared tolerance.
+This tests one concrete causal behavior, not every deployment property.
+Separately test permutation equivariance of the unmasked operation.
+Removing positions from an already trained decoder is an inference
+intervention, not a fair separately trained architecture comparison.
+
+The model generates symbolic states, not evidence-backed natural language.
+A token generator is only one possible component of an agent. An agent
+also needs a bounded objective, state handling, validated tools,
+permissions, stopping rules, and evidence review. Generation alone does
+not provide factual verification or controlled execution.
+
+\section{Completion and explain-back}
+H1 must produce a baseline table, residual plot, a reconstructed learned
+cell update, and evidence JSON. H2 must produce scores, weights, context,
+mask assertions, and an interpretation-limiting intervention. H3 must
+produce a trained-model comparison, head plot, future-token check, and
+configuration record. Predict the effect of one change before executing,
+keep the original evidence, and finish with a claim, evidence, limitation,
+and a test that could challenge the claim.
+
+\section{Primary sources}
+\begin{itemize}
+\item Hochreiter and Schmidhuber (1997), \emph{Long Short-Term Memory}:
+\url{https://doi.org/10.1162/neco.1997.9.8.1735}.
+\item Bahdanau, Cho, and Bengio (2014/2015), recurrent attention:
+\url{https://arxiv.org/abs/1409.0473}.
+\item Vaswani et al. (2017), \emph{Attention Is All You Need}:
+\url{https://arxiv.org/abs/1706.03762}.
+\item Dive into Deep Learning:
+\url{https://d2l.ai/chapter_recurrent-modern/lstm.html} and
+\url{https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html}.
+\item Executable course notebooks:
+\url{https://github.com/CHjonnyYu/MLES-Fall-2026}.
+\end{itemize}
+
+\end{document}

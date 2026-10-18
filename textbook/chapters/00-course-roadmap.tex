@@ -1,0 +1,39 @@
+\chapter*{How to use this reader}
+\addcontentsline{toc}{chapter}{How to use this reader}
+
+This is the Fall 2026 course reader for \emph{Machine Learning in Engineering Science}. It replaces the 2025 model-by-model textbook structure with a learning sequence that follows the course calendar. The reader is not a catalogue of architectures. Its central question is: \emph{what evidence is sufficient to support an engineering decision?}
+
+Each teaching week combines about 90 minutes of lecture with 90 minutes of practice. For Week 7 these modes are distributed across three independently usable 60-minute modules: sequential data and LSTM, attention, then Transformer architecture and experiments. The website provides the matching notebooks and slide decks. This source keeps the narrative, equations, design rationale, and references in version-controlled LaTeX.
+
+\begin{learningbox}
+By the end of the course, students should be able to:
+\begin{itemize}
+  \item formulate an ML problem with a target, features, split, metric, and decision context;
+  \item implement and evaluate a reproducible baseline before seeking a more complex model;
+  \item identify data leakage, overfitting, uncertainty, and failure cases;
+  \item explain when an LLM, retrieval component, tool call, or agent loop is justified; and
+  \item use AI coding assistance while retaining responsibility for tests, evidence, and rollback.
+\end{itemize}
+\end{learningbox}
+
+\section*{Semester map}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{.12\textwidth} >{\raggedright\arraybackslash}p{.22\textwidth} X@{}}
+\toprule
+\textbf{Weeks} & \textbf{Course focus} & \textbf{Reader unit and tangible output} \\
+\midrule
+1--3 & Data workflows and supervised learning & \Cref{chap:data-workflow,chap:supervised}; a question, a table of features, and a baseline model. \\
+5--6 & Evaluation and representation & \Cref{chap:evaluation,chap:unsupervised}; a defensible split, metric, and representation. \\
+7 & Sequences, LSTM, attention, and Transformers & \Cref{chap:neural,chap:sequences-attention}; three one-hour modules with reproducible experiments. \\
+9--10 & Reliability and project studio & \Cref{chap:reliability}; a reproducible midterm ML workflow. \\
+11 & Midterm assessment & Project demonstration, written examination, and oral examination. \\
+12--14 & LLMs, retrieval, tools, and agent design & \Cref{chap:llm,chap:retrieval,chap:agents}; an agent plan with explicit tools and failure cases. \\
+15--17 & Vibe coding, tests, and final studio & \Cref{chap:testing}; an evaluated engineering workflow and final demo. \\
+18 & Final assessment & Final project demonstration, written examination, and oral examination. \\
+\bottomrule
+\end{tabularx}
+
+\section*{What is assessed}
+Labs are active classwork and do not create a weekly graded workload. There are four milestone-based items called \emph{Homework}: an ML problem brief, a reproducible ML workflow, an agent plan, and demo-readiness evidence. The midterm and final each combine a project with written and oral assessment.
+
+\section*{A note on AI tools}
+The course permits free or basic-credit AI tools for drafting code, explanations, and debugging. A generated answer is never sufficient evidence. Submissions must show the model or system used, the prompt or change request when relevant, the tests run, the observed result, and the student's explanation of limits. No project requires a paid API, a dedicated GPU, or a competition ranking.

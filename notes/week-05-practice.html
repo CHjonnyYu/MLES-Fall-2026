@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week 05: Validation, thresholds, precision, and recall</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-05-practice.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-05-practice.ipynb">Open in Colab</a></nav><section><h1>Week 05: Validation, thresholds, precision, and recall</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Purpose:</strong> a fully worked, self-paced in-class practice with an optional extension. Weeks 11 and 18 are optional examination-readiness materials. These notebooks do not create weekly graded assignments.</p>
+<p><strong>Before running:</strong> choose a Python 3 kernel in Jupyter or a CPU runtime in Colab. Run every cell from top to bottom with Shift+Enter. Setup installs missing free packages. No API key or external dataset download is required.</p>
+<p><strong>Learning target:</strong> complete the calculation, inspect intermediate values, and explain why the protocol supports a limited claim.</p>
+<p><strong>Time:</strong> about 25-45 minutes including reading, prediction, execution, and explain-back.</p></section>
+<section><h2>1. Set up and record the environment</h2>
+<p>Keep the seed fixed for the first run. Record actual outputs and package versions rather than copying a claimed performance number.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The environment cell must finish before any analysis cell. Restart and run all if a variable is missing.</p></section>
+<section><h2>2. Reserve validation and test separately</h2>
+<p>Class 1 denotes the less frequent synthetic event. Select a decision threshold using validation only; preserve test for one final comparison.</p></section>
+<section><pre><code>from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import precision_score,recall_score,f1_score,confusion_matrix
+X,y=make_classification(n_samples=800,n_features=8,n_informative=4,weights=[.85,.15],random_state=SEED)
+Xtr,Xrest,ytr,yrest=train_test_split(X,y,test_size=.4,stratify=y,random_state=SEED)
+Xva,Xte,yva,yte=train_test_split(Xrest,yrest,test_size=.5,stratify=yrest,random_state=SEED)
+model=LogisticRegression(max_iter=300).fit(Xtr,ytr)
+pv=model.predict_proba(Xva)[:,1]
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> There are 480 training, 160 validation, and 160 test rows. No threshold has been selected using test outcomes.</p></section>
+<section><h2>3. Select a threshold on validation</h2>
+<p>For illustration choose the validation threshold with highest F1 among a fixed grid. A real safety specification may instead demand a minimum recall and account for uncertainty.</p></section>
+<section><pre><code>thresholds=np.linspace(.05,.95,19)
+scores=np.array([f1_score(yva,pv&gt;=t,zero_division=0) for t in thresholds])
+threshold=float(thresholds[scores.argmax()])
+plt.plot(thresholds,scores,&quot;o-&quot;); plt.xlabel(&quot;Decision threshold&quot;); plt.ylabel(&quot;Validation F1&quot;); plt.show()
+print(&quot;Selected threshold:&quot;,threshold)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The chosen number is specific to this dataset and protocol. It is not a universal optimal threshold.</p></section>
+<section><h2>4. Explain every confusion-matrix cell</h2>
+<p>Recall is TP/(TP+FN), also called sensitivity. Specificity is TN/(TN+FP), and precision is TP/(TP+FP). If the denominator is zero, the metric is undefined; software zero_division=0 is a reporting convention.</p></section>
+<section><pre><code>pt=model.predict_proba(Xte)[:,1]; predicted=(pt&gt;=threshold)
+tn,fp,fn,tp=confusion_matrix(yte,predicted,labels=[0,1]).ravel()
+summary={&quot;threshold&quot;:threshold,&quot;TP&quot;:int(tp),&quot;FP&quot;:int(fp),&quot;FN&quot;:int(fn),&quot;TN&quot;:int(tn),
+         &quot;precision&quot;:float(precision_score(yte,predicted,zero_division=0)),
+         &quot;recall_sensitivity&quot;:float(recall_score(yte,predicted,zero_division=0)),
+         &quot;specificity&quot;:float(tn/(tn+fp)),&quot;F1&quot;:float(f1_score(yte,predicted,zero_division=0))}
+print(summary)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Identify a false negative and a false positive in words. State which cost your application should care about and why.</p></section>
+<section><h2>6. Preserve your evidence</h2>
+<p>Export a JSON record with a seed, package version, and measured result. Download the artifacts directory before leaving Colab; runtime storage is temporary.</p></section>
+<section><pre><code>record={&quot;week&quot;:5,&quot;seed&quot;:SEED,&quot;numpy&quot;:np.__version__,&quot;python&quot;:platform.python_version(),&quot;result&quot;:summary}
+(ARTIFACTS/&quot;week-05-evidence.json&quot;).write_text(json.dumps(record,indent=2))
+print(json.dumps(record,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The evidence file must match the result you actually obtained. A saved screenshot alone does not permit rerunning the calculation.</p></section>
+<section><h2>7. Try one change and explain it</h2>
+<p>1. Predict the effect of one change before editing code. Change one parameter, input, or boundary condition only.</p>
+<p>2. Rerun all cells in a fresh kernel. Keep the original evidence record and compare the observed difference.</p>
+<p>3. Explain the result using the mechanism, not just the final number.</p>
+<p>4. Name one assumption that limits the claim, and a new test that could challenge it.</p>
+<p><strong>Troubleshooting:</strong> if installation fails, restore network access; if a variable is undefined, run earlier cells; if your output differs, compare package versions, seed, and data construction. Do not repeatedly edit code until a preferred score appears.</p>
+<p><strong>Completion criterion:</strong> one executed notebook, one evidence JSON, and a brief claim/evidence/limitation statement.</p>
+<h3>Reference documentation</h3>
+<p>- <a href="https://numpy.org/doc/stable/user/">NumPy user guide</a></p>
+<p>- <a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn user guide</a></p>
+<p>- <a href="https://github.com/CHjonnyYu/MLES-Fall-2026">Course repository</a></p></section></body></html>

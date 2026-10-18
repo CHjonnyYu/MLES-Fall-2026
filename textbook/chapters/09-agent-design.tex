@@ -1,0 +1,24 @@
+\chapter{Agent Design for Engineering Workflows}\label{chap:agents}
+\courseweek{Week 14.} An agent is not defined by a conversational interface. In this course, an agent is a bounded loop that observes a state, selects an allowed action, records evidence, and stops under explicit conditions.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Write a goal, state representation, action set, and stopping condition.
+  \item Decide when a workflow needs an agent loop rather than a single prompt or script.
+  \item Define human approvals for irreversible or high-impact actions.
+  \item Create test cases for expected and adverse agent behaviour.
+\end{itemize}
+\end{learningbox}
+
+\section{A minimal agent loop}
+A useful abstraction is: observe $\rightarrow$ plan $\rightarrow$ act $\rightarrow$ verify $\rightarrow$ record. The loop should be narrow enough to test. Tool use, memory, and reflection are optional components, not automatic signs of quality. Reasoning-and-action patterns such as ReAct motivate explicit tool traces, but a trace is still evidence to be inspected, not proof of correctness \citep{yao2023}.
+
+\section{Agent plan Homework}
+Homework 3 specifies a problem boundary, inputs, permitted tools, output format, stop condition, human approval point, and at least five failure cases. The plan must be feasible with a free or basic-credit tool path and must include a non-LLM fallback for a core calculation or validation step.
+
+\begin{checkpointbox}
+A proposed ``research agent'' can search documents, calculate a summary statistic, and send an email. Which actions require independent tests? Which action requires human confirmation? Where should the trace be stored?
+\end{checkpointbox}
+
+\section{Current agent engineering patterns}
+Contemporary agent tooling increasingly separates the decision harness from the environment in which untrusted or model-generated code runs. The practical course translation is provider-neutral: expose a small tool contract, constrain the workspace, store a trace, checkpoint useful state, and require review before a high-impact action. These boundaries make a student prototype easier to test and recover when a run fails \citep{openaiagents2026}. They do not make the agent correct; they make its behaviour more observable.

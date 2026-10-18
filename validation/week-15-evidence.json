@@ -1,0 +1,30 @@
+{
+  "week": 15,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "trace": {
+      "request_sha256": "b538c4514ed1e62569f9c1bd54b827c882519a127b16bd5a63fbb75cedd4a355",
+      "request": {
+        "task": "summarize",
+        "units": "synthetic units",
+        "readings": [
+          3.1,
+          3.2,
+          3.0,
+          3.6,
+          3.4
+        ]
+      },
+      "result": {
+        "n": 5,
+        "mean": 3.2600000000000002,
+        "sample_std": 0.2408318915758459,
+        "units": "synthetic units"
+      },
+      "limitation": "descriptive statistics; no calibrated diagnostic threshold"
+    },
+    "invalid_input_error": "Need finite numbers"
+  }
+}

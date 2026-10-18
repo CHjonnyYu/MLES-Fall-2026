@@ -1,0 +1,123 @@
+\documentclass[11pt,oneside]{book}
+
+% Compile with pdfLaTeX, XeLaTeX, or LuaLaTeX. The source is intentionally
+% modular so each teaching unit can evolve with its matching Colab notebook.
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\fi
+\usepackage[margin=1in,headheight=14pt]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,tabularx,array}
+\usepackage{graphicx,float,subcaption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=TealBlue]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\graphicspath{{figures/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlist[itemize]{leftmargin=*,itemsep=3pt}
+\setlist[enumerate]{leftmargin=*,itemsep=3pt}
+\renewcommand{\arraystretch}{1.22}
+
+\definecolor{courseink}{HTML}{19222E}
+\definecolor{courseblue}{HTML}{0C7882}
+\definecolor{courseorange}{HTML}{E9552E}
+\definecolor{coursepaper}{HTML}{F6F0E5}
+\definecolor{coursepale}{HTML}{E8F2EF}
+
+\lstdefinestyle{colabpython}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{MidnightBlue}\bfseries,
+  stringstyle=\color{BrickRed},
+  commentstyle=\color{OliveGreen}\itshape,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=8pt,
+  breaklines=true,
+  showstringspaces=false,
+  frame=single,
+  rulecolor=\color{gray!45},
+  backgroundcolor=\color{coursepaper}
+}
+\lstset{style=colabpython}
+
+\newtcolorbox{learningbox}{
+  colback=coursepale,
+  colframe=courseblue,
+  fonttitle=\bfseries,
+  title=Learning outcomes,
+  boxrule=.8pt,
+  arc=0pt
+}
+\newtcolorbox{labbox}{
+  colback=coursepaper,
+  colframe=courseorange,
+  fonttitle=\bfseries,
+  title=Colab Lab,
+  boxrule=.8pt,
+  arc=0pt
+}
+\newtcolorbox{checkpointbox}{
+  colback=white,
+  colframe=courseink,
+  fonttitle=\bfseries,
+  title=Checkpoint,
+  boxrule=.8pt,
+  arc=0pt
+}
+\newcommand{\CourseRepo}{CHjonnyYu/MLES-Fall-2026}
+\newcommand{\colab}[1]{\href{https://colab.research.google.com/github/\CourseRepo/blob/main/notebooks/#1}{Open in Google Colab}}
+\newcommand{\courseweek}[1]{\textcolor{courseorange}{\textsf{\textbf{#1}}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textsf{Machine Learning in Engineering Science}}
+\fancyhead[R]{\textsf{Fall 2026}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{Machine Learning in Engineering Science\\\large A Colab-first course reader}
+\author{Chi-Hua Jonny Yu}
+\date{Fall 2026}
+
+\begin{document}
+\frontmatter
+\maketitle
+\input{chapters/00-course-roadmap}
+\tableofcontents
+
+\mainmatter
+\part{Machine Learning Foundations}
+\input{chapters/01-data-and-ml-workflow}
+\input{chapters/02-supervised-learning}
+\input{chapters/03-evaluation-and-generalization}
+\input{chapters/04-unsupervised-learning}
+\input{chapters/05-neural-networks}
+\input{chapters/05b-sequences-attention-transformers}
+\input{chapters/06-reliability-and-midterm}
+
+\part{Language Models, Agents, and Engineering Workflows}
+\input{chapters/07-transformers-and-llms}
+\input{chapters/08-retrieval-and-tools}
+\input{chapters/09-agent-design}
+\input{chapters/10-testing-vibe-coding-and-final}
+
+\appendix
+\input{chapters/A-colab-and-homework}
+\input{chapters/B-extension-studios}
+
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}

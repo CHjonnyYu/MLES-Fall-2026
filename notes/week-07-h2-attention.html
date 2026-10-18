@@ -1,0 +1,173 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>W07 H2: Why Attention, and How It Works</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-07-h2-attention.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-07-h2-attention.ipynb">Open in Colab</a></nav><section><h1>W07 H2: Why Attention, and How It Works</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Teaching date:</strong> Monday 19 October 2026. <strong>Guided notebook time:</strong> 25 minutes within a 60-minute module.</p>
+<h3>What you will be able to explain</h3>
+<p>- Explain the fixed-context bottleneck and query-dependent retrieval.</p>
+<p>- Compute scores, softmax weights, and a weighted sum by hand.</p>
+<p>- Distinguish masks, attention weights, and causal explanations.</p>
+<h3>Start here, even if this is your first notebook</h3>
+<p>1. In Colab choose <strong>Runtime &gt; Change runtime type &gt; CPU</strong>. In Jupyter choose a Python 3 kernel.</p>
+<p>2. Run cells from top to bottom with <strong>Shift+Enter</strong>. Read the Markdown before each code cell.</p>
+<p>3. The setup installs only missing free packages. A network connection is needed for first installation; the data itself is generated locally.</p>
+<p>4. If a variable is undefined, restart the kernel and run all earlier cells. Do not skip a setup cell.</p>
+<p>5. Save a personal copy before changing parameters. Every core cell is complete: there are no hidden files, tokens, paid services, or unfinished code blocks.</p>
+<p><strong>Data:</strong> synthetic teaching data, not engineering measurements. Record your actual output; a model is not required to outperform a baseline.</p>
+<p><strong>Practice policy:</strong> in-class exercise and optional Homework extension, not a new weekly graded assignment.</p></section>
+<section><h2>Mechanism reference: compare, normalize, retrieve</h2>
+<p>For $Q$ of shape $(N_q,d_k)$, $K$ of shape $(N_k,d_k)$, and $V$ of shape $(N_k,d_v)$:</p>
+<p>$$S=QK^\top/\sqrt{d_k},\quad A=\operatorname{softmax}_{\mathrm{keys}}(S+M),\quad C=AV.$$</p>
+<p>Mask $M$ is zero for allowed entries and negative infinity for blocked entries. Rows of $A$ are receiving queries and columns are source keys. Every valid row sums to one. $C$ has shape $(N_q,d_v)$. Keep key rows paired with their value rows.</p>
+<p>Attention addresses a final-state encoder&#x27;s fixed-context bottleneck by retrieving earlier states for each output query. It can be attached to an LSTM or GRU. Self-attention derives Q,K,V from one sequence; cross-attention derives queries from one stream and keys/values from another.</p></section>
+<section><h2>1. Set up a numerical experiment</h2>
+<p>Attention can be understood without training a large model. First we use NumPy so each intermediate value is visible.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Run this notebook independently of H1. No saved H1 model is required.</p></section>
+<section><h2>2. Start with a query and an addressable memory</h2>
+<p>Q asks what to retrieve, K describes how each memory item matches the query, and V contains the information to combine. These numbers are hand-designed teaching vectors, not learned semantic embeddings. Q has shape (1,2), K is (3,2), and V is (3,2).</p></section>
+<section><pre><code>Q = np.array([[1.,0.]])
+K = np.array([[1.,0.],[0.,1.],[1.,1.]])
+V = np.array([[10.,0.],[0.,10.],[10.,10.]])
+labels = [&quot;memory A&quot;,&quot;memory B&quot;,&quot;memory C&quot;]
+print(&quot;Q:&quot;,Q,&quot;\nK:\n&quot;,K,&quot;\nV:\n&quot;,V)
+plt.scatter(K[:,0],K[:,1],s=120)
+for name, point in zip(labels,K): plt.annotate(name,point,xytext=(5,7),textcoords=&quot;offset points&quot;)
+plt.arrow(0,0,Q[0,0],Q[0,1],width=.01,color=&quot;tab:red&quot;,length_includes_head=True)
+plt.xlim(-.2,1.4); plt.ylim(-.2,1.4); plt.xlabel(&quot;Key dimension 1&quot;); plt.ylabel(&quot;Key dimension 2&quot;); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> A and C have the same dot product with this query. A key is an address; its associated value need not equal the key.</p></section>
+<section><h2>3. Calculate scaled scores</h2>
+<p>For each query, compute its dot product with every key, then divide by sqrt(d_k). This controls score scale as the key dimension grows under a unit-variance coordinate assumption. It does not normalize vector lengths.</p></section>
+<section><pre><code>scores = Q @ K.T / np.sqrt(K.shape[-1])
+print(&quot;Raw dot products:&quot;,Q@K.T)
+print(&quot;Scaled scores:&quot;,scores)
+assert np.allclose(scores,[[1/np.sqrt(2),0,1/np.sqrt(2)]])
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The scaled score row is approximately [0.7071, 0, 0.7071]. Scores are not yet probabilities and may be negative.</p></section>
+<section><h2>4. Convert scores into a row of weights</h2>
+<p>Softmax subtracts the row maximum for numerical stability, exponentiates, and divides by the row sum. Subtracting a shared constant changes no probability. Each query row must sum to 1 over the available keys.</p></section>
+<section><pre><code>def softmax(z):
+    shifted = z-z.max(axis=-1,keepdims=True)
+    exp = np.exp(shifted)
+    return exp/exp.sum(axis=-1,keepdims=True)
+weights = softmax(scores)
+print(&quot;Weights:&quot;,weights,&quot;Row sum:&quot;,weights.sum(axis=-1))
+assert np.allclose(weights.sum(axis=-1),1)
+plt.bar(labels,weights[0],color=[&quot;#1e8798&quot;,&quot;#7f2635&quot;,&quot;#f3b23a&quot;])
+plt.ylim(0,1); plt.ylabel(&quot;Attention weight&quot;); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The approximate weights are [0.4011, 0.1978, 0.4011]. B still has positive weight even though its raw score is zero.</p></section>
+<section><h2>5. Retrieve a weighted combination of values</h2>
+<p>The output is weights @ V. Each output dimension combines the same weights with the corresponding value coordinates. There is no argmax selection: multiple values contribute.</p></section>
+<section><pre><code>context = weights @ V
+print(&quot;Weighted contributions:\n&quot;,weights[0,:,None]*V)
+print(&quot;Context vector:&quot;,context)
+assert context.shape == (1,2)
+assert np.allclose(context,(weights[0,:,None]*V).sum(axis=0,keepdims=True))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The context is approximately [8.0222, 5.9889]. Explain which memory items contribute to each coordinate before moving on.</p></section>
+<section><h2>6. Change only the query</h2>
+<p>The memory stays fixed but the task changes. Try Q=[0,1] and Q=[-1,0]. Compute your predicted ranking before running. Temperature below 1 sharpens and above 1 softens the distribution; standard scaled dot-product attention uses temperature=1.</p></section>
+<section><pre><code>queries = np.array([[1.,0.],[0.,1.],[-1.,0.]])
+temperature = 1.0
+assert temperature &gt; 0
+W = softmax((queries@K.T/np.sqrt(2))/temperature)
+print(&quot;Contexts:\n&quot;,W@V)
+fig,ax=plt.subplots(figsize=(6,3))
+im=ax.imshow(W,cmap=&quot;YlGnBu&quot;,vmin=0,vmax=1)
+ax.set_xticks(range(3),labels); ax.set_yticks(range(3),[&quot;q=[1,0]&quot;,&quot;q=[0,1]&quot;,&quot;q=[-1,0]&quot;])
+for row in range(3):
+    for col in range(3): ax.text(col,row,f&quot;{W[row,col]:.2f}&quot;,ha=&quot;center&quot;,va=&quot;center&quot;,color=&quot;black&quot;)
+fig.colorbar(im,ax=ax); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> A query with negative first coordinate reduces the weights of keys with positive first coordinate. Attention retrieval depends on the query, not on one universal ranking.</p></section>
+<section><h2>7. Add causal masking before softmax</h2>
+<p>For a token at position t, a causal decoder may access positions &lt;=t, including itself. Set future scores to negative infinity before softmax; then their exponentials are zero. Every row must retain at least one allowed key.</p></section>
+<section><pre><code>X_demo = np.array([[1.,0.],[0.,1.],[1.,1.]])
+self_scores = X_demo@X_demo.T/np.sqrt(2)
+allowed = np.tril(np.ones((3,3),dtype=bool))
+masked_scores = np.where(allowed,self_scores,-np.inf)
+causal_weights = softmax(masked_scores)
+print(&quot;Allowed (query rows, key columns):\n&quot;,allowed.astype(int))
+print(&quot;Causal attention:\n&quot;,causal_weights)
+assert np.all(causal_weights[~allowed] == 0)
+assert np.allclose(causal_weights.sum(axis=-1),1)
+plt.imshow(causal_weights,cmap=&quot;YlGnBu&quot;,vmin=0,vmax=1)
+plt.xlabel(&quot;Key/source position&quot;); plt.ylabel(&quot;Query/destination position&quot;); plt.colorbar(); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The first row must be [1,0,0]. Do not apply softmax before masking, and do not confuse the direction of rows and columns.</p></section>
+<section><h2>8. Separate padding from future masking</h2>
+<p>A padding mask hides nonexistent tokens, while a causal mask hides future tokens. Combine the two permissions. For padded query rows, the output is normally excluded from the loss rather than interpreted as a real prediction.</p></section>
+<section><pre><code>is_real_key = np.array([True,True,False])
+combined_allowed = allowed &amp; is_real_key[None,:]
+assert combined_allowed.any(axis=-1).all()
+combined_weights = softmax(np.where(combined_allowed,self_scores,-np.inf))
+print(combined_weights)
+assert np.all(combined_weights[:,2] == 0)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> No query can retrieve the padded final key. An all-masked row would make softmax undefined; prevent that case rather than silently treating NaN as an answer.</p></section>
+<section><h2>9. Verify the same calculation with PyTorch</h2>
+<p>The high-level SDPA API uses True for allowed entries in a Boolean mask. Other PyTorch APIs use different mask conventions; always read the called API. We use an explicit implementation for comparison and disable dropout.</p></section>
+<section><pre><code>if importlib.util.find_spec(&quot;torch&quot;) is None:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, &quot;torch&quot;])
+import torch
+from torch import nn
+import copy, time
+torch.set_num_threads(1)
+torch.manual_seed(SEED)
+torch.use_deterministic_algorithms(True)
+device = torch.device(&quot;cpu&quot;)
+print(&quot;PyTorch:&quot;, torch.__version__, &quot;Device:&quot;, device)
+
+import torch.nn.functional as F
+q=torch.tensor(Q,dtype=torch.float32)[None,None,:,:]
+k=torch.tensor(K,dtype=torch.float32)[None,None,:,:]
+v=torch.tensor(V,dtype=torch.float32)[None,None,:,:]
+torch_context = F.scaled_dot_product_attention(q,k,v,dropout_p=0.0)
+assert np.allclose(torch_context.numpy()[0,0],context,atol=1e-5)
+print(&quot;NumPy and PyTorch agree:&quot;,torch_context[0,0])
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The parity assertion must pass. This is an implementation check for the chosen example, not evidence that attention has learned language.</p></section>
+<section><h2>10. Test what an attention plot can explain</h2>
+<p>Weights describe a computation, but causal importance requires an intervention. Hold Q and K fixed and change one V; weights remain unchanged while output changes. Then remove a memory item by masking it and observe that normalization also changes.</p></section>
+<section><pre><code>V_changed=V.copy(); V_changed[1]=[100.,100.]
+changed_context=weights@V_changed
+removed_weights=softmax(np.where(np.array([[True,False,True]]),scores,-np.inf))
+print(&quot;Original weights:&quot;,weights)
+print(&quot;Same weights, changed values:&quot;,changed_context)
+print(&quot;Remove B and renormalize:&quot;,removed_weights@V)
+assert not np.allclose(changed_context,context)
+evidence={&quot;Q&quot;:Q.tolist(),&quot;K&quot;:K.tolist(),&quot;V&quot;:V.tolist(),&quot;scores&quot;:scores.tolist(),
+          &quot;weights&quot;:weights.tolist(),&quot;context&quot;:context.tolist(),
+          &quot;causal_weights&quot;:causal_weights.tolist(),&quot;seed&quot;:SEED,
+          &quot;interpretation&quot;:&quot;Attention weights are routing weights, not proof of causal importance.&quot;}
+(ARTIFACTS/&quot;w07-h2-attention.json&quot;).write_text(json.dumps(evidence,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> State exactly what the heatmap supports: where the chosen computation routes information. Do not claim it proves why a real-world outcome occurred.</p></section>
+<section><h2>11. Independent practice and solutions</h2>
+<p>1. Set temperature to 0.5 and 2.0 in Step 6. Predict and then compare the sharpness, keeping Q, K, V fixed.</p>
+<p>2. Replace all keys by the same vector. <strong>Expected:</strong> every available key gets equal weight, regardless of query; masked keys still get zero.</p>
+<p>3. Make one value very large. <strong>Expected:</strong> the context may change greatly with no change to attention weights.</p>
+<p>4. Explain why additive attention can be attached to an LSTM encoder-decoder. <strong>Answer:</strong> a decoder query can score all encoder states; attention does not require removing recurrence.</p>
+<p>5. Explain self-attention versus cross-attention. <strong>Answer:</strong> self-attention derives Q,K,V from one sequence; cross-attention derives Q from one stream and K,V from another.</p>
+<p><strong>Stop when:</strong> your evidence JSON contains scores, weights, context, and a causal-mask assertion; explain all matrix axes to a partner.</p>
+<p><strong>Bridge to H3:</strong> a Transformer combines attention with positional information, a tokenwise feed-forward network, residual paths, and normalization. Attention alone is not the complete architecture.</p>
+<h3>Sources</h3>
+<p>- <a href="https://arxiv.org/abs/1409.0473">Bahdanau et al. (2014/2015), joint alignment and translation</a></p>
+<p>- <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. (2017), Attention Is All You Need</a></p>
+<p>- <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html">PyTorch scaled dot-product attention API</a></p>
+<p>- <a href="https://www.3blue1brown.com/lessons/attention/">3Blue1Brown attention lesson</a></p></section></body></html>

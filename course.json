@@ -1,0 +1,169 @@
+{
+  "title": "Machine Learning in Engineering Science",
+  "semester": "Fall 2026",
+  "meeting": "Monday 14:00\u201317:00",
+  "language": "English",
+  "repository": "https://github.com/CHjonnyYu/MLES-Fall-2026",
+  "weeks": [
+    {
+      "number": "01",
+      "date": "2026-09-07",
+      "title": "Course introduction, data, and evidence",
+      "phase": "Foundation",
+      "focus": "Describe a row, a unit, a target, and an evidence chain."
+    },
+    {
+      "number": "02",
+      "date": "2026-09-14",
+      "title": "Features, targets, and leakage-safe splits",
+      "phase": "Foundation",
+      "focus": "Build a preprocessing pipeline and inspect held-out classification errors."
+    },
+    {
+      "number": "03",
+      "date": "2026-09-21",
+      "title": "Supervised learning: regression and classification",
+      "phase": "Foundation",
+      "focus": "Choose a baseline and distinguish continuous from categorical targets."
+    },
+    {
+      "number": "04",
+      "date": "2026-09-28",
+      "title": "No class \u2014 Teachers\u2019 Day holiday",
+      "phase": "No class",
+      "focus": "Follow the current semester calendar; no new in-class practice."
+    },
+    {
+      "number": "05",
+      "date": "2026-10-05",
+      "title": "Evaluation, validation, and overfitting",
+      "phase": "Foundation",
+      "focus": "Explain precision, recall, specificity, thresholds, and validation. Homework milestone: ML Problem Brief."
+    },
+    {
+      "number": "06",
+      "date": "2026-10-12",
+      "title": "Unsupervised learning and representation",
+      "phase": "Foundation",
+      "focus": "Interpret PCA and clusters while separating geometry from physical meaning."
+    },
+    {
+      "number": "07",
+      "date": "2026-10-19",
+      "title": "Sequences \u2192 LSTM \u2192 Attention \u2192 Transformer",
+      "phase": "Sequence models",
+      "focus": "Trace LSTM memory, compute attention, and train/test a tiny causal Transformer across three one-hour modules."
+    },
+    {
+      "number": "08",
+      "date": "2026-10-26",
+      "title": "No class \u2014 observed Retrocession Day holiday",
+      "phase": "No class",
+      "focus": "Consolidate the sequence notebooks; no new in-class practice."
+    },
+    {
+      "number": "09",
+      "date": "2026-11-02",
+      "title": "ML reliability, shift, and error analysis",
+      "phase": "Foundation",
+      "focus": "Stress-test model assumptions and report subgroup failures."
+    },
+    {
+      "number": "10",
+      "date": "2026-11-09",
+      "title": "Reproducible ML workflow studio",
+      "phase": "Studio",
+      "focus": "Rebuild a baseline from frozen data and split IDs. Homework milestone: ML Workflow."
+    },
+    {
+      "number": "11",
+      "date": "2026-11-16",
+      "title": "Midterm written and oral examinations",
+      "phase": "Assessment",
+      "focus": "Explain project data, baseline, evaluation, limitations, and reproduction."
+    },
+    {
+      "number": "12",
+      "date": "2026-11-23",
+      "title": "LLMs, bounded agents, and vibe coding",
+      "phase": "Agents",
+      "focus": "Separate next-token generation from validated action execution."
+    },
+    {
+      "number": "13",
+      "date": "2026-11-30",
+      "title": "Retrieval, source evidence, and structured knowledge",
+      "phase": "Agents",
+      "focus": "Build a lexical retrieval baseline with source IDs and abstention."
+    },
+    {
+      "number": "14",
+      "date": "2026-12-07",
+      "title": "Agent testing, failure cases, and oversight",
+      "phase": "Agents",
+      "focus": "Enforce permissions, step budgets, and human review. Homework milestone: Final Agent Plan."
+    },
+    {
+      "number": "15",
+      "date": "2026-12-14",
+      "title": "Agent Studio I: build a bounded workflow",
+      "phase": "Studio",
+      "focus": "Produce traceable descriptive results with a validated input schema."
+    },
+    {
+      "number": "16",
+      "date": "2026-12-21",
+      "title": "Agent Studio II: evaluation and demo rehearsal",
+      "phase": "Studio",
+      "focus": "Compare candidates using reference cases and recorded failures. Homework milestone: Demo Readiness."
+    },
+    {
+      "number": "17",
+      "date": "2026-12-28",
+      "title": "Project integration and oral-exam preparation",
+      "phase": "Studio",
+      "focus": "Package data identity, code, result cards, limitations, and AI-use disclosure."
+    },
+    {
+      "number": "18",
+      "date": "2027-01-04",
+      "title": "Final written and oral examinations",
+      "phase": "Assessment",
+      "focus": "Defend the final project with a reproducible evidence package."
+    }
+  ],
+  "videos": [
+    {
+      "title": "LSTM, Clearly Explained",
+      "author": "StatQuest / Josh Starmer",
+      "url": "https://www.youtube.com/watch?v=YCzL96nL7j0",
+      "topic": "H1 \u00b7 memory gates",
+      "purpose": "Before or after H1: explain the roles of sigmoid, tanh, retained memory, and exposed state.",
+      "reading": "https://statquest.org/video-index/"
+    },
+    {
+      "title": "Attention in transformers, step by step",
+      "author": "3Blue1Brown / Grant Sanderson",
+      "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc",
+      "topic": "H2 \u00b7 Q, K, V and weighted retrieval",
+      "purpose": "After H2: pause before softmax and compute a query-to-key ranking yourself.",
+      "reading": "https://www.3blue1brown.com/lessons/attention/"
+    },
+    {
+      "title": "Let\u2019s build GPT, from scratch",
+      "author": "Andrej Karpathy",
+      "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY",
+      "topic": "H3 \u00b7 optional extended coding walkthrough",
+      "purpose": "A longer optional implementation study; the full video is not required during the three-hour class.",
+      "reading": "https://github.com/karpathy/ng-video-lecture"
+    },
+    {
+      "title": "Transformers United: lecture collection",
+      "author": "Stanford CS25",
+      "url": "https://web.stanford.edu/class/cs25/",
+      "topic": "Optional advanced seminars",
+      "purpose": "Choose seminars after completing the core notebooks; these research talks are not assumed prerequisites.",
+      "reading": "https://web.stanford.edu/class/cs25/"
+    }
+  ]
+}

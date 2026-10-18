@@ -1,0 +1,11 @@
+{
+  "week": 1,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "rows": 60,
+    "mean_response": 50.79347184174284,
+    "imputation": "median temperature"
+  }
+}

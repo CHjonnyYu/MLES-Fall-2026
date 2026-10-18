@@ -1,0 +1,21 @@
+\chapter{Unsupervised Learning and Representation}\label{chap:unsupervised}
+\courseweek{Week 6.} Unsupervised methods organize data without a labelled target. They are useful for exploration, anomaly investigation, compression, and finding candidate subpopulations. They do not automatically create ground truth.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Explain the difference between clustering and classification.
+  \item Standardize features appropriately before distance-based analysis.
+  \item Use a low-dimensional view as an exploratory tool rather than a final conclusion.
+  \item State how a discovered cluster would be checked against domain knowledge.
+\end{itemize}
+\end{learningbox}
+
+\section{Clustering as a hypothesis generator}
+Methods such as $k$-means partition observations by geometric similarity. The algorithm returns groups even when no meaningful groups exist. Therefore a cluster label should be treated as a hypothesis to investigate with process knowledge, additional measurements, and sensitivity analysis.
+
+\section{Representation matters}
+Distances depend on feature scale and representation. A temperature difference of 10 degrees and a pressure difference of 10 kPa are not inherently comparable. Document scaling, missing-value handling, and the variables intentionally excluded from the analysis.
+
+\begin{labbox}
+\textbf{Week 6:} standardize a multivariate dataset, compare two values of $k$, and inspect the stability of the result. Identify one observation that would require domain review rather than automatic labelling.
+\end{labbox}

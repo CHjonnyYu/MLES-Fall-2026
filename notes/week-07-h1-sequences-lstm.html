@@ -1,0 +1,233 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>W07 H1: Sequential Data and LSTM</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-07-h1-sequences-lstm.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-07-h1-sequences-lstm.ipynb">Open in Colab</a></nav><section><h1>W07 H1: Sequential Data and LSTM</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Teaching date:</strong> Monday 19 October 2026. <strong>Guided notebook time:</strong> 25 minutes within a 60-minute module.</p>
+<h3>What you will be able to explain</h3>
+<p>- Define a sequence, a forecast origin, and a prediction horizon.</p>
+<p>- Trace how the four LSTM gates update cell and hidden state.</p>
+<p>- Compare a trained LSTM with persistence and ridge baselines without future leakage.</p>
+<h3>Start here, even if this is your first notebook</h3>
+<p>1. In Colab choose <strong>Runtime &gt; Change runtime type &gt; CPU</strong>. In Jupyter choose a Python 3 kernel.</p>
+<p>2. Run cells from top to bottom with <strong>Shift+Enter</strong>. Read the Markdown before each code cell.</p>
+<p>3. The setup installs only missing free packages. A network connection is needed for first installation; the data itself is generated locally.</p>
+<p>4. If a variable is undefined, restart the kernel and run all earlier cells. Do not skip a setup cell.</p>
+<p>5. Save a personal copy before changing parameters. Every core cell is complete: there are no hidden files, tokens, paid services, or unfinished code blocks.</p>
+<p><strong>Data:</strong> synthetic teaching data, not engineering measurements. Record your actual output; a model is not required to outperform a baseline.</p>
+<p><strong>Practice policy:</strong> in-class exercise and optional Homework extension, not a new weekly graded assignment.</p></section>
+<section><h2>Mechanism reference: the complete LSTM cell</h2>
+<p>Let $u_t=[h_{t-1};x_t]$ concatenate the previous hidden vector and current input. A standard LSTM computes</p>
+<p>$$f_t=\sigma(W_fu_t+b_f),\quad i_t=\sigma(W_iu_t+b_i),$$</p>
+<p>$$g_t=\tanh(W_gu_t+b_g),\quad o_t=\sigma(W_ou_t+b_o),$$</p>
+<p>$$c_t=f_t\odot c_{t-1}+i_t\odot g_t,\quad h_t=o_t\odot\tanh(c_t).$$</p>
+<p>Sigmoid gives coefficients between 0 and 1; $\odot$ multiplies matching coordinates. Forget $f$ retains old memory, input $i$ scales a signed write $g$, and output $o$ controls exposed state. Weights are shared across time. Each gate has one coefficient per hidden dimension.</p>
+<p>The additive path can improve gradient flow but does not guarantee infinite memory. With gates held fixed, the direct retained contribution includes a product of forget coefficients; full gradients also include gate dependencies. Gradient clipping limits explosions but does not restore vanished gradients.</p></section>
+<section><h2>1. Record the environment</h2>
+<p>Run setup once. The random seed fixes the synthetic data; recording package versions makes differences between runs traceable.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> You should see the Python version, NumPy version, and seed 2026. If installation fails, check internet access and rerun this cell.</p></section>
+<section><h2>2. Enable a small CPU model</h2>
+<p>No GPU is required. We use one CPU thread and deterministic operations so this small example is inexpensive to rerun.</p></section>
+<section><pre><code>if importlib.util.find_spec(&quot;torch&quot;) is None:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, &quot;torch&quot;])
+import torch
+from torch import nn
+import copy, time
+torch.set_num_threads(1)
+torch.manual_seed(SEED)
+torch.use_deterministic_algorithms(True)
+device = torch.device(&quot;cpu&quot;)
+print(&quot;PyTorch:&quot;, torch.__version__, &quot;Device:&quot;, device)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The printed device must be cpu. Small numerical differences can still occur across package versions or hardware.</p></section>
+<section><h2>3. Define the physical question before the model</h2>
+<p>Imagine a sensor sampled at equal time intervals. We predict the next sample from the preceding 24 samples. The signal below is synthetic: a slow trend, two oscillations, and noise. Index t represents a sample, not a calibrated second.</p></section>
+<section><pre><code>N, WINDOW = 1600, 24
+t = np.arange(N)
+signal = (0.0004*t + np.sin(2*np.pi*t/40) + 0.35*np.sin(2*np.pi*t/13)
+          + rng.normal(0, 0.12, N)).astype(np.float32)
+TRAIN_END, VAL_END = 960, 1280
+plt.figure(figsize=(11,3))
+plt.plot(t, signal, lw=1, label=&quot;synthetic sensor&quot;)
+plt.axvline(TRAIN_END,color=&quot;tab:orange&quot;,label=&quot;train/validation boundary&quot;)
+plt.axvline(VAL_END,color=&quot;tab:red&quot;,label=&quot;validation/test boundary&quot;)
+plt.xlabel(&quot;Sample index&quot;); plt.ylabel(&quot;Synthetic sensor units&quot;); plt.legend(); plt.show()
+print(&quot;Dataset SHA256:&quot;, hashlib.sha256(signal.tobytes()).hexdigest())
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Training occurs on earlier samples. Validation and test occur later. Do not shuffle the raw timeline before splitting.</p></section>
+<section><h2>4. Build windows using only available history</h2>
+<p>A row is a complete history window, not a single sensor value. With length L=24 and target index t, input is x[t-24:t] and the target is x[t]. Thus every input index is strictly smaller than its target index. A test window may use previously observed validation/test sensor history: this is <strong>rolling one-step forecasting</strong>, not a forecast of the entire future from one fixed origin.</p></section>
+<section><pre><code>target_index = np.arange(WINDOW, N)
+X_raw = np.stack([signal[i-WINDOW:i] for i in target_index])
+y_raw = signal[target_index]
+train = target_index &lt; TRAIN_END
+valid = (target_index &gt;= TRAIN_END) &amp; (target_index &lt; VAL_END)
+test = target_index &gt;= VAL_END
+mu, sigma = signal[:TRAIN_END].mean(), signal[:TRAIN_END].std()
+X = ((X_raw-mu)/sigma).astype(np.float32)[..., None]
+y = ((y_raw-mu)/sigma).astype(np.float32)
+assert X.shape == (N-WINDOW, WINDOW, 1)
+assert target_index[train].max() &lt; target_index[valid].min()
+assert target_index[valid].max() &lt; target_index[test].min()
+print(&quot;X shape (batch,time,features):&quot;, X.shape)
+print(&quot;Counts:&quot;, train.sum(), valid.sum(), test.sum())
+print(&quot;First window uses indices&quot;, target_index[0]-WINDOW, &quot;to&quot;, target_index[0]-1,
+      &quot;and predicts&quot;, target_index[0])
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The shape is (1576, 24, 1), with 936 training, 320 validation, and 320 test targets. Mean and standard deviation use only raw training samples.</p></section>
+<section><h2>5. Establish two baselines</h2>
+<p>Persistence predicts that the next value equals the last observation. Ridge regression can exploit the full window without a recurrent state. Choose ridge regularization on validation only, then evaluate the selected baseline on test once.</p></section>
+<section><pre><code>from sklearn.linear_model import Ridge
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+ridge_candidates = []
+for alpha in [0.01, 0.1, 1.0, 10.0]:
+    candidate = Ridge(alpha=alpha).fit(X[train,:,0], y[train])
+    val_mae = mean_absolute_error(y[valid], candidate.predict(X[valid,:,0]))
+    ridge_candidates.append((val_mae, alpha, candidate))
+_, best_alpha, ridge = min(ridge_candidates, key=lambda item:item[0])
+predictions = {&quot;Persistence&quot;: X[test,-1,0]*sigma+mu,
+               &quot;Ridge&quot;: ridge.predict(X[test,:,0])*sigma+mu}
+print(&quot;Validation-selected ridge alpha:&quot;, best_alpha)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Persistence has no fitted parameters. Both baselines predict exactly the same target indices as the LSTM.</p></section>
+<section><h2>6. Compute one LSTM update by hand</h2>
+<p>The forget gate f retains old cell memory; input gate i controls writing; candidate g supplies new content; output gate o exposes the updated cell. All products are elementwise. Here the gate values are <strong>chosen</strong>, not trained. For c_previous=0.8, f=0.9, i=0.2, g=-0.5, and o=0.7, compute c_new=f*c_previous+i*g before running.</p></section>
+<section><pre><code>c_previous, f, i, g, o = 0.8, 0.9, 0.2, -0.5, 0.7
+c_new = f*c_previous + i*g
+h_new = o*np.tanh(c_new)
+print(&quot;New cell:&quot;, c_new, &quot;New hidden:&quot;, h_new)
+fig, ax = plt.subplots(figsize=(8,3))
+ax.bar([&quot;retained old memory&quot;, &quot;new written content&quot;, &quot;updated cell&quot;, &quot;exposed hidden&quot;],
+       [f*c_previous, i*g, c_new, h_new], color=[&quot;#1e8798&quot;,&quot;#e4002b&quot;,&quot;#12233f&quot;,&quot;#f3b23a&quot;])
+ax.axhline(0,color=&quot;gray&quot;); ax.set_ylabel(&quot;Illustrative scalar state&quot;); plt.show()
+assert np.isclose(c_new, 0.62)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The new cell is 0.62 and hidden state is about 0.386. The cell and hidden state are different quantities; an LSTM does not simply copy the last input.</p></section>
+<section><h2>7. Implement the prediction model</h2>
+<p>With batch_first=True, input and output are (B,T,F) and (B,T,H). Hidden state has shape (layers,B,H), regardless of batch_first. A linear head turns the final hidden output into one forecast. Model weights are shared across all 24 time steps.</p></section>
+<section><pre><code>class SensorLSTM(nn.Module):
+    def __init__(self, hidden=16):
+        super().__init__()
+        self.rnn = nn.LSTM(input_size=1, hidden_size=hidden, batch_first=True)
+        self.head = nn.Linear(hidden, 1)
+    def forward(self, x):
+        states, (h_n, c_n) = self.rnn(x)
+        return self.head(states[:, -1, :]).squeeze(-1)
+
+torch.manual_seed(SEED)
+model = SensorLSTM().to(device)
+X_t = torch.from_numpy(X)
+y_t = torch.from_numpy(y)
+print(&quot;Parameters:&quot;, sum(p.numel() for p in model.parameters()))
+print(&quot;Output shape:&quot;, tuple(model(X_t[:4]).shape))
+assert model(X_t[:4]).shape == (4,)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> There must be one prediction per window. A bidirectional model is unnecessary here; every input window already contains only known past values.</p></section>
+<section><h2>8. Train on training data; select on validation</h2>
+<p>Each epoch performs gradient updates on training batches. Validation is evaluated with model.eval() and no gradients. We retain the state with the lowest validation loss. The test set is not consulted during model selection.</p></section>
+<section><pre><code>optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+loss_fn = nn.MSELoss()
+train_ids = np.flatnonzero(train)
+history, best_val, best_state = [], float(&quot;inf&quot;), None
+start = time.perf_counter()
+for epoch in range(24):
+    model.train()
+    order = rng.permutation(train_ids)
+    epoch_losses = []
+    for batch in np.array_split(order, 12):
+        optimizer.zero_grad()
+        loss = loss_fn(model(X_t[batch]), y_t[batch])
+        loss.backward()
+        nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        optimizer.step()
+        epoch_losses.append(loss.item())
+    model.eval()
+    with torch.no_grad():
+        val_loss = loss_fn(model(X_t[valid]), y_t[valid]).item()
+    history.append((float(np.mean(epoch_losses)), val_loss))
+    if val_loss &lt; best_val:
+        best_val, best_state = val_loss, copy.deepcopy(model.state_dict())
+model.load_state_dict(best_state)
+print(&quot;Training seconds:&quot;, round(time.perf_counter()-start,2), &quot;Best validation MSE:&quot;, best_val)
+plt.plot(np.array(history), label=None)
+plt.legend([&quot;training MSE&quot;, &quot;validation MSE&quot;]); plt.xlabel(&quot;Epoch&quot;); plt.ylabel(&quot;Standardized MSE&quot;); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Your actual loss curve is the evidence. If validation worsens while training improves, discuss overfitting rather than increasing epochs blindly.</p></section>
+<section><h2>9. Compare held-out errors and inspect residuals</h2>
+<p>Report errors in original synthetic sensor units. MAE is the average absolute error; RMSE penalizes large residuals more strongly. A lower score on this toy signal is not evidence of reliability on a real sensor.</p></section>
+<section><pre><code>model.eval()
+with torch.no_grad():
+    predictions[&quot;LSTM&quot;] = model(X_t[test]).numpy()*sigma+mu
+metrics = {}
+for name, prediction in predictions.items():
+    mae = mean_absolute_error(y_raw[test], prediction)
+    rmse = np.sqrt(mean_squared_error(y_raw[test], prediction))
+    metrics[name] = {&quot;MAE&quot;: float(mae), &quot;RMSE&quot;: float(rmse)}
+    print(f&quot;{name:12s} MAE={mae:.4f} RMSE={rmse:.4f}&quot;)
+fig, axes = plt.subplots(2,1,figsize=(10,5),sharex=True)
+axes[0].plot(target_index[test], y_raw[test], label=&quot;observed&quot;,color=&quot;black&quot;)
+for name, prediction in predictions.items(): axes[0].plot(target_index[test],prediction,label=name,alpha=.7)
+axes[0].legend(); axes[0].set_ylabel(&quot;Sensor units&quot;)
+axes[1].plot(target_index[test], predictions[&quot;LSTM&quot;]-y_raw[test])
+axes[1].axhline(0,color=&quot;black&quot;); axes[1].set_ylabel(&quot;LSTM residual&quot;); axes[1].set_xlabel(&quot;Target sample index&quot;)
+plt.tight_layout(); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Explain the comparison even if persistence or ridge wins. Inspect whether errors cluster at peaks; one aggregate score hides this structure.</p></section>
+<section><h2>10. Inspect real gates in the trained model</h2>
+<p>PyTorch stores gate chunks in i,f,g,o order. Reconstruct one cell from learned weights and compare it to nn.LSTM. This connects the equation to an actual implementation, not an illustrative diagram.</p></section>
+<section><pre><code>x_first = X_t[test][:1,:1,:]
+H = model.rnn.hidden_size
+h0 = torch.zeros(1,H); c0 = torch.zeros(1,H)
+with torch.no_grad():
+    pre = (x_first[:,0,:] @ model.rnn.weight_ih_l0.T + model.rnn.bias_ih_l0
+           + h0 @ model.rnn.weight_hh_l0.T + model.rnn.bias_hh_l0)
+    pi, pf, pg, po = pre.chunk(4,dim=-1)
+    gate_i, gate_f, candidate, gate_o = pi.sigmoid(), pf.sigmoid(), pg.tanh(), po.sigmoid()
+    cell = gate_f*c0 + gate_i*candidate
+    hidden = gate_o*cell.tanh()
+    reference, (_, reference_cell) = model.rnn(x_first)
+    assert torch.allclose(hidden, reference[:,0,:], atol=1e-6)
+    assert torch.allclose(cell, reference_cell[0], atol=1e-6)
+print(&quot;Manual learned-cell update matches PyTorch.&quot;)
+plt.imshow(torch.stack([gate_i[0],gate_f[0],candidate[0],gate_o[0]]).numpy(),aspect=&quot;auto&quot;,cmap=&quot;coolwarm&quot;,vmin=-1,vmax=1)
+plt.yticks(range(4),[&quot;input i&quot;,&quot;forget f&quot;,&quot;candidate g&quot;,&quot;output o&quot;])
+plt.xlabel(&quot;Hidden dimension&quot;); plt.colorbar(); plt.show()
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The gates are vectors with one value per hidden dimension, not a single universal decision. Their values do not prove causal importance of input samples.</p></section>
+<section><h2>11. Save a rerunnable evidence record</h2>
+<p>Save data, boundaries, normalization, versions, model state, and measured results. These files stay in your notebook runtime until downloaded. Colab files disappear after the session ends.</p></section>
+<section><pre><code>record = {&quot;seed&quot;:SEED,&quot;window&quot;:WINDOW,&quot;train_end&quot;:TRAIN_END,&quot;validation_end&quot;:VAL_END,
+          &quot;forecast_protocol&quot;:&quot;rolling one-step, observed history available&quot;,
+          &quot;data_sha256&quot;:hashlib.sha256(signal.tobytes()).hexdigest(),
+          &quot;numpy&quot;:np.__version__,&quot;torch&quot;:torch.__version__,&quot;python&quot;:platform.python_version(),
+          &quot;normalization&quot;:{&quot;mean&quot;:float(mu),&quot;std&quot;:float(sigma)},&quot;metrics&quot;:metrics}
+(ARTIFACTS/&quot;w07-h1-evidence.json&quot;).write_text(json.dumps(record,indent=2))
+np.savez(ARTIFACTS/&quot;w07-h1-data.npz&quot;,signal=signal,target_index=target_index)
+torch.save(model.state_dict(),ARTIFACTS/&quot;w07-h1-lstm.pt&quot;)
+print(json.dumps(record,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Download the artifacts folder or zip it. A classmate should be able to rebuild the dataset and obtain a comparable baseline from the recorded configuration.</p></section>
+<section><h2>12. Independent practice and explain-back</h2>
+<p>1. Predict how WINDOW=12 versus 48 changes the information available. Rerun from Step 3 with one change only; keep the original result record.</p>
+<p>2. Explain why fitting normalization on all 1600 samples leaks future information even though no labels are directly passed to a model.</p>
+<p>3. What does the forget gate do when it is 0, 0.5, or 1? Does f near 1 guarantee unlimited memory? Explain the additive path and remaining optimization limits.</p>
+<p>4. Why might a linear model beat an LSTM on this signal? State model capacity, data size, and signal structure.</p>
+<p><strong>Stop when:</strong> you have a held-out comparison table, a residual plot, an evidence JSON, and a two-sentence limitation.</p>
+<p><strong>Bridge to H2:</strong> an encoder that passes only its final state to a decoder compresses the entire history. Can we retrieve relevant earlier states directly for each output?</p>
+<h3>Sources</h3>
+<p>- <a href="https://doi.org/10.1162/neco.1997.9.8.1735">Hochreiter &amp; Schmidhuber (1997), Long Short-Term Memory</a></p>
+<p>- <a href="https://d2l.ai/chapter_recurrent-modern/lstm.html">Dive into Deep Learning: LSTM</a></p>
+<p>- <a href="https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html">PyTorch sequence models tutorial</a></p></section></body></html>

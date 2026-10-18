@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week 02: Features, targets, and an honest first split</title><style>body{max-width:920px;margin:3rem auto;padding:0 1.2rem;background:#f8f4ef;color:#12233f;font:19px/1.6 Georgia,serif}h1,h2,h3{line-height:1.15}section{margin:2rem 0}pre{overflow:auto;background:#10233f;color:#f8f4ef;padding:1.5rem;border-radius:6px;font:15px/1.6 Menlo,monospace}code{font-family:Menlo,monospace}a{color:#0f727d}nav{font:16px sans-serif}p{overflow-wrap:anywhere}</style></head><body><nav><a href="../index.html">Course home</a> / <a href="../notebooks/week-02-practice.ipynb" download>Download notebook</a> / <a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-02-practice.ipynb">Open in Colab</a></nav><section><h1>Week 02: Features, targets, and an honest first split</h1>
+<p>Machine Learning in Engineering Science | NCKU + LAiMM | Fall 2026</p>
+<p><strong>Purpose:</strong> a fully worked, self-paced in-class practice with an optional extension. Weeks 11 and 18 are optional examination-readiness materials. These notebooks do not create weekly graded assignments.</p>
+<p><strong>Before running:</strong> choose a Python 3 kernel in Jupyter or a CPU runtime in Colab. Run every cell from top to bottom with Shift+Enter. Setup installs missing free packages. No API key or external dataset download is required.</p>
+<p><strong>Learning target:</strong> complete the calculation, inspect intermediate values, and explain why the protocol supports a limited claim.</p>
+<p><strong>Time:</strong> about 25-45 minutes including reading, prediction, execution, and explain-back.</p></section>
+<section><h2>1. Set up and record the environment</h2>
+<p>Keep the seed fixed for the first run. Record actual outputs and package versions rather than copying a claimed performance number.</p></section>
+<section><pre><code>import sys, subprocess, importlib.util, platform, json, random, hashlib
+from pathlib import Path
+required = {&quot;numpy&quot;: &quot;numpy&quot;, &quot;matplotlib&quot;: &quot;matplotlib&quot;, &quot;sklearn&quot;: &quot;scikit-learn&quot;}
+missing = [package for module, package in required.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, &quot;-m&quot;, &quot;pip&quot;, &quot;install&quot;, *missing])
+import numpy as np
+import matplotlib.pyplot as plt
+SEED = 2026
+random.seed(SEED)
+np.random.seed(SEED)
+rng = np.random.default_rng(SEED)
+ARTIFACTS = Path(&quot;artifacts&quot;)
+ARTIFACTS.mkdir(exist_ok=True)
+print(&quot;Python:&quot;, platform.python_version(), &quot;NumPy:&quot;, np.__version__, &quot;Seed:&quot;, SEED)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The environment cell must finish before any analysis cell. Restart and run all if a variable is missing.</p></section>
+<section><h2>2. Define one sample and its target</h2>
+<p>Use the packaged Iris teaching dataset, which needs no download. Features are four flower measurements; the target is species. This is classification, not engineering diagnosis.</p></section>
+<section><pre><code>from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,confusion_matrix
+dataset=load_iris(); X,y=dataset.data,dataset.target
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.25,stratify=y,random_state=SEED)
+print(dataset.feature_names, dataset.target_names, X_train.shape, X_test.shape)
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Training and test observations are distinct. Stratification approximately preserves class proportions.</p></section>
+<section><h2>3. Fit preprocessing only inside the pipeline</h2>
+<p>The scaler estimates means and variances using training rows. A Pipeline applies the same learned transformation to test rows.</p></section>
+<section><pre><code>model=make_pipeline(StandardScaler(),LogisticRegression(max_iter=300,random_state=SEED))
+model.fit(X_train,y_train)
+pred=model.predict(X_test)
+summary={&quot;test_accuracy&quot;:float(accuracy_score(y_test,pred)),&quot;training_rows&quot;:len(y_train),&quot;test_rows&quot;:len(y_test)}
+print(summary)
+assert np.allclose(model[0].mean_,X_train.mean(axis=0))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> Explain which values were learned during fit. Do not refit the scaler on test.</p></section>
+<section><h2>4. Inspect mistakes instead of only accuracy</h2>
+<p>Rows of this confusion matrix are true classes and columns are predictions. Inspect any errors and relate them to overlapping feature distributions.</p></section>
+<section><pre><code>matrix=confusion_matrix(y_test,pred)
+plt.imshow(matrix,cmap=&quot;Blues&quot;); plt.xticks(range(3),dataset.target_names,rotation=20)
+plt.yticks(range(3),dataset.target_names); plt.xlabel(&quot;Predicted&quot;); plt.ylabel(&quot;True&quot;); plt.colorbar(); plt.show()
+print(&quot;Wrong sample positions in test:&quot;,np.flatnonzero(pred!=y_test))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> A correct result may have few or no errors. State that this small test does not establish broad reliability.</p></section>
+<section><h2>6. Preserve your evidence</h2>
+<p>Export a JSON record with a seed, package version, and measured result. Download the artifacts directory before leaving Colab; runtime storage is temporary.</p></section>
+<section><pre><code>record={&quot;week&quot;:2,&quot;seed&quot;:SEED,&quot;numpy&quot;:np.__version__,&quot;python&quot;:platform.python_version(),&quot;result&quot;:summary}
+(ARTIFACTS/&quot;week-02-evidence.json&quot;).write_text(json.dumps(record,indent=2))
+print(json.dumps(record,indent=2))
+</code></pre></section>
+<section><p><strong>Checkpoint.</strong> The evidence file must match the result you actually obtained. A saved screenshot alone does not permit rerunning the calculation.</p></section>
+<section><h2>7. Try one change and explain it</h2>
+<p>1. Predict the effect of one change before editing code. Change one parameter, input, or boundary condition only.</p>
+<p>2. Rerun all cells in a fresh kernel. Keep the original evidence record and compare the observed difference.</p>
+<p>3. Explain the result using the mechanism, not just the final number.</p>
+<p>4. Name one assumption that limits the claim, and a new test that could challenge it.</p>
+<p><strong>Troubleshooting:</strong> if installation fails, restore network access; if a variable is undefined, run earlier cells; if your output differs, compare package versions, seed, and data construction. Do not repeatedly edit code until a preferred score appears.</p>
+<p><strong>Completion criterion:</strong> one executed notebook, one evidence JSON, and a brief claim/evidence/limitation statement.</p>
+<h3>Reference documentation</h3>
+<p>- <a href="https://numpy.org/doc/stable/user/">NumPy user guide</a></p>
+<p>- <a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn user guide</a></p>
+<p>- <a href="https://github.com/CHjonnyYu/MLES-Fall-2026">Course repository</a></p></section></body></html>

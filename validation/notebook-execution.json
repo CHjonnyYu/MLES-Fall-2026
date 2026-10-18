@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-19",
+  "environment": "isolated CPU Python kernels on authoring host",
+  "notebooks": [
+    {
+      "notebook": "week-01-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 19.92,
+      "evidence": [
+        "week-01-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-02-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 42.86,
+      "evidence": [
+        "week-02-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-03-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 22.86,
+      "evidence": [
+        "week-03-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-05-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 1.61,
+      "evidence": [
+        "week-05-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-06-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 13.2,
+      "evidence": [
+        "week-06-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-07-h1-sequences-lstm.ipynb",
+      "status": "executed without errors",
+      "code_cells": 11,
+      "seconds": 10.46,
+      "evidence": [
+        "w07-h1-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-07-h2-attention.ipynb",
+      "status": "executed without errors",
+      "code_cells": 10,
+      "seconds": 2.37,
+      "evidence": [
+        "w07-h2-attention.json"
+      ]
+    },
+    {
+      "notebook": "week-07-h3-transformer.ipynb",
+      "status": "executed without errors",
+      "code_cells": 10,
+      "seconds": 2.89,
+      "evidence": [
+        "w07-h3-transformer.json"
+      ]
+    },
+    {
+      "notebook": "week-09-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 1.58,
+      "evidence": [
+        "week-09-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-10-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 1.55,
+      "evidence": [
+        "week-10-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-11-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.77,
+      "evidence": [
+        "week-11-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-12-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.77,
+      "evidence": [
+        "week-12-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-13-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 1.42,
+      "evidence": [
+        "week-13-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-14-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.73,
+      "evidence": [
+        "week-14-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-15-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.75,
+      "evidence": [
+        "week-15-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-16-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.74,
+      "evidence": [
+        "week-16-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-17-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.75,
+      "evidence": [
+        "week-17-evidence.json"
+      ]
+    },
+    {
+      "notebook": "week-18-practice.ipynb",
+      "status": "executed without errors",
+      "code_cells": 5,
+      "seconds": 0.75,
+      "evidence": [
+        "week-18-evidence.json"
+      ]
+    }
+  ],
+  "failures": [],
+  "scope": "Notebook execution and code assertions; not a fresh Google Colab runtime or independent scientific validation."
+}

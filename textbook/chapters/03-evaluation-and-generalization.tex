@@ -1,0 +1,33 @@
+\chapter{Evaluation, Validation, and Generalization}\label{chap:evaluation}
+\courseweek{Week 5.} A score is evidence only when it was produced by a protocol that matches the intended use. This chapter makes error analysis, validation, and model selection explicit.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Select metrics that expose the errors that matter.
+  \item Explain underfitting, overfitting, and the bias--variance trade-off.
+  \item Use cross-validation without contaminating the final test set.
+  \item Turn model errors into a next experimental question.
+\end{itemize}
+\end{learningbox}
+
+\section{Metrics carry assumptions}
+Accuracy is the fraction of correct predictions, but it can hide failures when classes are imbalanced. Precision asks whether positive predictions are credible; recall asks whether actual positives are found. For a binary classifier,
+\[
+\operatorname{precision}=\frac{TP}{TP+FP},\qquad
+\operatorname{recall}=\frac{TP}{TP+FN}.
+\]
+Choose the metric before inspecting the final score. A defect-screening model might favour recall, while an expensive destructive test may require higher precision.
+
+\section{Generalization and the bias--variance trade-off}
+Training performance can improve while test performance degrades. A model with too little capacity underfits; a model tuned too aggressively to a small training set overfits. The remedy is not always a larger model. Better measurements, fewer unstable features, regularization, or a clearer task definition may be more valuable.
+
+\section{Validation discipline}
+Use training data to fit candidate pipelines, validation or cross-validation to select among them, and a final test set for one honest estimate. Record the split seed, preprocessing, metric, and selection rule. Do not repeat test-set evaluation until it becomes an informal validation loop.
+
+\begin{labbox}
+\textbf{Week 5:} compare two pipelines using the same split and metric. Make a plot of training and validation behaviour, then write a short error analysis: which cases fail, what shared property might explain the failure, and what additional data would reduce uncertainty?
+\end{labbox}
+
+\begin{checkpointbox}
+A classifier has 98\% accuracy but identifies only 2 of 40 safety-critical failures. Which additional metric would you inspect first, and what decision trade-off does it reveal?
+\end{checkpointbox}

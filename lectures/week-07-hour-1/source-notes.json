@@ -1,0 +1,452 @@
+[
+  {
+    "slide": 1,
+    "title": "Order changes the learning problem",
+    "minutes": 2,
+    "visual_purpose": "An observation becomes a sequence when its meaning depends on what came before it.",
+    "visual_kind": "sequence",
+    "asset": null,
+    "notes": "Open with a sensor trace, a sentence, and an ordered process log. Ask students why shuffling any of them may change the task. The trace is illustrative synthetic data, not a measured experiment. State today\u2019s three-hour arc: stateful memory, selective retrieval, then a complete Transformer.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 2,
+    "title": "Three mechanisms, one learning path",
+    "minutes": 2,
+    "visual_purpose": "LSTM stores a running state. Attention retrieves relevant states. A Transformer builds representations with attention.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Define the outcome: students can trace memory, compute one attention result, and test a causal decoder. Identify vector multiplication, derivatives, and a feed-forward layer as prerequisites. The notebooks include CPU setup and no external dataset.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 3,
+    "title": "The same values can tell different stories",
+    "minutes": 2,
+    "visual_purpose": "A sequence contains both values and an ordering rule.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Both series contain identical values and have the same mean, but the trend and one-step prediction problem differ. Ask students what a bag-of-values representation loses. Do not imply every prediction task requires order.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 4,
+    "title": "Define the forecast origin",
+    "minutes": 2,
+    "visual_purpose": "The prediction must use only information available at its origin.",
+    "visual_kind": "windows",
+    "asset": null,
+    "notes": "Use Python slicing explicitly: x[t-L:t] excludes index t. Our origin is just before observing x[t]. Define horizon one; multi-step forecasting needs a separate protocol and cannot reuse unknown future values.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 5,
+    "title": "One sample is an entire window",
+    "minutes": 2,
+    "visual_purpose": "Sequence models receive a batch of histories, with features at every time step.",
+    "visual_kind": "tensor",
+    "asset": null,
+    "notes": "Connect batch, time, and feature axes to notebook arrays. Batch size is not sequence length. With multiple sensors F increases while chronological order remains on T. Students identify one row and one time step.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 6,
+    "title": "Targets determine the output structure",
+    "minutes": 2,
+    "visual_purpose": "Many-to-one predicts one value; many-to-many predicts a value at multiple positions.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "The H1 notebook is many-to-one; H3 is causal many-to-many next-token training. Output shape follows the task. A recurrent model can support either arrangement.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 7,
+    "title": "Split time before selecting a model",
+    "minutes": 2,
+    "visual_purpose": "Train on earlier targets, select on later validation, then evaluate on test.",
+    "visual_kind": "split",
+    "asset": null,
+    "notes": "Draw boundaries on raw time. Validation selects hyperparameters or checkpoints. Test is reserved for final comparison. Window history may cross a boundary when past observations are genuinely available; target periods remain disjoint.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 8,
+    "title": "Fit normalization on the training past",
+    "minutes": 2,
+    "visual_purpose": "Global means and variances can reveal future distribution information.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Explain that preprocessing is fitted behavior. Even without labels, a statistic estimated on future data can alter the experiment. The notebook computes scaling parameters from signal[:TRAIN_END].",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 9,
+    "title": "Persistence is a serious baseline",
+    "minutes": 2,
+    "visual_purpose": "Predict the next observation using the last known observation.",
+    "visual_kind": "sequence",
+    "asset": null,
+    "notes": "For smoothly changing sensors, persistence can be strong. Its final repeated point is a prediction, not an observation. Compare the same target indices and report errors in original units. Introduce ridge regression as a stronger nonrecurrent baseline.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 10,
+    "title": "A recurrent state summarizes the past",
+    "minutes": 2,
+    "visual_purpose": "An RNN applies the same state-update parameters at every time step.",
+    "visual_kind": "recurrent",
+    "asset": null,
+    "notes": "Unroll the graph to show state flowing left to right while parameters are reused. h_t is a learned vector summary. More time steps do not create independent new layer weights.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 11,
+    "title": "Learning must cross the time chain",
+    "minutes": 2,
+    "visual_purpose": "Backpropagation through time multiplies Jacobians along earlier states.",
+    "visual_kind": "decay",
+    "asset": null,
+    "notes": "A scalar product illustrates one mechanism, not the complete Jacobian behavior. Repeated small factors can shrink gradients; large factors can amplify them. Explain why a useful early signal may be hard to learn through many recurrent transitions.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 12,
+    "title": "LSTM adds a separate memory path",
+    "minutes": 2,
+    "visual_purpose": "The cell state carries memory; the hidden state exposes a filtered view.",
+    "visual_kind": "gate",
+    "asset": null,
+    "notes": "Introduce two vector states before all gate equations. The cell path is additive, which can support gradient flow. It does not guarantee perfect retention or remove every optimization difficulty.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 13,
+    "title": "A gate is a learned vector of coefficients",
+    "minutes": 2,
+    "visual_purpose": "Sigmoid outputs values between zero and one for each hidden dimension.",
+    "visual_kind": "activation",
+    "asset": null,
+    "notes": "A gate is differentiable, not a discrete if statement. Different dimensions can retain different quantities. In actual models the gate depends on current input and previous hidden state.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 14,
+    "title": "The forget gate controls retained memory",
+    "minutes": 2,
+    "visual_purpose": "Multiply the previous cell state by a learned forget coefficient.",
+    "visual_kind": "gate",
+    "asset": null,
+    "notes": "Use the upper cell path and highlight only its forget multiplication. f near one preserves the direct path locally. It still depends on learned weights and does not ensure indefinite task-relevant memory.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 15,
+    "title": "The input gate controls the write",
+    "minutes": 2,
+    "visual_purpose": "A candidate proposes content; the input gate scales how much is written.",
+    "visual_kind": "gate",
+    "asset": null,
+    "notes": "Separate signed candidate values from nonnegative write coefficients. Candidates can erase by adding negative content. The input gate and forget gate are separate learned functions.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 16,
+    "title": "The cell update adds two paths",
+    "minutes": 2,
+    "visual_purpose": "Retain selected old memory and add selected new content.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "The three bars are chosen illustrative numbers: retained old content, new written content, and updated cell. Elementwise multiplication applies independently to every hidden dimension. This is the central LSTM equation.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 17,
+    "title": "The output gate exposes memory",
+    "minutes": 2,
+    "visual_purpose": "The hidden state is a bounded, gated view of the updated cell.",
+    "visual_kind": "gate",
+    "asset": null,
+    "notes": "Cell values and hidden values are not interchangeable. The output gate can suppress what is exposed while cell content remains. No guarantee exists that one hidden dimension has a human-readable meaning.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 18,
+    "title": "Trace one numerical cell update",
+    "minutes": 2,
+    "visual_purpose": "Chosen gates make every intermediate step visible.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "Open the live gate demo. Have students predict the updated cell with f=.9, i=.2, candidate=-.5, previous cell=.8, o=.7. These values are chosen for instruction, not training outputs.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 19,
+    "title": "Predict before moving a gate",
+    "minutes": 2,
+    "visual_purpose": "A high forget coefficient does not prevent new content from changing memory.",
+    "visual_kind": "gate-demo",
+    "asset": null,
+    "notes": "Students use the sliders. First set f=1 and vary i: new content still changes c. Then set i=0 and vary f. Finally vary o and observe that c remains fixed while h changes. Ask for one numerical explanation per pair.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 20,
+    "title": "Open the sequence notebook",
+    "minutes": 2,
+    "visual_purpose": "Run setup and inspect the synthetic sensor before fitting anything.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Allocate two minutes to launch Colab. CPU only. If dependencies need installing, read the next cell while installation finishes. The notebook is complete and does not depend on H2 or a local data file.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 21,
+    "title": "Check the window indices",
+    "minutes": 2,
+    "visual_purpose": "A correct shape is insufficient if the window contains its target.",
+    "visual_kind": "windows",
+    "asset": null,
+    "notes": "Run notebook Steps 3 and 4 and inspect first target index. Students verbalize that all input indices are lower than t. The test protocol uses observed past values for rolling one-step prediction.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 22,
+    "title": "Compare linear memory with learned state",
+    "minutes": 2,
+    "visual_purpose": "Ridge uses fixed window positions; LSTM updates a shared recurrent state.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Run the baselines. Neither model is automatically preferred. A simple periodic signal may be well handled by a linear model. Declare equal targets, metrics, and validation policy.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 23,
+    "title": "Map the implementation to tensor axes",
+    "minutes": 2,
+    "visual_purpose": "batch_first changes input/output layout, not hidden-state layout.",
+    "visual_kind": "tensor",
+    "asset": null,
+    "notes": "Read only the model class in Step 7, not a full screen of training code. The prediction head takes states[:,-1,:]. Hidden-state dimensions do not become batch-first.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 24,
+    "title": "Training and selection use different data",
+    "minutes": 2,
+    "visual_purpose": "Gradient updates use training; checkpoint selection uses validation.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Run Step 8. Gradient clipping limits gradient magnitude and does not solve vanishing gradients by itself. Explain model.train versus eval and no_grad. No test metric is consulted during selection.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 25,
+    "title": "A loss curve must come from the run",
+    "minutes": 2,
+    "visual_purpose": "Inspect actual training and validation trajectories in your notebook.",
+    "visual_kind": "actual notebook result",
+    "asset": "h1-training-loss.png",
+    "notes": "The slide gives an evidence workflow rather than a fabricated loss curve. Ask students to point to their actual minimum validation epoch. A decreasing training curve alone does not demonstrate generalization.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 26,
+    "title": "Judge errors in the original units",
+    "minutes": 2,
+    "visual_purpose": "MAE averages error magnitude; RMSE emphasizes large residuals.",
+    "visual_kind": "actual notebook result",
+    "asset": "h1-forecast-residuals.png",
+    "notes": "The displayed residuals are illustrative. Students run Step 9 to obtain actual model residuals and a baseline table. Ask whether errors cluster at peaks and whether the LSTM truly improved on ridge.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 27,
+    "title": "A trained gate can be reconstructed",
+    "minutes": 2,
+    "visual_purpose": "PyTorch concatenates its learned gate parameters in i, f, g, o order.",
+    "visual_kind": "actual notebook result",
+    "asset": "h1-learned-gates.png",
+    "notes": "Run Step 10 and compare the manually reconstructed cell against nn.LSTM with allclose. The heatmap in the notebook comes from learned weights. This is implementation parity for one cell, not proof of scientific validity.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 28,
+    "title": "Reproduce one controlled change",
+    "minutes": 2,
+    "visual_purpose": "Change window length while preserving the forecast question and split boundaries.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Have pairs predict before changing the parameter and rerun from data construction. Target counts near the start change with window length; test targets remain the same because all chosen lengths are shorter than TRAIN_END. Keep separate evidence records.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 29,
+    "title": "LSTM helps; it does not guarantee memory",
+    "minutes": 2,
+    "visual_purpose": "Retention depends on learned gates, sequence structure, and optimization.",
+    "visual_kind": "decay",
+    "asset": null,
+    "notes": "Use the decay curves to distinguish 0.9 from 0.99 across many steps. The plotted direct path omits other dependencies of gates on state. Do not claim LSTM eliminates vanishing gradients in every setting.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 30,
+    "title": "Exit: explain the compression problem",
+    "minutes": 2,
+    "visual_purpose": "A final-state encoder compresses many inputs into one fixed-width vector.",
+    "visual_kind": "bottleneck",
+    "asset": null,
+    "notes": "Ask students to show the baseline table, gate parity assertion, and evidence JSON. Then ask what a decoder loses if it receives only the final state. This motivates querying all encoder states in H2; not every recurrent architecture uses only a final state.",
+    "sources": [
+      "https://d2l.ai/chapter_recurrent-neural-networks/sequence.html",
+      "https://doi.org/10.1162/neco.1997.9.8.1735",
+      "https://docs.pytorch.org/tutorials/beginner/nlp/sequence_models_tutorial.html"
+    ],
+    "generated": "2026-10-19"
+  }
+]

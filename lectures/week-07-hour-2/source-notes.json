@@ -1,0 +1,452 @@
+[
+  {
+    "slide": 1,
+    "title": "Retrieve what the current output needs",
+    "minutes": 2,
+    "visual_purpose": "Attention computes a query-dependent combination of available values.",
+    "visual_kind": "bottleneck",
+    "asset": null,
+    "notes": "Start with the fixed-vector bottleneck from H1. Explain that attention adds addressable access rather than making memory unlimited. Today students compute the complete operation and test masks.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 2,
+    "title": "One context can be a bottleneck",
+    "minutes": 2,
+    "visual_purpose": "Different output positions may need different parts of the input.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "In a classic sequence-to-sequence encoder-decoder, the final state must carry all useful source detail. Attention makes earlier states accessible for each decoder step. This is a capacity and routing motivation, not a theorem that every final-state model must fail.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 3,
+    "title": "Alignment is output-dependent",
+    "minutes": 2,
+    "visual_purpose": "A translation decoder may emphasize different source positions at different steps.",
+    "visual_kind": "heatmap",
+    "asset": null,
+    "notes": "This matrix is hand-designed conceptual alignment, not a measured translation result. Rows represent output queries and columns encoder positions. Source-target word alignment can be soft and need not be one-to-one.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 4,
+    "title": "Attention predates the Transformer",
+    "minutes": 2,
+    "visual_purpose": "LSTM or GRU encoders can supply states to an attention mechanism.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Bahdanau and colleagues proposed joint alignment and translation in a recurrent system. The 2014 preprint was presented at ICLR 2015. Removing recurrence came later in the Transformer architecture.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 5,
+    "title": "Keep the full set of encoder states",
+    "minutes": 2,
+    "visual_purpose": "The decoder can retrieve from H instead of using only the final state.",
+    "visual_kind": "recurrent",
+    "asset": null,
+    "notes": "All encoder states form an addressable memory. The decoder query selects which states contribute for the current prediction. Access cost grows with memory length, and the states themselves remain learned representations.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 6,
+    "title": "A query specifies what to look for",
+    "minutes": 2,
+    "visual_purpose": "The query is a vector used to compare the current need with memory keys.",
+    "visual_kind": "vectors",
+    "asset": null,
+    "notes": "The picture shows chosen two-dimensional vectors. A natural-language query and an attention query vector are different objects; a learned projection can produce the latter. Avoid claiming every learned coordinate has a named semantic meaning.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 7,
+    "title": "Keys address; values carry content",
+    "minutes": 2,
+    "visual_purpose": "Matching uses keys; the retrieved combination uses values.",
+    "visual_kind": "table",
+    "asset": null,
+    "notes": "Keep each key/value row aligned. Values may have a different width from keys. We use the same row ordering throughout the hand calculation.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 8,
+    "title": "A score is a compatibility function",
+    "minutes": 2,
+    "visual_purpose": "A score compares one query with one key before normalization.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "Dot-product scores can be negative and do not sum to one. Here q=[1,0] gives A and C score 1 and B score 0. Ask students whether a zero score means zero attention weight.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 9,
+    "title": "Additive attention learns a scoring network",
+    "minutes": 2,
+    "visual_purpose": "An MLP can compare a decoder query with each encoder key.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "This is the additive scoring family associated with Bahdanau attention. Wq and Wk align possibly different widths. Softmax and the weighted value sum follow scoring, just as they do for dot-product attention.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 10,
+    "title": "Scaled dot products control score magnitude",
+    "minutes": 2,
+    "visual_purpose": "Divide by \u221ad\u2096 so high-dimensional dot products are less likely to saturate softmax.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "Under independent zero-mean unit-variance coordinates the dot-product variance grows with d_k. Scaling reduces that variance. It is not cosine normalization and does not eliminate every saturation issue.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 11,
+    "title": "Softmax allocates a unit total weight",
+    "minutes": 2,
+    "visual_purpose": "Normalize separately for each query over its available keys.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "Subtracting the maximum score stabilizes exponentiation without changing the result. Every unmasked row sums to one. A finite low score still gets positive weight; masking introduces exact zeros.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 12,
+    "title": "Retrieval is a weighted sum",
+    "minutes": 2,
+    "visual_purpose": "Each value contributes according to its attention weight.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Weighted averaging combines values rather than selecting a single argmax key. The context width is d_v. With nonnegative normalized weights, the context lies in the convex hull of values before later projections and residual additions.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 13,
+    "title": "Read matrix axes before the formula",
+    "minutes": 2,
+    "visual_purpose": "Rows are query destinations; columns are key sources.",
+    "visual_kind": "heatmap",
+    "asset": null,
+    "notes": "There can be different numbers of queries and keys in cross-attention. Multiplication by V of shape Nk by d_v produces Nq by d_v. Students label axes before doing arithmetic.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 14,
+    "title": "Work one example: choose Q, K, and V",
+    "minutes": 2,
+    "visual_purpose": "The values are deliberately small so all intermediates can be checked.",
+    "visual_kind": "table",
+    "asset": null,
+    "notes": "Ask students to compute all three raw dot products on paper. These are hand-designed vectors, not a learned language example. Use the table from slide 7 to avoid key/value mix-ups.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 15,
+    "title": "Work one example: scores become weights",
+    "minutes": 2,
+    "visual_purpose": "A zero dot product still receives a positive normalized weight.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "Students calculate sqrt(2), exponentials, and row normalization. A and C tie. B receives approximately .1978 rather than zero because exp(0)=1.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 16,
+    "title": "Work one example: combine value coordinates",
+    "minutes": 2,
+    "visual_purpose": "Use the same weights for every value coordinate.",
+    "visual_kind": "bars",
+    "asset": null,
+    "notes": "The first coordinate is .4011*10+.1978*0+.4011*10. The second is .4011*0+.1978*10+.4011*10. Bars illustrate weighted contribution magnitudes, not prediction errors. Verify in H2 Step 5.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 17,
+    "title": "Change the query; keep memory fixed",
+    "minutes": 2,
+    "visual_purpose": "Attention can route the same memory differently for each request.",
+    "visual_kind": "attention-demo",
+    "asset": null,
+    "notes": "Use the query selector and temperature slider. Ask students to predict the rank before clicking. Temperature 1 reproduces the hand example. Values are fixed; changed contexts come only from changed routing.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 18,
+    "title": "Self-attention uses one source sequence",
+    "minutes": 2,
+    "visual_purpose": "Q, K, and V come from learned projections of the same representations.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "The three projections have different roles even when their input is the same. Self-attention is not limited to language. A token may represent a word piece, image patch, or sensor-time feature vector.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 19,
+    "title": "Cross-attention connects two streams",
+    "minutes": 2,
+    "visual_purpose": "Queries come from one sequence; keys and values come from another.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "The original Transformer decoder uses encoder-decoder cross-attention. A decoder-only model normally uses masked self-attention and has no separate source encoder. This distinction is essential before H3 architecture comparison.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 20,
+    "title": "Causal masking hides future keys",
+    "minutes": 2,
+    "visual_purpose": "Before softmax, set scores for key positions j>i to \u2212\u221e.",
+    "visual_kind": "mask",
+    "asset": null,
+    "notes": "Diagonal entries remain allowed because input token i predicts token i+1. A causal mask blocks access to later input positions, not the current one. Softmax must follow masking.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 21,
+    "title": "Padding masks hide nonexistent tokens",
+    "minutes": 2,
+    "visual_purpose": "Padding and causality enforce different constraints.",
+    "visual_kind": "mask",
+    "asset": null,
+    "notes": "Padding marks filler positions that do not correspond to observations. A causal mask depends on relative positions. Their intersection defines available keys. Padded query outputs should be excluded from the training loss.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 22,
+    "title": "An all-masked row is undefined",
+    "minutes": 2,
+    "visual_purpose": "Softmax requires at least one permitted source per query.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Do not silently convert NaN to a claim. Avoid all-masked rows or define a deliberate special-case behavior. Boolean mask conventions differ across APIs; inspect the actual API used.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 23,
+    "title": "Attention exposes a short information path",
+    "minutes": 2,
+    "visual_purpose": "A query can access a distant key within one dense attention layer.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "This can ease access to long-range information. It does not imply perfect reasoning, unlimited context, or guaranteed retrieval. A fixed-size context window and representation quality still constrain performance.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 24,
+    "title": "Dense attention has a quadratic score grid",
+    "minutes": 2,
+    "visual_purpose": "Doubling context length quadruples score entries at fixed head count.",
+    "visual_kind": "complexity",
+    "asset": null,
+    "notes": "Count pairs rather than asserting all computation is quadratic: dense attention score interactions are O(T^2*d_k), while feed-forward cost also depends on width. Fused exact kernels can avoid materializing the whole score matrix, without changing dense pair count.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 25,
+    "title": "Open the attention notebook",
+    "minutes": 2,
+    "visual_purpose": "Verify your hand calculation before exploring masks.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Use H2 Steps 1 through 5. Students show score and weight rows to a partner. The notebook is independent and requires no trained H1 checkpoint.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 26,
+    "title": "Test causality and normalization",
+    "minutes": 2,
+    "visual_purpose": "Every permitted row sums to one; every future weight is zero.",
+    "visual_kind": "heatmap",
+    "asset": null,
+    "notes": "Run Steps 7 and 8. The displayed matrix is illustrative; actual notebook values depend on the chosen vectors. Students explain both assertions and identify source/destination axes.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 27,
+    "title": "Compare two implementations of one operation",
+    "minutes": 2,
+    "visual_purpose": "NumPy and PyTorch should agree for the same inputs, scale, and mask.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Run Step 9. There is no dropout in this comparison. Passing parity verifies the selected numerical operation and does not establish model quality. In SDPA a Boolean True means allowed, unlike certain other PyTorch attention masks.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 28,
+    "title": "Routing weights are not causal explanations",
+    "minutes": 2,
+    "visual_purpose": "Changing values can alter the output while attention weights remain fixed.",
+    "visual_kind": "compare",
+    "asset": null,
+    "notes": "Run Step 10. Explain that downstream layers and residual paths also affect predictions. An attention heatmap describes routing in a computation; it is not sufficient evidence for a causal explanation of the output.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 29,
+    "title": "Explain the mechanism before the architecture",
+    "minutes": 2,
+    "visual_purpose": "State the sequence: compare, normalize, retrieve.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Pairs explain the full operation without reading the formula. One partner changes the query; the other predicts the new ranking. Require the saved attention evidence JSON and one limitation.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  },
+  {
+    "slide": 30,
+    "title": "Exit: attention needs an architecture around it",
+    "minutes": 2,
+    "visual_purpose": "Position information, nonlinear transformations, residual paths, and normalization complete the next story.",
+    "visual_kind": "pipeline",
+    "asset": null,
+    "notes": "Use the exit prompt to bridge H3. Attention alone mixes representations, but sequence modeling also needs positional structure, a trainable block, an output objective, and evaluation. The next hour assembles and tests those pieces.",
+    "sources": [
+      "https://arxiv.org/abs/1409.0473",
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.3blue1brown.com/lessons/attention/"
+    ],
+    "generated": "2026-10-19"
+  }
+]

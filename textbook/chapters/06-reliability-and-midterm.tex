@@ -1,0 +1,21 @@
+\chapter{Reliability, Error Analysis, and the Midterm Workflow}\label{chap:reliability}
+\courseweek{Weeks 9--11.} A model becomes useful when its limitations are visible. Reliability work connects the numerical result to the operating conditions, inputs, and risks that produced it.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Segment error by operating condition, class, or data-quality flag.
+  \item Separate a model result from the claim it can support.
+  \item Create a compact model card for a small engineering workflow.
+  \item Demonstrate a reproducible ML pipeline orally and in writing.
+\end{itemize}
+\end{learningbox}
+
+\section{Error analysis is not an appendix}
+Start with the failures. Are they concentrated near a measurement boundary, in a rare operating condition, or in a subgroup with missing data? A confusion matrix, residual plot, and a table of representative failures provide more actionable information than an aggregate metric alone.
+
+\section{The midterm ML workflow project}
+The midterm project is a small but complete workflow: problem brief, data contract, train/test rule, baseline, metric, error analysis, and a recommendation bounded by evidence. The written examination checks conceptual understanding. The oral examination asks students to explain choices, interpret a failure case, and identify one change that would invalidate the result.
+
+\begin{checkpointbox}
+A model has a strong overall score but fails mostly when a sensor is near its detection limit. State one immediate deployment restriction, one data-collection action, and one evaluation slice that must be reported.
+\end{checkpointbox}

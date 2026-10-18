@@ -1,0 +1,55 @@
+\chapter{Supervised Learning: Baselines Before Complexity}\label{chap:supervised}
+\courseweek{Weeks 2--3.} Supervised learning uses labelled examples to learn a mapping from features to a target. The practical discipline is to establish a transparent baseline, then compare alternatives under the same split and metric.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Separate feature engineering from target definition.
+  \item Construct train and test partitions without leakage.
+  \item Fit a baseline regression or classification pipeline.
+  \item Interpret a confusion matrix and a residual plot in context.
+\end{itemize}
+\end{learningbox}
+
+\section{Classification and regression}
+For binary classification, the model estimates a score or probability $p_\theta(y=1\mid x)$. A threshold turns the score into an action. The threshold should follow the cost of false positives and false negatives, not a default convention. For regression, a common starting loss is mean squared error,
+\[
+  \operatorname{MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_i-\hat{y}_i)^2,
+\]
+but an error in megapascals, minutes, or dollars must be interpreted in its application context.
+
+\section{Split before learning from the data}
+Data leakage occurs when information from the test set changes feature construction, scaling, imputation, model selection, or threshold choice. A pipeline makes the correct order explicit: fit transformations on training data only, then apply the learned transformations to held-out data.
+
+\begin{lstlisting}
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+
+wine = load_wine(as_frame=True)
+X_train, X_test, y_train, y_test = train_test_split(
+    wine.data, wine.target, test_size=0.25,
+    random_state=2026, stratify=wine.target,
+)
+model = Pipeline([
+    ("scale", StandardScaler()),
+    ("classifier", LogisticRegression(max_iter=2000)),
+])
+model.fit(X_train, y_train)
+print(classification_report(y_test, model.predict(X_test)))
+\end{lstlisting}
+
+A logistic-regression pipeline is not ``simple'' in the sense of being disposable. It establishes a reproducible reference point. A more complex model earns its place only when the evaluation protocol demonstrates an improvement relevant to the decision.
+
+\section{Algorithm choice}
+Decision trees expose rule-like splits; nearest-neighbour methods compare local examples; support vector machines seek a separating margin; ensembles combine diverse predictors. These methods remain useful when the dataset is structured, moderate in size, and the evaluation contract is clear \citep{vapnik1995,breiman2001}. The course uses them to develop comparison discipline, rather than to encourage architecture shopping.
+
+\begin{labbox}
+\textbf{Week 2:} \colab{week-02-lab.ipynb}. Build a leakage-safe baseline classifier, report accuracy and a confusion matrix, then change one decision and document its effect. Your explanation is more important than the numerical score alone.
+\end{labbox}
+
+\begin{checkpointbox}
+A feature is calculated using the mean of every row in the dataset before the train/test split. Is this leakage? Describe the corrected order of operations and explain why it matters even if the measured score changes only slightly.
+\end{checkpointbox}

@@ -1,0 +1,21 @@
+\chapter{Retrieval, Tools, and Structured Knowledge}\label{chap:retrieval}
+\courseweek{Week 13.} Retrieval and tools reduce the need for a language model to invent information. They also introduce new interfaces that must be tested: document selection, tool arguments, return values, permissions, and error handling.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Describe the retrieve--ground--answer pattern.
+  \item Separate a source document, retrieved passage, model response, and citation.
+  \item Define a simple tool contract with inputs, outputs, and failure behaviour.
+  \item Evaluate a retrieval workflow using task-relevant test questions.
+\end{itemize}
+\end{learningbox}
+
+\section{Retrieval-augmented generation}
+A retrieval-augmented workflow first selects relevant material, then supplies it as context for a response \citep{lewis2020}. The model can still misunderstand or ignore the material. Therefore the output should expose which source passages were used and decline to answer when the required evidence is absent.
+
+\section{Tools are software interfaces}
+A tool call has a schema, preconditions, outputs, and errors. Treat it as a software component: validate inputs, log execution, test representative failures, and keep high-impact actions behind human confirmation. The final project may use a mock tool when a real service would require paid access or confidential data.
+
+\begin{labbox}
+\textbf{Week 13:} build a small local retrieval example from a supplied text collection. Compare an answer with and without retrieved context, then inspect one case where retrieval is insufficient.
+\end{labbox}

@@ -1,0 +1,23 @@
+{
+  "week": 13,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "retrieval": {
+      "status": "retrieved",
+      "sources": [
+        {
+          "id": "S2",
+          "text": "Causal attention masks future token positions before softmax.",
+          "score": 0.7071067811865476
+        }
+      ]
+    },
+    "abstention": {
+      "status": "abstain",
+      "sources": []
+    },
+    "generator": "none; extractive teaching baseline"
+  }
+}

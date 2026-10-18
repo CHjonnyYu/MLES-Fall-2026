@@ -1,0 +1,55 @@
+\chapter{Data, Questions, and the ML Workflow}\label{chap:data-workflow}
+\courseweek{Weeks 1--2.} A useful ML system begins before model selection. It begins with a decision, a measurable target, a representation of the available evidence, and a procedure that can be repeated. This chapter establishes the working vocabulary used throughout the course.
+
+\begin{learningbox}
+\begin{itemize}
+  \item Distinguish a decision problem from an ML task.
+  \item Identify an observation, feature vector $x$, target $y$, and prediction $\hat{y}$.
+  \item Create a small, inspectable data workflow in Python.
+  \item State what a plot or summary statistic does \emph{not} establish.
+\end{itemize}
+\end{learningbox}
+
+\section{From an engineering question to a learning task}
+An engineering question such as ``Which process condition is likely to produce a defect?'' must be made operational. Define the unit of observation, the time at which the prediction is made, the target, the available features, and the decision that follows. A classification task predicts a discrete label; a regression task predicts a continuous value. Neither label is meaningful without a stated measurement process and error cost.
+
+Let $\mathcal{D}=\{(x_i,y_i)\}_{i=1}^{n}$ denote observed examples. A learning algorithm selects a function $f_\theta$ so that $\hat{y}=f_\theta(x)$ is useful on data not used to choose $\theta$. The course treats this as an evidence problem: the data split and evaluation protocol are part of the model, not afterthoughts \citep{mitchell1997}.
+
+\section{A reproducible first pass}
+Before fitting a model, inspect shape, column meaning, units, missingness, and plausible ranges. The following pattern is deliberately small enough to read line by line.
+
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(2026)
+df = pd.DataFrame({
+    "temperature_c": rng.normal(72, 5, 40),
+    "pressure_kpa": rng.normal(210, 18, 40),
+})
+df["defect_flag"] = (
+    (df["temperature_c"] > 75) & (df["pressure_kpa"] > 220)
+).astype(int)
+
+print(df.shape)
+print(df.describe())
+plt.scatter(df["temperature_c"], df["pressure_kpa"],
+            c=df["defect_flag"], cmap="coolwarm")
+plt.xlabel("Temperature (C)")
+plt.ylabel("Pressure (kPa)")
+plt.show()
+\end{lstlisting}
+
+A coloured scatter plot can reveal a possible association. It does not prove causality, establish a production threshold, or show that a future batch will behave similarly. The lab asks students to write both the supported observation and a limitation.
+
+\begin{labbox}
+\textbf{Week 1:} \colab{week-01-lab.ipynb}. Inspect a measurement table, compute descriptive statistics, create one figure, and write an evidence statement. The target is not yet a high-scoring model; it is a clear workflow that another person can reproduce.
+\end{labbox}
+
+\section{Data contracts}
+A data contract records the feature names, units, allowable values, target definition, split rule, and known missingness. It is lightweight documentation with a strong engineering benefit: it prevents silent changes from being mistaken for model improvement. For every course notebook, include a first cell that reports package versions, a random seed, data provenance, and the shape of the loaded table.
+
+\begin{checkpointbox}
+For a proposed predictor of fatigue life, name: (1) one observation, (2) three candidate features, (3) the target and its unit, (4) a decision that uses the prediction, and (5) one feature that would be unavailable at prediction time. Explain why the last feature must be excluded.
+\end{checkpointbox}

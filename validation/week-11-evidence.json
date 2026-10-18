@@ -1,0 +1,20 @@
+{
+  "week": 11,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "recall": 0.9,
+    "precision": 0.6923076923076923,
+    "specificity": 0.9,
+    "accuracy": 0.9,
+    "oral_card": {
+      "task": "rolling one-step forecast",
+      "split": "chronological by target index",
+      "baseline": "last observed value",
+      "metric": "held-out MAE",
+      "limitation": "synthetic signal only",
+      "reproduction": "seed, versions, data hash, boundaries"
+    }
+  }
+}

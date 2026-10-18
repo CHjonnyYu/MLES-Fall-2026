@@ -1,0 +1,14 @@
+{
+  "week": 14,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "tests_passed": 4,
+    "simulated": true,
+    "allowed_tools": [
+      "add"
+    ],
+    "human_review": "Inspect tool identity, arguments, purpose, and consequence before changing permissions."
+  }
+}

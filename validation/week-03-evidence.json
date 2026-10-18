@@ -1,0 +1,10 @@
+{
+  "week": 3,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "ridge_test_mae": 0.41067323081120566,
+    "classification_accuracy": 0.9666666666666667
+  }
+}

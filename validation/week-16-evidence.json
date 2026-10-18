@@ -1,0 +1,17 @@
+{
+  "week": 16,
+  "seed": 2026,
+  "numpy": "2.5.4",
+  "python": "3.12.14",
+  "result": {
+    "baseline": {
+      "passed": 3,
+      "total": 3
+    },
+    "candidate": {
+      "passed": 1,
+      "total": 3
+    },
+    "decision": "Keep baseline; fix candidate denominator before retesting."
+  }
+}
