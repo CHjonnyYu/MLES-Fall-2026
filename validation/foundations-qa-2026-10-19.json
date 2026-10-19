@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-19",
+  "scope": {
+    "weeks": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "week1": "unchanged",
+    "week4": "scheduled holiday"
+  },
+  "decks": 12,
+  "slides": 360,
+  "planned_minutes": 720,
+  "per_deck_slides": 30,
+  "per_deck_minutes": 60,
+  "automated_checks": {
+    "all_slides_rendered": true,
+    "geometry_issues": 0,
+    "internal_text_overlaps": 0,
+    "image_load_failures": 0,
+    "non_logo_visual_coverage": "360/360",
+    "dual_logo_coverage": "360/360",
+    "notes_and_source_coverage": "360/360",
+    "javascript_errors": 0,
+    "navigation": "passed in all 12 decks",
+    "interactive_controls": [
+      {
+        "id": "week-02-hour-2",
+        "name": "scaling",
+        "before": "Mean 4.000; scale 1.633; held-out z 58.788.",
+        "after": "Mean 28.000; scale 41.593; held-out z 1.731.",
+        "changed": true
+      },
+      {
+        "id": "week-03-hour-2",
+        "name": "ridge",
+        "before": "alpha 10; slope 1.500; intercept 1; SSE 22.500; penalty 22.500; objective 45.000.",
+        "after": "alpha 0; slope 3.000; intercept 1; SSE 0.000; penalty 0.000; objective 0.000.",
+        "changed": true
+      },
+      {
+        "id": "week-05-hour-1",
+        "name": "threshold",
+        "before": "Threshold 0.50: TP 2, FP 2, FN 2, TN 4. Precision 0.500, recall 0.500, specificity 0.667.",
+        "after": "Threshold 0.20: TP 4, FP 4, FN 0, TN 2. Precision 0.500, recall 1.000, specificity 0.333.",
+        "changed": true
+      },
+      {
+        "id": "week-05-hour-3",
+        "name": "threshold",
+        "before": "Threshold 0.50: TP 2, FP 2, FN 2, TN 4. Precision 0.500, recall 0.500, specificity 0.667.",
+        "after": "Threshold 0.20: TP 4, FP 4, FN 0, TN 2. Precision 0.500, recall 1.000, specificity 0.333.",
+        "changed": true
+      },
+      {
+        "id": "week-06-hour-1",
+        "name": "pca",
+        "before": "Angle 0 degrees; sample variance along this unit direction 5.600. Move the line to maximize retained spread.",
+        "after": "Angle 35 degrees; sample variance along this unit direction 8.407. Move the line to maximize retained spread.",
+        "changed": true
+      }
+    ],
+    "mobile_reading_view": "passed in all 12 decks",
+    "notebook_download_links": "four local links returned HTTP 200"
+  },
+  "mathematical_examples": [
+    "training-only standardization",
+    "centered one-feature Ridge closed form",
+    "mean and median baseline errors",
+    "precision/recall/sensitivity/specificity/F1",
+    "event-prevalence effect",
+    "illustrative error cost",
+    "PCA covariance/eigenvalues/projection",
+    "KMeans assignment/update/inertia",
+    "silhouette denominator"
+  ],
+  "visual_review": {
+    "method": "Targeted full-resolution inspection in addition to automated checks on all 360 rendered slides",
+    "examples": [
+      "W02-H1 cover",
+      "W02-H2 scaling demo",
+      "W03-H1 mean versus median table",
+      "W03-H2 ridge demo",
+      "W05-H1 confusion matrix",
+      "W06-H1 PCA projection demo"
+    ]
+  },
+  "notebook_execution": "Existing notebooks linked and download endpoints checked. They were not re-executed in this slide-authoring task.",
+  "cloud_status": "This report records local pre-deployment acceptance. Post-deployment checks are recorded separately."
+}

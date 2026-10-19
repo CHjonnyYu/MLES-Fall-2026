@@ -1,0 +1,3358 @@
+[
+  {
+    "week": 2,
+    "date": "2026-09-14",
+    "title": "Features, targets and leakage-safe splits",
+    "notebook": "week-02-practice.ipynb",
+    "cover": "w02-cover.jpg",
+    "sources": [
+      [
+        "Data leakage and pipelines",
+        "https://scikit-learn.org/stable/common_pitfalls.html"
+      ],
+      [
+        "Preprocessing",
+        "https://scikit-learn.org/stable/modules/preprocessing.html"
+      ],
+      [
+        "Iris dataset",
+        "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_iris.html"
+      ]
+    ],
+    "hours": [
+      {
+        "title": "Features, targets and the unit of a row",
+        "outcome": "Identify what each observation means and which inputs exist at prediction time.",
+        "artifact": "A data dictionary with units, target and prediction-time boundary.",
+        "roadmap": [
+          "Rows and units",
+          "Features and targets",
+          "Prediction-time audit"
+        ],
+        "slides": [
+          {
+            "title": "A row represents an observational unit",
+            "points": [
+              "One row may represent a flower, device or measurement window.",
+              "Repeated measurements of one object are not automatically independent."
+            ],
+            "kind": "table",
+            "visual": "Row,Object,Time;1,Device A,t1;2,Device A,t2;3,Device B,t1",
+            "note": "Ask whether row 1 and row 2 can enter different splits. They may share device-specific information. The intended deployment population determines independence."
+          },
+          {
+            "title": "A feature is an available input",
+            "points": [
+              "X contains measurements available when the prediction is made.",
+              "y names the quantity or class that the model must predict."
+            ],
+            "kind": "flow",
+            "visual": "Observation;Features X;Predictor f;Prediction y_hat",
+            "note": "A feature is not simply any convenient spreadsheet column. Explain its availability and measurement process before considering predictive association."
+          },
+          {
+            "title": "The target defines the question",
+            "points": [
+              "Predicting temperature asks for a continuous value.",
+              "Predicting failure within seven days asks for a defined future event."
+            ],
+            "kind": "compare",
+            "visual": "Regression:temperature,continuous target;Classification:failure in 7 days,defined event",
+            "note": "An event horizon is part of the target definition. A vague failure label without a time window leaves the scientific question underspecified."
+          },
+          {
+            "title": "Iris supplies four measured features",
+            "points": [
+              "Sepal length and width describe the outer floral structures.",
+              "Petal length and width describe the petals, in centimeters."
+            ],
+            "kind": "table",
+            "visual": "Feature,Unit;Sepal length,cm;Sepal width,cm;Petal length,cm;Petal width,cm",
+            "note": "The botanical cover motivates measurement, not measured evidence. The dataset documentation supplies the feature names and units used in the notebook."
+          },
+          {
+            "title": "A design matrix has two distinct axes",
+            "points": [
+              "X has n observations and p features.",
+              "A target vector assigns one target to each supervised observation."
+            ],
+            "kind": "table",
+            "visual": "Object,Length,Width,Target;A,5.1,3.5,class 0;B,7.0,3.2,class 1;C,6.3,3.3,class 2",
+            "note": "This miniature table is illustrative and uses only two displayed features. Do not imply these three rows constitute the complete Iris dataset or an evaluation result."
+          },
+          {
+            "title": "Shape checks protect row alignment",
+            "points": [
+              "X.shape[0] must equal len(y).",
+              "A correct shape alone cannot detect shuffled or mismatched labels."
+            ],
+            "kind": "code",
+            "visual": "assert X.shape[0] == len(y)~print(X.shape, y.shape)~# Also inspect sample identities",
+            "note": "Ask students how the assertion can pass when y has the correct length but the wrong order. A stable row identifier supports an alignment check."
+          },
+          {
+            "title": "Numbers can encode categories",
+            "points": [
+              "Species IDs 0, 1 and 2 are category labels.",
+              "Their numeric differences do not define biological distances."
+            ],
+            "kind": "compare",
+            "visual": "Category IDs:0  1  2,no metric distance;Measurements:1 cm  2 cm,meaningful difference",
+            "note": "Explain why averaging class IDs does not create a meaningful halfway species. The encoding is a representation choice rather than a physical scale."
+          },
+          {
+            "title": "Identifier columns can create shortcuts",
+            "points": [
+              "A serial number may reveal production batch or collection site.",
+              "High apparent prediction quality can reflect the collection process."
+            ],
+            "kind": "tree",
+            "visual": "Serial ID;Batch pattern;Outcome correlation;New batch fails",
+            "note": "Give the example of all defective items coming from one measurement day. The ID can encode the day without representing a failure mechanism."
+          },
+          {
+            "title": "Units change numerical geometry",
+            "points": [
+              "Millimeters and centimeters encode the same length differently.",
+              "A distance-sensitive algorithm responds to the numeric scale."
+            ],
+            "kind": "bars",
+            "visual": "Length in cm:5;Same length in mm:50",
+            "note": "These are the same physical quantity. The visual compares numerical values, not two different specimens. Scaling choices must respect the meaning of measurements."
+          },
+          {
+            "title": "Missingness has a measurement history",
+            "points": [
+              "An absent value can mean sensor failure or an unrecorded field.",
+              "Zero is a physical value and is not a universal missing-value marker."
+            ],
+            "kind": "table",
+            "visual": "Entry,Possible meaning;0,Measured zero;NaN,Not recorded;Empty,Parsing or missingness",
+            "note": "Ask students to describe one setting where replacing all missing values with zero reverses a scientific interpretation. Record the missingness convention explicitly."
+          },
+          {
+            "title": "Imputation also learns from data",
+            "points": [
+              "A median imputer estimates its replacement values from training rows.",
+              "The held-out set receives those frozen values."
+            ],
+            "kind": "flow",
+            "visual": "Training rows;Training medians;Frozen imputer;Held-out transform",
+            "note": "The imputer is a fitted component even though it is not the final predictor. This is the first example of preprocessing as part of the learned system."
+          },
+          {
+            "title": "Availability comes before correlation",
+            "points": [
+              "A repair outcome may strongly correlate with failure.",
+              "It cannot predict a failure if repair occurs after that failure."
+            ],
+            "kind": "timeline",
+            "visual": "Before inspection;Prediction time;Failure event;Repair outcome",
+            "note": "Draw the prediction-time boundary. The correct answer is to exclude the repair outcome for this prediction task, regardless of its apparent predictive power."
+          },
+          {
+            "title": "Target leakage imports the answer",
+            "points": [
+              "A post-diagnosis label proxy can make evaluation look easy.",
+              "Remove inputs unavailable at deployment or derived from the outcome."
+            ],
+            "kind": "compare",
+            "visual": "Legitimate:Past sensor reading,Known before decision;Leaking:Repair verdict,Known after decision",
+            "note": "A strong correlation is not by itself proof of leakage. The decisive question is whether the information would exist for the real prediction being evaluated."
+          },
+          {
+            "title": "Group leakage reuses object identity",
+            "points": [
+              "Measurements from the same machine can share a fingerprint.",
+              "A new-machine claim requires a split that separates machines."
+            ],
+            "kind": "table",
+            "visual": "Split,Machine IDs;Train,A B C;Test,D E;Unsafe overlap,A in both",
+            "note": "Ask what a random-row split estimates when machines repeat. It may estimate future rows from familiar machines rather than transfer to unseen machines."
+          },
+          {
+            "title": "Time leakage reuses future information",
+            "points": [
+              "Forecasting must respect when each feature became available.",
+              "A random split can place later observations inside training."
+            ],
+            "kind": "timeline",
+            "visual": "Past training;Validation future;Final future test;Deployment",
+            "note": "A chronological split is necessary for many forecasting claims, but preprocessing and overlapping windows also need a time-aware audit."
+          },
+          {
+            "title": "One schema anchors reproducibility",
+            "points": [
+              "Record column names, units, dtypes and the target meaning.",
+              "Preserve a stable identifier for tracing individual observations."
+            ],
+            "kind": "table",
+            "visual": "Field,Role;sample_id,Traceability;petal_length,Feature in cm;species,Target category",
+            "note": "A data dictionary is useful evidence even before fitting. It tells a second student what a row means and what information the model receives."
+          },
+          {
+            "title": "Input validity differs from model accuracy",
+            "points": [
+              "A model can produce a number for a physically invalid input.",
+              "Validate shape, units and allowed ranges before prediction."
+            ],
+            "kind": "flow",
+            "visual": "Input schema;Validity checks;Frozen pipeline;Prediction",
+            "note": "Explain that a successful API call does not establish scientific validity. A centimeter-to-meter mix-up can be accepted by software yet invalidate the inference."
+          },
+          {
+            "title": "The positive class is a declared choice",
+            "points": [
+              "In a binary problem, class 1 names the event of interest.",
+              "In Iris, three classes require explicit multiclass handling."
+            ],
+            "kind": "compare",
+            "visual": "Binary:event versus no event,one positive class;Iris:three species,per-class interpretation",
+            "note": "This prepares Week 5. Do not silently apply a binary confusion-matrix formula to a three-class matrix without defining a one-versus-rest view."
+          },
+          {
+            "title": "Prediction and explanation differ",
+            "points": [
+              "A coefficient or importance score describes a model in context.",
+              "It does not automatically identify a causal mechanism."
+            ],
+            "kind": "tree",
+            "visual": "Correlated feature;Useful prediction;Model explanation;Causal claim needs more",
+            "note": "Ask whether petal width causing a predicted class proves a biological intervention. The class prediction task does not justify an intervention claim."
+          },
+          {
+            "title": "A thought experiment exposes a shortcut",
+            "points": [
+              "Imagine recording collection date beside each flower.",
+              "Would the model still work when the collection protocol changes?"
+            ],
+            "kind": "compare",
+            "visual": "Same collection:Date predicts label,Shortcut looks useful;New collection:Date changes,Shortcut may fail",
+            "note": "Students should propose a split by collection batch or a collection-protocol stress test. The purpose is to distinguish stable evidence from a convenient association."
+          },
+          {
+            "title": "A target needs an operational definition",
+            "points": [
+              "Specify the event, unit and time horizon.",
+              "Two teams using different definitions are solving different tasks."
+            ],
+            "kind": "table",
+            "visual": "Task,Target definition;Quality,Pass at final inspection;Failure,Failure within 7 days;Response,Deflection in mm",
+            "note": "Have pairs rewrite an ambiguous target such as bad machine. Accept a definition only if another student could assign labels consistently."
+          },
+          {
+            "title": "An audit can precede any model",
+            "points": [
+              "List each candidate feature and its availability time.",
+              "Mark identifiers, post-outcome fields and measurement assumptions."
+            ],
+            "kind": "table",
+            "visual": "Field,Available?,Decision;Past reading,Yes,Keep;Repair cost,After event,Exclude;Device ID,Yes,Audit groups",
+            "note": "Emphasize that excluding a leaking feature is a design correction, not merely an attempt to lower a suspicious score."
+          },
+          {
+            "title": "Explain the row before opening an AI tool",
+            "points": [
+              "A prompt needs the row meaning, target and deployment condition.",
+              "A generated pipeline cannot infer missing scientific definitions reliably."
+            ],
+            "kind": "code",
+            "visual": "Task: classify flower species~Unit: one flower~Inputs: four measurements in cm~Constraint: split before fitting",
+            "note": "Ask what information is missing if the prompt only says improve accuracy. Students should supply the deployment condition and the evidence protocol."
+          },
+          {
+            "title": "A data card states bounded claims",
+            "points": [
+              "State what population the observations describe.",
+              "Record missing information instead of inventing provenance."
+            ],
+            "kind": "flow",
+            "visual": "Source;Schema;Population;Known limitations",
+            "note": "Distinguish this course's teaching dataset from a deployment-ready biological study. The learner should identify at least one unknown about collection or representativeness."
+          },
+          {
+            "title": "Check: which input must be rejected?",
+            "points": [
+              "Predict a defect before inspection: past temperature or final inspection verdict?",
+              "Explain the availability boundary before revealing the answer."
+            ],
+            "kind": "compare",
+            "visual": "Past temperature:Known before prediction;Inspection verdict:Known after prediction",
+            "note": "Expected answer: reject the final inspection verdict because it encodes information available only after the target-related event. Past temperature still needs validity checks."
+          },
+          {
+            "title": "A defensible task fits on one page",
+            "points": [
+              "Name the unit, X, y and prediction time.",
+              "Add one plausible leakage route and the test that would expose it."
+            ],
+            "kind": "flow",
+            "visual": "Unit and target;Available inputs;Deployment setting;Leakage test",
+            "note": "This is the hour's evidence checkpoint. Collect a data dictionary and availability audit as in-class evidence, not a new weekly graded assignment."
+          }
+        ]
+      },
+      {
+        "title": "Splits, scaling and fitted pipelines",
+        "outcome": "Explain why preprocessing must learn only from the training partition.",
+        "artifact": "A hand-computed scaler example and a leakage-safe pipeline plan.",
+        "roadmap": [
+          "Generalization claim",
+          "Training-only statistics",
+          "Guided pipeline"
+        ],
+        "slides": [
+          {
+            "title": "Generalization concerns unseen observations",
+            "points": [
+              "A training score measures performance on already fitted examples.",
+              "A held-out score asks a different question under declared sampling assumptions."
+            ],
+            "kind": "compare",
+            "visual": "Training:Used for fitting,Known examples;Held-out:Excluded from fitting,New examples",
+            "note": "A held-out result is only as credible as its split. An apparently unseen row can still leak information through a shared object or future-derived feature."
+          },
+          {
+            "title": "A test set has a single role",
+            "points": [
+              "Reserve it for final evaluation of a frozen procedure.",
+              "Repeated decisions based on its score turn it into tuning data."
+            ],
+            "kind": "flow",
+            "visual": "Train candidates;Choose on validation;Freeze procedure;Evaluate test",
+            "note": "Ask whether renaming a repeatedly consulted test set preserves independence. It does not undo adaptive reuse of the same evidence."
+          },
+          {
+            "title": "Validation supports model choices",
+            "points": [
+              "Use validation to choose settings and decision rules.",
+              "Keep the test labels outside the selection loop."
+            ],
+            "kind": "tree",
+            "visual": "Training data;Candidate settings;Validation choice;Locked test",
+            "note": "Model selection includes preprocessing choices and feature engineering, not only estimator hyperparameters. Each selection step consumes evidence."
+          },
+          {
+            "title": "The split follows the claim",
+            "points": [
+              "Independent objects may support an IID split.",
+              "Grouped or temporal deployment needs corresponding separation."
+            ],
+            "kind": "table",
+            "visual": "Claim,Split unit;New independent flowers,Rows under IID assumption;New machines,Machine groups;Future readings,Time order",
+            "note": "No single split is universally correct. Ask students to connect a concrete deployment scenario to the unit that must remain unseen."
+          },
+          {
+            "title": "Stratification preserves class proportions",
+            "points": [
+              "It allocates class members across partitions approximately proportionally.",
+              "It does not remove group leakage or time leakage."
+            ],
+            "kind": "compare",
+            "visual": "Stratification:Balances label counts;Group split:Separates entity identity",
+            "note": "Students often treat stratification as a universal safeguard. Clarify the separate purposes of class balance and independence."
+          },
+          {
+            "title": "A seed freezes one random choice",
+            "points": [
+              "Reusing a seed can reproduce a particular split.",
+              "A seed alone does not freeze data order, software or hardware behavior."
+            ],
+            "kind": "flow",
+            "visual": "Data version;Row order;Seed;Saved split IDs",
+            "note": "Explain why a newly sorted CSV can change an index-based split even with the same seed. Saving identities makes the split auditable."
+          },
+          {
+            "title": "A scaler estimates two statistics",
+            "points": [
+              "Standardization uses training mean and training standard deviation.",
+              "Held-out data must use those same stored parameters."
+            ],
+            "kind": "formula",
+            "visual": "z = (x - mu_train) / sigma_train;fit: learn mu and sigma;transform: reuse them",
+            "note": "StandardScaler uses population variance with ddof=0. Avoid confusing its scaling convention with the sample covariance convention used in PCA derivations."
+          },
+          {
+            "title": "Mean from three training values",
+            "points": [
+              "Training values 2, 4 and 6 have mean 4.",
+              "Squared deviations sum to 8."
+            ],
+            "kind": "table",
+            "visual": "x,x-4,(x-4)^2;2,-2,4;4,0,0;6,2,4",
+            "note": "Compute the mean aloud before using a library. These are deliberately synthetic one-feature training observations."
+          },
+          {
+            "title": "Standard deviation sets the scale",
+            "points": [
+              "Population variance is 8/3.",
+              "The standard deviation is sqrt(8/3), approximately 1.633."
+            ],
+            "kind": "formula",
+            "visual": "variance = (4 + 0 + 4) / 3;sigma = sqrt(8/3);sigma = 1.633 approximately",
+            "note": "Ask why the denominator is 3 rather than 2 in this StandardScaler teaching example. Relate it to ddof=0 rather than a universal definition of variance."
+          },
+          {
+            "title": "A held-out extreme stays extreme",
+            "points": [
+              "A held-out value 100 uses mean 4 and standard deviation 1.633.",
+              "Its standardized value is about 58.79."
+            ],
+            "kind": "formula",
+            "visual": "z_test = (100 - 4) / 1.633;z_test = 58.79 approximately",
+            "note": "A large z-score is not a reason to refit the scaler on the test point. It can signal shift or an unusual observation that deserves investigation."
+          },
+          {
+            "title": "Full-data scaling changes the question",
+            "points": [
+              "Adding the test value to fitting changes the mean to 28.",
+              "The representation now depends on a supposedly unseen observation."
+            ],
+            "kind": "interactive",
+            "visual": "scaling",
+            "note": "Use the live toggle to compare training-only statistics with full-data statistics. The leakage is in the protocol, not in whether one version earns a better score."
+          },
+          {
+            "title": "Fit and transform are distinct operations",
+            "points": [
+              "fit estimates parameters from the supplied data.",
+              "transform applies already estimated parameters to new observations."
+            ],
+            "kind": "compare",
+            "visual": "fit:Training rows,Learn statistics;transform:New rows,Use frozen statistics",
+            "note": "Ask students to name three fitted preprocessing operations: standardization, imputation and PCA are valid examples."
+          },
+          {
+            "title": "A pipeline includes preprocessing",
+            "points": [
+              "A classifier receives the scaler's transformed output.",
+              "Fitting the pipeline fits each stage using training rows."
+            ],
+            "kind": "flow",
+            "visual": "X_train;Fit scaler;Transform training;Fit classifier",
+            "note": "Trace the data through the pipeline. Do not imply the classifier directly sees the raw centimeter measurements after a scaling stage."
+          },
+          {
+            "title": "Prediction reuses the fitted stages",
+            "points": [
+              "New rows pass through the stored scaler.",
+              "The classifier predicts without retraining the pipeline."
+            ],
+            "kind": "flow",
+            "visual": "X_new;Frozen scaler;Frozen classifier;Predicted classes",
+            "note": "The prediction path is different from the fitting path. Ask students which parameters change during predict: none should be refitted."
+          },
+          {
+            "title": "Cross-validation needs an inner pipeline",
+            "points": [
+              "Each fold learns its own preprocessing from that fold's training rows.",
+              "A global scaler fitted before CV can leak validation-fold information."
+            ],
+            "kind": "table",
+            "visual": "Fold,Fit preprocessing on;1,Other folds only;2,Other folds only;3,Other folds only",
+            "note": "The pipeline must sit inside cross-validation. Preprocessing the entire dataset first and then passing transformed data into CV does not preserve this separation."
+          },
+          {
+            "title": "Open the Week 2 notebook",
+            "points": [
+              "Use CPU Colab or a Python 3 Jupyter kernel.",
+              "Run the setup cell before inspecting the Iris dataset."
+            ],
+            "kind": "code",
+            "visual": "Notebook: week-02-practice.ipynb~Runtime: Python 3 / CPU~First action: setup cell",
+            "note": "Guided practice begins here, after 30 minutes of theory. The notebook uses free local packages and requires no paid model API."
+          },
+          {
+            "title": "Environment identity belongs in evidence",
+            "points": [
+              "Record the actual Python and package versions.",
+              "Keep SEED fixed for the first run."
+            ],
+            "kind": "table",
+            "visual": "Evidence,Why;Python version,Runtime identity;Package versions,Implementation identity;Seed,Random choice",
+            "note": "Do not copy a version number from the lecture. Students must record their runtime's actual values."
+          },
+          {
+            "title": "Inspect the full feature matrix",
+            "points": [
+              "Identify the observation and feature axes.",
+              "Match feature names to their documented units."
+            ],
+            "kind": "code",
+            "visual": "print(X.shape)~print(dataset.feature_names)~print(dataset.target_names)",
+            "note": "Iris contains 150 observations and four input measurements. Class-name order must come from the loaded object rather than a guessed mapping."
+          },
+          {
+            "title": "Separate inputs from labels",
+            "points": [
+              "X carries measurements and y carries species IDs.",
+              "Check alignment before creating partitions."
+            ],
+            "kind": "flow",
+            "visual": "Dataset object;X measurements;y species IDs;Aligned rows",
+            "note": "A successful model fit cannot prove that labels were aligned correctly. Trace one sample from its original position to its partition if needed."
+          },
+          {
+            "title": "Inspect the split before fitting",
+            "points": [
+              "Print the train and test sizes and class counts.",
+              "Explain what deployment condition this split approximates."
+            ],
+            "kind": "code",
+            "visual": "print(X_train.shape, X_test.shape)~# Inspect class counts in each split~# Explain the independence assumption",
+            "note": "Do not impose a new split ratio on an already supplied notebook. Students should inspect and record the actual ratio used by their notebook."
+          },
+          {
+            "title": "Read the pipeline left to right",
+            "points": [
+              "The first learned stage transforms measurements.",
+              "The final learned stage maps transformed inputs to class predictions."
+            ],
+            "kind": "flow",
+            "visual": "Four measurements;StandardScaler;LogisticRegression;Species prediction",
+            "note": "Use the notebook's actual variable names. The mechanism is the teaching target, so students should explain each stage before asking AI to rewrite it."
+          },
+          {
+            "title": "Fit with training labels only",
+            "points": [
+              "The estimator learns from training examples and their targets.",
+              "Test features and test labels must not influence fit."
+            ],
+            "kind": "code",
+            "visual": "pipeline.fit(X_train, y_train)~prediction = pipeline.predict(X_test)",
+            "note": "Ask what changes if X_test is accidentally passed into fit. A completed execution would still be possible while the evaluation protocol becomes invalid."
+          },
+          {
+            "title": "A fitted scaler exposes its statistics",
+            "points": [
+              "Inspect the scaler's stored mean and scale.",
+              "Compare them with statistics computed from training rows."
+            ],
+            "kind": "code",
+            "visual": "scaler.mean_~scaler.scale_~# Compare with training statistics",
+            "note": "Do not expect the standardized test set to have exactly mean zero. Only the fitted training statistics impose that property on the training transform."
+          },
+          {
+            "title": "A safe change has a prediction",
+            "points": [
+              "Before changing one setting, state the expected effect.",
+              "Preserve the original split and evidence record."
+            ],
+            "kind": "compare",
+            "visual": "Before:One expected effect,Original evidence;After:One changed setting,Observed difference",
+            "note": "Students may predict no clear improvement. The purpose is a controlled comparison, not a search for a preferred score."
+          },
+          {
+            "title": "Check: where does scaling belong?",
+            "points": [
+              "Choose between scaling before the split and fitting a pipeline after the split.",
+              "Explain the information boundary rather than naming a preferred function."
+            ],
+            "kind": "compare",
+            "visual": "Unsafe:Fit scaler on all X,Then split;Safe:Split raw X,Fit pipeline on train",
+            "note": "Expected answer: the second protocol. The explanation should name which held-out information would otherwise influence the fitted representation."
+          },
+          {
+            "title": "Save the intermediate checkpoint",
+            "points": [
+              "Preserve the split description and fitted-pipeline configuration.",
+              "H3 will evaluate errors and export the evidence record."
+            ],
+            "kind": "flow",
+            "visual": "Split description;Pipeline parameters;Observed predictions;Resume in H3",
+            "note": "The checkpoint can be a saved notebook state and a short written protocol. Runtime memory alone is temporary, especially in Colab."
+          }
+        ]
+      },
+      {
+        "title": "Pipeline lab and error inspection",
+        "outcome": "Run the supplied classification pipeline and explain its limited evidence.",
+        "artifact": "Executed notebook, evidence JSON and a claim with a limitation.",
+        "roadmap": [
+          "Run and inspect",
+          "Controlled change",
+          "Reproduce and explain"
+        ],
+        "slides": [
+          {
+            "title": "The lab has three outputs",
+            "points": [
+              "Keep an executed notebook and its evidence JSON.",
+              "Add a short claim, evidence and limitation statement."
+            ],
+            "kind": "flow",
+            "visual": "Executed notebook;Evidence JSON;Bounded explanation",
+            "note": "State the completion criterion before coding. These are in-class practice artifacts, not an additional weekly graded assignment."
+          },
+          {
+            "title": "Restore the H2 checkpoint",
+            "points": [
+              "Confirm the same dataset, split and pipeline configuration.",
+              "Restart from the setup cell if the runtime lost its state."
+            ],
+            "kind": "flow",
+            "visual": "Open notebook;Check configuration;Restore or restart;Continue in order",
+            "note": "A restored browser tab does not guarantee a restored Python kernel. Students should distinguish the document from the runtime."
+          },
+          {
+            "title": "A fresh run exposes hidden state",
+            "points": [
+              "Restart the kernel and run cells from top to bottom.",
+              "Resolve missing variables by restoring execution order."
+            ],
+            "kind": "code",
+            "visual": "Restart kernel~Run all cells in order~Record the first failing cell",
+            "note": "Do not keep adding cells that depend on stale variables. A linear rerun is the evidence that another student can follow the notebook."
+          },
+          {
+            "title": "Check inputs before predictions",
+            "points": [
+              "Confirm row alignment, feature order and units.",
+              "Inspect the class mapping rather than guessing label meanings."
+            ],
+            "kind": "table",
+            "visual": "Check,Expected evidence;Rows,X and y align;Features,Documented order;Targets,Known class names",
+            "note": "Ask students to explain why permuting feature columns can change predictions even though the shape remains unchanged."
+          },
+          {
+            "title": "Record the actual partition",
+            "points": [
+              "Write down train and test counts from this run.",
+              "State whether this is an IID, group or temporal evaluation."
+            ],
+            "kind": "table",
+            "visual": "Partition,Record from run;Training,Actual count;Test,Actual count;Assumption,Independent flowers",
+            "note": "Counts must come from the executed notebook. Do not substitute a lecture's illustrative partition for the notebook's actual configuration."
+          },
+          {
+            "title": "Fit the complete pipeline",
+            "points": [
+              "Fit preprocessing and classification together on training data.",
+              "Predict on the unchanged held-out feature matrix."
+            ],
+            "kind": "code",
+            "visual": "pipeline.fit(X_train, y_train)~pred = pipeline.predict(X_test)",
+            "note": "Use the provided notebook's variable names if they differ. The intended invariant is that held-out observations never enter fitting."
+          },
+          {
+            "title": "Accuracy counts correct classifications",
+            "points": [
+              "Accuracy is correct predictions divided by test observations.",
+              "Report the test size beside the score."
+            ],
+            "kind": "formula",
+            "visual": "accuracy = correct / n_test;example: 8 / 10 = 0.80",
+            "note": "This ten-observation calculation is a synthetic worked example. It is not the notebook's measured result."
+          },
+          {
+            "title": "A three-class matrix preserves error types",
+            "points": [
+              "Rows represent true classes and columns predicted classes.",
+              "The diagonal contains correct predictions."
+            ],
+            "kind": "table",
+            "visual": "True / Pred,Class A,Class B,Class C;Class A,4,0,0;Class B,0,3,1;Class C,0,1,3",
+            "note": "This illustrative matrix contains 12 observations and 10 correct predictions. Students must compare the pattern with their actual matrix rather than copy these counts."
+          },
+          {
+            "title": "Off-diagonal entries name confusions",
+            "points": [
+              "True B predicted C differs from true C predicted B.",
+              "Describe each error direction in words."
+            ],
+            "kind": "compare",
+            "visual": "B to C:True B,Predicted C;C to B:True C,Predicted B",
+            "note": "A confusion matrix is an accounting device. The cell's meaning requires reading both axes, not just locating a colored square."
+          },
+          {
+            "title": "Inspect one wrong prediction",
+            "points": [
+              "Find a test position where prediction differs from truth.",
+              "Inspect its feature values and class mapping."
+            ],
+            "kind": "code",
+            "visual": "wrong = np.flatnonzero(pred != y_test)~print(wrong)~# Inspect one position if available",
+            "note": "The notebook may have few or no wrong predictions for a particular split. Never invent an error case simply to satisfy a worksheet."
+          },
+          {
+            "title": "Zero observed errors has a limit",
+            "points": [
+              "A small held-out sample can miss important failure modes.",
+              "Zero errors in this test does not prove zero deployment risk."
+            ],
+            "kind": "compare",
+            "visual": "Observed:No errors in this sample;Unproven:No errors in all future data",
+            "note": "Have students name a population shift that the teaching dataset does not cover. The limitation belongs beside the result."
+          },
+          {
+            "title": "A row position is not always an identity",
+            "points": [
+              "A test-array position refers to the reordered test matrix.",
+              "Preserve original sample IDs if exact traceability matters."
+            ],
+            "kind": "flow",
+            "visual": "Original sample ID;Split index mapping;Test-array position;Error inspection",
+            "note": "Explain how index 0 in X_test can refer to a different original sample. Students should not confuse local array position with dataset identity."
+          },
+          {
+            "title": "The confusion matrix fixes a denominator",
+            "points": [
+              "The diagonal sum divided by all cells equals accuracy.",
+              "Compare this calculation with the library result."
+            ],
+            "kind": "formula",
+            "visual": "accuracy = diagonal sum / total;worked matrix: 10 / 12;accuracy = 0.8333 approximately",
+            "note": "This analytic consistency check uses the worked matrix shown earlier, not a claimed notebook outcome."
+          },
+          {
+            "title": "A comparison changes one factor",
+            "points": [
+              "Keep the partition and evaluation rule fixed.",
+              "Change only the specified model setting or feature treatment."
+            ],
+            "kind": "flow",
+            "visual": "Fixed data;Fixed split;One changed factor;Comparable result",
+            "note": "If several changes occur simultaneously, a score difference cannot identify which change caused it. Require a written before-and-after configuration."
+          },
+          {
+            "title": "Prediction comes before execution",
+            "points": [
+              "Write whether the change should help, hurt or remain uncertain.",
+              "State the mechanism behind that prediction."
+            ],
+            "kind": "compare",
+            "visual": "Hypothesis:Expected direction,Mechanism;Observation:Actual score,Error pattern",
+            "note": "Uncertain is acceptable if accompanied by a reason. This exercise trains experimental reasoning rather than hindsight storytelling."
+          },
+          {
+            "title": "Keep the baseline evidence",
+            "points": [
+              "Save the first run before making a change.",
+              "Use separate filenames or explicit run identifiers."
+            ],
+            "kind": "table",
+            "visual": "Run,Changed factor;baseline,Original notebook;comparison,One declared change",
+            "note": "Students should be able to recover both runs. Overwriting the only JSON file can erase the comparison they are asked to explain."
+          },
+          {
+            "title": "Scaling is not an automatic improvement",
+            "points": [
+              "Its effect depends on the estimator and optimization.",
+              "A safe protocol can yield the same or a different score."
+            ],
+            "kind": "compare",
+            "visual": "Protocol quality:Training-only fit;Measured outcome:Observed held-out score",
+            "note": "Do not promise a score increase from StandardScaler. The lesson is the information boundary and the geometry, not a universal performance claim."
+          },
+          {
+            "title": "A result needs a population statement",
+            "points": [
+              "Describe which observations the held-out sample represents.",
+              "Avoid extending an Iris result to arbitrary biological diagnosis."
+            ],
+            "kind": "flow",
+            "visual": "Teaching sample;Declared split;Observed errors;Limited claim",
+            "note": "Ask each pair to write one supported statement and one unsupported extrapolation from the same result."
+          },
+          {
+            "title": "Export the evidence JSON",
+            "points": [
+              "Save the seed, actual versions and measured summary.",
+              "Inspect the filename and download it before leaving Colab."
+            ],
+            "kind": "code",
+            "visual": "record = {\"seed\": SEED, \"result\": summary}~# Use the notebook export cell~# Download artifacts/",
+            "note": "Colab runtime storage is temporary. A printed JSON object is useful for inspection but does not replace downloading the file."
+          },
+          {
+            "title": "Check the exported record",
+            "points": [
+              "Match each reported count or metric to the run output.",
+              "Confirm that the record identifies this experiment."
+            ],
+            "kind": "table",
+            "visual": "Field,Check;Seed,Matches configuration;Metric,Matches observed output;Run ID,Distinguishes comparison",
+            "note": "This is a provenance check rather than another model search. Students must not revise a JSON score by hand to make it match an expected lecture example."
+          },
+          {
+            "title": "A screenshot cannot rerun a pipeline",
+            "points": [
+              "Preserve code, configuration and data identity.",
+              "Use screenshots only as supplementary visual evidence."
+            ],
+            "kind": "compare",
+            "visual": "Screenshot:Shows one visible output;Notebook plus metadata:Supports a rerun",
+            "note": "Ask what happens if the screenshot omits the split seed or feature order. The missing information prevents a faithful reproduction."
+          },
+          {
+            "title": "A peer rerun tests the instructions",
+            "points": [
+              "Exchange the notebook and stated configuration.",
+              "Compare the protocol before comparing scores."
+            ],
+            "kind": "flow",
+            "visual": "Partner opens;Fresh runtime;Run in order;Compare evidence",
+            "note": "If the runs differ, first inspect data identity, versions, split and configuration. Do not assume every difference means a conceptual failure."
+          },
+          {
+            "title": "Explain one model decision cautiously",
+            "points": [
+              "Connect an error to measured features and class overlap.",
+              "Distinguish an observation from a causal explanation."
+            ],
+            "kind": "compare",
+            "visual": "Observation:Similar feature values;Hypothesis:Overlap may explain error",
+            "note": "A plausible post-hoc story is not established causation. Suggest a targeted inspection or additional measurement that could challenge the story."
+          },
+          {
+            "title": "AI assistance needs a bounded request",
+            "points": [
+              "Ask for an explanation of one pipeline stage or error.",
+              "Verify suggested changes against the frozen evaluation protocol."
+            ],
+            "kind": "code",
+            "visual": "Explain this scaler step.~Do not change the split or target.~List assumptions before suggesting code.",
+            "note": "Students remain responsible for the task definition and evidence. A fluent explanation can still suggest a leaking preprocessing change."
+          },
+          {
+            "title": "Pair check: defend the pipeline",
+            "points": [
+              "Name what fit learns and what predict reuses.",
+              "Explain one reason the score may fail to transfer."
+            ],
+            "kind": "flow",
+            "visual": "Training statistics;Classifier parameters;Frozen prediction;Transfer limitation",
+            "note": "A complete explanation names both preprocessing and estimator parameters. It also states a concrete population or measurement limitation."
+          },
+          {
+            "title": "Package a bounded result",
+            "points": [
+              "Report the actual score and the test count.",
+              "Attach one inspected error or a stated no-error limitation."
+            ],
+            "kind": "table",
+            "visual": "Claim,Measured on held-out sample;Evidence,Notebook and JSON;Limit,Sampling or shift;Next test,Concrete stress case",
+            "note": "The final checkpoint should be short enough to explain orally. It prepares students for the written and oral assessments without adding an unannounced weekly assignment."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "week": 3,
+    "date": "2026-09-21",
+    "title": "Supervised learning: regression and classification",
+    "notebook": "week-03-practice.ipynb",
+    "cover": "w03-cover.jpg",
+    "sources": [
+      [
+        "Linear models and regularization",
+        "https://scikit-learn.org/stable/modules/linear_model.html"
+      ],
+      [
+        "Dummy regression baselines",
+        "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyRegressor.html"
+      ],
+      [
+        "Model evaluation",
+        "https://scikit-learn.org/stable/modules/model_evaluation.html"
+      ]
+    ],
+    "hours": [
+      {
+        "title": "Regression, loss and baselines",
+        "outcome": "Compute a linear prediction and distinguish a fitted model from a meaningful baseline.",
+        "artifact": "A worked regression calculation and a baseline comparison plan.",
+        "roadmap": [
+          "Prediction function",
+          "Loss and fitting",
+          "Baseline reasoning"
+        ],
+        "slides": [
+          {
+            "title": "Supervision supplies example answers",
+            "points": [
+              "Each training input has an associated target.",
+              "Fitting chooses parameters to reduce a declared training objective."
+            ],
+            "kind": "flow",
+            "visual": "Training inputs X;Targets y;Optimization;Fitted parameters",
+            "note": "Supervised learning uses examples rather than a programmer writing every input-output rule. The objective still reflects human choices about the task and error cost."
+          },
+          {
+            "title": "Regression predicts a continuous quantity",
+            "points": [
+              "A response such as displacement has numerical units.",
+              "Its errors should be interpreted in those same task units."
+            ],
+            "kind": "compare",
+            "visual": "Regression:Deflection in mm,Continuous output;Classification:Pass or fail,Category output",
+            "note": "Ask which target preserves more information. Converting a continuous target to a category changes the question and discards magnitude information."
+          },
+          {
+            "title": "A linear model combines feature effects",
+            "points": [
+              "y_hat equals an intercept plus weighted input features.",
+              "Linearity concerns the coefficients in this representation."
+            ],
+            "kind": "formula",
+            "visual": "y_hat = b + w1*x1 + w2*x2;One coefficient per feature",
+            "note": "A linear model can use transformed features such as x squared while remaining linear in the coefficients. Separate linear in parameters from a straight line in raw input space."
+          },
+          {
+            "title": "The intercept establishes the reference",
+            "points": [
+              "b is the prediction when all represented inputs equal zero.",
+              "That reference may lie outside the observed input range."
+            ],
+            "kind": "plot",
+            "visual": "intercept;x;y",
+            "note": "A mathematical intercept need not have a useful physical interpretation if zero inputs are unobserved or the features are standardized."
+          },
+          {
+            "title": "A coefficient has conditional meaning",
+            "points": [
+              "w1 describes the prediction change per unit of x1 while other inputs stay fixed.",
+              "Correlated features can make this interpretation unstable."
+            ],
+            "kind": "formula",
+            "visual": "change in y_hat = w1 * change in x1;Other represented features held fixed",
+            "note": "Stress that the statement describes the fitted model, not a causal intervention on the physical system."
+          },
+          {
+            "title": "Compute one prediction by hand",
+            "points": [
+              "Let b=1, w1=3 and w2=-2.",
+              "For x1=2 and x2=1, the prediction is 5."
+            ],
+            "kind": "formula",
+            "visual": "y_hat = 1 + 3*2 - 2*1;y_hat = 5",
+            "note": "Ask students to identify the units implied by each coefficient. A coefficient's magnitude cannot be compared across differently scaled features without care."
+          },
+          {
+            "title": "A residual retains its sign",
+            "points": [
+              "Define residual r as observed minus predicted.",
+              "A positive residual means the model underpredicted this observation."
+            ],
+            "kind": "plot",
+            "visual": "residual;x;y",
+            "note": "Use the sign convention consistently. Some software or plots use prediction minus observation, so students must read the definition rather than assume a universal sign."
+          },
+          {
+            "title": "Absolute error measures distance",
+            "points": [
+              "If y=7 and y_hat=5, absolute error is 2.",
+              "MAE averages these absolute differences."
+            ],
+            "kind": "formula",
+            "visual": "error = abs(7 - 5) = 2;MAE = mean(abs(y - y_hat))",
+            "note": "Absolute error returns the target unit. It does not indicate whether the model consistently predicts too high or too low."
+          },
+          {
+            "title": "Squared error emphasizes large misses",
+            "points": [
+              "Residuals 1 and 3 produce squares 1 and 9.",
+              "MSE uses squared target units."
+            ],
+            "kind": "bars",
+            "visual": "Squared error for residual 1:1;Squared error for residual 3:9",
+            "note": "Compare the relative contribution under absolute and squared losses. The larger miss matters three times under absolute error and nine times under squared error."
+          },
+          {
+            "title": "RMSE restores the target unit",
+            "points": [
+              "RMSE is the square root of MSE.",
+              "It retains the stronger influence of large errors."
+            ],
+            "kind": "formula",
+            "visual": "MSE = mean((y - y_hat)^2);RMSE = sqrt(MSE)",
+            "note": "Avoid claiming RMSE and MAE are interchangeable. They respond differently to the residual distribution and must match the decision context."
+          },
+          {
+            "title": "Loss defines the fitting problem",
+            "points": [
+              "Ordinary least squares minimizes the sum of squared training residuals.",
+              "Minimizing training loss does not directly minimize future error."
+            ],
+            "kind": "formula",
+            "visual": "SSE = sum((y_i - y_hat_i)^2);Choose weights that minimize SSE",
+            "note": "Ask what evidence connects low training SSE with useful future predictions. Students should name held-out evaluation and the assumptions behind the split."
+          },
+          {
+            "title": "A baseline makes improvement meaningful",
+            "points": [
+              "A constant predictor ignores the features.",
+              "A fitted model should justify its added complexity against that reference."
+            ],
+            "kind": "flow",
+            "visual": "Constant baseline;Feature-based model;Same held-out rows;Compare errors",
+            "note": "Comparing scores on different test samples or different targets confounds the interpretation. Both candidates need a shared evaluation protocol."
+          },
+          {
+            "title": "The mean minimizes squared error",
+            "points": [
+              "For a constant predictor under squared loss, the training mean is optimal.",
+              "Compute it from training targets only."
+            ],
+            "kind": "formula",
+            "visual": "c_mean = mean(y_train);Predict c_mean for every test row",
+            "note": "This is the default constant strategy in the supplied DummyRegressor. Its fit stage still uses targets and must exclude held-out outcomes."
+          },
+          {
+            "title": "The median minimizes absolute error",
+            "points": [
+              "Under absolute loss, a training median is an optimal constant.",
+              "The notebook's mean baseline is valid but not MAE-optimal by definition."
+            ],
+            "kind": "compare",
+            "visual": "Squared loss:Training mean;Absolute loss:Training median",
+            "note": "This distinction prevents a subtle overclaim. Students may add a median baseline as a clearly declared extension rather than silently rewriting the provided baseline."
+          },
+          {
+            "title": "A baseline example is fully calculable",
+            "points": [
+              "Training targets 1, 2 and 9 have mean 4 and median 2.",
+              "Compare both constants on these three targets."
+            ],
+            "kind": "table",
+            "visual": "Constant,MAE,SSE;Mean 4,10/3,38;Median 2,8/3,50",
+            "note": "Compute absolute errors: mean gives 3+2+5=10; median gives 1+0+7=8. Squared sums are 9+4+25=38 and 1+0+49=50."
+          },
+          {
+            "title": "Fitting is an optimization step",
+            "points": [
+              "A parameter update should reduce the chosen objective locally.",
+              "A stopping condition and numerical scale affect the computation."
+            ],
+            "kind": "plot",
+            "visual": "loss;weight;training objective",
+            "note": "The objective curve is a schematic, not a record of a model training run. Distinguish mathematical optimization behavior from measured learning curves."
+          },
+          {
+            "title": "A gradient gives local sensitivity",
+            "points": [
+              "The derivative states how loss changes for a small parameter change.",
+              "Gradient descent moves against the gradient."
+            ],
+            "kind": "formula",
+            "visual": "w_next = w - eta * gradient;eta is the learning rate",
+            "note": "Explain the sign with a one-dimensional bowl. The minus sign aims downhill for a sufficiently small step, not for every possible step size."
+          },
+          {
+            "title": "A quadratic example exposes the update",
+            "points": [
+              "For L(w)=(w-3)^2, the derivative is 2(w-3).",
+              "From w=0 with eta=0.1, the next value is 0.6."
+            ],
+            "kind": "formula",
+            "visual": "gradient at 0 = -6;w_next = 0 - 0.1*(-6);w_next = 0.6",
+            "note": "Ask whether one update reaches the minimum. It does not. The calculation explains a step rather than asserting convergence after a single iteration."
+          },
+          {
+            "title": "A large step can overshoot",
+            "points": [
+              "The local downhill direction does not guarantee a safe step length.",
+              "Compare moderate and excessive learning rates on the same bowl."
+            ],
+            "kind": "plot",
+            "visual": "overshoot;weight;loss",
+            "note": "Use a schematic with an overshooting update. The failure concerns optimization settings, which differ from the statistical problem of overfitting."
+          },
+          {
+            "title": "More flexible models can fit noise",
+            "points": [
+              "Additional flexibility may reduce training residuals.",
+              "Held-out error determines whether the flexibility helps the intended task."
+            ],
+            "kind": "plot",
+            "visual": "overfit;x;y",
+            "note": "The drawn curves are schematic and explicitly labeled. Do not present them as actual polynomial-model training outcomes."
+          },
+          {
+            "title": "Noise limits exact recovery",
+            "points": [
+              "The supplied generator adds random noise to a linear mechanism.",
+              "Even a correctly specified model need not predict every observed target exactly."
+            ],
+            "kind": "formula",
+            "visual": "y = 3*x1 - 2*x2 + noise;noise standard deviation = 0.5",
+            "note": "These are the actual generative coefficients and noise scale used in Week 3. The third feature has zero generating coefficient."
+          },
+          {
+            "title": "An irrelevant feature can acquire a weight",
+            "points": [
+              "Finite samples can correlate an unused feature with the target.",
+              "A nonzero fitted weight is not proof of a physical effect."
+            ],
+            "kind": "compare",
+            "visual": "Generating coefficient:Third feature = 0;Fitted coefficient:May differ from 0",
+            "note": "Ask students which evidence would distinguish a stable relationship from a sample-specific coefficient. Suggest resampling, new data and domain knowledge."
+          },
+          {
+            "title": "Prediction quality and parameter recovery differ",
+            "points": [
+              "A model can predict well while coefficients vary among correlated inputs.",
+              "Evaluate predictions and interpretation as separate claims."
+            ],
+            "kind": "tree",
+            "visual": "Held-out prediction;Coefficient stability;Physical explanation;Separate evidence",
+            "note": "The supplied generator helps compare learned and known coefficients. Real observational data rarely provide known generating coefficients."
+          },
+          {
+            "title": "A model comparison needs fixed units",
+            "points": [
+              "MAE values are comparable only for a shared target and scale.",
+              "A Celsius error and a millimeter error cannot be ranked as model quality."
+            ],
+            "kind": "compare",
+            "visual": "Comparable:Same target,Same held-out rows;Not comparable:Different units,Different tasks",
+            "note": "Students should resist declaring a classifier better than a regressor because its numeric score is larger. Metrics encode different questions."
+          },
+          {
+            "title": "Check: which baseline fits the loss?",
+            "points": [
+              "For constant prediction, choose mean for squared loss and median for absolute loss.",
+              "Explain why a valid baseline can still be improvable."
+            ],
+            "kind": "compare",
+            "visual": "Mean:Minimizes training SSE;Median:Minimizes training absolute loss",
+            "note": "Expected answer should include the training-only restriction. Neither result automatically identifies the best constant on future samples."
+          },
+          {
+            "title": "The first evidence comparison is ready",
+            "points": [
+              "Declare the regression target, baseline and MAE.",
+              "Predict whether the feature-based model should improve on the baseline."
+            ],
+            "kind": "flow",
+            "visual": "Continuous target;Training-only mean;Ridge prediction;Held-out MAE",
+            "note": "A directional expectation is reasonable for this known synthetic signal, but the class must report actual measured values rather than a promised performance number."
+          }
+        ]
+      },
+      {
+        "title": "Ridge, probabilities and classification",
+        "outcome": "Trace regularization and explain how a score becomes a class decision.",
+        "artifact": "A ridge calculation and a guided two-task notebook comparison.",
+        "roadmap": [
+          "Regularization",
+          "Probability and threshold",
+          "Guided notebook"
+        ],
+        "slides": [
+          {
+            "title": "Ridge adds a weight penalty",
+            "points": [
+              "The objective combines squared residuals and a penalty on coefficient size.",
+              "The intercept is normally unpenalized in this formulation."
+            ],
+            "kind": "formula",
+            "visual": "objective = SSE + alpha * sum(w_j^2);alpha >= 0",
+            "note": "This matches scikit-learn Ridge's unnormalized squared-residual objective. Avoid silently adding a factor of n that would change the interpretation of alpha."
+          },
+          {
+            "title": "Alpha controls shrinkage strength",
+            "points": [
+              "Larger alpha discourages large coefficients more strongly.",
+              "The best choice depends on validation under the intended task."
+            ],
+            "kind": "compare",
+            "visual": "Small alpha:Weak shrinkage;Large alpha:Strong shrinkage",
+            "note": "A larger penalty is not universally better. It can stabilize estimates while increasing bias and potentially worsening held-out error."
+          },
+          {
+            "title": "A centered example has a closed form",
+            "points": [
+              "Use x values -2,-1,0,1,2 and y=3x+1.",
+              "The centered sums are Sxx=10 and Sxy=30."
+            ],
+            "kind": "table",
+            "visual": "x,y;-2,-5;-1,-2;0,1;1,4;2,7",
+            "note": "The mean of x is zero and mean of y is one. These exact synthetic observations support a hand-calculated one-feature ridge solution."
+          },
+          {
+            "title": "Ridge shrinks an exact slope",
+            "points": [
+              "The slope is 30/(10+alpha), with intercept 1.",
+              "At alpha=10, the slope becomes 1.5."
+            ],
+            "kind": "formula",
+            "visual": "w = Sxy / (Sxx + alpha);w = 30 / (10 + 10) = 1.5;b = 1",
+            "note": "Derive the formula by setting the derivative of SSE plus alpha times w squared to zero after centering."
+          },
+          {
+            "title": "Explore the penalty live",
+            "points": [
+              "Move alpha and inspect the fitted slope and residual sum.",
+              "Compare the data-fit term with the penalized objective."
+            ],
+            "kind": "interactive",
+            "visual": "ridge",
+            "note": "The demo solves the analytic example, not the supplied notebook's three-feature dataset. Ask students to predict slope direction before moving the slider."
+          },
+          {
+            "title": "Regularization changes interpretation",
+            "points": [
+              "Shrunk coefficients depend on feature scaling and penalty strength.",
+              "A small coefficient can reflect the penalty as well as weak evidence."
+            ],
+            "kind": "tree",
+            "visual": "Input scale;Penalty strength;Fitted coefficient;Conditional interpretation",
+            "note": "This is why reporting coefficients without preprocessing and alpha can be misleading. Do not interpret magnitude as a universal physical importance measure."
+          },
+          {
+            "title": "Classification changes the target",
+            "points": [
+              "The notebook defines class 1 by y greater than zero.",
+              "The resulting event is a category, not a response magnitude."
+            ],
+            "kind": "formula",
+            "visual": "label = 1 if y > 0 else 0;Class 1 means positive response",
+            "note": "Since y includes noise, the boundary includes label uncertainty. A response of 0.1 and a response of 10 share the same binary label but different magnitudes."
+          },
+          {
+            "title": "Logistic regression starts with a score",
+            "points": [
+              "A weighted sum produces a real-valued score z.",
+              "A sigmoid maps the binary score into the interval from zero to one."
+            ],
+            "kind": "formula",
+            "visual": "z = b + w dot x;p = 1 / (1 + exp(-z))",
+            "note": "This slide discusses binary logistic regression. The Week 2 multiclass Iris model needs the appropriate multiclass probability handling rather than this single-sigmoid formula."
+          },
+          {
+            "title": "The sigmoid is monotone",
+            "points": [
+              "At z=0, the sigmoid equals 0.5.",
+              "Larger scores produce larger model probabilities."
+            ],
+            "kind": "plot",
+            "visual": "sigmoid;score z;sigmoid probability",
+            "note": "A numerical probability output is a model estimate. Calibration requires separate empirical checking and is not guaranteed by using a sigmoid."
+          },
+          {
+            "title": "Cross-entropy fits probability scores",
+            "points": [
+              "A confident wrong prediction incurs a large logarithmic loss.",
+              "Classification accuracy does not directly describe this fitting objective."
+            ],
+            "kind": "formula",
+            "visual": "loss = -y*log(p) - (1-y)*log(1-p);Confident wrong predictions cost more",
+            "note": "For y=1, p=0.9 gives a much smaller loss than p=0.1. Clipping or numerical stabilization is an implementation matter, not permission to ignore impossible log values."
+          },
+          {
+            "title": "A threshold creates the decision",
+            "points": [
+              "Predict class 1 when the estimated probability is at least tau.",
+              "The same fitted scores can support different decision thresholds."
+            ],
+            "kind": "formula",
+            "visual": "predicted class = 1 if p >= tau;Common reference threshold: tau = 0.5",
+            "note": "Changing the threshold does not retrain the underlying logistic coefficients. Week 5 studies how to choose the threshold without using test labels."
+          },
+          {
+            "title": "A probability is not a physical unit",
+            "points": [
+              "A classifier's score estimates an event under its modeling assumptions.",
+              "A regressor predicts the original response scale."
+            ],
+            "kind": "compare",
+            "visual": "Regression output:Response units;Classifier output:Event probability estimate",
+            "note": "A probability of 0.8 is not the same as a predicted response of 0.8. Students should explain what random variable each output concerns."
+          },
+          {
+            "title": "Accuracy hides response magnitude",
+            "points": [
+              "A near-zero target and an extreme target can count as one correct class each.",
+              "Classification discards distinctions retained by regression."
+            ],
+            "kind": "table",
+            "visual": "Observed response,Binary target;0.1,1;10.0,1;-0.1,0;-10.0,0",
+            "note": "Ask what decision would require the original magnitude. This motivates selecting a task from the decision rather than choosing a familiar algorithm first."
+          },
+          {
+            "title": "A model score can be miscalibrated",
+            "points": [
+              "Predicted probability and observed event frequency may disagree.",
+              "Good ranking does not establish accurate probability estimates."
+            ],
+            "kind": "compare",
+            "visual": "Ranking:Order cases by score;Calibration:Compare score with event frequency",
+            "note": "This is a conceptual preview, not a claim about the supplied logistic model's measured calibration. Do not infer calibration from classification accuracy."
+          },
+          {
+            "title": "Compare tasks without ranking unlike metrics",
+            "points": [
+              "Regression MAE and classification accuracy answer different questions.",
+              "Report each with its target and partition."
+            ],
+            "kind": "table",
+            "visual": "Task,Output,Metric;Regression,Continuous response,MAE;Classification,Response above zero,Accuracy",
+            "note": "The notebook creates separate stratified and unstratified splits for its two tasks. Their results are not a same-test-set head-to-head ranking of unlike metrics."
+          },
+          {
+            "title": "Open the Week 3 notebook",
+            "points": [
+              "The dataset has 240 rows and three synthetic inputs.",
+              "The target follows the stated linear mechanism plus noise."
+            ],
+            "kind": "code",
+            "visual": "X = rng.normal(size=(240,3))~y = 3*X[:,0] - 2*X[:,1] + noise",
+            "note": "Guided practice starts after the first 30 minutes. Do not treat synthetic data as an observed engineering dataset."
+          },
+          {
+            "title": "Inspect the generating mechanism",
+            "points": [
+              "The first two true coefficients are 3 and -2.",
+              "The third feature contributes no term to the generating rule."
+            ],
+            "kind": "bars",
+            "visual": "True coefficient x1:3;True coefficient x2:-2;True coefficient x3:0",
+            "note": "A bar chart with negative values must show the zero reference and both signs. This is a known teaching mechanism, not a recovered experimental law."
+          },
+          {
+            "title": "The regression split reserves 60 rows",
+            "points": [
+              "The notebook uses 25 percent of 240 rows for testing.",
+              "Fit the baseline and Ridge on the same 180 training rows."
+            ],
+            "kind": "bars",
+            "visual": "Training rows:180;Test rows:60",
+            "note": "These counts follow the supplied notebook. Both regression candidates must share the same test observations for a meaningful MAE comparison."
+          },
+          {
+            "title": "Fit the mean baseline first",
+            "points": [
+              "DummyRegressor uses training targets to learn a constant.",
+              "Predict the held-out responses and compute MAE."
+            ],
+            "kind": "code",
+            "visual": "baseline = DummyRegressor().fit(Xtr,ytr)~mean_absolute_error(yte, baseline.predict(Xte))",
+            "note": "The default strategy is mean. Explain why this establishes a valid reference but not the minimum-MAE constant baseline in every sample."
+          },
+          {
+            "title": "Fit Ridge with the declared alpha",
+            "points": [
+              "The supplied regression uses alpha=1.",
+              "Preserve the baseline and split while fitting the feature model."
+            ],
+            "kind": "code",
+            "visual": "regression = Ridge(alpha=1).fit(Xtr,ytr)~prediction = regression.predict(Xte)",
+            "note": "Do not change alpha after viewing test errors and still describe the test as untouched. Any tuning extension needs a validation protocol."
+          },
+          {
+            "title": "Report the two observed MAEs",
+            "points": [
+              "Compare actual values from the same held-out targets.",
+              "Do not copy a predicted or previously observed score."
+            ],
+            "kind": "table",
+            "visual": "Candidate,Record this run;Mean baseline,Observed test MAE;Ridge alpha 1,Observed test MAE",
+            "note": "Ask whether a lower Ridge MAE supports a claim about arbitrary real engineering data. It supports only this synthetic task and declared sampling setup."
+          },
+          {
+            "title": "Build the classification target",
+            "points": [
+              "Convert the generated response into the event y greater than zero.",
+              "Inspect class counts before the stratified split."
+            ],
+            "kind": "code",
+            "visual": "labels = (y > 0).astype(int)~# Inspect counts and class meaning",
+            "note": "The labels reuse the generated responses but represent a different supervised task. The code's event definition is part of the experiment record."
+          },
+          {
+            "title": "Fit the binary classifier",
+            "points": [
+              "Fit logistic regression on the classification training partition.",
+              "Extract the probability column for the declared positive class."
+            ],
+            "kind": "code",
+            "visual": "classifier.fit(Atr,btr)~probability = classifier.predict_proba(Ate)[:,1]",
+            "note": "The positive-column interpretation relies on the class order. Confirm classes_ if the label encoding changes."
+          },
+          {
+            "title": "Apply a declared reference threshold",
+            "points": [
+              "Classify with probability at least 0.5 in this notebook.",
+              "Compute accuracy against bte, not the regression targets."
+            ],
+            "kind": "code",
+            "visual": "predicted = probability >= 0.5~accuracy_score(bte,predicted)",
+            "note": "A common implementation error compares predictions with a mismatched target array from the regression task. Shapes alone may not catch every alignment problem."
+          },
+          {
+            "title": "A prediction plot shows structure",
+            "points": [
+              "Plot held-out observed responses against predicted responses.",
+              "The diagonal denotes perfect agreement on matching axes."
+            ],
+            "kind": "plot",
+            "visual": "predicted;observed response;predicted response",
+            "note": "This lecture graphic is a schematic. The student's notebook plot must contain the actual held-out outputs from their run."
+          },
+          {
+            "title": "Save a two-task checkpoint",
+            "points": [
+              "Record the two target definitions and their metrics.",
+              "H3 will inspect residuals, coefficients and limitations."
+            ],
+            "kind": "flow",
+            "visual": "Regression evidence;Classification evidence;Separate interpretations;H3 checkpoint",
+            "note": "Preserve which split belongs to which task. A single unlabeled score table is insufficient to reproduce both experiments."
+          }
+        ]
+      },
+      {
+        "title": "Regression and classification lab",
+        "outcome": "Compare a baseline, inspect residuals and explain what the fitted coefficients support.",
+        "artifact": "Executed two-task notebook, evidence JSON and a coefficient interpretation.",
+        "roadmap": [
+          "Fit and compare",
+          "Inspect failures",
+          "Explain and export"
+        ],
+        "slides": [
+          {
+            "title": "Restore both task definitions",
+            "points": [
+              "Regression predicts the synthetic continuous response.",
+              "Classification predicts whether that response exceeds zero."
+            ],
+            "kind": "compare",
+            "visual": "Regression:3*x1 - 2*x2 + noise;Classification:Response above zero",
+            "note": "Begin by asking students to say both targets aloud. This guards against treating the two tasks as interchangeable model choices."
+          },
+          {
+            "title": "Rebuild the environment",
+            "points": [
+              "Run setup before generating data or fitting estimators.",
+              "Keep the first run's seed and generator unchanged."
+            ],
+            "kind": "flow",
+            "visual": "Setup;Fixed seed;Generate data;Split",
+            "note": "The random generator's state depends on execution order. Restarting and running all is more reliable than rerunning isolated generation cells."
+          },
+          {
+            "title": "Inspect all three inputs",
+            "points": [
+              "Confirm X has 240 rows and three feature columns.",
+              "Check that y contains one continuous response per row."
+            ],
+            "kind": "code",
+            "visual": "print(X.shape, y.shape)~# Expected construction: (240,3) and (240,)",
+            "note": "The expectation refers to this notebook's construction, not a universal regression requirement. A mismatch means stop before fitting."
+          },
+          {
+            "title": "Preserve the regression partition",
+            "points": [
+              "Confirm 180 training rows and 60 held-out rows.",
+              "Use that exact partition for both regression candidates."
+            ],
+            "kind": "table",
+            "visual": "Candidate,Training,Test;Mean baseline,Same 180,Same 60;Ridge,Same 180,Same 60",
+            "note": "A fair comparison holds the evaluation cases fixed. Repeatedly resplitting until a desired winner appears consumes the test evidence."
+          },
+          {
+            "title": "Reproduce the baseline output",
+            "points": [
+              "Identify the training mean that DummyRegressor predicts.",
+              "Check that test predictions are constant."
+            ],
+            "kind": "code",
+            "visual": "baseline.predict(Xte)[:5]~# All equal the learned training constant",
+            "note": "Ask why the baseline can still have a fit method despite ignoring X. It learns its constant from training targets."
+          },
+          {
+            "title": "Fit and inspect Ridge",
+            "points": [
+              "Confirm alpha=1 for the supplied run.",
+              "Read the intercept and three learned coefficients."
+            ],
+            "kind": "code",
+            "visual": "print(regression.intercept_)~print(regression.coef_)",
+            "note": "The learned values should be reported as observed. They need not exactly equal 0, 3, -2 and 0 because of noise, finite samples and shrinkage."
+          },
+          {
+            "title": "Compare MAE on a shared test set",
+            "points": [
+              "Lower MAE means smaller average absolute response error here.",
+              "Include the target definition and n=60."
+            ],
+            "kind": "table",
+            "visual": "Report field,Value source;Target,Generator definition;Test count,60;Baseline MAE,Actual run;Ridge MAE,Actual run",
+            "note": "The slide deliberately leaves measured MAEs to the learner's run. No fabricated training output should enter the lecture's evidence table."
+          },
+          {
+            "title": "Compute a tiny MAE independently",
+            "points": [
+              "For observed [1,3,5] and predicted [2,2,4], errors are [1,1,1].",
+              "The MAE is 1 target unit."
+            ],
+            "kind": "formula",
+            "visual": "MAE = (1 + 1 + 1) / 3;MAE = 1",
+            "note": "This worked example verifies the metric convention without relying on a library call. It is separate from the 60-row notebook test."
+          },
+          {
+            "title": "Trace the prediction diagonal",
+            "points": [
+              "Equal axis values lie on the perfect-prediction reference.",
+              "Points above the diagonal indicate overprediction."
+            ],
+            "kind": "plot",
+            "visual": "predicted;observed;predicted",
+            "note": "This uses observed values on the horizontal axis and predictions vertically. Reverse-axis plots require a correspondingly different reading."
+          },
+          {
+            "title": "Residuals need a sign convention",
+            "points": [
+              "Compute r=y_test-prediction.",
+              "Positive values indicate underprediction with this definition."
+            ],
+            "kind": "code",
+            "visual": "residual = yte - prediction~print(residual[:5])",
+            "note": "Students should be able to explain the sign of one actual residual. Do not assume the sign convention from another plot or software package."
+          },
+          {
+            "title": "Residual plots reveal systematic patterns",
+            "points": [
+              "Plot residuals against predictions or a selected feature.",
+              "Curvature can suggest a missing relationship."
+            ],
+            "kind": "plot",
+            "visual": "residuals;predicted response;observed minus predicted",
+            "note": "A pattern suggests a diagnostic hypothesis, not proof of its cause. The supplied linear generator may show mostly noise rather than curvature."
+          },
+          {
+            "title": "The largest error deserves inspection",
+            "points": [
+              "Locate the largest absolute residual.",
+              "Inspect its inputs, observed response and prediction together."
+            ],
+            "kind": "code",
+            "visual": "i = np.argmax(np.abs(residual))~print(Xte[i], yte[i], prediction[i])",
+            "note": "One extreme case can expose a data problem, an unusual input or ordinary noise. Avoid deleting it merely because it worsens a score."
+          },
+          {
+            "title": "Known coefficients support a teaching check",
+            "points": [
+              "Compare learned weights with [3,-2,0].",
+              "Describe the difference without demanding exact equality."
+            ],
+            "kind": "table",
+            "visual": "Feature,Generating weight;First,3;Second,-2;Third,0",
+            "note": "The known mechanism is a special advantage of synthetic teaching data. Real-world interpretation usually needs additional evidence beyond a fitted coefficient."
+          },
+          {
+            "title": "A coefficient can depend on scale",
+            "points": [
+              "Multiplying one input by 100 changes its numerical coefficient.",
+              "Predictions can remain equivalent after a corresponding transformation."
+            ],
+            "kind": "formula",
+            "visual": "x_new = 100*x;w_new = w/100;w_new*x_new = w*x",
+            "note": "With regularization, changing scale can also change the fitted solution unless the preprocessing and penalty are handled appropriately."
+          },
+          {
+            "title": "Declare an alpha experiment first",
+            "points": [
+              "Choose a small predefined set of candidate alpha values.",
+              "Use a new training-only validation split for selection."
+            ],
+            "kind": "flow",
+            "visual": "Training partition;Inner validation;Choose alpha;Final test once",
+            "note": "This is an optional extension beyond the supplied fixed-alpha run. Do not use the existing final test to select the best alpha."
+          },
+          {
+            "title": "A median baseline is an extension",
+            "points": [
+              "Add DummyRegressor(strategy='median') under the same regression split.",
+              "Compare its MAE with the default mean baseline."
+            ],
+            "kind": "code",
+            "visual": "median_base = DummyRegressor(strategy='median')~median_base.fit(Xtr,ytr)",
+            "note": "The median minimizes training absolute loss, but the held-out comparison still needs measurement. Do not promise it always beats the mean on every test sample."
+          },
+          {
+            "title": "Restore the classification partition",
+            "points": [
+              "Use Atr, Ate, btr and bte for this task.",
+              "Do not substitute regression arrays because their lengths look familiar."
+            ],
+            "kind": "compare",
+            "visual": "Regression:Xtr Xte ytr yte;Classification:Atr Ate btr bte",
+            "note": "The notebook makes separate splits. Names and identities matter more than superficial dimensional similarity."
+          },
+          {
+            "title": "Inspect probability ranges and class order",
+            "points": [
+              "Each binary probability must lie between zero and one.",
+              "Confirm which class corresponds to the selected probability column."
+            ],
+            "kind": "code",
+            "visual": "print(classifier.classes_)~print(probability.min(), probability.max())",
+            "note": "This check catches mistaken assumptions about column order. It does not establish calibration or deployment reliability."
+          },
+          {
+            "title": "Reproduce the class decisions",
+            "points": [
+              "Use the supplied threshold 0.5 for the reference run.",
+              "Compare predicted labels with the classification test targets."
+            ],
+            "kind": "code",
+            "visual": "predicted = (probability >= 0.5)~print(accuracy_score(bte,predicted))",
+            "note": "Record the actual result. A threshold change is a separate experiment and needs a selection protocol if it supports a final performance claim."
+          },
+          {
+            "title": "Inspect a near-threshold case",
+            "points": [
+              "Find the probability closest to 0.5.",
+              "Explain how a small score change could alter its predicted class."
+            ],
+            "kind": "code",
+            "visual": "j = np.argmin(np.abs(probability-0.5))~print(probability[j], bte[j])",
+            "note": "Nearness to the chosen threshold is a decision-margin observation. It does not directly quantify epistemic uncertainty."
+          },
+          {
+            "title": "Compare error meaning across tasks",
+            "points": [
+              "A large response error can still have the correct binary sign.",
+              "A small error near zero can flip the class."
+            ],
+            "kind": "table",
+            "visual": "True response,Predicted response,Effect;10,2,Correct sign but large error;0.1,-0.1,Small error but wrong sign",
+            "note": "These synthetic examples show why the metrics cannot be ranked by numeric magnitude. The right task depends on the engineering decision."
+          },
+          {
+            "title": "Preserve separate result fields",
+            "points": [
+              "Record Ridge MAE and classification accuracy by name.",
+              "Include enough configuration to identify each target and split."
+            ],
+            "kind": "code",
+            "visual": "summary['ridge_test_mae']~summary['classification_accuracy']",
+            "note": "Fields should describe what they measure. A generic result field called score can conceal which task and metric were evaluated."
+          },
+          {
+            "title": "Export the actual evidence record",
+            "points": [
+              "Use the notebook's export cell to save the JSON.",
+              "Download the notebook and artifacts before ending the runtime."
+            ],
+            "kind": "flow",
+            "visual": "Observed metrics;Configuration;JSON export;Downloaded evidence",
+            "note": "A generated explanation must not substitute invented metrics. Students should be able to trace every result field to a visible execution output."
+          },
+          {
+            "title": "A peer explanation tests understanding",
+            "points": [
+              "Explain the baseline, objective and chosen metric without reading AI text.",
+              "State one reason a coefficient is not a causal effect."
+            ],
+            "kind": "tree",
+            "visual": "Baseline meaning;Fitting objective;Held-out metric;Interpretation limit",
+            "note": "This rehearsal supports oral assessment. A convincing explanation names mechanisms and assumptions rather than only library functions."
+          },
+          {
+            "title": "Check a real engineering task",
+            "points": [
+              "Would pass/fail inspection need classification or continuous defect severity?",
+              "Defend the target using the decision being made."
+            ],
+            "kind": "compare",
+            "visual": "Pass/fail action:Classification target;Severity estimate:Continuous response",
+            "note": "Both tasks can be useful, but they support different decisions. Students should identify what information a binary label discards."
+          },
+          {
+            "title": "The result card separates both claims",
+            "points": [
+              "Report one supported regression claim and one classification claim.",
+              "Add the synthetic-data limitation and a proposed external test."
+            ],
+            "kind": "table",
+            "visual": "Claim,Task-specific result;Evidence,Actual notebook output;Limit,Synthetic generator;Next test,New sampling condition",
+            "note": "The final explanation should distinguish algorithm demonstration from deployment validation. The next week studies the evaluation protocol in greater depth."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "week": 5,
+    "date": "2026-10-05",
+    "title": "Evaluation, validation and overfitting",
+    "notebook": "week-05-practice.ipynb",
+    "cover": "w05-cover.jpg",
+    "sources": [
+      [
+        "Classification and regression metrics",
+        "https://scikit-learn.org/stable/modules/model_evaluation.html"
+      ],
+      [
+        "Decision-threshold tuning",
+        "https://scikit-learn.org/stable/modules/classification_threshold.html"
+      ],
+      [
+        "Cross-validation",
+        "https://scikit-learn.org/stable/modules/cross_validation.html"
+      ]
+    ],
+    "hours": [
+      {
+        "title": "Confusion matrices and decision errors",
+        "outcome": "Calculate precision, recall, sensitivity and specificity with the correct denominators.",
+        "artifact": "A complete worked confusion matrix and an error-cost explanation.",
+        "roadmap": [
+          "Error accounting",
+          "Metric denominators",
+          "Threshold consequences"
+        ],
+        "slides": [
+          {
+            "title": "A decision has two independent labels",
+            "points": [
+              "Ground truth states whether the event actually occurred.",
+              "Prediction states the action assigned by the model's decision rule."
+            ],
+            "kind": "table",
+            "visual": "Dimension,Possible values;Truth,Event or no event;Decision,Positive or negative",
+            "note": "A predicted positive does not mean the event is truly present. Separating these two dimensions creates the four possible outcomes."
+          },
+          {
+            "title": "Define the positive event first",
+            "points": [
+              "Here positive means a component truly has a defect.",
+              "A positive prediction means the system flags it for inspection."
+            ],
+            "kind": "flow",
+            "visual": "Physical defect;Ground-truth label;Predicted flag;Inspection action",
+            "note": "Positive is a coding and decision convention, not a synonym for good. Students should state what class 1 means before computing any metric."
+          },
+          {
+            "title": "Four outcomes form one matrix",
+            "points": [
+              "Rows are actual classes and columns predicted classes.",
+              "The order [0,1] produces TN, FP, FN, TP when flattened row-wise."
+            ],
+            "kind": "matrix",
+            "visual": "90,10,5,15",
+            "note": "This is a synthetic worked example with 120 components. Repeat the axis convention explicitly because matrix order differs across tools and diagrams."
+          },
+          {
+            "title": "A true positive catches the event",
+            "points": [
+              "The component is defective and receives a positive flag.",
+              "In the worked example, TP=15."
+            ],
+            "kind": "compare",
+            "visual": "Actual:Defect present;Prediction:Flag for inspection",
+            "note": "Explain the two uses of true and positive: true means agreement with the actual class; positive means the declared event class."
+          },
+          {
+            "title": "A false positive raises a false alarm",
+            "points": [
+              "The component is not defective but receives a positive flag.",
+              "In the worked example, FP=10."
+            ],
+            "kind": "compare",
+            "visual": "Actual:No defect;Prediction:Flag for inspection",
+            "note": "A false alarm can consume inspection time, discard useful material or interrupt production. Its cost depends on the application."
+          },
+          {
+            "title": "A false negative misses the event",
+            "points": [
+              "The component is defective but receives a negative decision.",
+              "In the worked example, FN=5."
+            ],
+            "kind": "compare",
+            "visual": "Actual:Defect present;Prediction:No flag",
+            "note": "Missed events may be costly, but the course should not invent a universal cost ratio. Ask students to justify costs for a stated engineering context."
+          },
+          {
+            "title": "A true negative correctly clears a case",
+            "points": [
+              "The component is not defective and receives a negative decision.",
+              "In the worked example, TN=90."
+            ],
+            "kind": "compare",
+            "visual": "Actual:No defect;Prediction:No flag",
+            "note": "Correct negatives can dominate accuracy when the event is rare. They still matter in the workload and specificity calculations."
+          },
+          {
+            "title": "Totals expose the denominator",
+            "points": [
+              "There are 20 actual defects and 100 actual nondefects.",
+              "There are 25 predicted positives and 95 predicted negatives."
+            ],
+            "kind": "table",
+            "visual": "Set,Count;Actual positive,20;Actual negative,100;Predicted positive,25;Predicted negative,95",
+            "note": "Verify every total against the matrix. Precision and recall differ because they condition on different sets."
+          },
+          {
+            "title": "Precision conditions on the alarm",
+            "points": [
+              "Of all flagged components, what fraction are defective?",
+              "Precision is TP divided by TP+FP."
+            ],
+            "kind": "formula",
+            "visual": "precision = TP / (TP + FP);15 / (15 + 10) = 0.60",
+            "note": "The denominator is the predicted-positive set. Say among flags before presenting the formula to make the conditional meaning explicit."
+          },
+          {
+            "title": "Recall conditions on the real event",
+            "points": [
+              "Of all truly defective components, what fraction were flagged?",
+              "Recall is TP divided by TP+FN."
+            ],
+            "kind": "formula",
+            "visual": "recall = TP / (TP + FN);15 / (15 + 5) = 0.75",
+            "note": "The denominator is the actual-positive set. A model can have high recall while flagging many nondefective components."
+          },
+          {
+            "title": "Sensitivity is another name for recall",
+            "points": [
+              "For the declared positive class, sensitivity equals true positive rate.",
+              "It is not an additional independent metric."
+            ],
+            "kind": "pairs",
+            "visual": "Recall;Sensitivity;True positive rate;Same denominator: TP + FN",
+            "note": "Avoid teaching these three names as unrelated measures. The equality depends on keeping the same positive class and population."
+          },
+          {
+            "title": "Specificity conditions on actual negatives",
+            "points": [
+              "Of all nondefective components, what fraction were cleared?",
+              "Specificity is TN divided by TN+FP."
+            ],
+            "kind": "formula",
+            "visual": "specificity = TN / (TN + FP);90 / (90 + 10) = 0.90",
+            "note": "A specificity of 0.90 means 90 percent of actual negatives are correctly negative. It does not mean 90 percent of negative predictions are correct."
+          },
+          {
+            "title": "False-positive rate complements specificity",
+            "points": [
+              "FPR is FP divided by FP+TN.",
+              "With the same negative population, FPR equals 1-specificity."
+            ],
+            "kind": "formula",
+            "visual": "FPR = FP / (FP + TN);10 / 100 = 0.10",
+            "note": "State the complement relationship with its shared denominator. One minus precision is a different quantity conditioned on predicted positives."
+          },
+          {
+            "title": "Accuracy mixes both class populations",
+            "points": [
+              "Accuracy is TP+TN divided by all observations.",
+              "The worked example gives 105/120=0.875."
+            ],
+            "kind": "formula",
+            "visual": "accuracy = (TP + TN) / N;105 / 120 = 0.875",
+            "note": "Compare with precision 0.60 and recall 0.75. All three are correct yet answer different questions about the same decisions."
+          },
+          {
+            "title": "Rare events can make accuracy deceptive",
+            "points": [
+              "With 5 defects in 100 cases, predicting no defects gets 95 percent accuracy.",
+              "That rule has zero recall for defects."
+            ],
+            "kind": "matrix",
+            "visual": "95,0,5,0",
+            "note": "Precision is undefined for this no-positive-prediction rule, not inherently zero. Software may report a chosen zero_division convention."
+          },
+          {
+            "title": "F1 balances precision and recall",
+            "points": [
+              "The harmonic mean penalizes a low value in either component.",
+              "F1 omits true negatives from its formula."
+            ],
+            "kind": "formula",
+            "visual": "F1 = 2*TP / (2*TP + FP + FN);30 / (30 + 10 + 5) = 0.6667",
+            "note": "F1 is useful for some objectives but does not encode all costs or true-negative behavior. It should not be presented as universally best."
+          },
+          {
+            "title": "Undefined metrics need an explicit policy",
+            "points": [
+              "Precision has a zero denominator if no case is predicted positive.",
+              "Recall has a zero denominator if no actual positive is present."
+            ],
+            "kind": "table",
+            "visual": "Metric,Undefined when;Precision,TP + FP = 0;Recall,TP + FN = 0;Specificity,TN + FP = 0",
+            "note": "A reporting convention such as zero_division=0 makes software output finite but does not change the underlying mathematical undefinedness."
+          },
+          {
+            "title": "Negative predictive value has another condition",
+            "points": [
+              "Among negative predictions, NPV asks how many are truly negative.",
+              "It uses TN divided by TN+FN."
+            ],
+            "kind": "formula",
+            "visual": "NPV = TN / (TN + FN);90 / 95 = 0.9474 approximately",
+            "note": "Include this to prevent confusion with specificity. The conditioning set is predicted negatives rather than actual negatives."
+          },
+          {
+            "title": "Prevalence affects precision",
+            "points": [
+              "A rarer event can yield fewer true alarms relative to false alarms.",
+              "Sensitivity and specificity alone do not determine precision without prevalence."
+            ],
+            "kind": "formula",
+            "visual": "precision = TPR*pi / (TPR*pi + FPR*(1-pi));pi is event prevalence",
+            "note": "Explain the formula by expected counts in a population. It assumes the stated conditional rates apply in that population and does not guarantee they survive distribution shift."
+          },
+          {
+            "title": "A prevalence example changes the alarm quality",
+            "points": [
+              "In 1000 cases at 1 percent prevalence, use TPR=0.8 and FPR=0.1.",
+              "Expected TP=8 and FP=99 give precision about 0.0748."
+            ],
+            "kind": "table",
+            "visual": "Quantity,Expected count;Actual positive,10;TP,8;Actual negative,990;FP,99",
+            "note": "These are expected synthetic counts under stipulated rates. The example shows why a seemingly good sensitivity can coexist with many false alarms."
+          },
+          {
+            "title": "Error costs connect metrics to action",
+            "points": [
+              "Suppose a false negative costs 20 units and a false positive costs 1.",
+              "The worked matrix then incurs 5*20+10*1=110 units."
+            ],
+            "kind": "formula",
+            "visual": "cost = C_FN*FN + C_FP*FP;20*5 + 1*10 = 110",
+            "note": "These costs are illustrative, not an empirical industrial estimate. Real costs and capacity constraints must come from the decision context."
+          },
+          {
+            "title": "A threshold changes the alarm set",
+            "points": [
+              "Lowering the threshold adds predicted-positive cases.",
+              "Recall cannot decrease on fixed scores, while precision need not change monotonically."
+            ],
+            "kind": "interactive",
+            "visual": "threshold",
+            "note": "The live example holds scores and truths fixed. Require students to predict the effect on TP, FP and FN before moving the threshold."
+          },
+          {
+            "title": "A score and a decision are different",
+            "points": [
+              "The fitted model provides scores or probability estimates.",
+              "A threshold translates those scores into actions."
+            ],
+            "kind": "flow",
+            "visual": "Fitted model;Scores;Threshold rule;Decisions",
+            "note": "A different threshold can produce a different confusion matrix without retraining. Distinguish model evaluation from policy evaluation."
+          },
+          {
+            "title": "Check: which denominator is correct?",
+            "points": [
+              "Among all actual defects asks for recall.",
+              "Among all flagged components asks for precision."
+            ],
+            "kind": "compare",
+            "visual": "Actual defects:TP + FN;Flagged cases:TP + FP",
+            "note": "Ask for the denominator in words first. A student who memorizes the formula but cannot name the population has not mastered the metric."
+          },
+          {
+            "title": "A matrix needs counts as well as ratios",
+            "points": [
+              "Report TP, FP, FN and TN beside the metrics.",
+              "Small counts make ratios unstable and uncertain."
+            ],
+            "kind": "matrix",
+            "visual": "90,10,5,15",
+            "note": "This revisits the same worked population to connect reporting with uncertainty. It is a deliberate worked-example continuation rather than a new measurement result."
+          },
+          {
+            "title": "The decision requirement precedes optimization",
+            "points": [
+              "Decide which event, errors and operating constraints matter.",
+              "Choose evaluation metrics that express those requirements."
+            ],
+            "kind": "flow",
+            "visual": "Positive event;Error costs;Operating rule;Evidence report",
+            "note": "The hour's artifact is the worked matrix with a short cost rationale. Students must avoid selecting a metric only because it makes their model look good."
+          }
+        ]
+      },
+      {
+        "title": "Validation, overfitting and threshold selection",
+        "outcome": "Separate fitting, selection and final evaluation without consuming test evidence.",
+        "artifact": "A validation-only threshold choice and a frozen test protocol.",
+        "roadmap": [
+          "Selection boundaries",
+          "Overfitting diagnosis",
+          "Guided threshold search"
+        ],
+        "slides": [
+          {
+            "title": "Training and evaluation answer different questions",
+            "points": [
+              "Training measures fit to known examples.",
+              "Evaluation estimates behavior on a declared unseen sample."
+            ],
+            "kind": "compare",
+            "visual": "Training:Optimize parameters;Evaluation:Assess a frozen procedure",
+            "note": "A training score is not useless, but it cannot replace unseen evidence. The gap can provide a diagnostic rather than a final guarantee."
+          },
+          {
+            "title": "Overfitting includes adaptive human choices",
+            "points": [
+              "Repeatedly selecting features against the same held-out score uses that evidence.",
+              "Tuning a threshold is also model selection."
+            ],
+            "kind": "tree",
+            "visual": "Feature choices;Model settings;Threshold choice;Selection overfits evidence",
+            "note": "The selection process includes the human or AI assistant making changes. Hiding those changes from a parameter list does not preserve test independence."
+          },
+          {
+            "title": "Three partitions separate three jobs",
+            "points": [
+              "Train estimates model parameters.",
+              "Validation selects choices before one final test assessment."
+            ],
+            "kind": "bars",
+            "visual": "Training rows:480;Validation rows:160;Test rows:160",
+            "note": "These are the supplied Week 5 notebook's 800-row partition counts. The class ratio is nominally imbalanced and should be checked from actual generated labels."
+          },
+          {
+            "title": "A clean selection loop excludes test labels",
+            "points": [
+              "Fit candidates on training, then compare them using validation.",
+              "Freeze all choices before producing test predictions."
+            ],
+            "kind": "flow",
+            "visual": "Fit training;Score validation;Freeze choice;Evaluate test",
+            "note": "Ask where a threshold belongs. It is selected on validation, even if it is not stored inside the estimator object."
+          },
+          {
+            "title": "A reused test set becomes selection evidence",
+            "points": [
+              "Looking at test scores after every edit affects future choices.",
+              "Renaming it test does not restore independence."
+            ],
+            "kind": "timeline",
+            "visual": "Candidate 1 test;Edit after score;Candidate 2 test;Adaptive selection",
+            "note": "Distinguish an honest exploratory analysis from a fresh final evaluation. The solution is a protected evaluation protocol, not pretending the earlier consultation did not happen."
+          },
+          {
+            "title": "Cross-validation rotates validation folds",
+            "points": [
+              "Each fold trains on the remaining folds and validates on the held-out fold.",
+              "Preprocessing must be refitted inside each fold."
+            ],
+            "kind": "table",
+            "visual": "Round,Validation fold;1,A;2,B;3,C;4,D",
+            "note": "CV provides repeated internal validation under its assumptions. A group or time-aware task requires appropriate fold construction rather than arbitrary shuffling."
+          },
+          {
+            "title": "Fold averages hide variation",
+            "points": [
+              "Report the distribution of fold scores as well as an average when useful.",
+              "Correlated folds do not behave like independent new studies."
+            ],
+            "kind": "bars",
+            "visual": "Schematic fold A:0.70;Schematic fold B:0.76;Schematic fold C:0.73",
+            "note": "These values are illustrative, not computed CV outputs. Avoid interpreting fold standard deviation as a universal confidence interval for deployment performance."
+          },
+          {
+            "title": "Learning curves separate possible problems",
+            "points": [
+              "Low training error with much higher validation error suggests overfitting.",
+              "High errors in both can indicate underfitting or a difficult task."
+            ],
+            "kind": "plot",
+            "visual": "learning;model flexibility;error",
+            "note": "These are qualitative diagnostic shapes, not actual training logs. Distribution shift or flawed splits can also cause a gap."
+          },
+          {
+            "title": "Regularization can reduce flexibility",
+            "points": [
+              "Penalizing large weights changes the bias-variance trade-off.",
+              "Improvement must be assessed with selection-safe evidence."
+            ],
+            "kind": "compare",
+            "visual": "More flexible:Potentially lower train loss;More constrained:Potentially more bias",
+            "note": "Do not promise that regularization always improves validation error. The effect depends on the task, representation, noise and penalty."
+          },
+          {
+            "title": "A validation grid declares the search",
+            "points": [
+              "Fix candidate thresholds before consulting final test outcomes.",
+              "The notebook examines 19 values from 0.05 through 0.95."
+            ],
+            "kind": "formula",
+            "visual": "thresholds = linspace(0.05, 0.95, 19);Choose using validation F1 only",
+            "note": "A threshold grid is a hyperparameter search. Even though it seems lightweight, it can overfit validation noise."
+          },
+          {
+            "title": "Select using the stated objective",
+            "points": [
+              "The supplied example chooses the largest validation F1.",
+              "This does not establish a universal operational optimum."
+            ],
+            "kind": "table",
+            "visual": "Candidate,Validation F1;0.3,0.62;0.5,0.70;0.7,0.65",
+            "note": "These three numbers are a small hand-created selection example, not the notebook's output. The selected candidate here is 0.5."
+          },
+          {
+            "title": "Tie handling is part of the rule",
+            "points": [
+              "numpy argmax returns the first maximum in the ordered array.",
+              "Record the candidate grid order and the tie policy."
+            ],
+            "kind": "code",
+            "visual": "scores = np.array([...])~threshold = thresholds[scores.argmax()]",
+            "note": "For an ascending grid, an exact tie selects the first tied threshold. State the convention rather than suggesting it encodes a scientific preference."
+          },
+          {
+            "title": "The final test assesses the selected rule",
+            "points": [
+              "Apply the chosen threshold to test probabilities once.",
+              "Recompute the test confusion counts using that frozen rule."
+            ],
+            "kind": "flow",
+            "visual": "Chosen validation threshold;Test scores;Frozen decisions;Final counts",
+            "note": "Test F1 need not match validation F1. Sampling variation and selection bias can cause a difference without implying a software error."
+          },
+          {
+            "title": "Threshold choice can reflect a constraint",
+            "points": [
+              "An application might demand minimum validation recall.",
+              "Feasibility, uncertainty and inspection capacity still matter."
+            ],
+            "kind": "compare",
+            "visual": "Demonstration objective:Max validation F1;Operational objective:Declared cost or constraint",
+            "note": "This is an alternative protocol, not an instruction to change the supplied notebook silently. A safety requirement needs a defensible statistical treatment."
+          },
+          {
+            "title": "Ranking curves do not choose the action alone",
+            "points": [
+              "ROC uses TPR against FPR across thresholds.",
+              "A precision-recall view focuses on alarm quality and event capture."
+            ],
+            "kind": "plot",
+            "visual": "roc;false-positive rate;true-positive rate",
+            "note": "The figure is schematic. Explain how prevalence and operating costs affect interpretation, especially for rare events."
+          },
+          {
+            "title": "Open the Week 5 notebook",
+            "points": [
+              "Use the synthetic 800-row binary classification problem.",
+              "Keep the test partition outside threshold selection."
+            ],
+            "kind": "code",
+            "visual": "Notebook: week-05-practice.ipynb~Task: imbalanced synthetic classification~Positive class: less frequent event",
+            "note": "Guided practice starts now. The model is a small CPU logistic regression demonstration, with no API key or paid tool requirement."
+          },
+          {
+            "title": "Inspect the nominal imbalance",
+            "points": [
+              "The generator requests weights [0.85,0.15].",
+              "Label noise and sampling mean actual counts should be inspected."
+            ],
+            "kind": "bars",
+            "visual": "Nominal class 0 share:85;Nominal class 1 share:15",
+            "note": "These are requested proportions, not a claim about exact realized counts. Students should count labels in the generated data and each partition."
+          },
+          {
+            "title": "Reconstruct the 60-20-20 split",
+            "points": [
+              "The first split reserves 40 percent of rows.",
+              "The second divides that remainder equally into validation and test."
+            ],
+            "kind": "flow",
+            "visual": "800 total;480 training;160 validation;160 test",
+            "note": "Both splits use stratification in the supplied code. Distinguish count preservation from solving leakage or time-order issues."
+          },
+          {
+            "title": "Fit logistic regression on training",
+            "points": [
+              "Use the supplied maximum-iteration setting.",
+              "Validation receives probability estimates from the fitted model."
+            ],
+            "kind": "code",
+            "visual": "model.fit(Xtr,ytr)~pv = model.predict_proba(Xva)[:,1]",
+            "note": "Validation labels appear only in the selection calculation. The fitting path must not include validation or test outcomes."
+          },
+          {
+            "title": "Compute validation F1 for each threshold",
+            "points": [
+              "Turn each threshold into a validation prediction vector.",
+              "Compare it with yva, not with yte."
+            ],
+            "kind": "code",
+            "visual": "f1_score(yva, pv >= t, zero_division=0)~# Repeat over the predefined grid",
+            "note": "A wrong target array can yield an invalid comparison or a shape error. The conceptual safeguard is to trace each array's partition identity."
+          },
+          {
+            "title": "Plot the selection evidence",
+            "points": [
+              "The x-axis is threshold and the y-axis validation F1.",
+              "Mark the threshold chosen by the declared rule."
+            ],
+            "kind": "plot",
+            "visual": "threshold;decision threshold;validation F1",
+            "note": "The lecture curve is schematic. The actual plotted scores must come from the student's executed grid."
+          },
+          {
+            "title": "Lock the selected threshold",
+            "points": [
+              "Save the chosen value and grid alongside the model configuration.",
+              "Do not update it after viewing test errors."
+            ],
+            "kind": "flow",
+            "visual": "Validation result;Selected threshold;Frozen record;Final test",
+            "note": "If a test review motivates a new version, evaluate that new version with appropriately fresh evidence. Keep the distinction between exploration and final reporting honest."
+          },
+          {
+            "title": "Compute test probabilities only for assessment",
+            "points": [
+              "Extract test scores from the fitted model.",
+              "Apply the frozen threshold without refitting."
+            ],
+            "kind": "code",
+            "visual": "pt = model.predict_proba(Xte)[:,1]~predicted = pt >= threshold",
+            "note": "Predicting test scores does not itself use test labels. The protected boundary concerns selection or fitting influenced by held-out information."
+          },
+          {
+            "title": "Name all four test counts",
+            "points": [
+              "With labels=[0,1], ravel gives TN, FP, FN and TP.",
+              "Check that their sum equals 160."
+            ],
+            "kind": "code",
+            "visual": "tn,fp,fn,tp = confusion_matrix(~    yte,predicted,labels=[0,1]).ravel()",
+            "note": "The explicit label order makes the shape robust even if one class is absent. Metric denominators can still be zero in other datasets."
+          },
+          {
+            "title": "Explain the selected rule's limitation",
+            "points": [
+              "A best grid value can be sensitive to one validation sample.",
+              "Report the search protocol, not just the winning score."
+            ],
+            "kind": "compare",
+            "visual": "Winning number:One selected threshold;Reproducible evidence:Grid plus split plus objective",
+            "note": "Students should say why the chosen value is dataset-specific. This is more informative than treating a single threshold as a law."
+          },
+          {
+            "title": "Preserve the H3 checkpoint",
+            "points": [
+              "Save scores, threshold, partition descriptions and observed counts.",
+              "H3 will reconcile metrics and inspect failures."
+            ],
+            "kind": "flow",
+            "visual": "Grid and scores;Frozen threshold;Test counts;Evidence checkpoint",
+            "note": "Keep validation and test results in distinct labeled fields. A copied screenshot without configuration cannot support a reproducible threshold-selection claim."
+          }
+        ]
+      },
+      {
+        "title": "Evaluation lab and error-cost report",
+        "outcome": "Reproduce threshold selection and reconcile every reported test metric.",
+        "artifact": "Executed notebook, evidence JSON and a justified operating-point report.",
+        "roadmap": [
+          "Select on validation",
+          "Reconcile test metrics",
+          "Report limitations"
+        ],
+        "slides": [
+          {
+            "title": "Restore the information boundary",
+            "points": [
+              "Training fits the model and validation selects the threshold.",
+              "Test outcomes assess the frozen decision rule."
+            ],
+            "kind": "flow",
+            "visual": "Training fit;Validation choice;Frozen rule;Final assessment",
+            "note": "Have students point to the actual arrays at each boundary before resuming. A conceptual label without code-array tracing can hide leakage."
+          },
+          {
+            "title": "Restart and run through setup",
+            "points": [
+              "Record the actual runtime and package versions.",
+              "Regenerate data in the supplied cell order."
+            ],
+            "kind": "code",
+            "visual": "Restart runtime~Run setup~Generate the original synthetic dataset",
+            "note": "A fixed seed does not compensate for a different sequence of random-number calls. Keep the reference execution order intact."
+          },
+          {
+            "title": "Inspect the partition sizes",
+            "points": [
+              "Confirm 480 training, 160 validation and 160 test rows.",
+              "Count class labels within each partition."
+            ],
+            "kind": "table",
+            "visual": "Partition,Rows;Training,480;Validation,160;Test,160",
+            "note": "The size check is exact for the supplied construction. Class counts must come from the actual labels rather than the nominal 15 percent target weight."
+          },
+          {
+            "title": "Verify the declared positive class",
+            "points": [
+              "Explain what class 1 means in this synthetic problem.",
+              "Preserve that meaning in every metric and plot."
+            ],
+            "kind": "compare",
+            "visual": "Positive class:Less frequent generated event;Negative class:Other generated class",
+            "note": "The synthetic labels do not automatically correspond to a particular clinical or industrial event. Any analogy must be declared rather than treated as data provenance."
+          },
+          {
+            "title": "Fit without validation or test rows",
+            "points": [
+              "Trace the model.fit call and its two arguments.",
+              "Both arguments must belong to the training partition."
+            ],
+            "kind": "code",
+            "visual": "model.fit(Xtr,ytr)~# No Xva or Xte in fitting",
+            "note": "Students should inspect what the code does, not merely whether its variable names look reassuring. Array provenance determines the actual protocol."
+          },
+          {
+            "title": "Reproduce the predefined search",
+            "points": [
+              "Generate the original 19 thresholds.",
+              "Compute F1 using validation labels only."
+            ],
+            "kind": "code",
+            "visual": "thresholds = np.linspace(.05,.95,19)~scores = [f1_score(yva,pv>=t,~    zero_division=0) for t in thresholds]",
+            "note": "Read the array identities carefully. The same metric function can produce a clean-looking number under an invalid partition choice."
+          },
+          {
+            "title": "Inspect all candidates before the winner",
+            "points": [
+              "View the validation curve and the selected grid position.",
+              "Record ties if the maximum occurs at multiple values."
+            ],
+            "kind": "plot",
+            "visual": "threshold;candidate threshold;validation F1",
+            "note": "The actual grid can have flat regions because changing a threshold does not always cross an observed score. A smooth illustrative curve is not a measured result."
+          },
+          {
+            "title": "Save the threshold before testing",
+            "points": [
+              "Store the chosen threshold with its selection objective.",
+              "Include the split seed and candidate grid in the explanation."
+            ],
+            "kind": "table",
+            "visual": "Field,Meaning;Threshold,Selected on validation;Objective,Highest validation F1;Grid,0.05 to 0.95;Seed,Actual notebook value",
+            "note": "The supplied evidence JSON may not contain every audit detail. Preserve missing protocol details in the notebook narrative rather than claiming an export records fields it does not include."
+          },
+          {
+            "title": "Compute a frozen test decision vector",
+            "points": [
+              "Apply the same threshold to all test scores.",
+              "Do not adjust it after seeing individual errors."
+            ],
+            "kind": "code",
+            "visual": "pt = model.predict_proba(Xte)[:,1]~predicted = pt >= threshold",
+            "note": "Explain the distinction between inspecting a failure for understanding and using it to retune a final reported model."
+          },
+          {
+            "title": "Sum the four confusion counts",
+            "points": [
+              "TN+FP+FN+TP must equal the number of test observations.",
+              "The positive and negative subtotals must match yte."
+            ],
+            "kind": "formula",
+            "visual": "TN + FP + FN + TP = 160;TP + FN = actual positives;TN + FP = actual negatives",
+            "note": "This is an arithmetic consistency check. It does not prove the underlying data or labels are correct, but it catches accounting mistakes."
+          },
+          {
+            "title": "Recompute precision manually",
+            "points": [
+              "Divide actual true-positive count by all predicted positives.",
+              "State a policy if no case is predicted positive."
+            ],
+            "kind": "formula",
+            "visual": "precision = TP / (TP + FP);Undefined if TP + FP = 0",
+            "note": "Match the manual result to the library convention. Reporting zero because of zero_division is different from observing a well-defined ratio equal to zero."
+          },
+          {
+            "title": "Recompute recall and sensitivity",
+            "points": [
+              "Divide true positives by actual positives.",
+              "Confirm that both metric names yield the same value."
+            ],
+            "kind": "formula",
+            "visual": "recall = sensitivity;recall = TP / (TP + FN)",
+            "note": "A discrepancy indicates inconsistent class definitions, denominators or implementation. It is not a meaningful difference between two independent measures."
+          },
+          {
+            "title": "Recompute specificity independently",
+            "points": [
+              "Divide true negatives by actual negatives.",
+              "Do not substitute TN/(TN+FN)."
+            ],
+            "kind": "formula",
+            "visual": "specificity = TN / (TN + FP);TN / (TN + FN) is NPV",
+            "note": "Students often confuse specificity and negative predictive value because both involve TN. Name the conditioning set in words to disambiguate them."
+          },
+          {
+            "title": "Recompute F1 from counts",
+            "points": [
+              "Use 2TP divided by 2TP+FP+FN.",
+              "Compare it with the precision-recall harmonic mean when defined."
+            ],
+            "kind": "formula",
+            "visual": "F1 = 2*TP / (2*TP + FP + FN)",
+            "note": "The two expressions agree when their relevant denominators permit the calculation. Handle empty or undefined cases transparently."
+          },
+          {
+            "title": "Inspect a false negative if present",
+            "points": [
+              "Find a test case with true label 1 and predicted label 0.",
+              "Record its score relative to the chosen threshold."
+            ],
+            "kind": "code",
+            "visual": "missed = np.flatnonzero((yte==1) & (~predicted))~# Inspect one only if missed is nonempty",
+            "note": "If no false negative occurs in this run, report that observation and its limited sample scope. Never fabricate a missed case."
+          },
+          {
+            "title": "Inspect a false positive if present",
+            "points": [
+              "Find a test case with true label 0 and predicted label 1.",
+              "Explain why the action is a false alarm."
+            ],
+            "kind": "code",
+            "visual": "alarms = np.flatnonzero((yte==0) & predicted)~# Inspect one only if alarms is nonempty",
+            "note": "The model may score a negative case highly because distributions overlap or features are insufficient. A plausible explanation remains a hypothesis."
+          },
+          {
+            "title": "Compare errors with a declared cost model",
+            "points": [
+              "Choose illustrative FN and FP costs before a new comparison.",
+              "Compute cost from the frozen test matrix without changing the rule."
+            ],
+            "kind": "formula",
+            "visual": "total cost = C_FN*FN + C_FP*FP;Declare units and assumptions",
+            "note": "This is a cost interpretation of existing outcomes, not a license to optimize costs on the same final test. Any new operating rule needs selection-safe evidence."
+          },
+          {
+            "title": "Explore thresholds without relabeling evidence",
+            "points": [
+              "Use the live synthetic demo to understand the trade-off.",
+              "Keep the notebook's final test protocol unchanged."
+            ],
+            "kind": "interactive",
+            "visual": "threshold",
+            "note": "The demo is deliberately separate from the notebook data. It permits free exploration without consuming the notebook's final held-out sample."
+          },
+          {
+            "title": "Selection uncertainty deserves a limitation",
+            "points": [
+              "A small validation set can favor a threshold by chance.",
+              "A narrow winning margin may not indicate a stable optimum."
+            ],
+            "kind": "compare",
+            "visual": "Observed:Best candidate on this split;Unproven:Best threshold in deployment",
+            "note": "Students can propose repeated internal validation or more data as future work. Do not add a claimed uncertainty interval that has not been calculated."
+          },
+          {
+            "title": "Class shift can alter alarm quality",
+            "points": [
+              "A different event prevalence changes expected precision under fixed conditional rates.",
+              "Conditional rates may also shift in a new environment."
+            ],
+            "kind": "tree",
+            "visual": "New population;New prevalence;Possible rate shift;Reassessment",
+            "note": "The prevalence formula is conditional on rate transportability. The real deployment problem may violate that assumption as well."
+          },
+          {
+            "title": "Subgroup errors need counts",
+            "points": [
+              "A subgroup ratio based on few positives can be unstable.",
+              "Report the subgroup definition and denominator."
+            ],
+            "kind": "table",
+            "visual": "Group,Needed evidence;Machine type,Positive count;Collection site,Negative count;Time period,Sample window",
+            "note": "This is an extension plan, not a claim that the synthetic notebook contains meaningful demographic or machine subgroups."
+          },
+          {
+            "title": "Export the actual test summary",
+            "points": [
+              "Preserve threshold, confusion counts and metrics from execution.",
+              "Download the JSON and notebook before ending the runtime."
+            ],
+            "kind": "code",
+            "visual": "summary['threshold']~summary['TP'], summary['FP']~summary['FN'], summary['TN']",
+            "note": "The supplied export stores observed results. Add explanatory narrative for protocol details that are not included automatically."
+          },
+          {
+            "title": "Check consistency across artifacts",
+            "points": [
+              "The notebook, JSON and report must describe the same run.",
+              "Separate validation selection scores from final test metrics."
+            ],
+            "kind": "flow",
+            "visual": "Notebook execution;JSON summary;Written report;Matching run identity",
+            "note": "A copied older plot can contradict a new JSON file. Evidence consistency is part of reproducibility, not cosmetic presentation."
+          },
+          {
+            "title": "Explain why accuracy is insufficient here",
+            "points": [
+              "Name the event prevalence and error types that accuracy compresses.",
+              "Use the actual confusion counts rather than a slogan."
+            ],
+            "kind": "compare",
+            "visual": "Accuracy:One aggregate ratio;Decision analysis:Counts and consequences",
+            "note": "A complete response explains which mistakes matter and how many occur. Saying imbalanced data is bad is too vague."
+          },
+          {
+            "title": "Defend the choice orally",
+            "points": [
+              "Explain why the threshold came from validation.",
+              "State one limitation and one concrete follow-up evaluation."
+            ],
+            "kind": "flow",
+            "visual": "Selection boundary;Observed outcomes;Known limitation;Next evaluation",
+            "note": "This is preparation for written and oral assessment. Students should explain the information boundary without relying on memorized function calls."
+          },
+          {
+            "title": "The report closes the evidence loop",
+            "points": [
+              "Include positive class, split, threshold, counts and metrics.",
+              "End with cost assumptions and a restrained claim."
+            ],
+            "kind": "table",
+            "visual": "Required item,Why;Positive class,Metric meaning;Split,Information boundary;Counts,Denominator evidence;Limitation,Claim boundary",
+            "note": "The result card forms an in-class checkpoint and can inform the designated Homework milestone. It is not an additional weekly graded assignment."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "week": 6,
+    "date": "2026-10-12",
+    "title": "Unsupervised learning and representation",
+    "notebook": "week-06-practice.ipynb",
+    "cover": "w06-cover.jpg",
+    "sources": [
+      [
+        "PCA and decomposition",
+        "https://scikit-learn.org/stable/modules/decomposition.html#pca"
+      ],
+      [
+        "K-means clustering",
+        "https://scikit-learn.org/stable/modules/clustering.html#k-means"
+      ],
+      [
+        "Silhouette coefficient",
+        "https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html"
+      ]
+    ],
+    "hours": [
+      {
+        "title": "Representations and principal components",
+        "outcome": "Explain PCA as a training-fitted geometric projection with explicit information loss.",
+        "artifact": "A hand-computed PCA example and an interpretation boundary.",
+        "roadmap": [
+          "Geometry and scaling",
+          "PCA mechanism",
+          "Projection limitations"
+        ],
+        "slides": [
+          {
+            "title": "Unsupervised learning receives inputs",
+            "points": [
+              "The fitting procedure receives X without target labels.",
+              "Discovering structure does not automatically give it semantic meaning."
+            ],
+            "kind": "compare",
+            "visual": "Supervised:X and y for fitting;Unsupervised:X for fitting",
+            "note": "The notebook retains hidden generating labels only for optional teaching comparisons. They must not enter the unsupervised fitting path."
+          },
+          {
+            "title": "A representation defines similarity",
+            "points": [
+              "Distance depends on the features, units and transformation.",
+              "Changing the representation can change the groups we observe."
+            ],
+            "kind": "flow",
+            "visual": "Measurements;Representation;Distance;Observed structure",
+            "note": "Ask whether clustering the same objects by mass and color asks the same question. Similarity is a modeling choice, not an intrinsic universal property."
+          },
+          {
+            "title": "A high-dimensional point is one observation",
+            "points": [
+              "Five features place each notebook observation in five-dimensional space.",
+              "A two-axis display shows only a projection of that information."
+            ],
+            "kind": "table",
+            "visual": "Sample,F1,F2,F3,F4,F5;A,1,2,0,1,3;B,2,1,1,0,4;C,0,3,2,1,2",
+            "note": "The displayed rows are a schematic matrix, not sampled notebook outputs. Students should keep observation count separate from feature dimension."
+          },
+          {
+            "title": "Euclidean distance combines coordinate differences",
+            "points": [
+              "Squared distance sums squared differences over features.",
+              "Features with large numerical ranges can dominate it."
+            ],
+            "kind": "formula",
+            "visual": "d(x,z)^2 = sum_j (x_j - z_j)^2",
+            "note": "A dimension with large units can overpower the rest without being physically more important. Scaling encodes an assumption about comparison."
+          },
+          {
+            "title": "Standardization changes the geometry",
+            "points": [
+              "Each feature uses a training mean and scale.",
+              "Equalized variance is a modeling choice rather than a physical law."
+            ],
+            "kind": "compare",
+            "visual": "Raw space:Units set relative influence;Standardized space:Training scales set influence",
+            "note": "A standardized feature with tiny measurement noise can still be problematic. Domain knowledge should determine whether scaling is appropriate."
+          },
+          {
+            "title": "Unsupervised preprocessing can also leak",
+            "points": [
+              "A scaler or PCA fitted on test rows learns from held-out inputs.",
+              "A new-observation evaluation should fit these stages on training only."
+            ],
+            "kind": "flow",
+            "visual": "Training X;Fit scaler and PCA;Frozen transforms;New X",
+            "note": "Labels are not required for leakage. Whether a transductive procedure is valid depends on the stated task, which here is held-out transformation and prediction."
+          },
+          {
+            "title": "PCA finds directions of variation",
+            "points": [
+              "The first component maximizes projected training variance under unit length.",
+              "Later components are orthogonal directions with remaining variance."
+            ],
+            "kind": "formula",
+            "visual": "maximize Var(X_centered * v);subject to ||v|| = 1",
+            "note": "PCA is unsupervised because this objective uses X rather than y. Large variation need not be useful for a later target."
+          },
+          {
+            "title": "Centering establishes the origin",
+            "points": [
+              "Subtract the training feature mean before finding directions.",
+              "New observations use that same stored mean."
+            ],
+            "kind": "flow",
+            "visual": "Training mean;Centered training matrix;Principal directions;Frozen projection",
+            "note": "scikit-learn PCA centers but does not automatically standardize feature variance. The notebook therefore uses a separate StandardScaler first."
+          },
+          {
+            "title": "Covariance summarizes linear co-variation",
+            "points": [
+              "Positive covariance indicates coordinates tend to increase together.",
+              "The covariance matrix is symmetric."
+            ],
+            "kind": "table",
+            "visual": "Covariance,x1,x2;x1,2,1;x2,1,2",
+            "note": "This stipulated two-feature covariance is an exact worked example, not the computed covariance of the notebook's five-feature dataset."
+          },
+          {
+            "title": "Eigenvectors give principal directions",
+            "points": [
+              "For covariance [[2,1],[1,2]], the first direction is (1,1)/sqrt(2).",
+              "Its eigenvalue is 3."
+            ],
+            "kind": "formula",
+            "visual": "C * [1,1] = [3,3];v1 = (1,1) / sqrt(2);lambda1 = 3",
+            "note": "Verify the multiplication explicitly. A normalized vector is needed to interpret variance along the direction."
+          },
+          {
+            "title": "The second direction is orthogonal",
+            "points": [
+              "The direction (1,-1)/sqrt(2) has eigenvalue 1.",
+              "It is perpendicular to the first principal component."
+            ],
+            "kind": "formula",
+            "visual": "v2 = (1,-1) / sqrt(2);lambda2 = 1;v1 dot v2 = 0",
+            "note": "The two directions form an orthonormal basis in this two-dimensional example. The sign of either component can be reversed without changing the subspace."
+          },
+          {
+            "title": "Explained variance is a proportion",
+            "points": [
+              "The first component retains 3/(3+1)=75 percent of variance.",
+              "Retaining variance is not classification accuracy."
+            ],
+            "kind": "bars",
+            "visual": "PC1 variance:3;PC2 variance:1",
+            "note": "The denominator is total variance in this covariance example. A 75 percent explained-variance ratio does not mean 75 percent correct predictions."
+          },
+          {
+            "title": "Projection computes a coordinate",
+            "points": [
+              "For a centered point (2,0), PC1 score is sqrt(2).",
+              "Projection keeps the component along the selected direction."
+            ],
+            "kind": "formula",
+            "visual": "score = (2,0) dot (1,1)/sqrt(2);score = sqrt(2)",
+            "note": "This is one centered observation in the worked two-dimensional geometry. The scalar score is a coordinate in the new basis, not a class label."
+          },
+          {
+            "title": "Reconstruction reveals lost information",
+            "points": [
+              "Reconstructing that point from PC1 alone yields (1,1).",
+              "The residual (1,-1) lies in the discarded direction."
+            ],
+            "kind": "table",
+            "visual": "Quantity,Coordinates;Original centered point,(2  0);One-PC reconstruction,(1  1);Residual,(1  -1)",
+            "note": "The squared reconstruction error is 2. This calculation makes information loss concrete instead of presenting dimensionality reduction as free compression."
+          },
+          {
+            "title": "Projection angle changes retained variance",
+            "points": [
+              "Rotate the projection line and inspect the projected spread.",
+              "The largest-variance direction defines PC1 for the displayed points."
+            ],
+            "kind": "interactive",
+            "visual": "pca",
+            "note": "The live demo uses a small explicit synthetic point set, not the notebook's fitted PCA. The displayed angle optimum follows its two-feature covariance."
+          },
+          {
+            "title": "SVD computes the same geometry",
+            "points": [
+              "A centered matrix can be decomposed as U S V-transpose.",
+              "Columns of V encode principal directions."
+            ],
+            "kind": "formula",
+            "visual": "X_centered = U * S * V^T;variance_j = singular_value_j^2 / (n-1)",
+            "note": "The variance relation uses sample covariance. Keep it distinct from StandardScaler's population-variance convention introduced in Week 2."
+          },
+          {
+            "title": "PCA signs can flip harmlessly",
+            "points": [
+              "A component and its negative describe the same axis.",
+              "A mirrored scatter plot can preserve identical geometry."
+            ],
+            "kind": "compare",
+            "visual": "Component v:Scores t;Component -v:Scores -t",
+            "note": "A sign flip is not necessarily a reproducibility failure. Compare explained variance and subspaces before concluding that two implementations disagree."
+          },
+          {
+            "title": "Two components can hide separation",
+            "points": [
+              "Points separated in discarded coordinates can overlap in a 2D plot.",
+              "Visual overlap does not prove equality in the original feature space."
+            ],
+            "kind": "plot",
+            "visual": "projection;PC1;PC2",
+            "note": "The graphic is schematic and illustrates information loss. The actual notebook fits clustering in the original standardized five-dimensional space."
+          },
+          {
+            "title": "High variance need not be useful signal",
+            "points": [
+              "Lighting or sensor drift can dominate observed variation.",
+              "A small-variance direction may carry task-relevant information."
+            ],
+            "kind": "compare",
+            "visual": "Large variance:Possible nuisance process;Small variance:Possible discriminative signal",
+            "note": "PCA's objective does not know which scientific mechanism or future target matters. Interpret components with domain evidence."
+          },
+          {
+            "title": "PCA loadings describe directions",
+            "points": [
+              "A loading expresses how an original feature contributes to a component.",
+              "Correlated features can contribute together without implying causation."
+            ],
+            "kind": "table",
+            "visual": "Component,Illustrative loading pattern;PC1,Length and width together;PC2,Contrast between features",
+            "note": "These are conceptual loading descriptions rather than the notebook's numerical loadings. Actual values must be read from the fitted PCA object."
+          },
+          {
+            "title": "Explained variance belongs to the fit sample",
+            "points": [
+              "The notebook reports training explained-variance ratios.",
+              "Held-out score geometry can differ under distribution shift."
+            ],
+            "kind": "flow",
+            "visual": "Training fit;Stored components;New-data transform;Potential changed spread",
+            "note": "Distinguish the estimated training decomposition from a guarantee about all future observations."
+          },
+          {
+            "title": "A scree plot supports a trade-off",
+            "points": [
+              "Inspect variance across ordered components.",
+              "Choose dimensionality with the task and information loss in mind."
+            ],
+            "kind": "bars",
+            "visual": "Illustrative PC1:45;Illustrative PC2:25;Illustrative PC3:15;Illustrative PC4:10;Illustrative PC5:5",
+            "note": "These illustrative percentages sum to 100 and are not notebook measurements. The purpose is to explain cumulative variance and a compression choice."
+          },
+          {
+            "title": "PCA is sensitive to outliers",
+            "points": [
+              "Extreme observations can influence means and covariance.",
+              "Inspect suspicious measurements before interpreting dominant directions."
+            ],
+            "kind": "plot",
+            "visual": "outlier;feature 1;feature 2",
+            "note": "A distant point may be meaningful or erroneous. Do not remove it solely because its presence makes a visualization less tidy."
+          },
+          {
+            "title": "Check: is 90 percent variance 90 percent accuracy?",
+            "points": [
+              "Explained variance measures preserved input spread.",
+              "Accuracy requires targets and a prediction decision."
+            ],
+            "kind": "compare",
+            "visual": "Explained variance:Geometry of X;Accuracy:Agreement with y",
+            "note": "Expected answer: no. Students should identify that PCA uses no labels and optimizes a different objective."
+          },
+          {
+            "title": "Check: does PCA standardize automatically?",
+            "points": [
+              "PCA centers its input in this implementation.",
+              "The separate scaler controls feature-variance normalization."
+            ],
+            "kind": "flow",
+            "visual": "Raw X;StandardScaler;PCA centering;Projection",
+            "note": "Expected answer: no automatic per-feature standardization by PCA. Explain why the supplied pipeline contains both stages."
+          },
+          {
+            "title": "A projection needs an interpretation boundary",
+            "points": [
+              "State the representation, fitted directions and retained variance.",
+              "Add what the plot cannot establish about physical meaning or labels."
+            ],
+            "kind": "table",
+            "visual": "Report item,Needed statement;Representation,Standardized inputs;Projection,Two fitted components;Retained variation,Observed training ratio;Limit,No semantic guarantee",
+            "note": "The hour's evidence is the exact PCA worked calculation and an interpretation statement. H2 adds clustering rather than treating plotted groups as labels."
+          }
+        ]
+      },
+      {
+        "title": "K-means, distances and geometric groups",
+        "outcome": "Trace K-means updates and distinguish cluster separation from scientific meaning.",
+        "artifact": "One hand-worked clustering update and a guided notebook checkpoint.",
+        "roadmap": [
+          "Assignment and update",
+          "Separation metrics",
+          "Guided notebook"
+        ],
+        "slides": [
+          {
+            "title": "Clustering assigns geometric groups",
+            "points": [
+              "A cluster label names a group under a chosen representation and algorithm.",
+              "It does not automatically name a physical state or diagnosis."
+            ],
+            "kind": "compare",
+            "visual": "Cluster ID:Arbitrary algorithm label;Physical category:Requires independent evidence",
+            "note": "Ask whether renaming cluster 0 as defective establishes a diagnosis. The proposed interpretation requires external validation."
+          },
+          {
+            "title": "K-means uses nearest-centroid assignment",
+            "points": [
+              "Each point joins the closest centroid under squared Euclidean distance.",
+              "The chosen number k is an input to the problem."
+            ],
+            "kind": "formula",
+            "visual": "assign x_i to argmin_j ||x_i - mu_j||^2",
+            "note": "Explain that assigning by squared distance produces the same nearest centroid as Euclidean distance, but the squared objective affects the geometry of optimization."
+          },
+          {
+            "title": "The objective sums within-group dispersion",
+            "points": [
+              "Minimize squared distances from points to assigned centroids.",
+              "The objective depends on feature scale."
+            ],
+            "kind": "formula",
+            "visual": "inertia = sum_i ||x_i - mu_label(i)||^2",
+            "note": "Inertia decreases with more clusters in many settings, so a lower value by itself does not determine a scientifically meaningful number of groups."
+          },
+          {
+            "title": "A one-dimensional example is traceable",
+            "points": [
+              "Use points 0,2,8,10 and initial centroids 0 and 8.",
+              "These values define the complete synthetic example."
+            ],
+            "kind": "plot",
+            "visual": "kmeans;one feature;display offset",
+            "note": "The vertical plotting offset is only for legibility. The clustering distances in this worked example use the single horizontal feature."
+          },
+          {
+            "title": "Assignment compares two distances",
+            "points": [
+              "Points 0 and 2 are closer to centroid 0.",
+              "Points 8 and 10 are closer to centroid 8."
+            ],
+            "kind": "table",
+            "visual": "Point,Distance to 0,Distance to 8;0,0,8;2,2,6;8,8,0;10,10,2",
+            "note": "All comparisons avoid ties. Students should calculate distances before the class reveals the group assignments."
+          },
+          {
+            "title": "The update computes group means",
+            "points": [
+              "The first group's new center is (0+2)/2=1.",
+              "The second group's new center is (8+10)/2=9."
+            ],
+            "kind": "formula",
+            "visual": "mu_A = (0 + 2) / 2 = 1;mu_B = (8 + 10) / 2 = 9",
+            "note": "The mean minimizes squared distances for a fixed assignment. This connects K-means to the squared-loss baseline reasoning from Week 3."
+          },
+          {
+            "title": "The update reduces this objective",
+            "points": [
+              "Initial squared-distance sum is 8.",
+              "Updated centers yield a squared-distance sum of 4."
+            ],
+            "kind": "bars",
+            "visual": "Initial inertia:8;Updated inertia:4",
+            "note": "Compute each contribution explicitly: initial 0+4+0+4, then 1+1+1+1. These exact numbers are a hand calculation, not software output."
+          },
+          {
+            "title": "Assignment and update alternate",
+            "points": [
+              "Reassign points to the current centers, then recompute means.",
+              "Stop when the declared convergence condition is met."
+            ],
+            "kind": "flow",
+            "visual": "Initialize centers;Nearest-center assignment;Mean update;Repeat or stop",
+            "note": "Standard K-means can converge to a local solution. A converged iteration is not proof of the globally best clustering or physical correctness."
+          },
+          {
+            "title": "Initialization can change the solution",
+            "points": [
+              "Different starting centers can lead to different local optima.",
+              "Multiple initializations compare solutions under the same objective."
+            ],
+            "kind": "tree",
+            "visual": "Initialization A;Initialization B;Final inertias;Choose lower objective",
+            "note": "The notebook explicitly sets n_init=10. This improves search coverage but does not guarantee a globally optimal or semantically valid result."
+          },
+          {
+            "title": "Cluster IDs can permute",
+            "points": [
+              "The same partition can be labeled 0,1,2 in a different order.",
+              "Compare memberships or aligned groups, not raw label integers alone."
+            ],
+            "kind": "compare",
+            "visual": "Run A:A=0 B=1 C=2;Run B:A=2 B=0 C=1",
+            "note": "Label permutation can be harmless. Students should not infer a changed physical state from an arbitrary numeric ID swap."
+          },
+          {
+            "title": "Choosing k changes the question",
+            "points": [
+              "Larger k allows a finer partition of the representation.",
+              "It need not reveal a true count of natural categories."
+            ],
+            "kind": "compare",
+            "visual": "k=2:Coarser grouping;k=4:Finer grouping",
+            "note": "The supplied synthetic generator uses three centers and the notebook sets k=3. This is a teaching construction, not a general estimator of nature's category count."
+          },
+          {
+            "title": "Silhouette compares two distance scales",
+            "points": [
+              "a is mean distance to other points in the same cluster.",
+              "b is the lowest mean distance to another cluster."
+            ],
+            "kind": "formula",
+            "visual": "s = (b - a) / max(a,b);Range: -1 to 1",
+            "note": "Define b as a mean to another cluster, not distance to the nearest centroid. This distinction is essential for a correct explanation."
+          },
+          {
+            "title": "Compute one silhouette value",
+            "points": [
+              "With a=2 and b=8, silhouette is 6/8=0.75.",
+              "Positive values indicate closer within-group neighbors in this representation."
+            ],
+            "kind": "formula",
+            "visual": "s = (8 - 2) / max(2,8);s = 0.75",
+            "note": "These stipulated distances illustrate the formula. They are not the silhouette of the earlier four-point example unless its distances happen to produce them."
+          },
+          {
+            "title": "Separation does not prove semantics",
+            "points": [
+              "A high silhouette supports geometric separation under the chosen metric.",
+              "It does not establish causal mechanisms or engineering diagnoses."
+            ],
+            "kind": "tree",
+            "visual": "Representation;Distance separation;Cluster score;External meaning needs evidence",
+            "note": "Ask what external measurement would support naming one group a material phase. Algorithmic geometry alone cannot supply that evidence."
+          },
+          {
+            "title": "K-means has geometric preferences",
+            "points": [
+              "Squared Euclidean distance favors compact centroid-based groups.",
+              "Nonconvex shapes, unequal scales or outliers can produce misleading partitions."
+            ],
+            "kind": "plot",
+            "visual": "nonconvex;feature 1;feature 2",
+            "note": "The schematic contrasts a curved structure with centroid-based partitions. It is not an executed benchmark or a claim about all datasets."
+          },
+          {
+            "title": "Open the Week 6 notebook",
+            "points": [
+              "Generate 360 observations with five features and three synthetic centers.",
+              "Keep hidden_labels out of every fit call."
+            ],
+            "kind": "code",
+            "visual": "X, hidden_labels = make_blobs(~    n_samples=360, n_features=5, centers=3, ...)",
+            "note": "Guided practice begins here. Hidden labels are retained for optional comparisons only and must not become inputs to PCA or K-means."
+          },
+          {
+            "title": "The split creates 270 and 90 rows",
+            "points": [
+              "Fit the scaler on the 270 training rows.",
+              "Apply the frozen scaler to the 90 held-out rows."
+            ],
+            "kind": "bars",
+            "visual": "Training rows:270;Held-out rows:90",
+            "note": "These counts follow the supplied 25 percent split. Although the task is unsupervised, this notebook evaluates transformation and assignment for unseen observations."
+          },
+          {
+            "title": "Standardize before both fitted methods",
+            "points": [
+              "Ztr and Zte share training-fitted scaling parameters.",
+              "PCA and K-means each fit on Ztr."
+            ],
+            "kind": "flow",
+            "visual": "Xtr;Training scaler;Ztr;Fit PCA and K-means",
+            "note": "There are two fitted branches after standardization. Do not imply K-means receives the two-dimensional PCA output in this notebook."
+          },
+          {
+            "title": "Fit two principal components",
+            "points": [
+              "PCA learns directions from Ztr only.",
+              "Transform Zte into the plotted two-dimensional coordinates P."
+            ],
+            "kind": "code",
+            "visual": "pca = PCA(n_components=2).fit(Ztr)~P = pca.transform(Zte)",
+            "note": "The plotting coordinates describe held-out observations projected through training-fitted directions. The explained-variance ratios refer to the training fit."
+          },
+          {
+            "title": "Fit K-means in five dimensions",
+            "points": [
+              "The notebook fits KMeans on Ztr, not the 2D plotting coordinates.",
+              "Predict held-out groups from Zte."
+            ],
+            "kind": "code",
+            "visual": "kmeans.fit(Ztr)~groups = kmeans.predict(Zte)",
+            "note": "This distinction is central. Coloring a PCA plot by cluster IDs does not mean the clustering algorithm operated in that plotted plane."
+          },
+          {
+            "title": "A colored PCA plot is a view",
+            "points": [
+              "Use P for positions and groups for colors.",
+              "Overlap in two dimensions can coexist with separation in five."
+            ],
+            "kind": "plot",
+            "visual": "clusters;PC1 for display;PC2 for display",
+            "note": "The lecture graphic is schematic. Students must inspect the actual plot and avoid inferring the full clustering geometry from a two-axis display."
+          },
+          {
+            "title": "Compute silhouette in the fitted space",
+            "points": [
+              "The notebook passes Zte and its predicted groups into silhouette_score.",
+              "The metric therefore uses standardized five-feature distances."
+            ],
+            "kind": "code",
+            "visual": "silhouette_score(Zte, groups)",
+            "note": "At least two and fewer than n distinct assigned labels are required. A degenerate grouping needs explicit handling rather than a fabricated score."
+          },
+          {
+            "title": "Interpret retained variance separately",
+            "points": [
+              "Sum the two training explained-variance ratios.",
+              "Keep this quantity distinct from test silhouette."
+            ],
+            "kind": "compare",
+            "visual": "Retained variance:Training PCA geometry;Test silhouette:Held-out group separation",
+            "note": "The metrics have different definitions and sample roles. Their values should not be averaged or compared as interchangeable performance scores."
+          },
+          {
+            "title": "A useful interpretation needs evidence",
+            "points": [
+              "Inspect original feature summaries for each assigned group.",
+              "Propose an independent measurement to test a physical interpretation."
+            ],
+            "kind": "table",
+            "visual": "Observation,Possible next evidence;Feature contrast,Original units;Group stability,Repeated sampling;Physical meaning,External measurement",
+            "note": "A cluster name is initially a hypothesis. Students should state what evidence would disconfirm it as well as what would support it."
+          },
+          {
+            "title": "Check: did hidden labels enter fitting?",
+            "points": [
+              "Trace the inputs to scaler, PCA and KMeans fit calls.",
+              "Each should receive features without hidden generating labels."
+            ],
+            "kind": "flow",
+            "visual": "Xtr only;Scaler fit;PCA fit on Ztr;KMeans fit on Ztr",
+            "note": "A separate label-based teaching comparison can be legitimate if clearly disclosed. It must not be described as label-free fitting if labels actually influenced model choices."
+          },
+          {
+            "title": "Save the representation checkpoint",
+            "points": [
+              "Record scaling, PCA dimension, k, initialization and seed.",
+              "H3 will inspect stability, interpretation and evidence export."
+            ],
+            "kind": "table",
+            "visual": "Parameter,Reference setting;PCA dimensions,2;k,3;n_init,10;Split,Training versus held-out",
+            "note": "These settings are part of the reproducible procedure. Runtime state alone is not a durable record of the experiment."
+          }
+        ]
+      },
+      {
+        "title": "Representation and clustering lab",
+        "outcome": "Reproduce the geometry workflow and test one interpretation without inventing labels.",
+        "artifact": "Executed notebook, evidence JSON and a representation-aware result card.",
+        "roadmap": [
+          "Fit the two branches",
+          "Inspect geometry",
+          "Challenge interpretation"
+        ],
+        "slides": [
+          {
+            "title": "Restore the two fitted branches",
+            "points": [
+              "PCA supplies plotting coordinates.",
+              "K-means supplies groups in standardized five-dimensional space."
+            ],
+            "kind": "tree",
+            "visual": "Training-standardized data;PCA branch;KMeans branch;Shared held-out observations",
+            "note": "Draw the branch structure before students resume. This prevents a common mistaken explanation that the displayed PCA plane was the clustering input."
+          },
+          {
+            "title": "Restart the notebook in order",
+            "points": [
+              "Run setup and data generation from a clean runtime.",
+              "Keep the reference seed and construction unchanged for the first pass."
+            ],
+            "kind": "flow",
+            "visual": "Setup;Synthetic data;Split;Training-only scaling",
+            "note": "The task is CPU-friendly and requires no paid API. Reusing the same run order helps preserve the random-generator state."
+          },
+          {
+            "title": "Inspect the observation matrix",
+            "points": [
+              "Confirm 360 rows and five features before splitting.",
+              "Treat hidden_labels as teaching metadata rather than model inputs."
+            ],
+            "kind": "code",
+            "visual": "print(X.shape)~# Reference construction: (360,5)~# Do not append hidden_labels to X",
+            "note": "A target accidentally appended as a feature can create circular groups that appear impressively interpretable."
+          },
+          {
+            "title": "Confirm partition sizes",
+            "points": [
+              "The training matrix has 270 rows and the held-out matrix 90.",
+              "Preserve feature order across both partitions."
+            ],
+            "kind": "table",
+            "visual": "Matrix,Rows,Features;Xtr,270,5;Xte,90,5",
+            "note": "The feature count remains constant through scaling. Dimensionality changes only when the PCA branch projects to two components."
+          },
+          {
+            "title": "Fit the scaler only once on training",
+            "points": [
+              "Reuse it for the held-out transform.",
+              "Inspect training means and scales for the fitted representation."
+            ],
+            "kind": "code",
+            "visual": "scaler.fit(Xtr)~Ztr = scaler.transform(Xtr)~Zte = scaler.transform(Xte)",
+            "note": "Do not refit on Xte to force its mean to zero. A difference in held-out statistics may be a property of sampling or shift."
+          },
+          {
+            "title": "PCA centers but does not standardize",
+            "points": [
+              "The supplied scaler precedes PCA.",
+              "Explain the separate job performed by each stage."
+            ],
+            "kind": "compare",
+            "visual": "StandardScaler:Per-feature normalization;PCA:Centered orthogonal directions",
+            "note": "A model pipeline may contain multiple centering operations for sound mathematical reasons. Students should explain the operations rather than remove one by name alone."
+          },
+          {
+            "title": "Fit and inspect two components",
+            "points": [
+              "Read pca.components_ and explained_variance_ratio_.",
+              "Verify that there are two projected coordinates per held-out row."
+            ],
+            "kind": "code",
+            "visual": "print(pca.components_.shape)~print(pca.explained_variance_ratio_)~print(P.shape)",
+            "note": "Expected shapes are two by five for the directions and 90 by two for the projected held-out observations."
+          },
+          {
+            "title": "Compute retained variance explicitly",
+            "points": [
+              "Sum the two training explained-variance ratios.",
+              "State it as a fraction of training variance in the standardized representation."
+            ],
+            "kind": "formula",
+            "visual": "retained = ratio_PC1 + ratio_PC2;Not a classification accuracy",
+            "note": "Students should report the observed value from their run. The lecture does not prescribe a numeric result from an unexecuted notebook."
+          },
+          {
+            "title": "Inspect the uncolored projection first",
+            "points": [
+              "Plot PC1 against PC2 without group labels.",
+              "Describe visible spread and overlap before naming any clusters."
+            ],
+            "kind": "plot",
+            "visual": "projection;PC1;PC2",
+            "note": "Ask students to use geometric language such as elongated or overlapping. Avoid semantic labels like defective unless external evidence supports them."
+          },
+          {
+            "title": "Fit K-means in the declared space",
+            "points": [
+              "Use Ztr with k=3 and n_init=10.",
+              "Preserve the reference random_state."
+            ],
+            "kind": "code",
+            "visual": "KMeans(n_clusters=3, n_init=10,~       random_state=SEED).fit(Ztr)",
+            "note": "Explicit n_init makes the configuration clear across library versions with different defaults. The setting does not guarantee global optimality."
+          },
+          {
+            "title": "Predict groups for held-out rows",
+            "points": [
+              "Use kmeans.predict(Zte).",
+              "The group ID refers to a learned training centroid."
+            ],
+            "kind": "flow",
+            "visual": "Held-out features;Frozen training scaler;Learned centroids;Assigned group IDs",
+            "note": "A test observation does not update its assigned centroid in predict. Refit is a different procedure and must be declared if used."
+          },
+          {
+            "title": "Color the projection with those IDs",
+            "points": [
+              "Positions come from P and colors from groups.",
+              "Explain the five-dimensional fit versus two-dimensional display."
+            ],
+            "kind": "plot",
+            "visual": "clusters;PC1 display coordinate;PC2 display coordinate",
+            "note": "Ask each pair to draw the two branch inputs. A plot can be visually attractive while its interpretation is wrong."
+          },
+          {
+            "title": "Check silhouette's validity conditions",
+            "points": [
+              "Count distinct group IDs in the evaluation sample.",
+              "Silhouette needs at least two and fewer than n groups."
+            ],
+            "kind": "code",
+            "visual": "unique_groups = np.unique(groups)~print(len(unique_groups), len(groups))",
+            "note": "With a degenerate assignment, report that the silhouette is undefined under these conditions. Do not insert an arbitrary substitute score."
+          },
+          {
+            "title": "Compute the held-out silhouette",
+            "points": [
+              "Use standardized Zte with the assigned groups.",
+              "Report the representation and sample count beside the score."
+            ],
+            "kind": "code",
+            "visual": "silhouette_score(Zte, groups)~# n = 90 held-out observations",
+            "note": "A score has no complete meaning without the space and distance definition. Do not compute it in P and describe it as the notebook's five-feature result."
+          },
+          {
+            "title": "Inspect a boundary observation",
+            "points": [
+              "Compare a point's distances to its nearest two centroids.",
+              "A small distance gap suggests ambiguous assignment under this geometry."
+            ],
+            "kind": "code",
+            "visual": "distances = kmeans.transform(Zte)~ordered = np.sort(distances,axis=1)~gap = ordered[:,1] - ordered[:,0]",
+            "note": "This is an optional diagnostic extension. A small gap is not a calibrated probability or an estimate of a physical transition."
+          },
+          {
+            "title": "Translate a centroid back to feature units",
+            "points": [
+              "Inverse-transform a centroid through the fitted scaler.",
+              "Interpret feature summaries before inventing a group name."
+            ],
+            "kind": "code",
+            "visual": "original_centers = scaler.inverse_transform(~    kmeans.cluster_centers_)",
+            "note": "The resulting values are means represented by the fitted centroids, not necessarily actual observed specimens."
+          },
+          {
+            "title": "Compare groups without relying on ID order",
+            "points": [
+              "Group 0 has no privileged physical meaning.",
+              "Align or compare memberships when labels permute across runs."
+            ],
+            "kind": "compare",
+            "visual": "Same membership:Different numeric IDs possible;Different membership:Substantive grouping change",
+            "note": "A raw label equality test is sensitive to permutations. A meaningful comparison requires a permutation-aware measure or explicit alignment."
+          },
+          {
+            "title": "Declare one controlled geometry change",
+            "points": [
+              "Change scaling, k or a single construction parameter.",
+              "Keep a saved reference run and predict the effect first."
+            ],
+            "kind": "flow",
+            "visual": "Reference evidence;One planned change;New run;Compare geometry",
+            "note": "Avoid changing multiple settings to create a preferred picture. The purpose is to identify which assumption changes the observed structure."
+          },
+          {
+            "title": "Removing scaling changes the metric",
+            "points": [
+              "Raw high-variance features gain numerical influence.",
+              "Any new grouping describes a different representation."
+            ],
+            "kind": "compare",
+            "visual": "Standardized:Comparable training scales;Raw:Original numeric units",
+            "note": "Neither representation is universally correct. Students should defend the choice using measurement meaning and the engineering question."
+          },
+          {
+            "title": "Vary k as a declared extension",
+            "points": [
+              "Compare several predefined k values using training-safe evidence.",
+              "More groups can reduce inertia without improving meaning."
+            ],
+            "kind": "bars",
+            "visual": "Schematic k2 inertia:100;Schematic k3 inertia:70;Schematic k4 inertia:55",
+            "note": "These are illustrative decreasing objective values. Real candidate results must come from execution and must not be copied from this schematic."
+          },
+          {
+            "title": "Projection loss is visible in reconstruction",
+            "points": [
+              "Inverse-transform projected coordinates and compare with original standardized inputs.",
+              "Describe what two components fail to preserve."
+            ],
+            "kind": "code",
+            "visual": "restored = pca.inverse_transform(P)~reconstruction_error = np.mean((Zte-restored)**2)",
+            "note": "This optional diagnostic measures a defined representation error. It is not a downstream prediction metric or a physical measurement error by itself."
+          },
+          {
+            "title": "Hidden-label comparisons need disclosure",
+            "points": [
+              "Generating labels may help evaluate the teaching construction.",
+              "If they influence model choices, disclose that supervised information entered selection."
+            ],
+            "kind": "tree",
+            "visual": "Hidden labels;Optional comparison;Possible selection influence;Disclosure",
+            "note": "A workflow can fit without labels yet use labels to select k. Calling the entire procedure fully label-free would then omit part of the selection process."
+          },
+          {
+            "title": "Export the actual two-metric summary",
+            "points": [
+              "Preserve test silhouette and retained training variance under distinct names.",
+              "Save configuration details in the notebook narrative."
+            ],
+            "kind": "code",
+            "visual": "summary['test_silhouette']~summary['retained_training_variance']",
+            "note": "The metrics refer to different populations and quantities. Do not label either simply accuracy."
+          },
+          {
+            "title": "A result card avoids unsupported names",
+            "points": [
+              "Report geometric groups and the chosen representation.",
+              "Label proposed physical meanings as hypotheses requiring validation."
+            ],
+            "kind": "table",
+            "visual": "Supported,Geometric separation;Unsupported,Automatic physical diagnosis;Needed next,Independent measurement",
+            "note": "A useful scientific explanation separates what the algorithm computed from the interpretation a human hopes to attach to it."
+          },
+          {
+            "title": "Peer explain-back closes the lab",
+            "points": [
+              "Explain why K-means did not use the plotted PC coordinates.",
+              "State one way projection or scaling can mislead an observer."
+            ],
+            "kind": "compare",
+            "visual": "Fit space:Five standardized features;Display space:Two principal components",
+            "note": "The expected answer names both branches and the information discarded in projection. This is stronger evidence than a screenshot of colored clusters."
+          },
+          {
+            "title": "A sequence adds an ordering assumption",
+            "points": [
+              "The next week studies observations whose order carries information.",
+              "A shuffled tabular representation can discard temporal structure."
+            ],
+            "kind": "timeline",
+            "visual": "Ordered observations;Meaningful transitions;Sequence model;Week 7",
+            "note": "This is the bridge to sequences, LSTM and attention. Preserve the distinction between unsupervised geometry and models that explicitly represent order."
+          }
+        ]
+      }
+    ]
+  }
+]
