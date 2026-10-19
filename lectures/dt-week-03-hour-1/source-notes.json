@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W03-H1-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Identify die, interconnect, substrate, and thermal path on a package cross-section.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach"
+  },
+  {
+    "id": "W03-H1-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: An annotated package cross-section and a list of unknowns.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach"
+  },
+  {
+    "id": "W03-H1-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Can transistor design alone specify a package?\nExpected answer / misconception: No. Interfaces, materials, assembly, and thermal boundaries remain.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: The die computes; the package connects, supports, protects, and removes heat. Trace the visual in order: die; interconnect; environment. Connect this mechanism to the worked example: Trace a signal and a heat path from a compute die to the board and ambient.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Trace a signal and a heat path from a compute die to the board and ambient. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can transistor design alone specify a package?\nExpected answer / misconception: No. Interfaces, materials, assembly, and thermal boundaries remain.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Multiple dies can divide functions but add die-to-die links and assembly interfaces. Trace the visual in order: compute die; memory die; shared package. Connect this mechanism to the worked example: Use a conceptual compute-plus-memory layout; name one bandwidth benefit and one routing cost without inventing performance numbers.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Use a conceptual compute-plus-memory layout; name one bandwidth benefit and one routing cost without inventing performance numbers. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does adding a chiplet automatically improve the system?\nExpected answer / misconception: No. Link, power, thermal, yield, and cost constraints must be assessed.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W03-H1-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A logical connection becomes pads, bumps, traces, vias, and a return path. Trace the visual in order: source pad; package route; destination pad. Connect this mechanism to the worked example: Draw one memory signal from the compute die through an interposer or RDL to the memory die.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H1-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Draw one memory signal from the compute die through an interposer or RDL to the memory die. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H1-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: What is missing from a simple arrow between dies?\nExpected answer / misconception: Physical pitch, routing layers, losses, and return path.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H1-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: 2D, 2.5D, and 3D arrangements offer different interconnect and thermal constraints. Trace the visual in order: side-by-side; interposer; vertical stack. Connect this mechanism to the worked example: Classify three schematic arrangements by geometry, not by marketing name.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H1-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Classify three schematic arrangements by geometry, not by marketing name. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H1-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is every multi-die package 3D?\nExpected answer / misconception: No. Vertical stacking is a distinct geometry.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H1-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: An annotated package cross-section and a list of unknowns.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach"
+  }
+]

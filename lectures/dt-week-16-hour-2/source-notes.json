@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W16-H2-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Keep independent test cases and physics checks separate from optimization feedback.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H2-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: An evaluation plan with held-out conditions and failure cases.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H2-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Does a low surrogate score prove a good package?\nExpected answer / misconception: No. Check fidelity and domain.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A search algorithm may find designs where a surrogate is inaccurate rather than designs that are physically better. Trace the visual in order: search pressure; model blind spot; verification. Connect this mechanism to the worked example: If a candidate sits outside the model's training range, mark it out of domain and run a higher-fidelity check.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: If a candidate sits outside the model's training range, mark it out of domain and run a higher-fidelity check. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does a low surrogate score prove a good package?\nExpected answer / misconception: No. Check fidelity and domain.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Comparing on the same cases used to tune an AI method can overstate its benefit. Trace the visual in order: development set; held-out cases; generalization. Connect this mechanism to the worked example: Split synthetic load maps by package configuration before tuning; evaluate once on distinct conditions.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Split synthetic load maps by package configuration before tuning; evaluate once on distinct conditions. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can training fit be reported as independent accuracy?\nExpected answer / misconception: No. It is not an independent test.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A claimed AI improvement needs a comparable manual or algorithmic baseline and equal constraints. Trace the visual in order: baseline; AI candidate; matched budget. Connect this mechanism to the worked example: Compare two placement methods with the same package, power maps, allowed moves, and evaluation solver.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare two placement methods with the same package, power maps, allowed moves, and evaluation solver. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is a faster run automatically better?\nExpected answer / misconception: No. Report solution quality, compute cost, and constraint compliance.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Report cases where routing, hot spots, or deformation worsen rather than only a best example. Trace the visual in order: success cases; failures; residual pattern. Connect this mechanism to the worked example: Construct a synthetic close-placement case that reduces wire length but concentrates heat; explain the tradeoff.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Construct a synthetic close-placement case that reduces wire length but concentrates heat; explain the tradeoff. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Should the failed case be omitted?\nExpected answer / misconception: No. It bounds the method's use.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H2-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: An evaluation plan with held-out conditions and failure cases.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  }
+]

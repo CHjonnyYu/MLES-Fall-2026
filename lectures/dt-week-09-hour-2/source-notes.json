@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W09-H2-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Distinguish code correctness, physical agreement, calibration, and residual uncertainty.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A validation plan naming reference measurements, split cases, error metric, and acceptance rule.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Does mesh convergence prove package accuracy?\nExpected answer / misconception: No. It addresses a numerical question, not the match to physical observations.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Verification asks whether equations and numerical methods were implemented as intended; it is separate from physical agreement. Trace the visual in order: equation; implementation; numerical check. Connect this mechanism to the worked example: Refine a mesh or compare a simple analytic benchmark. Even a converged result can be physically wrong if material data are wrong.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Refine a mesh or compare a simple analytic benchmark. Even a converged result can be physically wrong if material data are wrong. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does mesh convergence prove package accuracy?\nExpected answer / misconception: No. It addresses a numerical question, not the match to physical observations.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Validation asks how well predictions match measurements for an intended use and tested conditions. Trace the visual in order: prediction; measurement; error by condition. Connect this mechanism to the worked example: The published fan-out study compares simulation with measured warpage across process stages and notes a thin-wafer discrepancy; report both agreement and failure region.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: The published fan-out study compares simulation with measured warpage across process stages and notes a thin-wafer discrepancy; report both agreement and failure region. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can an average error hide a critical failure region?\nExpected answer / misconception: Yes. Examine stage, thickness, geometry, and residual pattern.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A parameter fitted to one set of measurements must be assessed on independent conditions before broader claims. Trace the visual in order: calibration set; fitted parameter; held-out check. Connect this mechanism to the worked example: Fit a stress-free temperature using one coupon, then test a different package or temperature range; preserve the fitted value and data partition.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Fit a stress-free temperature using one coupon, then test a different package or temperature range; preserve the fitted value and data partition. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is fit error on the calibration data a validation metric?\nExpected answer / misconception: No. It is training or calibration fit; independent checks are needed.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W09-H2-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Material properties, geometry, process history, measurements, and model form each can change a prediction. Trace the visual in order: input uncertainty; model-form limits; measurement error. Connect this mechanism to the worked example: For warpage, list CTE uncertainty, cure-state history, thickness tolerance, fixture influence, and optical measurement uncertainty.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: For warpage, list CTE uncertainty, cure-state history, thickness tolerance, fixture influence, and optical measurement uncertainty. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Should one confidence interval be used without a source model?\nExpected answer / misconception: No. State how each uncertainty was estimated and propagated.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W09-H2-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A validation plan naming reference measurements, split cases, error metric, and acceptance rule.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W13-H2-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Check line and space, layer transitions, vias, reference planes, and manufacturing constraints.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf\nR11: UCIe Consortium Specifications | https://www.uciexpress.org/specifications"
+  },
+  {
+    "id": "W13-H2-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A routing sketch with stated rules and one failed constraint repaired.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf\nR11: UCIe Consortium Specifications | https://www.uciexpress.org/specifications"
+  },
+  {
+    "id": "W13-H2-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: May a route sketch ignore the four missing tracks?\nExpected answer / misconception: No. It must record the violation and a legal redesign.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Route count across a corridor depends on legal line width, spacing, keep-outs, and layer count. Trace the visual in order: route demand; track capacity; rule check. Connect this mechanism to the worked example: Synthetic corridor: 14 required traces but 10 legal tracks on one layer; change assignment, placement, or stackup and recalculate. Boundary: Track counts are synthetic teaching data.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Synthetic corridor: 14 required traces but 10 legal tracks on one layer; change assignment, placement, or stackup and recalculate. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. Track counts are synthetic teaching data.\nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: May a route sketch ignore the four missing tracks?\nExpected answer / misconception: No. It must record the violation and a legal redesign.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A layer transition occupies keep-out space and can change signal and return-path behavior. Trace the visual in order: source layer; via / keep-out; target layer. Connect this mechanism to the worked example: Mark the signal via and nearby reference transition in a two-layer escape sketch. If the return path detours, flag it for SI review.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Mark the signal via and nearby reference transition in a two-layer escape sketch. If the return path detours, flag it for SI review. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is the shortest signal trace always best?\nExpected answer / misconception: No. The return path and transition discontinuity matter.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A silicon interposer and an organic substrate differ in achievable feature scale, material properties, cost, and assembly roles. Trace the visual in order: fine interposer; package substrate; board interface. Connect this mechanism to the worked example: A dense chiplet link may require fine interposer routing, while package balls and board connection remain at a larger scale; map both levels.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: A dense chiplet link may require fine interposer routing, while package balls and board connection remain at a larger scale; map both levels. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can one pitch number describe the entire package?\nExpected answer / misconception: No. Each interface and manufacturing layer has its own design rules.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A routing choice that helps one net may weaken a power path or remove reference continuity. Trace the visual in order: signal escape; power mesh; ground return. Connect this mechanism to the worked example: Move an RDL lane through a power region. Mark the power discontinuity and the measurement or simulation needed to assess it.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Move an RDL lane through a power region. Mark the power discontinuity and the measurement or simulation needed to assess it. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does a routed netlist establish power integrity?\nExpected answer / misconception: No. Current demand, impedance, return paths, and decoupling still need evaluation.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W13-H2-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A routing sketch with stated rules and one failed constraint repaired.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf\nR11: UCIe Consortium Specifications | https://www.uciexpress.org/specifications"
+  }
+]

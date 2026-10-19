@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W08-H2-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Explain why a package bends and how repeated strain can affect an interconnect.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  },
+  {
+    "id": "W08-H2-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A warpage and joint-risk map across at least two temperatures or process stages.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  },
+  {
+    "id": "W08-H2-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Can CTE difference alone determine warpage sign?\nExpected answer / misconception: No. Layer order, thickness, modulus, cure history, and reference temperature also matter.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Layers with different coefficients of thermal expansion and stiffness cannot expand freely when bonded; bending can result. Trace the visual in order: CTE mismatch; bonded layers; curvature. Connect this mechanism to the worked example: Sketch silicon on an organic substrate as temperature changes. Identify which layer tends to expand more; do not infer curvature sign without the actual stack and stress-free state.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Sketch silicon on an organic substrate as temperature changes. Identify which layer tends to expand more; do not infer curvature sign without the actual stack and stress-free state. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can CTE difference alone determine warpage sign?\nExpected answer / misconception: No. Layer order, thickness, modulus, cure history, and reference temperature also matter.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A single room-temperature modulus may misrepresent behavior through reflow, cure, or service cycling. Trace the visual in order: temperature; property curve; stage response. Connect this mechanism to the worked example: Compare an epoxy molding compound below and above its glass-transition region using its measured property curve rather than one constant value.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare an epoxy molding compound below and above its glass-transition region using its measured property curve rather than one constant value. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Why is one catalog number insufficient?\nExpected answer / misconception: Because CTE and stiffness can change with temperature and cure state; the process path matters.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W08-H2-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: The shape after molding, debonding, grinding, and annealing need not rank designs in the same order. Trace the visual in order: mold / cure; debond / grind; final state. Connect this mechanism to the worked example: The published fan-out study tracks multiple manufacturing stages. Ask whether a room-temperature final shape can explain a failure during an earlier assembly step.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  },
+  {
+    "id": "W08-H2-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: The published fan-out study tracks multiple manufacturing stages. Ask whether a room-temperature final shape can explain a failure during an earlier assembly step. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  },
+  {
+    "id": "W08-H2-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is final-state flatness enough to clear process risk?\nExpected answer / misconception: No. An intermediate stage can exceed handling or alignment limits.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  },
+  {
+    "id": "W08-H2-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Global warpage can signal risk, but joint fatigue depends on local displacement, geometry, material behavior, and cycling. Trace the visual in order: global shape; joint location; local strain. Connect this mechanism to the worked example: Mark an outer-corner bump and a central bump in a package sketch. Predict which sees a larger relative displacement under one idealized thermal cycle, then name missing data.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W08-H2-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Mark an outer-corner bump and a central bump in a package sketch. Predict which sees a larger relative displacement under one idealized thermal cycle, then name missing data. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W08-H2-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does a warpage maximum equal a fatigue lifetime?\nExpected answer / misconception: No. Lifetime requires a suitable local damage model and validation data.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W08-H2-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A warpage and joint-risk map across at least two temperatures or process stages.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  }
+]

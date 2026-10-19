@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W17-H1-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Move from architecture and process to material inputs and local/global responses.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W17-H1-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A complete but compact process-and-physics map.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W17-H1-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Can one generic stack represent every architecture?\nExpected answer / misconception: No. Declare the actual layers and process.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W17-H1-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Fan-out, interposer, and stacked packages have different routes and process gates. Trace the visual in order: architecture; interfaces; checks. Connect this mechanism to the worked example: Choose a package cross-section and identify die, bond, RDL or interposer, substrate, and cooling boundary.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W17-H1-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Choose a package cross-section and identify die, bond, RDL or interposer, substrate, and cooling boundary. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W17-H1-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can one generic stack represent every architecture?\nExpected answer / misconception: No. Declare the actual layers and process.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W17-H1-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Cure, debond, grinding, and service loads may produce different shapes and stresses. Trace the visual in order: process path; reference state; response. Connect this mechanism to the worked example: Use a published fan-out study to distinguish post-debond from post-grind warpage records.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683"
+  },
+  {
+    "id": "W17-H1-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Use a published fan-out study to distinguish post-debond from post-grind warpage records. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683"
+  },
+  {
+    "id": "W17-H1-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can a final measurement substitute for every earlier stage?\nExpected answer / misconception: No. Match the stage of the decision.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683"
+  },
+  {
+    "id": "W17-H1-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Routing, temperature, deformation, and testability can pull the design in different directions. Trace the visual in order: electrical; thermal; mechanical. Connect this mechanism to the worked example: A synthetic layout shortens links but raises a hot spot; state the decision rule before ranking.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W17-H1-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: A synthetic layout shortens links but raises a hot spot; state the decision rule before ranking. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W17-H1-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does one improved metric settle the design?\nExpected answer / misconception: No. Check hard rules and the other critical metrics.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W17-H1-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A number without grade, state, range, units, and source is an assumption rather than established material evidence. Trace the visual in order: value; conditions; source. Connect this mechanism to the worked example: Audit an EMC CTE entry against the paper's tested grade and process temperature.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482"
+  },
+  {
+    "id": "W17-H1-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Audit an EMC CTE entry against the paper's tested grade and process temperature. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482"
+  },
+  {
+    "id": "W17-H1-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can a value from one paper be reused unchanged?\nExpected answer / misconception: Only with a justified material and condition match.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482"
+  },
+  {
+    "id": "W17-H1-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A complete but compact process-and-physics map.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  }
+]

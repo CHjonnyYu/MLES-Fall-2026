@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W05-H2-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Explain why bond, underfill, and encapsulant behavior depend on manufacturing sequence.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482"
+  },
+  {
+    "id": "W05-H2-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: An interface map with stress-free state and likely failure locations.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482"
+  },
+  {
+    "id": "W05-H2-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Does high bulk conductivity guarantee low junction temperature?\nExpected answer / misconception: No. Interface resistance and boundary conditions matter.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W05-H2-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A thin interface may dominate a thermal path if contact resistance is large. Trace the visual in order: die; interface; heat sink. Connect this mechanism to the worked example: Compare a bulk layer and contact on a heat-path sketch; identify the measurement needed to separate them.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W05-H2-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare a bulk layer and contact on a heat-path sketch; identify the measurement needed to separate them. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W05-H2-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does high bulk conductivity guarantee low junction temperature?\nExpected answer / misconception: No. Interface resistance and boundary conditions matter.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W05-H2-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Underfill changes bump deformation and package stiffness; its cure state belongs in the model. Trace the visual in order: bump; underfill; die corner. Connect this mechanism to the worked example: Mark the local displacement path at an outer bump and name the missing material curve.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W05-H2-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Mark the local displacement path at an outer bump and name the missing material curve. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W05-H2-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can a generic underfill card validate joint strain?\nExpected answer / misconception: No. Grade, cure, geometry, and test evidence are required.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W05-H2-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Cooling from cure can leave residual stress even before service loading. Trace the visual in order: cure temperature; cooling; residual shape. Connect this mechanism to the worked example: Draw a stage diagram from molding to room-temperature inspection; identify where a stress-free assumption enters.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W05-H2-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Draw a stage diagram from molding to room-temperature inspection; identify where a stress-free assumption enters. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W05-H2-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is room temperature automatically stress free?\nExpected answer / misconception: No. The process history may already carry stress.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W05-H2-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Thermal cycling response can depend on time, temperature, and inelastic material behavior. Trace the visual in order: temperature cycle; joint response; model limit. Connect this mechanism to the worked example: Contrast a quick elastic screening with a joint-lifetime claim; state which needs further constitutive data.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W05-H2-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Contrast a quick elastic screening with a joint-lifetime claim; state which needs further constitutive data. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W05-H2-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: May elastic stress alone establish fatigue life?\nExpected answer / misconception: No. A validated damage relation and relevant history are needed.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204"
+  },
+  {
+    "id": "W05-H2-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: An interface map with stress-free state and likely failure locations.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482"
+  }
+]

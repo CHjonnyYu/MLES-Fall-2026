@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W08-H1-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Estimate where power becomes temperature rise and where a thermal boundary enters the model.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068\nImage 2.0 conceptual illustration: /assets/digital-twin/week-08-cover.png; generated 2026-10-19; no measured content."
+  },
+  {
+    "id": "W08-H1-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A labeled heat-path sketch with assumptions, units, and one candidate measurement.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  },
+  {
+    "id": "W08-H1-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Does the 20 K estimate predict every die location?\nExpected answer / misconception: No. It is a lumped estimate under stated power and boundary conditions, not a spatial map.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Steady heat flow needs both a source and a route to a cooler boundary; peak power alone does not define junction temperature. Trace the visual in order: die power; thermal path; ambient boundary. Connect this mechanism to the worked example: Synthetic check: at 10 W, a 2 K/W path implies about 20 K rise in a lumped steady-state estimate; that estimate excludes local hot spots. Boundary: The 10 W and 2 K/W values are synthetic classroom numbers.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Synthetic check: at 10 W, a 2 K/W path implies about 20 K rise in a lumped steady-state estimate; that estimate excludes local hot spots. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. The 10 W and 2 K/W values are synthetic classroom numbers.\nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does the 20 K estimate predict every die location?\nExpected answer / misconception: No. It is a lumped estimate under stated power and boundary conditions, not a spatial map.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A small contact area or poorly characterized thermal interface can bottleneck an otherwise conductive stack. Trace the visual in order: die; interface contact; spreader / sink. Connect this mechanism to the worked example: Compare two synthetic stacks with the same die and sink but different interface contact quality. State what thickness, conductivity, pressure, and voiding data are missing.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare two synthetic stacks with the same die and sink but different interface contact quality. State what thickness, conductivity, pressure, and voiding data are missing. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can bulk conductivity alone rank the two stacks?\nExpected answer / misconception: No. Contact resistance and the actual heat-flow geometry matter.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf"
+  },
+  {
+    "id": "W08-H1-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Some heat can flow upward through a lid while some flows downward through joints and the board; the shares depend on resistance and boundaries. Trace the visual in order: top path; die source; board path. Connect this mechanism to the worked example: Trace both paths for a flip-chip package. If the top sink is removed, predict a redistribution of heat before looking at a model.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W08-H1-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Trace both paths for a flip-chip package. If the top sink is removed, predict a redistribution of heat before looking at a model. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W08-H1-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does removing a top sink leave bottom heat flow unchanged?\nExpected answer / misconception: Usually not. Boundary changes can alter the entire temperature field and flux distribution.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf"
+  },
+  {
+    "id": "W08-H1-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Junction peak, case temperature, board temperature, and transient versus steady values answer different questions. Trace the visual in order: location; time / load; measured quantity. Connect this mechanism to the worked example: A synthetic report lists 85 °C at the case at 5 W and 90 °C junction at 10 W. Refuse a direct material comparison until load and location match. Boundary: Temperatures and loads are synthetic teaching values.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W08-H1-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: A synthetic report lists 85 °C at the case at 5 W and 90 °C junction at 10 W. Refuse a direct material comparison until load and location match. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. Temperatures and loads are synthetic teaching values.\nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W08-H1-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Which metadata must accompany a reported temperature?\nExpected answer / misconception: Location, load, boundary condition, time or process stage, units, and measurement or model origin.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W08-H1-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A labeled heat-path sketch with assumptions, units, and one candidate measurement.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR9: IEEE ECTC, How to Manipulate Warpage in Fan-out Packaging | https://ieeexplore.ieee.org/document/10565068"
+  }
+]

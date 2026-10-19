@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W16-H3-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Audit actual platform exports if available; otherwise work from clearly labeled classroom records.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H3-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A candidate audit with source, version, constraints, and next physical test.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H3-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: May a paper's result be relabeled as InPack.AI output?\nExpected answer / misconception: No. They have different provenance.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: An InPack.AI result needs actual case ID, input revision, method, conditions, and export; missing fields remain missing. Trace the visual in order: case ID; input revision; output. Connect this mechanism to the worked example: Compare a public paper with a course export in separate rows. If no export exists, use a labeled synthetic row.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare a public paper with a course export in separate rows. If no export exists, use a labeled synthetic row. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: May a paper's result be relabeled as InPack.AI output?\nExpected answer / misconception: No. They have different provenance.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: AI confidence, optimization score, and validation accuracy are different quantities. Trace the visual in order: score type; reference; claim. Connect this mechanism to the worked example: Ask what a dashboard value measures before calling it temperature error or design confidence.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H3-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Ask what a dashboard value measures before calling it temperature error or design confidence. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H3-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can a displayed percentage stand alone?\nExpected answer / misconception: No. Define its denominator, reference, and evaluation data.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800"
+  },
+  {
+    "id": "W16-H3-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A reviewer should inspect hard constraints, uncertainty, and evidence before selecting a design. Trace the visual in order: AI proposal; engineering review; decision. Connect this mechanism to the worked example: An AI candidate has a good thermal score but no routing proof; request the missing rule check.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: An AI candidate has a good thermal score but no routing proof; request the missing rule check. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is a promising AI output ready for manufacture?\nExpected answer / misconception: No. It needs the full design and process evidence.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W16-H3-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A physical test should target the predicted improvement under matched operating conditions. Trace the visual in order: prediction; test vehicle; reversal rule. Connect this mechanism to the worked example: Specify die power, sensor location, ambient, and candidate geometry for a thermal comparison.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H3-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Specify die power, sensor location, ambient, and candidate geometry for a thermal comparison. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H3-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: What would change the recommendation?\nExpected answer / misconception: A matched test or verified hard constraint that contradicts the predicted advantage.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W16-H3-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A candidate audit with source, version, constraints, and next physical test.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR10: IEEE EPTC, Thermally Aware Chiplet Placement with RL | https://ieeexplore.ieee.org/document/10909800\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  }
+]

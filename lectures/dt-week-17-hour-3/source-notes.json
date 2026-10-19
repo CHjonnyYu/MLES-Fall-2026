@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W17-H3-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Give a concise claim, cite evidence, expose uncertainty, and answer a challenge.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W17-H3-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A timed oral explanation and a revised evidence card.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  },
+  {
+    "id": "W17-H3-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Why is 'best' too broad?\nExpected answer / misconception: It hides criteria and untested conditions.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A defensible statement names the package, output, conditions, and intended decision. Trace the visual in order: claim; condition; decision. Connect this mechanism to the worked example: Say 'Candidate B predicts lower junction temperature at this power map' rather than 'B is best.'\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Say 'Candidate B predicts lower junction temperature at this power map' rather than 'B is best.' Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Why is 'best' too broad?\nExpected answer / misconception: It hides criteria and untested conditions.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Use one sourced figure, calculation, or matched result with its units and definition. Trace the visual in order: source; result; scope. Connect this mechanism to the worked example: Present the paper's process-stage comparison without transferring its accuracy to the classroom case.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W17-H3-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Present the paper's process-stage comparison without transferring its accuracy to the classroom case. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W17-H3-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can a literature result validate a different model automatically?\nExpected answer / misconception: No. Specimen and setup must match.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W17-H3-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A good oral defense explains how a changed boundary or material could reverse a ranking. Trace the visual in order: challenge; sensitivity; revised claim. Connect this mechanism to the worked example: An examiner changes TIM resistance; explain which calculation or measurement must be repeated.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: An examiner changes TIM resistance; explain which calculation or measurement must be repeated. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Should uncertainty be hidden to sound confident?\nExpected answer / misconception: No. State the boundary and next test.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A design recommendation remains provisional when a plausible missing measurement could change it. Trace the visual in order: unresolved item; test; decision update. Connect this mechanism to the worked example: Name the specimen, condition, measured quantity, and reversal rule for one package test.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Name the specimen, condition, measured quantity, and reversal rule for one package test. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: What completes the evidence loop?\nExpected answer / misconception: A matched test, recorded residual, and updated bounded conclusion.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W17-H3-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A timed oral explanation and a revised evidence card.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR13: Chen et al., 2022, multi-die fan-out process warpage | https://doi.org/10.3390/ma15051683\nR14: Chuang et al., 2023, EMC properties and fan-out warpage | https://doi.org/10.3390/ma16093482\nR15: Feng et al., 2024, two-chiplet thermal interaction and cooling | https://doi.org/10.3390/app14188114"
+  }
+]

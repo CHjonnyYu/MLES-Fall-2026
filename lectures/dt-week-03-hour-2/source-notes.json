@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W03-H2-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Order major package operations and name the state each operation changes.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach"
+  },
+  {
+    "id": "W03-H2-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A process map with inspection points and stage-dependent outputs.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach"
+  },
+  {
+    "id": "W03-H2-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Can a later simulation erase an unknown surface state?\nExpected answer / misconception: No. It needs an explicit assumption or measurement.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H2-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Dicing, surface preparation, and placement define interfaces that later process steps cannot ignore. Trace the visual in order: die preparation; surface state; placement. Connect this mechanism to the worked example: Mark where contamination or misalignment could enter before bonding.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H2-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Mark where contamination or misalignment could enter before bonding. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H2-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can a later simulation erase an unknown surface state?\nExpected answer / misconception: No. It needs an explicit assumption or measurement.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf"
+  },
+  {
+    "id": "W03-H2-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Bumps, solder, or direct bonding connect dies while introducing alignment and material constraints. Trace the visual in order: bond geometry; alignment; joint integrity. Connect this mechanism to the worked example: Compare a bumped interface with a conceptual direct-bond interface; list distinct inspection needs.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf\nR12: IEEE EPS HIR 2024, Ch. 17: Test Technology | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch17_Test_Technology.pdf"
+  },
+  {
+    "id": "W03-H2-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare a bumped interface with a conceptual direct-bond interface; list distinct inspection needs. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf\nR12: IEEE EPS HIR 2024, Ch. 17: Test Technology | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch17_Test_Technology.pdf"
+  },
+  {
+    "id": "W03-H2-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does electrical continuity prove bond integrity?\nExpected answer / misconception: No. It is one check under one condition.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR3: IEEE EPS HIR 2024, Ch. 22: Interconnects | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch22_2D-3D.pdf\nR12: IEEE EPS HIR 2024, Ch. 17: Test Technology | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch17_Test_Technology.pdf"
+  },
+  {
+    "id": "W03-H2-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Molding and cure can create thermal mismatch and residual deformation. Trace the visual in order: material added; cure path; warpage. Connect this mechanism to the worked example: Sketch the shape before and after cooling; state the reference temperature as unknown if absent.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W03-H2-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Sketch the shape before and after cooling; state the reference temperature as unknown if absent. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W03-H2-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can room-temperature shape reveal the entire cure history?\nExpected answer / misconception: No. Process path and material evolution matter.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR7: IEEE TCPMT, Thermomechanical Challenges of 2.5-D Packaging | https://ieeexplore.ieee.org/document/10256204\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768"
+  },
+  {
+    "id": "W03-H2-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Metrology should occur when a failure can still be localized or a handling limit matters. Trace the visual in order: stage; measurement; decision. Connect this mechanism to the worked example: Choose a warpage check after debonding and explain why a final-only check can miss the earlier risk.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR12: IEEE EPS HIR 2024, Ch. 17: Test Technology | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch17_Test_Technology.pdf"
+  },
+  {
+    "id": "W03-H2-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Choose a warpage check after debonding and explain why a final-only check can miss the earlier risk. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR12: IEEE EPS HIR 2024, Ch. 17: Test Technology | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch17_Test_Technology.pdf"
+  },
+  {
+    "id": "W03-H2-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Is the final inspection enough for every process decision?\nExpected answer / misconception: No. Intermediate stages may have different limits.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR8: IEEE TCPMT, Simulation and Experimental Study of Fan-Out Warpage | https://ieeexplore.ieee.org/document/8590768\nR12: IEEE EPS HIR 2024, Ch. 17: Test Technology | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch17_Test_Technology.pdf"
+  },
+  {
+    "id": "W03-H2-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A process map with inspection points and stage-dependent outputs.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR1: TSMC Advanced Packaging Services | https://www.tsmc.com/english/dedicatedFoundry/services/advanced-packaging\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach"
+  }
+]

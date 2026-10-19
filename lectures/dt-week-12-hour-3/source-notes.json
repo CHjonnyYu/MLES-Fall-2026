@@ -1,0 +1,66 @@
+[
+  {
+    "id": "W12-H3-01",
+    "note": "Time: 2 min. Teaching intent: Open the hour and connect it to the week's decision.\nTalk track: Produce a reviewable case record that another student can audit from the public source and available export.\nExpected answer / misconception: Students can name the outcome.\nVisual: The visual previews the physical design or evidence chain.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-02",
+    "note": "Time: 3 min. Teaching intent: Set the evidence contract.\nTalk track: A model-input and assumptions sheet with one uncertainty ranking and next measurement.\nExpected answer / misconception: A named artifact with source and a check, not an unsupported opinion.\nVisual: Input, reasoning, and evidence are separate.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-03",
+    "note": "Time: 3 min. Teaching intent: Retrieve prior knowledge before revealing the method.\nTalk track: Does a reasonable-looking number become observed evidence?\nExpected answer / misconception: No. Provenance, material identity, and measurement conditions are required.\nVisual: The three conditions identify what must be compared.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-04",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: Separate observed input, inferred input, default, and missing field; their evidence strengths differ. Trace the visual in order: observed; inferred / default; missing. Connect this mechanism to the worked example: Mark an unspecified CTE curve as missing rather than copying a plausible value from another material system.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-05",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Mark an unspecified CTE curve as missing rather than copying a plausible value from another material system. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-06",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Does a reasonable-looking number become observed evidence?\nExpected answer / misconception: No. Provenance, material identity, and measurement conditions are required.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-07",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A sensitivity comparison changes one declared input while preserving all other comparability conditions. Trace the visual in order: baseline; one change; output difference. Connect this mechanism to the worked example: Change a synthetic underfill conductivity from 0.5 to 0.7 W/(m·K) only as an exercise; keep geometry and load fixed. Boundary: Conductivities are synthetic teaching values.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-08",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Change a synthetic underfill conductivity from 0.5 to 0.7 W/(m·K) only as an exercise; keep geometry and load fixed. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. Conductivities are synthetic teaching values.\nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-09",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Can the output difference prove the true material value?\nExpected answer / misconception: No. It measures model sensitivity under an assumed change, not the actual property.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR4: IEEE EPS HIR 2023, Ch. 20: Thermal Management | https://eps.ieee.org/wp-content/uploads/2025/11/ch20_thermal.pdf\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-10",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: A missing input matters most when plausible variation could reverse the candidate ordering or cross a hard limit. Trace the visual in order: uncertain input; range; decision reversal. Connect this mechanism to the worked example: Compare whether interface resistance or minor trace width uncertainty more strongly affects the thermal choice, then prioritize the first measurement.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-11",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: Compare whether interface resistance or minor trace width uncertainty more strongly affects the thermal choice, then prioritize the first measurement. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-12",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: Must every uncertain input be measured first?\nExpected answer / misconception: No. Prioritize by sensitivity, plausible range, and decision consequence.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-13",
+    "note": "Time: 4 min. Teaching intent: Teach the mechanism or design rule.\nTalk track: The final record states a claim, case revision, conditions, output, uncertainty, and next physical check. Trace the visual in order: bounded claim; traceable record; next check. Connect this mechanism to the worked example: A peer should retrace the comparison from the saved case or export; if a key field is missing, the card says so explicitly.\nExpected answer / misconception: Ask students to explain the link between adjacent elements; a conceptual diagram is not a measurement.\nVisual: Native diagram encodes the causal or design relationship.\n[Sources]\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-14",
+    "note": "Time: 4 min. Teaching intent: Work the example step by step.\nTalk track: Set up the case: A peer should retrace the comparison from the saved case or export; if a key field is missing, the card says so explicitly. Identify the starting information, state the reasoning step aloud, then ask what observation would check the conclusion. Stop before the next slide's question is answered.\nExpected answer / misconception: Students must identify the input, the inference, and the check. \nVisual: Three-part reasoning path separates the example from its verification.\n[Sources]\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-15",
+    "note": "Time: 3 min. Teaching intent: Pause for an individual answer, then reveal and discuss.\nTalk track: What would make the card fail peer review?\nExpected answer / misconception: An untraceable number, mismatched conditions, omitted uncertainty, or a claim broader than the evidence.\nVisual: The diagram lists the conditions to inspect without marking the answer.\n[Sources]\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  },
+  {
+    "id": "W12-H3-16",
+    "note": "Time: 4 min. Teaching intent: Collect or inspect the artifact and bridge to the next hour.\nTalk track: A model-input and assumptions sheet with one uncertainty ranking and next measurement.\nExpected answer / misconception: Check that the artifact states a source, a constraint, and one unresolved question.\nVisual: The three checkpoints summarize the hour's reasoning.\n[Sources]\nR2: IEEE EPS HIR 2024, Ch. 13: Co-Design | https://eps.ieee.org/wp-content/uploads/2025/11/HIR_2024_ch13_HIR_Co-Design.pdf\nR5: NIST, Digital Twins for Advanced Manufacturing | https://www.nist.gov/publications/digital-twins-advanced-manufacturing-standardized-approach\nR6: NIST, Credibility Consideration for Digital Twins | https://www.nist.gov/publications/credibility-consideration-digital-twins-manufacturing"
+  }
+]
