@@ -1,0 +1,19 @@
+{
+  "generated": "2026-10-19",
+  "tool": "Built-in image generation tool",
+  "asset": "w09-cover.jpg",
+  "slide": "W09 H1 slide 1",
+  "scope": "Conceptual artwork, not simulation or experimental evidence",
+  "prompt": "Scientific educational 16:9 lecture cover: sensor calibration rig and mechanical specimen inside a clear-glass calibration enclosure; same apparatus outside a narrow operating envelope faces wider heat, vibration and load. A conceptual model surface follows the calibrated region but diverges as the operating range widens. Warm ivory, maroon, teal and copper; physically plausible editorial 3D scene. No text, numbers, equations, scales, logos, fake results or people. Quiet left quarter, subject right. Conceptual artwork only.",
+  "quantitative_figures": {
+    "origin": "Fresh CPU execution of week-09-practice.ipynb",
+    "data_sha256": "994925f73576edc48f352b4b7300221eda8ed4c117e4f3615382579adf9411ab",
+    "environment": {
+      "python": "3.12.14",
+      "numpy": "2.5.4",
+      "scikit_learn": "1.9.1",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "other_visuals": "Per-slide native SVG / analytic widgets, defined teaching examples. No generated image is reused as another slide illustration."
+}

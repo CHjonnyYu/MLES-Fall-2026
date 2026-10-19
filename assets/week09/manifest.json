@@ -1,0 +1,1294 @@
+{
+  "week": 9,
+  "date": "2026-11-02",
+  "lecture_minutes": 60,
+  "practice_minutes": 120,
+  "modules": [
+    {
+      "hour": 1,
+      "title": "Reliability: beyond one score",
+      "url": "/lectures/week-09-hour-1/",
+      "slides": 30,
+      "minutes": 60,
+      "lecture_minutes": 45,
+      "practice_minutes": 15,
+      "visuals": [
+        {
+          "slide": 1,
+          "title": "A score needs an operating envelope",
+          "kind": "cover",
+          "payload": "w09-cover.jpg"
+        },
+        {
+          "slide": 2,
+          "title": "Today: explain 60, practise 120",
+          "kind": "table",
+          "payload": [
+            [
+              "Hour",
+              "Explain",
+              "Practise"
+            ],
+            [
+              "H1",
+              "45 min",
+              "15 min"
+            ],
+            [
+              "H2",
+              "15 min",
+              "45 min"
+            ],
+            [
+              "H3",
+              "0 min",
+              "60 min"
+            ]
+          ]
+        },
+        {
+          "slide": 3,
+          "title": "Which model would you deploy?",
+          "kind": "table",
+          "payload": [
+            [
+              "Model",
+              "Overall MAE",
+              "Rare group"
+            ],
+            [
+              "A",
+              "1.9",
+              "10"
+            ],
+            [
+              "B",
+              "2.2",
+              "2.2"
+            ]
+          ]
+        },
+        {
+          "slide": 4,
+          "title": "Reliability is conditional evidence",
+          "kind": "steps",
+          "payload": [
+            "Population",
+            "Frozen model",
+            "Loss + slices",
+            "Bounded decision"
+          ]
+        },
+        {
+          "slide": 5,
+          "title": "The evaluated population matters",
+          "kind": "equations",
+          "payload": [
+            "R_test(f) = E_test[L(Y, f(X))]",
+            "R_deploy(f) = E_deploy[L(Y, f(X))]",
+            "Different distributions can change risk."
+          ]
+        },
+        {
+          "slide": 6,
+          "title": "Mixtures can hide a weak subgroup",
+          "kind": "equations",
+          "payload": [
+            "MAE = sum_g (n_g / n) MAE_g",
+            "90/100 x 1 + 10/100 x 10 = 1.9",
+            "Rare group MAE remains 10."
+          ]
+        },
+        {
+          "slide": 7,
+          "title": "Move the mixture, not the errors",
+          "kind": "demo",
+          "payload": "mixture"
+        },
+        {
+          "slide": 8,
+          "title": "Counts constrain interpretation",
+          "kind": "table",
+          "payload": [
+            [
+              "Group",
+              "n",
+              "MAE"
+            ],
+            [
+              "A",
+              "200",
+              "0.8"
+            ],
+            [
+              "B",
+              "2",
+              "0.8"
+            ],
+            [
+              "C",
+              "0",
+              "Not defined"
+            ]
+          ]
+        },
+        {
+          "slide": 9,
+          "title": "Residual sign changes the story",
+          "kind": "table",
+          "payload": [
+            [
+              "Observed",
+              "Predicted",
+              "Residual"
+            ],
+            [
+              "8",
+              "10",
+              "+2"
+            ],
+            [
+              "10",
+              "8",
+              "-2"
+            ],
+            [
+              "9",
+              "9",
+              "0"
+            ]
+          ]
+        },
+        {
+          "slide": 10,
+          "title": "MAE preserves response units",
+          "kind": "equations",
+          "payload": [
+            "e_i = predicted_i - observed_i",
+            "MAE = (1/n) sum_i |e_i|",
+            "Units: synthetic response units"
+          ]
+        },
+        {
+          "slide": 11,
+          "title": "RMSE emphasizes large residuals",
+          "kind": "equations",
+          "payload": [
+            "MSE = (1/n) sum_i e_i squared",
+            "RMSE = sqrt(MSE)",
+            "RMSE >= MAE on the same rows"
+          ]
+        },
+        {
+          "slide": 12,
+          "title": "One large residual changes the metric",
+          "kind": "demo",
+          "payload": "outlier"
+        },
+        {
+          "slide": 13,
+          "title": "A pattern can reveal misspecification",
+          "kind": "curve",
+          "payload": "residual"
+        },
+        {
+          "slide": 14,
+          "title": "Covariate shift changes the inputs",
+          "kind": "table",
+          "payload": [
+            [
+              "Property",
+              "Reference",
+              "Stress"
+            ],
+            [
+              "Input x1 scale",
+              "1",
+              "2.5"
+            ],
+            [
+              "Target rule",
+              "2*x0+x1^2",
+              "Same rule"
+            ],
+            [
+              "Fitted model",
+              "Frozen",
+              "Frozen"
+            ]
+          ]
+        },
+        {
+          "slide": 15,
+          "title": "Concept shift changes the target rule",
+          "kind": "equations",
+          "payload": [
+            "Before: y = 2*x0 + x1^2 + noise",
+            "After: y = -2*x0 + x1^2 + noise",
+            "Same X; different conditional target."
+          ]
+        },
+        {
+          "slide": 16,
+          "title": "A wider domain exposes a missing term",
+          "kind": "demo",
+          "payload": "shift"
+        },
+        {
+          "slide": 17,
+          "title": "A range flag is not an error label",
+          "kind": "curve",
+          "payload": "range"
+        },
+        {
+          "slide": 18,
+          "title": "Do not average subgroup RMSEs",
+          "kind": "equations",
+          "payload": [
+            "MAE = sum_g w_g MAE_g",
+            "RMSE = sqrt(sum_g w_g RMSE_g^2)",
+            "w_g = n_g / n"
+          ]
+        },
+        {
+          "slide": 19,
+          "title": "Use labels to confirm performance drift",
+          "kind": "steps",
+          "payload": [
+            "Input drift alert",
+            "Collect outcomes",
+            "Evaluate error",
+            "Investigate mechanism"
+          ]
+        },
+        {
+          "slide": 20,
+          "title": "A metric is not a decision rule",
+          "kind": "table",
+          "payload": [
+            [
+              "Observation",
+              "Possible action"
+            ],
+            [
+              "Small rare slice",
+              "Collect outcomes"
+            ],
+            [
+              "High tail error",
+              "Restrict scope"
+            ],
+            [
+              "Encoding mismatch",
+              "Fix input contract"
+            ]
+          ]
+        },
+        {
+          "slide": 21,
+          "title": "Intervals need an assumption label",
+          "kind": "steps",
+          "payload": [
+            "Fixed predictions",
+            "Resample errors",
+            "Compute means",
+            "Percentile interval"
+          ]
+        },
+        {
+          "slide": 22,
+          "title": "Separate diagnosis from selection",
+          "kind": "table",
+          "payload": [
+            [
+              "Stage",
+              "Allowed question"
+            ],
+            [
+              "Validation",
+              "Choose candidate?"
+            ],
+            [
+              "Final test",
+              "Frozen-model errors?"
+            ],
+            [
+              "Exploration",
+              "Next hypothesis?"
+            ]
+          ]
+        },
+        {
+          "slide": 23,
+          "title": "Task 1: compute before coding",
+          "kind": "table",
+          "payload": [
+            [
+              "Group",
+              "n",
+              "Sum |error|"
+            ],
+            [
+              "Ordinary",
+              "90",
+              "90"
+            ],
+            [
+              "Rare",
+              "10",
+              "100"
+            ],
+            [
+              "Total",
+              "100",
+              "Predict MAE"
+            ]
+          ]
+        },
+        {
+          "slide": 24,
+          "title": "Task 1: change the composition",
+          "kind": "equations",
+          "payload": [
+            "Total absolute error = 75*1 + 25*10",
+            "MAE = 325/100 = 3.25",
+            "Neither subgroup MAE changed."
+          ]
+        },
+        {
+          "slide": 25,
+          "title": "Task 3: scale a fixed grid",
+          "kind": "curve",
+          "payload": "square"
+        },
+        {
+          "slide": 26,
+          "title": "Task 3: the exact finite-grid check",
+          "kind": "equations",
+          "payload": [
+            "x_j = L * (-1 + 2*j/100)",
+            "MAE(L) = L^2 * mean(x_j at L=1 squared)",
+            "3.06 / 0.34 = 9"
+          ]
+        },
+        {
+          "slide": 27,
+          "title": "Task 4: calculate the outlier effect",
+          "kind": "table",
+          "payload": [
+            [
+              "Set",
+              "Sum |e|",
+              "Sum e^2"
+            ],
+            [
+              "Four",
+              "0.6",
+              "0.1"
+            ],
+            [
+              "Five",
+              "3.6",
+              "9.1"
+            ],
+            [
+              "Divide by",
+              "4 or 5",
+              "4 or 5"
+            ]
+          ]
+        },
+        {
+          "slide": 28,
+          "title": "Task 4: choose a defensible statement",
+          "kind": "table",
+          "payload": [
+            [
+              "Metric",
+              "Before",
+              "After"
+            ],
+            [
+              "MAE",
+              "0.150",
+              "0.720"
+            ],
+            [
+              "RMSE",
+              "0.158",
+              "1.349"
+            ]
+          ]
+        },
+        {
+          "slide": 29,
+          "title": "Summary: qualify every average",
+          "kind": "steps",
+          "payload": [
+            "Mean + slices",
+            "Mechanism clue",
+            "Shift hypothesis",
+            "Next evaluation"
+          ]
+        },
+        {
+          "slide": 30,
+          "title": "Exit: make one prediction for H2",
+          "kind": "equations",
+          "payload": [
+            "Linear basis: x0, x1, x2",
+            "Expanded basis: x0, x1, x2, x1^2",
+            "Choose on validation, not final test."
+          ]
+        }
+      ]
+    },
+    {
+      "hour": 2,
+      "title": "Diagnose a frozen model",
+      "url": "/lectures/week-09-hour-2/",
+      "slides": 30,
+      "minutes": 60,
+      "lecture_minutes": 15,
+      "practice_minutes": 45,
+      "visuals": [
+        {
+          "slide": 1,
+          "title": "From explanation to executable evidence",
+          "kind": "steps",
+          "payload": [
+            "Contract",
+            "Fit",
+            "Select",
+            "Evaluate"
+          ]
+        },
+        {
+          "slide": 2,
+          "title": "One row is an independent observation",
+          "kind": "table",
+          "payload": [
+            [
+              "Column",
+              "Meaning"
+            ],
+            [
+              "sample_id",
+              "Stable row identity"
+            ],
+            [
+              "x0, x1, x2",
+              "Synthetic inputs"
+            ],
+            [
+              "y",
+              "Synthetic response"
+            ]
+          ]
+        },
+        {
+          "slide": 3,
+          "title": "Write the generator explicitly",
+          "kind": "equations",
+          "payload": [
+            "x0, x1, x2 ~ independent N(0,1)",
+            "noise ~ N(0, 0.2^2)",
+            "y = 2*x0 + x1^2 + noise"
+          ]
+        },
+        {
+          "slide": 4,
+          "title": "The linear model lacks a basis term",
+          "kind": "table",
+          "payload": [
+            [
+              "Candidate",
+              "Feature basis"
+            ],
+            [
+              "Linear",
+              "x0, x1, x2"
+            ],
+            [
+              "Quadratic",
+              "x0, x1, x2, x1^2"
+            ],
+            [
+              "Both",
+              "Train scaler + Ridge"
+            ]
+          ]
+        },
+        {
+          "slide": 5,
+          "title": "Reserve the final test once",
+          "kind": "bars",
+          "payload": [
+            [
+              "Train",
+              350
+            ],
+            [
+              "Validation",
+              75
+            ],
+            [
+              "Test",
+              75
+            ]
+          ]
+        },
+        {
+          "slide": 6,
+          "title": "Select by a predeclared rule",
+          "kind": "steps",
+          "payload": [
+            "Fit on train",
+            "Score validation",
+            "Freeze winner",
+            "Open final test"
+          ]
+        },
+        {
+          "slide": 7,
+          "title": "Stress one input distribution",
+          "kind": "table",
+          "payload": [
+            [
+              "Component",
+              "Across severity"
+            ],
+            [
+              "x0 and x2",
+              "Same observations"
+            ],
+            [
+              "Noise",
+              "Same realization"
+            ],
+            [
+              "x1",
+              "Multiply by scale"
+            ],
+            [
+              "Parameters",
+              "Unchanged"
+            ]
+          ]
+        },
+        {
+          "slide": 8,
+          "title": "Open a free CPU notebook",
+          "kind": "code",
+          "payload": [
+            "# No API key, no GPU, no external data",
+            "# In Colab: Runtime > Run all",
+            "# Read each prediction prompt first",
+            "print(ENV)"
+          ]
+        },
+        {
+          "slide": 9,
+          "title": "Record actual environment versions",
+          "kind": "table",
+          "payload": [
+            [
+              "Record",
+              "Why"
+            ],
+            [
+              "Seed + config",
+              "Generation and choices"
+            ],
+            [
+              "Exact CSV",
+              "Input identity"
+            ],
+            [
+              "Versions",
+              "Numerical environment"
+            ],
+            [
+              "Split IDs",
+              "Evaluation identity"
+            ]
+          ]
+        },
+        {
+          "slide": 10,
+          "title": "Verify the split assertions",
+          "kind": "code",
+          "payload": [
+            "assert sizes == (350, 75, 75)",
+            "assert not (train_ids & test_ids)",
+            "assert all_ids == train_ids | held_ids"
+          ]
+        },
+        {
+          "slide": 11,
+          "title": "Freeze the CSV before selecting",
+          "kind": "steps",
+          "payload": [
+            "Generate rows",
+            "Assign splits",
+            "Write CSV",
+            "Hash exact bytes"
+          ]
+        },
+        {
+          "slide": 12,
+          "title": "Fit transformations on training only",
+          "kind": "code",
+          "payload": [
+            "model.fit(Xtr, ytr)",
+            "val_prediction = model.predict(Xva)",
+            "# Never fit a scaler on all 500 rows."
+          ]
+        },
+        {
+          "slide": 13,
+          "title": "Inspect the validation comparison",
+          "kind": "image",
+          "payload": "w09-validation-selection.png"
+        },
+        {
+          "slide": 14,
+          "title": "Now open final test evidence",
+          "kind": "image",
+          "payload": "w09-test-metrics.png"
+        },
+        {
+          "slide": 15,
+          "title": "Reconcile subgroup counts and totals",
+          "kind": "image",
+          "payload": "w09-test-slices.png"
+        },
+        {
+          "slide": 16,
+          "title": "Inspect the linear residual pattern",
+          "kind": "image",
+          "payload": "w09-linear-residuals.png"
+        },
+        {
+          "slide": 17,
+          "title": "Inspect the expanded-model residuals",
+          "kind": "image",
+          "payload": "w09-quadratic-residuals.png"
+        },
+        {
+          "slide": 18,
+          "title": "Use parity to locate large errors",
+          "kind": "image",
+          "payload": "w09-test-parity.png"
+        },
+        {
+          "slide": 19,
+          "title": "Relate a pattern to a known mechanism",
+          "kind": "image",
+          "payload": "w09-known-mechanism.png"
+        },
+        {
+          "slide": 20,
+          "title": "Run paired stress scales 1, 1.5, 2.5",
+          "kind": "image",
+          "payload": "w09-stress-mae.png"
+        },
+        {
+          "slide": 21,
+          "title": "Input drift is visible without labels",
+          "kind": "image",
+          "payload": "w09-input-shift.png"
+        },
+        {
+          "slide": 22,
+          "title": "Read the high-response stress failures",
+          "kind": "image",
+          "payload": "w09-stress-parity.png"
+        },
+        {
+          "slide": 23,
+          "title": "A mean does not show the error tail",
+          "kind": "image",
+          "payload": "w09-stress-error-cdf.png"
+        },
+        {
+          "slide": 24,
+          "title": "Inspect training-range flags",
+          "kind": "image",
+          "payload": "w09-observed-range.png"
+        },
+        {
+          "slide": 25,
+          "title": "Read uncertainty with its conditioning",
+          "kind": "image",
+          "payload": "w09-slice-intervals.png"
+        },
+        {
+          "slide": 26,
+          "title": "Turn coefficients back into input units",
+          "kind": "image",
+          "payload": "w09-coefficients.png"
+        },
+        {
+          "slide": 27,
+          "title": "Task 2: run the boundary sweep",
+          "kind": "table",
+          "payload": [
+            [
+              "Threshold",
+              "Inside n",
+              "Outside n"
+            ],
+            [
+              "0.5",
+              "Record",
+              "Record"
+            ],
+            [
+              "1.0",
+              "Record",
+              "Record"
+            ],
+            [
+              "1.5",
+              "Record",
+              "Record"
+            ]
+          ]
+        },
+        {
+          "slide": 28,
+          "title": "Save the guided checkpoint",
+          "kind": "steps",
+          "payload": [
+            "Metrics + counts",
+            "Predictions + IDs",
+            "Hash + versions",
+            "Evidence ZIP"
+          ]
+        },
+        {
+          "slide": 29,
+          "title": "Summary: choices and evidence differ",
+          "kind": "table",
+          "payload": [
+            [
+              "Action",
+              "Evidence role"
+            ],
+            [
+              "Choose candidate",
+              "Validation MAE"
+            ],
+            [
+              "Report performance",
+              "Held-out test"
+            ],
+            [
+              "Probe weakness",
+              "Frozen-model stress"
+            ]
+          ]
+        },
+        {
+          "slide": 30,
+          "title": "Exit: name a reproducible checkpoint",
+          "kind": "steps",
+          "payload": [
+            "Exact input",
+            "Frozen selection",
+            "Observed result",
+            "Bounded claim"
+          ]
+        }
+      ]
+    },
+    {
+      "hour": 3,
+      "title": "Reliability lab: test, replay, explain",
+      "url": "/lectures/week-09-hour-3/",
+      "slides": 30,
+      "minutes": 60,
+      "lecture_minutes": 0,
+      "practice_minutes": 60,
+      "visuals": [
+        {
+          "slide": 1,
+          "title": "Eight experiments, one evidence trail",
+          "kind": "steps",
+          "payload": [
+            "Predict",
+            "Run",
+            "Explain",
+            "Preserve"
+          ]
+        },
+        {
+          "slide": 2,
+          "title": "Plan the lab before touching code",
+          "kind": "table",
+          "payload": [
+            [
+              "Lab segment",
+              "Minutes"
+            ],
+            [
+              "Restore + analytic checks",
+              "10"
+            ],
+            [
+              "Tasks 2, 5, 6",
+              "18"
+            ],
+            [
+              "Tasks 7, 8",
+              "14"
+            ],
+            [
+              "Replay + peer + export",
+              "18"
+            ]
+          ]
+        },
+        {
+          "slide": 3,
+          "title": "Restore the exact experiment identity",
+          "kind": "code",
+          "payload": [
+            "print(selected)",
+            "print(data_sha256)",
+            "print(CONFIG)",
+            "print(ENV)"
+          ]
+        },
+        {
+          "slide": 4,
+          "title": "Check Task 1 against your hand result",
+          "kind": "equations",
+          "payload": [
+            "Original: 0.9*1 + 0.1*10 = 1.9",
+            "Changed: 0.75*1 + 0.25*10 = 3.25",
+            "Population mixture, not model change."
+          ]
+        },
+        {
+          "slide": 5,
+          "title": "Check Task 3 against your derivation",
+          "kind": "bars",
+          "payload": [
+            [
+              "L=1",
+              0.34
+            ],
+            [
+              "L=3",
+              3.06
+            ]
+          ]
+        },
+        {
+          "slide": 6,
+          "title": "Check Task 4 with intermediate sums",
+          "kind": "table",
+          "payload": [
+            [
+              "Quantity",
+              "Four rows",
+              "Five rows"
+            ],
+            [
+              "Sum |e|",
+              "0.6",
+              "3.6"
+            ],
+            [
+              "Sum e^2",
+              "0.1",
+              "9.1"
+            ],
+            [
+              "n",
+              "4",
+              "5"
+            ]
+          ]
+        },
+        {
+          "slide": 7,
+          "title": "Finish Task 2 without tuning the model",
+          "kind": "steps",
+          "payload": [
+            "Fixed predictions",
+            "Three boundaries",
+            "Counts + MAE",
+            "Exploratory label"
+          ]
+        },
+        {
+          "slide": 8,
+          "title": "Task 5: predict a controlled perturbation",
+          "kind": "equations",
+          "payload": [
+            "f(x) = b0 + b_x0*x0 + ...",
+            "f(x0+0.5, ...) - f(x0, ...)",
+            "Expected change = 0.5*b_x0"
+          ]
+        },
+        {
+          "slide": 9,
+          "title": "Recover the original-space coefficients",
+          "kind": "equations",
+          "payload": [
+            "beta*z + b = raw_beta*x + raw_b",
+            "raw_b = b - sum(beta*mean/scale)",
+            "raw_beta = beta/scale"
+          ]
+        },
+        {
+          "slide": 10,
+          "title": "Task 5: verify the equality numerically",
+          "kind": "code",
+          "payload": [
+            "change = f(perturbed) - f(original)",
+            "expected = 0.5 * raw_coefficient_x0",
+            "assert_allclose(change, expected, atol=1e-10)"
+          ]
+        },
+        {
+          "slide": 11,
+          "title": "Task 6: predeclare a new stress scale",
+          "kind": "table",
+          "payload": [
+            [
+              "Object",
+              "Task 6 change"
+            ],
+            [
+              "x1",
+              "Multiply base by 2.0"
+            ],
+            [
+              "Target",
+              "Recompute same rule"
+            ],
+            [
+              "Parameters",
+              "Frozen"
+            ],
+            [
+              "Winner",
+              "Still validation-selected"
+            ]
+          ]
+        },
+        {
+          "slide": 12,
+          "title": "Task 6: prove parameters stayed fixed",
+          "kind": "code",
+          "payload": [
+            "before = parameter_snapshot(model)",
+            "pred = model.predict(stress_inputs)",
+            "assert_array_equal(before,",
+            "                   parameter_snapshot(model))"
+          ]
+        },
+        {
+          "slide": 13,
+          "title": "Record both models, not only the winner",
+          "kind": "table",
+          "payload": [
+            [
+              "Field",
+              "Record from Task 6"
+            ],
+            [
+              "Population n",
+              "150"
+            ],
+            [
+              "Linear MAE/RMSE",
+              "Your actual values"
+            ],
+            [
+              "Quadratic MAE/RMSE",
+              "Your actual values"
+            ]
+          ]
+        },
+        {
+          "slide": 14,
+          "title": "Task 7: change bytes, preserve rows",
+          "kind": "steps",
+          "payload": [
+            "Original CSV",
+            "Copy + blank line",
+            "Different hash",
+            "Same parsed records"
+          ]
+        },
+        {
+          "slide": 15,
+          "title": "Task 7: test the distinction explicitly",
+          "kind": "code",
+          "payload": [
+            "assert copy_hash != original_hash",
+            "assert copied_rows == original_rows",
+            "assert sha256(original) == original_hash"
+          ]
+        },
+        {
+          "slide": 16,
+          "title": "Task 8: keep inputs, change the rule",
+          "kind": "equations",
+          "payload": [
+            "Original: 2*x0 + x1^2 + noise",
+            "Changed: -2*x0 + x1^2 + noise",
+            "Same X, same noise, different P(Y|X)"
+          ]
+        },
+        {
+          "slide": 17,
+          "title": "Task 8: expose a monitoring blind spot",
+          "kind": "table",
+          "payload": [
+            [
+              "Monitor",
+              "Can see this change?"
+            ],
+            [
+              "Input histogram",
+              "No: exact same X"
+            ],
+            [
+              "Outcome residuals",
+              "Yes: labels changed"
+            ],
+            [
+              "Model parameters",
+              "No: fixed here"
+            ]
+          ]
+        },
+        {
+          "slide": 18,
+          "title": "State a limited, evidence-backed claim",
+          "kind": "table",
+          "payload": [
+            [
+              "Weak",
+              "Evidence-bounded"
+            ],
+            [
+              "Model is robust",
+              "Under these stress scales"
+            ],
+            [
+              "Cause discovered",
+              "Known synthetic generator"
+            ],
+            [
+              "Ready to deploy",
+              "More evaluation required"
+            ]
+          ]
+        },
+        {
+          "slide": 19,
+          "title": "Replay from CSV, not hidden state",
+          "kind": "steps",
+          "payload": [
+            "Frozen CSV",
+            "Recover splits",
+            "Clone + fit train",
+            "Compare test predictions"
+          ]
+        },
+        {
+          "slide": 20,
+          "title": "A reproducibility check needs a tolerance",
+          "kind": "code",
+          "payload": [
+            "assert_allclose(replayed, reference,",
+            "                atol=1e-10, rtol=1e-10)",
+            "assert current_data_hash == saved_hash"
+          ]
+        },
+        {
+          "slide": 21,
+          "title": "Use AI to explain, not invent evidence",
+          "kind": "table",
+          "payload": [
+            [
+              "Helpful prompt",
+              "Required check"
+            ],
+            [
+              "Explain this residual",
+              "Read sign + axes"
+            ],
+            [
+              "Why hash changed?",
+              "Compare bytes + rows"
+            ],
+            [
+              "Suggest new test",
+              "Predeclare change"
+            ]
+          ]
+        },
+        {
+          "slide": 22,
+          "title": "Optional A: test symmetry of the function",
+          "kind": "equations",
+          "payload": [
+            "True square: (-x1)^2 = x1^2",
+            "Fitted change on x1 -> -x1:",
+            "delta f = -2 * raw_beta_x1 * x1"
+          ]
+        },
+        {
+          "slide": 23,
+          "title": "Optional B: simulate an encoding bug",
+          "kind": "steps",
+          "payload": [
+            "Correct x0",
+            "Encode x100",
+            "Wrong predictions",
+            "Decode /100"
+          ]
+        },
+        {
+          "slide": 24,
+          "title": "Export explanations, not only plots",
+          "kind": "table",
+          "payload": [
+            [
+              "Required fields",
+              "Count"
+            ],
+            [
+              "Predictions",
+              "8"
+            ],
+            [
+              "Explanations",
+              "8"
+            ],
+            [
+              "Change / limit / AI",
+              "3"
+            ],
+            [
+              "Total",
+              "19"
+            ]
+          ]
+        },
+        {
+          "slide": 25,
+          "title": "A draft export is still useful evidence",
+          "kind": "steps",
+          "payload": [
+            "Inspect missing fields",
+            "Fill with reasoning",
+            "Rerun export cell",
+            "Check status + ZIP"
+          ]
+        },
+        {
+          "slide": 26,
+          "title": "Peer review: change one role, not the data",
+          "kind": "table",
+          "payload": [
+            [
+              "Question",
+              "Evidence to locate"
+            ],
+            [
+              "What changed?",
+              "Task observation"
+            ],
+            [
+              "What stayed fixed?",
+              "Parameter assertion"
+            ],
+            [
+              "Can I reproduce?",
+              "CSV + config + hash"
+            ]
+          ]
+        },
+        {
+          "slide": 27,
+          "title": "Choose a sensible next experiment",
+          "kind": "steps",
+          "payload": [
+            "Observed failure",
+            "Explicit hypothesis",
+            "Declared change",
+            "Fresh evaluation"
+          ]
+        },
+        {
+          "slide": 28,
+          "title": "What did you prove, and what not?",
+          "kind": "table",
+          "payload": [
+            [
+              "Established here",
+              "Not established"
+            ],
+            [
+              "Function consistency",
+              "Physical causality"
+            ],
+            [
+              "Specified stress result",
+              "Every future shift"
+            ],
+            [
+              "CSV replay agreement",
+              "Real-world safety"
+            ]
+          ]
+        },
+        {
+          "slide": 29,
+          "title": "Summary: predict, test, explain, preserve",
+          "kind": "steps",
+          "payload": [
+            "Slices + counts",
+            "Fixed-model stress",
+            "CSV replay",
+            "Evidence card"
+          ]
+        },
+        {
+          "slide": 30,
+          "title": "Exit: a two-minute explain-back",
+          "kind": "table",
+          "payload": [
+            [
+              "Explain",
+              "Show"
+            ],
+            [
+              "One observed failure",
+              "Metric / residual"
+            ],
+            [
+              "One exact identity",
+              "CSV hash"
+            ],
+            [
+              "One boundary",
+              "Synthetic scope"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "data_sha256": "994925f73576edc48f352b4b7300221eda8ed4c117e4f3615382579adf9411ab",
+  "execution_scope": "Fresh CPU kernels; not the Colab browser"
+}

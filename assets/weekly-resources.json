@@ -255,14 +255,33 @@
     "title": "ML reliability, shift, and error analysis",
     "date": "2026-11-02",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: Reliability: beyond one score",
+        "url": "/lectures/week-09-hour-1/"
+      },
+      {
+        "title": "H2: Diagnose a frozen model",
+        "url": "/lectures/week-09-hour-2/"
+      },
+      {
+        "title": "H3: Reliability lab: test, replay, explain",
+        "url": "/lectures/week-09-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
         "title": "Open Week 09 in Colab",
         "file": "week-09-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-09-practice.ipynb",
         "download": "/notebooks/week-09-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-09-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-09-exercise.ipynb",
+        "download": "/notebooks/exercises/week-09-exercise.ipynb"
       }
     ],
     "exercises": [
@@ -270,7 +289,10 @@
         "title": "Week 09 exercise",
         "url": "/notes/exercises/week-09-exercise.html"
       }
-    ]
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2
   },
   {
     "week": 10,

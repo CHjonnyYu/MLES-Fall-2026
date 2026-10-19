@@ -1,0 +1,659 @@
+{
+  "title": "Reliability lab: test, replay, explain",
+  "slides": [
+    {
+      "title": "Eight experiments, one evidence trail",
+      "body": [
+        "Week 09 / H3 / 60-minute lab",
+        "Keep the reference run and explain each change."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Predict",
+        "Run",
+        "Explain",
+        "Preserve"
+      ],
+      "teach": "H3 is entirely practice. Restore the H2 runtime, or run the exercise walkthrough once in a fresh runtime. Tasks 1, 3 and 4 were already calculated by hand in H1; briefly verify them with code. Alternate driver and reviewer after Task 5.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Plan the lab before touching code",
+      "body": [
+        "Core tasks first; optional challenges last.",
+        "Leave time for replay and explain-back."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Lab segment",
+          "Minutes"
+        ],
+        [
+          "Restore + analytic checks",
+          "10"
+        ],
+        [
+          "Tasks 2, 5, 6",
+          "18"
+        ],
+        [
+          "Tasks 7, 8",
+          "14"
+        ],
+        [
+          "Replay + peer + export",
+          "18"
+        ]
+      ],
+      "teach": "The 60-minute lab prioritizes all eight core tasks, then replay, peer explanation and export. Optional challenges may use spare time, not add required homework. If behind, ask for help with the stopping checks instead of bypassing assertions.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Restore the exact experiment identity",
+      "body": [
+        "Check the selected candidate and data hash.",
+        "Do not regenerate data with a fresh seed."
+      ],
+      "kind": "code",
+      "payload": [
+        "print(selected)",
+        "print(data_sha256)",
+        "print(CONFIG)",
+        "print(ENV)"
+      ],
+      "teach": "If using a fresh runtime, run the complete walkthrough in order. A plot cannot restore a fitted model. Inspect the actual selected candidate and computed CSV hash; never paste the reference hash and claim the file was checked.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 1 against your hand result",
+      "body": [
+        "The aggregate changes from 1.9 to 3.25.",
+        "The group losses remain 1 and 10."
+      ],
+      "kind": "equations",
+      "payload": [
+        "Original: 0.9*1 + 0.1*10 = 1.9",
+        "Changed: 0.75*1 + 0.25*10 = 3.25",
+        "Population mixture, not model change."
+      ],
+      "teach": "Compare Task 1 with the original written prediction. Expected values are 1.9 and 3.25. If wrong, review group weights and denominators. Do not rewrite the prediction to hide a mistake; explaining the correction is the learning evidence.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 3 against your derivation",
+      "body": [
+        "The finite grid has 101 endpoint-inclusive points.",
+        "Its MAE scales by L squared."
+      ],
+      "kind": "bars",
+      "payload": [
+        [
+          "L=1",
+          0.34
+        ],
+        [
+          "L=3",
+          3.06
+        ]
+      ],
+      "teach": "Run Task 3 and check that both grids have 101 points. The bars show defined analytic grid values, not fitted model results. Explain why 0.34 differs from continuous-uniform expectation 1/3, and why the factor 9 is not universal for trained models.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 4 with intermediate sums",
+      "body": [
+        "Appending an error changes n as well as sums.",
+        "Use n=5 for the second set."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Quantity",
+          "Four rows",
+          "Five rows"
+        ],
+        [
+          "Sum |e|",
+          "0.6",
+          "3.6"
+        ],
+        [
+          "Sum e^2",
+          "0.1",
+          "9.1"
+        ],
+        [
+          "n",
+          "4",
+          "5"
+        ]
+      ],
+      "teach": "Run Task 4 and verify the two sums before dividing. Initial n=4; after appending n=5. Expected MAEs are 0.15 and 0.72. Expected RMSEs are sqrt(0.025) and sqrt(1.82). Stop if the denominator or order of operations is wrong.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Finish Task 2 without tuning the model",
+      "body": [
+        "Boundary sweeps are exploratory diagnosis.",
+        "Keep final-model selection unchanged."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Fixed predictions",
+        "Three boundaries",
+        "Counts + MAE",
+        "Exploratory label"
+      ],
+      "teach": "Reuse the Task 2 result from H2 rather than running the entire notebook again. The reviewer checks that each pair of counts sums to 75. Keep the validation-selected model fixed and label the slice sweep exploratory.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 5: predict a controlled perturbation",
+      "body": [
+        "Increase only x0 by 0.5.",
+        "Predict the function change before execution."
+      ],
+      "kind": "equations",
+      "payload": [
+        "f(x) = b0 + b_x0*x0 + ...",
+        "f(x0+0.5, ...) - f(x0, ...)",
+        "Expected change = 0.5*b_x0"
+      ],
+      "teach": "Use the original-space x0 coefficient, not the standardized Ridge coefficient. No labels are needed for this function check. Both declared models are additive and linear in x0, so the same x0 perturbation gives the same prediction change for every row.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Recover the original-space coefficients",
+      "body": [
+        "Standardized z = (x - mean)/scale.",
+        "The raw coefficient is beta/scale."
+      ],
+      "kind": "equations",
+      "payload": [
+        "beta*z + b = raw_beta*x + raw_b",
+        "raw_b = b - sum(beta*mean/scale)",
+        "raw_beta = beta/scale"
+      ],
+      "teach": "Derive the equations by substituting z=(x-mean)/scale into beta*z+b. The quadratic feature has its own scaler mean and scale after basis expansion. Include every transformed feature when recovering the original-space intercept.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 5: verify the equality numerically",
+      "body": [
+        "Compare observed changes with the equation.",
+        "Stop if the tolerance check fails."
+      ],
+      "kind": "code",
+      "payload": [
+        "change = f(perturbed) - f(original)",
+        "expected = 0.5 * raw_coefficient_x0",
+        "assert_allclose(change, expected, atol=1e-10)"
+      ],
+      "teach": "Locate the runnable Task 5 assertion in the notebook. The reviewer confirms x0 is the only changed column. Passing the check establishes consistency of the fitted function explanation, not physical validity of a target mechanism.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 6: predeclare a new stress scale",
+      "body": [
+        "Add severity 2.0 with paired rows and noise.",
+        "Do not refit or reselect."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Object",
+          "Task 6 change"
+        ],
+        [
+          "x1",
+          "Multiply base by 2.0"
+        ],
+        [
+          "Target",
+          "Recompute same rule"
+        ],
+        [
+          "Parameters",
+          "Frozen"
+        ],
+        [
+          "Winner",
+          "Still validation-selected"
+        ]
+      ],
+      "teach": "Write a prediction before Task 6. Scale 2.0 is a new declared lab extension beyond the three reference conditions; it is not the original final test. Keep its observations separate and preserve the original reference ZIP.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 6: prove parameters stayed fixed",
+      "body": [
+        "A stress test calls predict, not fit.",
+        "Compare saved parameter arrays exactly."
+      ],
+      "kind": "code",
+      "payload": [
+        "before = parameter_snapshot(model)",
+        "pred = model.predict(stress_inputs)",
+        "assert_array_equal(before,",
+        "                   parameter_snapshot(model))"
+      ],
+      "teach": "The saved snapshot includes Ridge coefficients and intercept plus scaler means and scales. Stress prediction must not modify them. If the assertion fails, the comparison no longer isolates the input change; investigate rather than deleting the assertion.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Record both models, not only the winner",
+      "body": [
+        "Retain n, MAE and RMSE at scale 2.0.",
+        "Explain the observed difference in basis terms."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Field",
+          "Record from Task 6"
+        ],
+        [
+          "Population n",
+          "150"
+        ],
+        [
+          "Linear MAE/RMSE",
+          "Your actual values"
+        ],
+        [
+          "Quadratic MAE/RMSE",
+          "Your actual values"
+        ]
+      ],
+      "teach": "Record both actual candidate metrics and n=150 from Task 6. Explain the difference using representation of x1 squared. Blank fields or pasted reference values do not count as results of the student experiment.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 7: change bytes, preserve rows",
+      "body": [
+        "Copy the CSV; append one blank line.",
+        "Predict the hash and parsed-row outcomes."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Original CSV",
+        "Copy + blank line",
+        "Different hash",
+        "Same parsed records"
+      ],
+      "teach": "Operate only on a copy of the CSV. Appending one blank line changes exact bytes and SHA-256 while the parser recovers the same nonempty records. This distinguishes representation identity from semantic row equality.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 7: test the distinction explicitly",
+      "body": [
+        "Verify the original hash is unchanged.",
+        "Verify all 500 parsed rows still agree."
+      ],
+      "kind": "code",
+      "payload": [
+        "assert copy_hash != original_hash",
+        "assert copied_rows == original_rows",
+        "assert sha256(original) == original_hash"
+      ],
+      "teach": "Run Task 7 and check different copy hash, identical parsed rows and unchanged original hash. A hash acts on bytes, while parsing produces records. Neither check establishes scientific validity or label correctness.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 8: keep inputs, change the rule",
+      "body": [
+        "Reverse the coefficient of x0 only.",
+        "Keep observations and models otherwise fixed."
+      ],
+      "kind": "equations",
+      "payload": [
+        "Original: 2*x0 + x1^2 + noise",
+        "Changed: -2*x0 + x1^2 + noise",
+        "Same X, same noise, different P(Y|X)"
+      ],
+      "teach": "Task 8 stipulates a changed synthetic mechanism; it does not discover it from observations. Inputs, noise and predictions remain fixed, but targets change. Predict identical histograms before running the error comparison.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 8: expose a monitoring blind spot",
+      "body": [
+        "An identical input histogram sees no change.",
+        "Compare errors using the changed outcomes."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Monitor",
+          "Can see this change?"
+        ],
+        [
+          "Input histogram",
+          "No: exact same X"
+        ],
+        [
+          "Outcome residuals",
+          "Yes: labels changed"
+        ],
+        [
+          "Model parameters",
+          "No: fixed here"
+        ]
+      ],
+      "teach": "Read actual before/after metrics for both candidates in Task 8. The exact same inputs make input-only checks blind to this constructed shift. Do not generalize to a theorem that every possible concept change always worsens MAE.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "State a limited, evidence-backed claim",
+      "body": [
+        "Name the population and exact change.",
+        "Do not claim real-world reliability from synthetic data."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Weak",
+          "Evidence-bounded"
+        ],
+        [
+          "Model is robust",
+          "Under these stress scales"
+        ],
+        [
+          "Cause discovered",
+          "Known synthetic generator"
+        ],
+        [
+          "Ready to deploy",
+          "More evaluation required"
+        ]
+      ],
+      "teach": "Ask students to rewrite one claim: under these specified paired synthetic stress conditions, this frozen candidate produced these actual metrics. Name the data hash and a limitation. The goal is precision, not an unsupported broad robustness claim.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Replay from CSV, not hidden state",
+      "body": [
+        "Load rows and their saved split labels.",
+        "Clone the selected candidate and fit train only."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Frozen CSV",
+        "Recover splits",
+        "Clone + fit train",
+        "Compare test predictions"
+      ],
+      "teach": "Rerun the CSV replay cell without changing model selection. A clone retains hyperparameters but fits new parameter state on the saved training rows. Exact split membership and feature order matter. Instructor QA also used fresh CPU kernels.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "A reproducibility check needs a tolerance",
+      "body": [
+        "Compare prediction vectors, not screenshots.",
+        "This notebook uses 1e-10 absolute and relative tolerance."
+      ],
+      "kind": "code",
+      "payload": [
+        "assert_allclose(replayed, reference,",
+        "                atol=1e-10, rtol=1e-10)",
+        "assert current_data_hash == saved_hash"
+      ],
+      "teach": "Record the actual maximum prediction difference. This test uses absolute and relative tolerances of 1e-10; it does not promise bit-identical results across every platform. Investigate data precision, versions, splits and feature order before changing tolerances.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Use AI to explain, not invent evidence",
+      "body": [
+        "Ask for a hypothesis or a code explanation.",
+        "Check every proposed claim against actual outputs."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Helpful prompt",
+          "Required check"
+        ],
+        [
+          "Explain this residual",
+          "Read sign + axes"
+        ],
+        [
+          "Why hash changed?",
+          "Compare bytes + rows"
+        ],
+        [
+          "Suggest new test",
+          "Predeclare change"
+        ]
+      ],
+      "teach": "No paid AI is needed. Students may ask for hypotheses or explanations, then check every claim against actual data, signs, axes and outputs. Record material assistance and verification. AI-generated numbers are not experiment evidence.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Optional A: test symmetry of the function",
+      "body": [
+        "The true x1-squared term is even.",
+        "A small fitted odd term can break perfect symmetry."
+      ],
+      "kind": "equations",
+      "payload": [
+        "True square: (-x1)^2 = x1^2",
+        "Fitted change on x1 -> -x1:",
+        "delta f = -2 * raw_beta_x1 * x1"
+      ],
+      "teach": "Optional A: both declared candidates contain an odd linear x1 term; the quadratic candidate additionally contains an even square. Flipping x1 isolates the odd term with delta f=-2*raw_beta_x1*x1. The code checks actual function differences.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Optional B: simulate an encoding bug",
+      "body": [
+        "Multiply served x0 by 100, leaving targets fixed.",
+        "Decode it before calling the same model."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Correct x0",
+        "Encode x100",
+        "Wrong predictions",
+        "Decode /100"
+      ],
+      "teach": "Optional B: these inputs are dimensionless, so call the example an encoding mismatch analogous to a unit error, not an actual physical unit conversion. Check degraded predictions after encoding and restored predictions after correct decoding.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Export explanations, not only plots",
+      "body": [
+        "Fill eight predictions and explanations.",
+        "Add controlled change, limitation and AI disclosure."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Required fields",
+          "Count"
+        ],
+        [
+          "Predictions",
+          "8"
+        ],
+        [
+          "Explanations",
+          "8"
+        ],
+        [
+          "Change / limit / AI",
+          "3"
+        ],
+        [
+          "Total",
+          "19"
+        ]
+      ],
+      "teach": "The published response fields start blank. There are eight predictions, eight explanations and three final reflections. Completing fields is only a completeness check, not a correctness grade. Optional challenge answers are not required for core completion.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "A draft export is still useful evidence",
+      "body": [
+        "Blank explanations produce status draft.",
+        "Do not mislabel incomplete work as complete."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Inspect missing fields",
+        "Fill with reasoning",
+        "Rerun export cell",
+        "Check status + ZIP"
+      ],
+      "teach": "After editing responses, rerun only the final export cell. Rerunning initialization erases answers. Missing explanations produce draft status; nonempty fields produce ready for peer discussion. Preserve the reference and exercise ZIPs separately.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Peer review: change one role, not the data",
+      "body": [
+        "Reviewer explains a failure without running code.",
+        "Driver locates the matching evidence."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Question",
+          "Evidence to locate"
+        ],
+        [
+          "What changed?",
+          "Task observation"
+        ],
+        [
+          "What stayed fixed?",
+          "Parameter assertion"
+        ],
+        [
+          "Can I reproduce?",
+          "CSV + config + hash"
+        ]
+      ],
+      "teach": "The reviewer asks about Task 6 or Task 8, and the driver locates one matching numerical observation and the invariant checks. If evidence cannot be found, repair the record before claiming completion. No graded weekly submission is added.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Choose a sensible next experiment",
+      "body": [
+        "A residual pattern suggests a testable change.",
+        "A new claim needs a new evaluation protocol."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Observed failure",
+        "Explicit hypothesis",
+        "Declared change",
+        "Fresh evaluation"
+      ],
+      "teach": "Connect the observed failure to a declared next hypothesis and evaluation protocol. Fresh grouped external observations or newly collected outcomes may be appropriate; repeatedly recycling the final test is not fresh evidence. This connects to Week 10.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "What did you prove, and what not?",
+      "body": [
+        "You checked one synthetic workflow and its replay.",
+        "You did not validate a real deployed system."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Established here",
+          "Not established"
+        ],
+        [
+          "Function consistency",
+          "Physical causality"
+        ],
+        [
+          "Specified stress result",
+          "Every future shift"
+        ],
+        [
+          "CSV replay agreement",
+          "Real-world safety"
+        ]
+      ],
+      "teach": "Ask each pair to repair one overclaim using their actual result. Software execution, function consistency and synthetic stress performance are different from causal discovery, external validation and deployment safety.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Summary: predict, test, explain, preserve",
+      "body": [
+        "Slice errors; freeze models; probe shift.",
+        "Replay exact inputs and bound your claim."
+      ],
+      "kind": "steps",
+      "payload": [
+        "Slices + counts",
+        "Fixed-model stress",
+        "CSV replay",
+        "Evidence card"
+      ],
+      "teach": "Retrieve the main checks without reading: slices with counts, frozen parameters, exact CSV replay and a bounded evidence card. Ask for one specific assertion rather than vague words such as trustworthy. Challenges remain optional.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Exit: a two-minute explain-back",
+      "body": [
+        "Show one result, its mechanism and its limit.",
+        "Keep both ZIPs for the workflow studio."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Explain",
+          "Show"
+        ],
+        [
+          "One observed failure",
+          "Metric / residual"
+        ],
+        [
+          "One exact identity",
+          "CSV hash"
+        ],
+        [
+          "One boundary",
+          "Synthetic scope"
+        ]
+      ],
+      "teach": "Close with claim, evidence, limitation and next test. Keep both ZIPs for the workflow studio. If incomplete, preserve honest draft status and seek guidance; do not turn the lab into a new graded homework requirement.",
+      "minutes": 2,
+      "mode": "practice"
+    }
+  ]
+}
