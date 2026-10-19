@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homework: Build and Explain a Stock Forecasting System</title>
+<style>
+:root{--ink:#142b3b;--teal:#086b70;--paper:#f6f2e9;--line:#ced9d5;--muted:#53636b}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,serif;line-height:1.65}main{max-width:1000px;margin:auto;padding:40px 38px 80px}.brand{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:40px}.brand img{width:230px;max-width:44%;height:65px;object-fit:contain}.eyebrow{font:700 13px/1.5 'Avenir Next',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}h1{font-size:clamp(32px,5vw,51px);line-height:1.12;margin:15px 0 24px;max-width:850px}h2{font-size:26px;margin-top:38px;border-top:1px solid var(--line);padding-top:24px}h3{font-size:20px;color:var(--teal)}p,li{font-size:17px}li{margin:9px 0}.lead{font-size:21px}.callout{padding:18px 24px;border-left:5px solid var(--teal);background:#e4eeea;margin:25px 0}.formula{font-family:Georgia,serif;font-size:20px;background:white;padding:17px 22px;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;background:#fff;font-size:16px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:12px 14px;vertical-align:top}th{background:#deebe6}code{font-size:.9em;overflow-wrap:anywhere}.meta{color:var(--muted)}a{color:var(--teal)}footer{margin-top:45px;color:var(--muted);font-size:14px}@media(max-width:600px){main{padding:25px 20px 55px}th,td{padding:9px 8px;font-size:14px}.brand{gap:15px}}@media print{body{background:white}main{max-width:none;padding:0}h2,h3{break-after:avoid}tr,.callout{break-inside:avoid}a{color:inherit}}
+</style>
+</head>
+<body><main>
+<header>
+<div class="brand"><img src="../../assets/ncku-graphic-signature.png" alt="National Cheng Kung University"><img src="../../assets/laimm-horizontal-logo.png" alt="LAiMM"></div>
+<div class="eyebrow">Machine Learning in Engineering Science / Fall 2026 / Homework</div>
+<h1>Build and Explain a Stock Forecasting System</h1>
+<p class="lead">Can an LSTM forecast the next trading day's closing price better than a simple baseline, under an honest evaluation protocol?</p>
+<p class="meta">Submission: individual project and a five-minute video in English. Due date and submission platform: to be announced by the instructor.</p>
+</header>
+<div class="callout" id="starter"><strong>Start your implementation</strong><p><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/stock-market-prediction-starter.ipynb" target="_blank" rel="noreferrer">Open starter notebook in Colab</a> &middot; <a href="../../notebooks/homework/stock-market-prediction-starter.ipynb" download>Download Jupyter notebook</a> &middot; <a href="../../index.html#homework">Back to course website</a></p><p>English, step-by-step scaffolding: frozen data and CSV fallback, chronological windows, persistence, Ridge, LSTM, validation selection, final-test gate, plots, reproducibility export, and video checklist. The starter has not been executed before publication; students must run it and report their actual results.</p></div>
+<div class="callout"><strong>This is an ML experiment, not an investment recommendation.</strong> You are assessed on correctness, reproducibility, interpretation, and communication, not on profits or whether your LSTM wins. A well-explained negative result can receive full marks.</div>
+
+<h2>1. Learning objectives</h2>
+<ul>
+<li>Convert a financial time series into correctly aligned input windows and prediction targets.</li>
+<li>Compare persistence, linear regression, and an LSTM using the same information and test dates.</li>
+<li>Prevent future information from leaking into preprocessing, model selection, and evaluation.</li>
+<li>Produce an experiment another student can reproduce and explain where the system fails.</li>
+</ul>
+
+<h2>2. The system you must build</h2>
+<p>Build one complete workflow: load a saved CSV, check the data, create chronological splits, construct windows, train the models, generate predictions, and display evaluation results. A clearly organized Colab or Jupyter notebook is a sufficient system. A separate web application, live trading connection, paid data feed, and cloud deployment are <strong>not required</strong>.</p>
+<p>The prediction is issued <strong>after the market closes on trading day t</strong>. For a lookback of L observations, define:</p>
+<div class="formula">Input: X<sub>t</sub> = [P<sub>t-L+1</sub>, ..., P<sub>t</sub>]<br>Target: y<sub>t</sub> = P<sub>t+1</sub><br>Persistence prediction: P&#770;<sub>t+1</sub> = P<sub>t</sub></div>
+<p>Here P is your declared daily closing-price series. The horizon is the <strong>next trading observation</strong>, not necessarily the next calendar day. Begin with closing price as the only feature. Use L = 20 for the main model comparison; also compare L = 10 versus L = 20 for the LSTM on validation data.</p>
+
+<h2>3. Data and provenance</h2>
+<ol>
+<li>Choose one stock or market ETF and obtain at least <strong>750 daily trading observations</strong> from a permitted historical-data source. Do not use fabricated data as the final experiment.</li>
+<li>Save the exact CSV used in the experiment. Include at least <code>date</code> and <code>close</code>; record the ticker, market, currency, source URL, retrieval date, date range, and whether prices are adjusted or unadjusted.</li>
+<li>Use one consistent price definition across all models. Explain stock splits, dividends, or vendor adjustments that could affect interpretation. A retrospectively adjusted download is not proof that identical data were available historically.</li>
+<li>Sort dates in increasing order; check duplicates, missing values, and non-positive prices. Report your cleaning decisions. Do not invent weekend observations or interpolate prices using future values.</li>
+<li>Record a SHA-256 checksum of the saved CSV. Respect the provider's license; if redistribution is restricted, provide a permitted instructor-access route and exact acquisition instructions rather than publishing the data publicly.</li>
+</ol>
+
+<h2>4. Chronological evaluation: non-negotiable rules</h2>
+<ul>
+<li>Split the ordered observations into approximately <strong>70% training, 15% validation, and 15% test</strong>. Print the exact boundaries and counts. Assign a window to a split using its <strong>target date</strong>.</li>
+<li>Fit scalers and any learned preprocessing using training observations only. Apply those fitted transformations to validation and test observations. Do not fit on the complete series.</li>
+<li>Every input must precede its target. Show one sample with all input dates and its target date to demonstrate the alignment.</li>
+<li>Validation and test windows may include earlier observations from the preceding split. For rolling one-step evaluation, already observed test prices may enter later test inputs; future test prices may not. Keep model weights fixed during the test period.</li>
+<li>Use validation results to choose the LSTM lookback and settings. Freeze these decisions before evaluating on the test set. Do not repeatedly tune using test scores, and do not randomly split overlapping windows.</li>
+<li>Compare all final models on exactly the same test target dates and in the original price units, not normalized units.</li>
+</ul>
+<p>Explain that rolling one-step prediction with newly observed history is different from forecasting an entire future month recursively. This HW requires only the former.</p>
+
+<h2>5. Required models and experiment</h2>
+<table>
+<thead><tr><th>Model</th><th>Required implementation</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td>Persistence</td><td>Predict the next close using the most recent observed close.</td><td>Establish a meaningful no-training baseline.</td></tr>
+<tr><td>Linear model</td><td>Use Ridge regression with the 20 lagged closing prices. Select any regularization setting using training/validation data only and record it.</td><td>Ask whether a simpler learned relationship is sufficient.</td></tr>
+<tr><td>LSTM</td><td>Use a small single-layer LSTM, for example 16 hidden units followed by a one-value output layer. Compare lookbacks 10 and 20 on validation data; select one configuration.</td><td>Evaluate whether a sequential nonlinear model adds useful evidence.</td></tr>
+</tbody></table>
+<p>Keep the work practical for a free Colab session or local CPU: for example, no more than 20 training epochs per configuration, batch size 32, and early stopping based on validation loss. Record the actual architecture, loss, optimizer, learning rate, epoch limit, stopping rule, and seed. Transformer and attention models are optional extensions, not prerequisites for full marks.</p>
+
+<h2>6. Results and interpretation</h2>
+<p>Provide the following evidence, generated from your actual run:</p>
+<ol>
+<li><strong>One split diagram:</strong> show the complete price history with training, validation, and test boundaries.</li>
+<li><strong>One validation comparison:</strong> compare the two LSTM lookbacks and justify your selected configuration without consulting test results.</li>
+<li><strong>One test-score table:</strong> MAE and RMSE for persistence, Ridge, and the selected LSTM, on identical dates. State which error is being averaged and the price units.</li>
+<li><strong>One aligned forecast plot:</strong> show actual and predicted test prices with correct target dates. Include a zoomed interval so a smooth-looking curve cannot conceal errors.</li>
+<li><strong>One learning-curve plot:</strong> show LSTM training and validation loss and explain evidence for underfitting or overfitting.</li>
+<li><strong>One failure analysis:</strong> examine the date with the largest absolute LSTM test error. Report the observed price, prediction, persistence prediction, and error. Discuss plausible limitations without inventing a causal market explanation.</li>
+</ol>
+<p>Calculate MAE = mean(|prediction - target|) and RMSE = sqrt(mean((prediction - target)<sup>2</sup>)) after converting predictions back to the original units. Explain why tracking the price level closely does not, by itself, demonstrate reliable direction prediction or a profitable strategy.</p>
+<p><strong>Interpretability requirement:</strong> explain the information each model receives, what the LSTM is intended to retain over time, and what your evidence cannot establish. The lookback comparison is a controlled sensitivity experiment, not a causal explanation. If you add attention weights or feature-attribution plots, do not present them as proof of causality.</p>
+
+<h2>7. Five-minute video: required storyboard</h2>
+<p>Record a screen presentation with your own English narration. Target <strong>5:00 minutes</strong>; an acceptable range is 4:30-5:30. Show your notebook and actual results, not only prepared slides. A webcam is optional.</p>
+<table>
+<thead><tr><th>Time</th><th>What you must explain or demonstrate</th></tr></thead>
+<tbody>
+<tr><td>0:00-0:30</td><td>State the ticker, prediction horizon, available information, and research question.</td></tr>
+<tr><td>0:30-1:20</td><td>Show the data source, date boundaries, one window/target example, and how you prevented leakage.</td></tr>
+<tr><td>1:20-2:20</td><td>Explain persistence, Ridge, and your LSTM. Show the input shape, architecture, and validation-based lookback choice.</td></tr>
+<tr><td>2:20-3:35</td><td>Demonstrate your prediction workflow on a held-out test window and display the three-model score table and aligned plots. You may use previously saved training outputs; do not spend the video waiting for training.</td></tr>
+<tr><td>3:35-4:30</td><td>Explain the largest-error example, whether LSTM beat persistence, and one limitation of your conclusions.</td></tr>
+<tr><td>4:30-5:00</td><td>Show how another student can reproduce the run; disclose AI assistance and summarize what you personally checked and learned.</td></tr>
+</tbody></table>
+<p>Do not replace your explanation with AI-generated narration. AI may help you draft the script, but you must understand and explain the submitted work yourself. Supply an instructor-accessible video link or an MP4; check viewing permissions before submission.</p>
+
+<h2>8. Submission checklist</h2>
+<ul>
+<li><code>stock_forecasting.ipynb</code>: executed from a clean runtime, with visible outputs and detailed English Markdown explaining each step.</li>
+<li><code>README</code>: exact run instructions, data acquisition/provenance, chosen settings, split dates, and limitations.</li>
+<li>Saved input CSV when redistribution is permitted; otherwise the permitted access route and acquisition instructions. Include its checksum and any cleaned-data snapshot needed to reproduce the run.</li>
+<li><code>requirements.txt</code> or an environment/version report, a recorded seed such as 2026, and a configuration file or clearly labeled configuration cell. Report any nondeterminism; a seed alone does not guarantee bitwise-identical results.</li>
+<li><code>test_predictions.csv</code>: target date, previous close, observed close, persistence prediction, Ridge prediction, and LSTM prediction. Include a metrics table and the required figures.</li>
+<li><code>ai_use_log</code>: tool/model used, representative prompts, assistance received, and the changes or checks you performed. Write "No AI assistance" if none was used. Never include credentials or private account information.</li>
+<li>Your five-minute video and its access link, if applicable.</li>
+</ul>
+<p>Package these in one folder or ZIP. No trading account, paid AI subscription, paid API key, custom domain, or public repository is required.</p>
+
+<h2>9. Grading rubric</h2>
+<table>
+<thead><tr><th>Criterion</th><th>Points</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>Data integrity and leakage prevention</td><td>20</td><td>Traceable data, chronological splits, training-only preprocessing, and correct window alignment.</td></tr>
+<tr><td>Working forecasting system</td><td>20</td><td>Complete workflow, all three models, and a valid held-out prediction demonstration.</td></tr>
+<tr><td>Fair evaluation and experimental evidence</td><td>25</td><td>Validation-based selection, matching test dates, correct original-unit metrics, and informative plots.</td></tr>
+<tr><td>Interpretation and limitations</td><td>15</td><td>Lookback comparison, largest-error analysis, and conclusions supported by evidence.</td></tr>
+<tr><td>Reproducibility and AI transparency</td><td>10</td><td>Runnable submission, data fingerprint, settings, environment, and truthful AI-use record.</td></tr>
+<tr><td>Five-minute explanation</td><td>10</td><td>Clear English narration, actual system demonstration, and understanding of personal implementation decisions.</td></tr>
+<tr><th>Total</th><th>100</th><td>High prediction accuracy is not a substitute for a valid experiment.</td></tr>
+</tbody></table>
+<p>A missing baseline, future-data leakage, or tuning on the test set makes the affected model comparison invalid. Document a failed run honestly rather than inventing results. Scores are based on submitted evidence, not unsupported claims.</p>
+
+<h2>10. Official technical references</h2>
+<ul>
+<li><a href="https://www.tensorflow.org/tutorials/structured_data/time_series">TensorFlow: Time series forecasting</a> - windows, baselines, and sequence forecasting examples.</li>
+<li><a href="https://scikit-learn.org/stable/common_pitfalls.html">scikit-learn: Common pitfalls and recommended practices</a> - preprocessing consistency and data-leakage prevention.</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html">scikit-learn: TimeSeriesSplit</a> - an optional reference for chronological cross-validation; a fixed chronological split is sufficient for this HW.</li>
+</ul>
+<footer>Educational forecasting only. Do not interpret this assignment or its outputs as financial advice. Course: Machine Learning in Engineering Science, Fall 2026.</footer>
+</main></body></html>
