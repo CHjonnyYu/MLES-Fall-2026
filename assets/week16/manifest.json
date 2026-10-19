@@ -1,0 +1,37 @@
+{
+  "week": 16,
+  "date": "2026-12-21",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "Design an evaluation before the demonstration",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-16-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Run the harness and explain candidate failures",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-16-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Studio II: evaluate, challenge, rehearse",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-16-hour-3/"
+    }
+  ],
+  "core_exercises": 8,
+  "optional_challenges": 2,
+  "explanation_minutes": 60,
+  "practice_minutes": 120
+}

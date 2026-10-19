@@ -1,0 +1,302 @@
+{
+  "week": 13,
+  "execution": "Fresh local CPU Jupyter kernel; not Colab-browser execution",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "scikit_learn": "1.9.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "observations": {
+    "task1": {
+      "known": {
+        "query": "temperature unit Fahrenheit Celsius",
+        "status": "retrieved",
+        "hits": [
+          {
+            "id": "LAB-01:v1",
+            "score": 0.5494729756456687,
+            "text": "Temperature readings must include an explicit unit C or F. Convert Fahrenheit using Celsius equals Fahrenheit minus 32 times 5 divided by 9."
+          }
+        ],
+        "all_scores": [
+          0.5494729756456687,
+          0.08303128370867528,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "unknown": {
+        "query": "quantum entanglement qubits",
+        "status": "abstain",
+        "hits": [],
+        "all_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "task2": {
+      "idf": {
+        "temperature": 1.8472978603872037,
+        "fahrenheit": 2.252762968495368,
+        "permissions": 1.8472978603872037
+      },
+      "row_norms": [
+        1.0000000000000002,
+        1.0000000000000002,
+        1.0,
+        0.9999999999999999,
+        1.0,
+        1.0
+      ],
+      "full_qualifier": "mean temperature at least 80 C",
+      "truncated_qualifier": "mean temperature at least 80",
+      "chunking_limit": "A missing unit cannot be restored by lexical similarity alone."
+    },
+    "task3": {
+      "rows": [
+        {
+          "case_id": "H1",
+          "relevant": [
+            "LAB-03:v1"
+          ],
+          "retrieved": [
+            "LAB-03:v1"
+          ],
+          "status": "retrieved",
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "case_id": "H2",
+          "relevant": [
+            "LAB-04:v1"
+          ],
+          "retrieved": [
+            "LAB-04:v1"
+          ],
+          "status": "retrieved",
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "case_id": "H3",
+          "relevant": [
+            "LAB-05:v1"
+          ],
+          "retrieved": [
+            "LAB-05:v1"
+          ],
+          "status": "retrieved",
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "case_id": "H4",
+          "relevant": [],
+          "retrieved": [],
+          "status": "abstain",
+          "recall": null,
+          "reciprocal_rank": null
+        }
+      ],
+      "macro_recall_answerable": 1.0,
+      "mean_reciprocal_rank_answerable": 1.0,
+      "no_evidence_rows": [
+        {
+          "case_id": "H4",
+          "relevant": [],
+          "retrieved": [],
+          "status": "abstain",
+          "recall": null,
+          "reciprocal_rank": null
+        }
+      ]
+    },
+    "task4": {
+      "answers": [
+        {
+          "source": "LAB-02:v1",
+          "quote": "The fictional review threshold is mean temperature at least 80 C.",
+          "claimed_threshold_C": 80
+        },
+        {
+          "source": "FAKE",
+          "quote": "The fictional review threshold is mean temperature at least 80 C.",
+          "claimed_threshold_C": 80
+        },
+        {
+          "source": "LAB-02:v1",
+          "quote": "review starts at 95 C",
+          "claimed_threshold_C": 95
+        },
+        {
+          "source": "LAB-02:v1",
+          "quote": "The fictional review threshold is mean temperature at least 80 C.",
+          "claimed_threshold_C": 95
+        }
+      ],
+      "checks": [
+        {
+          "structural_and_fixture_checks_pass": true,
+          "reasons": [],
+          "requires_semantic_review": true
+        },
+        {
+          "structural_and_fixture_checks_pass": false,
+          "reasons": [
+            "unknown_source",
+            "numeric_claim_not_supported"
+          ],
+          "requires_semantic_review": true
+        },
+        {
+          "structural_and_fixture_checks_pass": false,
+          "reasons": [
+            "quote_not_in_source",
+            "numeric_claim_not_supported"
+          ],
+          "requires_semantic_review": true
+        },
+        {
+          "structural_and_fixture_checks_pass": false,
+          "reasons": [
+            "numeric_claim_not_supported"
+          ],
+          "requires_semantic_review": true
+        }
+      ]
+    },
+    "task5": {
+      "development_only": {
+        "1": [
+          {
+            "case_id": "D1",
+            "relevant": [
+              "LAB-01:v1"
+            ],
+            "retrieved": [
+              "LAB-01:v1"
+            ],
+            "status": "retrieved",
+            "recall": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          {
+            "case_id": "D2",
+            "relevant": [
+              "LAB-02:v1"
+            ],
+            "retrieved": [
+              "LAB-02:v1"
+            ],
+            "status": "retrieved",
+            "recall": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        ],
+        "2": [
+          {
+            "case_id": "D1",
+            "relevant": [
+              "LAB-01:v1"
+            ],
+            "retrieved": [
+              "LAB-01:v1"
+            ],
+            "status": "retrieved",
+            "recall": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          {
+            "case_id": "D2",
+            "relevant": [
+              "LAB-02:v1"
+            ],
+            "retrieved": [
+              "LAB-02:v1"
+            ],
+            "status": "retrieved",
+            "recall": 1.0,
+            "reciprocal_rank": 1.0
+          }
+        ]
+      },
+      "frozen_report_k": 2
+    },
+    "task6": {
+      "case": {
+        "id": "NEW-1",
+        "query": "archive settings and code to repeat a calculation",
+        "relevant": [
+          "LAB-05:v1"
+        ]
+      },
+      "diagnostic": [
+        {
+          "case_id": "NEW-1",
+          "relevant": [
+            "LAB-05:v1"
+          ],
+          "retrieved": [
+            "LAB-05:v1",
+            "LAB-06:v1"
+          ],
+          "status": "retrieved",
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        }
+      ]
+    },
+    "task7": {
+      "readings_C": [
+        79.0,
+        81.0,
+        83.0
+      ],
+      "computed_mean_C": 81.0,
+      "protocol_source": {
+        "id": "LAB-02:v1",
+        "score": 0.5115008614212103,
+        "text": "The fictional review threshold is mean temperature at least 80 C. This teaching rule is not a certified equipment safety limit."
+      },
+      "review_required": true,
+      "scope": "Synthetic readings plus fictional protocol; no physical diagnosis."
+    },
+    "task8": {
+      "corpus_sha256": "c83f1491485dd777082347c75189da1aec5e880b8567bc2e9d791bbca8e58eb6",
+      "configuration": {
+        "k": 2,
+        "threshold": 0.12,
+        "idf": "ln((1+N)/(1+df))+1",
+        "norm": "l2"
+      },
+      "support_failure": {
+        "structural_and_fixture_checks_pass": false,
+        "reasons": [
+          "numeric_claim_not_supported"
+        ],
+        "requires_semantic_review": true
+      },
+      "limitation": "Lexical baseline plus extractive evidence; no generated answers or general entailment evaluation."
+    }
+  },
+  "optional_challenge_checks": [
+    "A_chunking",
+    "B_untrusted_passage"
+  ],
+  "notebook_sha256": "e7df0e5122c2f7d5d3ab41251018821b9f0c0ec317316e4903f440b31bb77956",
+  "figures": [
+    "retrieval-recall.png",
+    "idf.png",
+    "query-scores.png"
+  ]
+}

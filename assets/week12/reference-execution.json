@@ -1,0 +1,215 @@
+{
+  "week": 12,
+  "execution": "Fresh local CPU Jupyter kernel; not Colab-browser execution",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "scikit_learn": "1.9.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "observations": {
+    "task1": {
+      "context": "space",
+      "top": [
+        {
+          "next": "t",
+          "count": 20,
+          "probability": 0.17355371900826447
+        },
+        {
+          "next": "r",
+          "count": 15,
+          "probability": 0.1322314049586777
+        },
+        {
+          "next": "a",
+          "count": 10,
+          "probability": 0.09090909090909091
+        },
+        {
+          "next": "u",
+          "count": 10,
+          "probability": 0.09090909090909091
+        },
+        {
+          "next": "e",
+          "count": 10,
+          "probability": 0.09090909090909091
+        },
+        {
+          "next": "m",
+          "count": 9,
+          "probability": 0.08264462809917356
+        }
+      ]
+    },
+    "task2": {
+      "entropy_nats": {
+        "0.5": 2.063332675908864,
+        "1.0": 2.612273440165694,
+        "2.0": 2.9361846811112167
+      },
+      "samples": {
+        "0.5": " ean. ts. msure the he t re the ts. urevin. te s. re re the the cts. the tspunpe me ccooresunpure. he",
+        "2.0": " dniiituepjxwnpnrheaelkp midmjeautnexomvhpjerdjnasmolkmkppl tlhkavx.dremjswvn.w heria pmoowvdwsorkwdm"
+      },
+      "fixture_losses": [
+        0.2231435513142097,
+        1.6094379124341003
+      ]
+    },
+    "task3": {
+      "proposals": [
+        {
+          "tool": "mean",
+          "values": [
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "tool": "delete_files",
+          "values": [
+            1
+          ]
+        }
+      ],
+      "outcomes": [
+        {
+          "status": "ok",
+          "result": 3.0
+        },
+        {
+          "status": "forbidden_tool",
+          "result": null
+        }
+      ]
+    },
+    "task4": {
+      "case_names": [
+        "empty",
+        "boolean",
+        "string",
+        "NaN",
+        "infinite",
+        "too_many"
+      ],
+      "statuses": [
+        "invalid_data",
+        "invalid_data",
+        "invalid_data",
+        "invalid_data",
+        "invalid_data",
+        "invalid_data"
+      ],
+      "large_finite_result": {
+        "status": "ok",
+        "result": 1e+100
+      }
+    },
+    "task5": {
+      "cap": 2,
+      "trace": [
+        {
+          "attempt": 1,
+          "proposal": {
+            "tool": "unknown",
+            "values": [
+              1
+            ]
+          },
+          "status": "forbidden_tool",
+          "result": null
+        },
+        {
+          "attempt": 2,
+          "proposal": {
+            "tool": "unknown",
+            "values": [
+              1
+            ]
+          },
+          "status": "forbidden_tool",
+          "result": null
+        },
+        {
+          "attempt": 3,
+          "status": "budget_exhausted"
+        }
+      ]
+    },
+    "task6": {
+      "raw_strings": [
+        "{\"tool\":\"mean\",\"values\":[1,2,6]}",
+        "{\"tool\":\"mean\",\"values\":[1,2,6],}",
+        "{\"tool\":\"mean\",\"tool\":\"median\",\"values\":[1]}",
+        "{\"tool\":\"mean\",\"values\":[NaN]}"
+      ],
+      "parse_statuses": [
+        "parsed",
+        "parse_error",
+        "parse_error",
+        "parse_error"
+      ],
+      "repaired": "{\"tool\":\"mean\",\"values\":[1,2,6]}",
+      "checked": {
+        "status": "ok",
+        "result": 3.0
+      }
+    },
+    "task7": {
+      "fixture": {
+        "values": [
+          1,
+          2,
+          6
+        ],
+        "expected_mean": 3.0
+      },
+      "actual": {
+        "status": "ok",
+        "result": 3.0
+      },
+      "wrong_denominator_result": 2.25
+    },
+    "task8": {
+      "corpus_sha256": "f1864ef7576724a853cf76f6ceb5e3e0e6c58b968c5bad4b1e1264a7cf9ebb75",
+      "vocabulary": [
+        " ",
+        ".",
+        "a",
+        "c",
+        "d",
+        "e",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x"
+      ],
+      "scope": "Trained character bigram plus deterministic tool-boundary simulation; no live LLM evaluation."
+    }
+  },
+  "optional_challenge_checks": [
+    "A_median",
+    "B_formatting"
+  ],
+  "notebook_sha256": "c83afa157c862b52fca338c2420c559d756fa2ee498e908bb9b5720ff9b2e424",
+  "figures": [
+    "temperature.png",
+    "distribution.png"
+  ]
+}

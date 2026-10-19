@@ -1,0 +1,1014 @@
+{
+  "week": 16,
+  "execution": "Fresh local CPU Jupyter kernel; not Colab-browser execution",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "scikit_learn": "1.9.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "observations": {
+    "task1": {
+      "development": {
+        "reference": [
+          {
+            "case_id": "D-low",
+            "expected": {
+              "status": "reported",
+              "mean_C": 72.0,
+              "sample_sd_C": 2.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "392bf2bcac84e52067ee5ee247c975db4274f129690a63fdde85db677df5c444"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 72.0,
+                  "sample_sd_C": 2.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "D-low",
+              "mean_C": 72.0,
+              "sample_sd_C": 2.0,
+              "decision_value_C": 72.0,
+              "input_sha256": "392bf2bcac84e52067ee5ee247c975db4274f129690a63fdde85db677df5c444",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "D-zero",
+            "expected": {
+              "status": "reported",
+              "mean_C": 0.0,
+              "sample_sd_C": 0.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "785c252b81b8ed722c461e1c13e465892e3eda9bf305d594293de46ac5c446d7"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 0.0,
+                  "sample_sd_C": 0.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "D-zero",
+              "mean_C": 0.0,
+              "sample_sd_C": 0.0,
+              "decision_value_C": 0.0,
+              "input_sha256": "785c252b81b8ed722c461e1c13e465892e3eda9bf305d594293de46ac5c446d7",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "D-empty",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "2..100 finite bounded numeric readings required",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          }
+        ],
+        "buggy": [
+          {
+            "case_id": "D-low",
+            "expected": {
+              "status": "reported",
+              "mean_C": 72.0,
+              "sample_sd_C": 2.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "392bf2bcac84e52067ee5ee247c975db4274f129690a63fdde85db677df5c444"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 54.0,
+                  "sample_sd_C": 2.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "D-low",
+              "mean_C": 54.0,
+              "sample_sd_C": 2.0,
+              "decision_value_C": 54.0,
+              "input_sha256": "392bf2bcac84e52067ee5ee247c975db4274f129690a63fdde85db677df5c444",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": false,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 18.0,
+            "passed": false
+          },
+          {
+            "case_id": "D-zero",
+            "expected": {
+              "status": "reported",
+              "mean_C": 0.0,
+              "sample_sd_C": 0.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "785c252b81b8ed722c461e1c13e465892e3eda9bf305d594293de46ac5c446d7"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 0.0,
+                  "sample_sd_C": 0.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "D-zero",
+              "mean_C": 0.0,
+              "sample_sd_C": 0.0,
+              "decision_value_C": 0.0,
+              "input_sha256": "785c252b81b8ed722c461e1c13e465892e3eda9bf305d594293de46ac5c446d7",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "D-empty",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "2..100 finite bounded numeric readings required",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          }
+        ]
+      },
+      "explanation_target": "D-zero does not discriminate n versus n+1 for the mean."
+    },
+    "task2": {
+      "configuration": {
+        "atol": 1e-08,
+        "rtol": 1e-10,
+        "gate": "all required held-out fixtures pass AND zero protected side effects",
+        "test_ids": [
+          "T-boundary",
+          "T-high",
+          "T-F",
+          "T-constant",
+          "T-unit",
+          "T-bool",
+          "T-one"
+        ],
+        "selection": "No candidate reselection or repair after held-out inspection"
+      },
+      "suite_sha256": "dfe0cf40c779703417c0c64848c54d0bf1eac0d61a5ccc83e8991c761b1fc744",
+      "code_sha256": "2c0ca4825088d553187b307a64f98dc9049e3a272b9bebec1f41817b1bcb0ecf",
+      "side_effect_scope": "No external-action capability exists; zero is structural, not an independent external security measurement."
+    },
+    "task3": {
+      "rows": {
+        "reference": [
+          {
+            "case_id": "T-boundary",
+            "expected": {
+              "status": "review_required",
+              "mean_C": 80.0,
+              "sample_sd_C": 1.0
+            },
+            "actual": {
+              "status": "review_required",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "b20fa1edfa831d0f9ebd3dc6b64c8051d3e5ee8feb16fbcf88c7651dd592c693"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 80.0,
+                  "sample_sd_C": 1.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "review_required"
+                }
+              ],
+              "case_id": "T-boundary",
+              "mean_C": 80.0,
+              "sample_sd_C": 1.0,
+              "decision_value_C": 80.0,
+              "input_sha256": "b20fa1edfa831d0f9ebd3dc6b64c8051d3e5ee8feb16fbcf88c7651dd592c693",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "T-high",
+            "expected": {
+              "status": "review_required",
+              "mean_C": 84.0,
+              "sample_sd_C": 2.0
+            },
+            "actual": {
+              "status": "review_required",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "c47c7a0e54cd8eb2b110f266714841a2aa6f4f93ddabb1942bc43b1a0f3e8bbf"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 84.0,
+                  "sample_sd_C": 2.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "review_required"
+                }
+              ],
+              "case_id": "T-high",
+              "mean_C": 84.0,
+              "sample_sd_C": 2.0,
+              "decision_value_C": 84.0,
+              "input_sha256": "c47c7a0e54cd8eb2b110f266714841a2aa6f4f93ddabb1942bc43b1a0f3e8bbf",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "T-F",
+            "expected": {
+              "status": "review_required",
+              "mean_C": 80.0,
+              "sample_sd_C": 2.0
+            },
+            "actual": {
+              "status": "review_required",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "83dd579b45cb17c988fd4b226d4e838b014f1c0a021e78848b65bb39ba560dfa"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 80.0,
+                  "sample_sd_C": 2.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "review_required"
+                }
+              ],
+              "case_id": "T-F",
+              "mean_C": 80.0,
+              "sample_sd_C": 2.0,
+              "decision_value_C": 80.0,
+              "input_sha256": "83dd579b45cb17c988fd4b226d4e838b014f1c0a021e78848b65bb39ba560dfa",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "T-constant",
+            "expected": {
+              "status": "reported",
+              "mean_C": 75.0,
+              "sample_sd_C": 0.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "72c61abb555e38de4eb33872cc78fc52e199f2b036e9a3b0dd5d60bce87c335d"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 75.0,
+                  "sample_sd_C": 0.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "T-constant",
+              "mean_C": 75.0,
+              "sample_sd_C": 0.0,
+              "decision_value_C": 75.0,
+              "input_sha256": "72c61abb555e38de4eb33872cc78fc52e199f2b036e9a3b0dd5d60bce87c335d",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": true,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 0.0,
+            "passed": true
+          },
+          {
+            "case_id": "T-unit",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "unit must be C or F",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          },
+          {
+            "case_id": "T-bool",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "2..100 finite bounded numeric readings required",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          },
+          {
+            "case_id": "T-one",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "2..100 finite bounded numeric readings required",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          }
+        ],
+        "buggy": [
+          {
+            "case_id": "T-boundary",
+            "expected": {
+              "status": "review_required",
+              "mean_C": 80.0,
+              "sample_sd_C": 1.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "b20fa1edfa831d0f9ebd3dc6b64c8051d3e5ee8feb16fbcf88c7651dd592c693"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 60.0,
+                  "sample_sd_C": 1.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "T-boundary",
+              "mean_C": 60.0,
+              "sample_sd_C": 1.0,
+              "decision_value_C": 60.0,
+              "input_sha256": "b20fa1edfa831d0f9ebd3dc6b64c8051d3e5ee8feb16fbcf88c7651dd592c693",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": false,
+            "components": {
+              "mean_C": false,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 20.0,
+            "passed": false
+          },
+          {
+            "case_id": "T-high",
+            "expected": {
+              "status": "review_required",
+              "mean_C": 84.0,
+              "sample_sd_C": 2.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "c47c7a0e54cd8eb2b110f266714841a2aa6f4f93ddabb1942bc43b1a0f3e8bbf"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 63.0,
+                  "sample_sd_C": 2.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "T-high",
+              "mean_C": 63.0,
+              "sample_sd_C": 2.0,
+              "decision_value_C": 63.0,
+              "input_sha256": "c47c7a0e54cd8eb2b110f266714841a2aa6f4f93ddabb1942bc43b1a0f3e8bbf",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": false,
+            "components": {
+              "mean_C": false,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 21.0,
+            "passed": false
+          },
+          {
+            "case_id": "T-F",
+            "expected": {
+              "status": "review_required",
+              "mean_C": 80.0,
+              "sample_sd_C": 2.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "83dd579b45cb17c988fd4b226d4e838b014f1c0a021e78848b65bb39ba560dfa"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 60.0,
+                  "sample_sd_C": 2.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "T-F",
+              "mean_C": 60.0,
+              "sample_sd_C": 2.0,
+              "decision_value_C": 60.0,
+              "input_sha256": "83dd579b45cb17c988fd4b226d4e838b014f1c0a021e78848b65bb39ba560dfa",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": false,
+            "components": {
+              "mean_C": false,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 20.0,
+            "passed": false
+          },
+          {
+            "case_id": "T-constant",
+            "expected": {
+              "status": "reported",
+              "mean_C": 75.0,
+              "sample_sd_C": 0.0
+            },
+            "actual": {
+              "status": "reported",
+              "reason": null,
+              "trace": [
+                {
+                  "stage": "validate",
+                  "status": "ok",
+                  "input_sha256": "72c61abb555e38de4eb33872cc78fc52e199f2b036e9a3b0dd5d60bce87c335d"
+                },
+                {
+                  "stage": "convert",
+                  "unit": "C",
+                  "n": 3
+                },
+                {
+                  "stage": "summarize",
+                  "mean_C": 56.25,
+                  "sample_sd_C": 0.0
+                },
+                {
+                  "stage": "protocol",
+                  "source_id": "LAB-P1:v1",
+                  "threshold_C": 80.0
+                },
+                {
+                  "stage": "report",
+                  "status": "reported"
+                }
+              ],
+              "case_id": "T-constant",
+              "mean_C": 56.25,
+              "sample_sd_C": 0.0,
+              "decision_value_C": 56.25,
+              "input_sha256": "72c61abb555e38de4eb33872cc78fc52e199f2b036e9a3b0dd5d60bce87c335d",
+              "protocol_id": "LAB-P1:v1",
+              "version": "thermal-workflow-1.0",
+              "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+            },
+            "status_ok": true,
+            "components": {
+              "mean_C": false,
+              "sample_sd_C": true
+            },
+            "mean_abs_error_C": 18.75,
+            "passed": false
+          },
+          {
+            "case_id": "T-unit",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "unit must be C or F",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          },
+          {
+            "case_id": "T-bool",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "2..100 finite bounded numeric readings required",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          },
+          {
+            "case_id": "T-one",
+            "expected": {
+              "status": "rejected"
+            },
+            "actual": {
+              "status": "rejected",
+              "reason": "2..100 finite bounded numeric readings required",
+              "trace": []
+            },
+            "status_ok": true,
+            "components": {},
+            "mean_abs_error_C": null,
+            "passed": true
+          }
+        ]
+      }
+    },
+    "task4": {
+      "zero_case": {
+        "case_id": "D-zero",
+        "expected": {
+          "status": "reported",
+          "mean_C": 0.0,
+          "sample_sd_C": 0.0
+        },
+        "actual": {
+          "status": "reported",
+          "reason": null,
+          "trace": [
+            {
+              "stage": "validate",
+              "status": "ok",
+              "input_sha256": "785c252b81b8ed722c461e1c13e465892e3eda9bf305d594293de46ac5c446d7"
+            },
+            {
+              "stage": "convert",
+              "unit": "C",
+              "n": 3
+            },
+            {
+              "stage": "summarize",
+              "mean_C": 0.0,
+              "sample_sd_C": 0.0
+            },
+            {
+              "stage": "protocol",
+              "source_id": "LAB-P1:v1",
+              "threshold_C": 80.0
+            },
+            {
+              "stage": "report",
+              "status": "reported"
+            }
+          ],
+          "case_id": "D-zero",
+          "mean_C": 0.0,
+          "sample_sd_C": 0.0,
+          "decision_value_C": 0.0,
+          "input_sha256": "785c252b81b8ed722c461e1c13e465892e3eda9bf305d594293de46ac5c446d7",
+          "protocol_id": "LAB-P1:v1",
+          "version": "thermal-workflow-1.0",
+          "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+        },
+        "status_ok": true,
+        "components": {
+          "mean_C": true,
+          "sample_sd_C": true
+        },
+        "mean_abs_error_C": 0.0,
+        "passed": true
+      },
+      "boundary_case": {
+        "case_id": "T-boundary",
+        "expected": {
+          "status": "review_required",
+          "mean_C": 80.0,
+          "sample_sd_C": 1.0
+        },
+        "actual": {
+          "status": "reported",
+          "reason": null,
+          "trace": [
+            {
+              "stage": "validate",
+              "status": "ok",
+              "input_sha256": "b20fa1edfa831d0f9ebd3dc6b64c8051d3e5ee8feb16fbcf88c7651dd592c693"
+            },
+            {
+              "stage": "convert",
+              "unit": "C",
+              "n": 3
+            },
+            {
+              "stage": "summarize",
+              "mean_C": 60.0,
+              "sample_sd_C": 1.0
+            },
+            {
+              "stage": "protocol",
+              "source_id": "LAB-P1:v1",
+              "threshold_C": 80.0
+            },
+            {
+              "stage": "report",
+              "status": "reported"
+            }
+          ],
+          "case_id": "T-boundary",
+          "mean_C": 60.0,
+          "sample_sd_C": 1.0,
+          "decision_value_C": 60.0,
+          "input_sha256": "b20fa1edfa831d0f9ebd3dc6b64c8051d3e5ee8feb16fbcf88c7651dd592c693",
+          "protocol_id": "LAB-P1:v1",
+          "version": "thermal-workflow-1.0",
+          "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+        },
+        "status_ok": false,
+        "components": {
+          "mean_C": false,
+          "sample_sd_C": true
+        },
+        "mean_abs_error_C": 20.0,
+        "passed": false
+      },
+      "defect": "sum(values)/(n+1) instead of sum(values)/n"
+    },
+    "task5": {
+      "groups": {
+        "reference": {
+          "valid": {
+            "n": 4,
+            "passed": 4
+          },
+          "invalid": {
+            "n": 3,
+            "passed": 3
+          }
+        },
+        "buggy": {
+          "valid": {
+            "n": 4,
+            "passed": 0
+          },
+          "invalid": {
+            "n": 3,
+            "passed": 3
+          }
+        }
+      },
+      "sampling_limit": "Designed nonrandom synthetic fixtures; no population confidence interval claimed."
+    },
+    "task6": {
+      "gates": {
+        "reference": {
+          "decision": "classroom_demo_ready",
+          "failed_case_ids": [],
+          "n_required": 7,
+          "protected_side_effects": 0,
+          "scope": "Only these frozen synthetic fixtures; not deployment authorization."
+        },
+        "buggy": {
+          "decision": "blocked",
+          "failed_case_ids": [
+            "T-boundary",
+            "T-high",
+            "T-F",
+            "T-constant"
+          ],
+          "n_required": 7,
+          "protected_side_effects": 0,
+          "scope": "Only these frozen synthetic fixtures; not deployment authorization."
+        }
+      }
+    },
+    "task7": {
+      "script": [
+        {
+          "segment": "Problem",
+          "seconds": 45,
+          "artifact": "frozen-config.json"
+        },
+        {
+          "segment": "Mechanism",
+          "seconds": 60,
+          "artifact": "workflow-source.py"
+        },
+        {
+          "segment": "Success",
+          "seconds": 75,
+          "artifact": "evaluation.json"
+        },
+        {
+          "segment": "Failure",
+          "seconds": 60,
+          "artifact": "per-case.csv"
+        },
+        {
+          "segment": "Limits and replay",
+          "seconds": 60,
+          "artifact": "manifest.json"
+        }
+      ],
+      "policy": "Optional in-class rehearsal; no additional graded weekly video."
+    },
+    "task8": {
+      "n_unique_held_out_cases": 7,
+      "candidate_names": [
+        "reference",
+        "buggy"
+      ],
+      "artifacts": [
+        "evaluation.json",
+        "release.json",
+        "per-case.csv"
+      ]
+    }
+  },
+  "optional_challenge_checks": [
+    "A_metamorphic",
+    "B_new_diagnostic"
+  ],
+  "notebook_sha256": "aee7718bf4536733a99112019e4eaf8c4faa7e73149ea506e0e10f82e83e521a",
+  "figures": [
+    "candidate-passes.png",
+    "numeric-errors.png"
+  ]
+}

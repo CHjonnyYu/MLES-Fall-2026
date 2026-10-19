@@ -1,0 +1,321 @@
+\chapter{Agent Studio I: build a bounded workflow}\label{chap:w15-studio}\label{chap:testing}
+\emergencystretch=3em
+\courseweek{Week 15: 2026-12-14, Monday 14:00--17:00.}
+
+Implement a deterministic engineering-report baseline using original synthetic temperature readings and a fictional review protocol. No physical diagnosis, equipment command or live LLM inference is performed.
+\begin{learningbox}Build a source-bounded thermal-report workflow from synthetic readings with explicit units, checks and review status.\end{learningbox}
+The meeting contains three 60-minute modules: 60 minutes explanation and 120 minutes practice. The eight core exercises and two optional challenges are in-class practice, not additional weekly graded homework.
+\section{H1: Specify an engineering evidence workflow}
+\subsection{Build a report, not a physical controller}
+The system summarizes synthetic readings and requests review; it never controls equipment.
+
+\textbf{Worked reasoning.} Measurement meaning; unit conversion; repeated readings; uncertainty; threshold; source provenance.
+
+\textbf{Check.} What does 'review required' mean here?
+
+\textbf{Explanation and boundary.} A fictional class protocol requests human review. It is not a hardware safety diagnosis or a command to act.
+
+\subsection{A row needs physical meaning}
+Our readings are repeated temperature observations of one synthetic bench case.
+
+\textbf{Worked reasoning.} Five repeated readings belong to one fictional case, not five independent deployment trials.
+
+\textbf{Check.} Why does row meaning affect evaluation?
+
+\textbf{Explanation and boundary.} It determines the unit of analysis and whether a reported sample size counts cases, readings or correlated repeats.
+
+\subsection{Units are part of the input type}
+Accept C or F explicitly; convert before comparing a Celsius threshold.
+
+\textbf{Worked reasoning.} 176 F becomes (176-32)*5/9 = 80 C. Mean 176 F is not compared directly with 80 C.
+
+\textbf{Check.} What should happen to an unknown unit?
+
+\textbf{Explanation and boundary.} Reject it with a specific error. Never infer units from a plausible numeric range.
+
+\subsection{Summaries answer different questions}
+Mean describes location; sample standard deviation describes observed spread.
+
+\textbf{Worked reasoning.} [78,80,82] C has mean 80 C and sample SD 2 C, using denominator n-1.
+
+\textbf{Check.} Is sample SD an uncertainty guarantee?
+
+\textbf{Explanation and boundary.} No. It summarizes observed spread; calibration, dependence, drift and measurement uncertainty require additional evidence.
+
+\subsection{Missing and nonfinite data require a policy}
+Reject missing, Boolean, infinite and NaN readings in this reference.
+
+\textbf{Worked reasoning.} A missing reading does not become zero, and dropping it changes the sample definition.
+
+\textbf{Check.} Why require at least two readings?
+
+\textbf{Explanation and boundary.} The sample SD with denominator n-1 is undefined for one observation. A different contract could return an explicit unavailable spread.
+
+\subsection{The threshold comes from a source}
+A versioned fictional teaching protocol sets review if mean >=80 C.
+
+\textbf{Worked reasoning.} Mean exactly 80 C must request review under the declared inclusive rule.
+
+\textbf{Check.} Is this a certified safety limit?
+
+\textbf{Explanation and boundary.} No. It is a transparent original teaching fixture with no real equipment authority.
+
+\subsection{Predeclare behavior for disagreement}
+If required source evidence is absent, abstain rather than invent a threshold.
+
+\textbf{Worked reasoning.} Mean 81 C without the source threshold does not justify a protocol-based review status.
+
+\textbf{Check.} Can a model fill the missing protocol from memory?
+
+\textbf{Explanation and boundary.} Not under this evidence contract. Ask for the approved source snapshot.
+
+\subsection{Separate data errors from review decisions}
+A valid high mean can yield review; invalid readings yield rejection.
+
+\textbf{Worked reasoning.} Valid low mean, valid equality mean and missing unit must have different statuses.
+
+\textbf{Check.} Why is this distinction important?
+
+\textbf{Explanation and boundary.} A data-quality failure cannot be presented as a successful numerical or engineering conclusion.
+
+\subsection{Make the report schema explicit}
+Return case ID, input hash, mean C, sample SD C, source and status.
+
+\textbf{Worked reasoning.} Locate the exact source ID and input digest before reading the prose summary.
+
+\textbf{Check.} Which field proves measurement authenticity?
+
+\textbf{Explanation and boundary.} None. A digest preserves byte identity relative to a reference, not instrument authenticity or physical validity.
+
+\subsection{Summary: define meaning before automation}
+Units, sample definition, protocol and forbidden actions precede code generation.
+
+\textbf{Worked reasoning.} Explain why a single reading is rejected and why equality triggers review.
+
+\textbf{Check.} What does the next hour implement?
+
+\textbf{Explanation and boundary.} A deterministic workflow and trace. An optional LLM can propose structured inputs but cannot bypass its checks.
+
+\section{H2: Implement a checked analysis pipeline}
+\subsection{The workflow is a graph with gates}
+Each stage has explicit inputs, outputs and failure behavior.
+
+\textbf{Worked reasoning.} The reference uses a known graph so students can inspect each transformation without a framework.
+
+\textbf{Check.} Why keep the first implementation deterministic?
+
+\textbf{Explanation and boundary.} It is a clear baseline for arithmetic, units and source rules before adding uncertain language-model decisions.
+
+\subsection{Validate the complete request}
+Require exact fields and a case ID before reading numeric values.
+
+\textbf{Worked reasoning.} A request containing execute\_shell is invalid even if its readings are numeric.
+
+\textbf{Check.} Why reject unexpected fields?
+
+\textbf{Explanation and boundary.} It avoids silently accepting ambiguous capabilities. Unknown metadata must be added by an explicit contract revision.
+
+\subsection{Conversion needs fixture tests}
+Test both identity in C and a known F conversion.
+
+\textbf{Worked reasoning.} [78,80,82] C and [172.4,176,179.6] F should produce the same summary within declared tolerance.
+
+\textbf{Check.} Why use numeric tolerance?
+
+\textbf{Explanation and boundary.} Floating-point conversion can introduce small rounding differences. Equality of decisions at the threshold also needs a stated numeric policy.
+
+\subsection{Preserve the threshold comparison policy}
+Compare converted means after rounding to 10 decimal places in this teaching workflow.
+
+\textbf{Worked reasoning.} A mathematically equal Fahrenheit fixture should not fall below the threshold due only to binary rounding.
+
+\textbf{Check.} Is this a universal measurement policy?
+
+\textbf{Explanation and boundary.} No. It is a declared computational convention. Real tolerances should follow measurement resolution and application requirements.
+
+\subsection{The sample SD has a declared denominator}
+Use ddof=1 and reject n<2 before computing spread.
+
+\textbf{Worked reasoning.} For [78,80,82], squared deviations sum to 8; divide by 2, then sqrt gives 2.
+
+\textbf{Check.} Would dividing by n be equally valid here?
+
+\textbf{Explanation and boundary.} It answers a different statistic. The contract explicitly requests sample SD, so a population-SD implementation is a mismatch.
+
+\subsection{Trace stage outputs without excessive data}
+Record stage, status, digest and bounded evidence.
+
+\textbf{Worked reasoning.} Find validate, convert, summarize, protocol and report in order; a failure must not create later successful stages.
+
+\textbf{Check.} Can trace order expose a hidden shortcut?
+
+\textbf{Explanation and boundary.} It can reveal an inconsistency, but trustworthy execution also needs source inspection and independent expected outputs.
+
+\subsection{Abstention is a valid terminal result}
+Missing source returns no protocol-based review conclusion.
+
+\textbf{Worked reasoning.} Keep valid readings but call with no approved source. The result must not claim review status.
+
+\textbf{Check.} Why not use a default threshold?
+
+\textbf{Explanation and boundary.} A default would silently invent authority absent from the declared input evidence.
+
+\subsection{A report must distinguish facts and limits}
+Numerical summary, protocol comparison and limitation belong in separate fields.
+
+\textbf{Worked reasoning.} Synthetic case A has mean 80 C; fictional protocol P1 requests review at or above 80 C; no physical diagnosis follows.
+
+\textbf{Check.} What is an unsupported extension?
+
+\textbf{Explanation and boundary.} Claiming overheating, failure probability or a safe operating condition without relevant physical validation.
+
+\subsection{Test an AI-generated patch as new code}
+Review data flow and fixtures before replacing the reference.
+
+\textbf{Worked reasoning.} The patch uses sum(values)/(n+1). Predict why a zero-mean fixture can conceal it.
+
+\textbf{Check.} Why not trust plausible prose explaining the patch?
+
+\textbf{Explanation and boundary.} Only source, independent expected values and execution outcomes establish its behavior on tested cases.
+
+\subsection{Summary: preserve the reference workflow}
+Save checked inputs, configuration, source, trace and result before extension.
+
+\textbf{Worked reasoning.} Download the ZIP and identify one failure case. Do not overwrite the original with an experimental change.
+
+\textbf{Check.} What does H3 complete?
+
+\textbf{Explanation and boundary.} The eight-task evidence record, peer explanation and one optional extension while keeping the reference reproducible.
+
+\section{H3: Studio I: build, probe, and explain}
+\subsection{Deliver one complete analysis chain}
+A partner must follow input, conversion, source and conclusion.
+
+\textbf{Worked reasoning.} Restore 5 min; fixtures 20 min; controlled change 15 min; peer handover and export 20 min.
+
+\textbf{Check.} What is the minimum useful handover?
+
+\textbf{Explanation and boundary.} Runnable source plus inputs, expected fixtures, actual trace, result and an honest limitation.
+
+\subsection{Task 1: classify the contract outcomes}
+Predict low, equality, high and malformed cases before execution.
+
+\textbf{Worked reasoning.} Low returns reported; equal/high return review\_required; malformed returns rejected.
+
+\textbf{Check.} Does reported mean physically safe?
+
+\textbf{Explanation and boundary.} No. It means the fictional report pipeline completed below its class threshold. No real safety claim is authorized.
+
+\subsection{Task 2: audit provenance fields}
+Find case ID, request hash, protocol ID and implementation version.
+
+\textbf{Worked reasoning.} A case ID names a record; a hash identifies canonical JSON bytes; a source ID locates the protocol.
+
+\textbf{Check.} Can any one identifier replace the others?
+
+\textbf{Explanation and boundary.} No. They answer different questions and each has a limited scope of uniqueness or trust.
+
+\subsection{Task 3: prove unit equivalence}
+Compare equivalent C and F requests with the same underlying values.
+
+\textbf{Worked reasoning.} Use explicit tolerance for mean and SD, then compare the declared rounded decision value.
+
+\textbf{Check.} What if raw values match but units differ?
+
+\textbf{Explanation and boundary.} They represent different temperatures. Numeric equality without units is not physical equivalence.
+
+\subsection{Task 4: explain one spread calculation}
+Show the intermediate squared deviations and denominator.
+
+\textbf{Worked reasoning.} [78,80,82] gives deviations [-2,0,2], squares [4,0,4] and SD 2 C.
+
+\textbf{Check.} What does the result not quantify?
+
+\textbf{Explanation and boundary.} Systematic sensor bias, calibration uncertainty or independence of repeated observations.
+
+\subsection{Task 5: locate a stopped stage}
+Inject an invalid unit and find where the trace ends.
+
+\textbf{Worked reasoning.} The failure trace must not include a completed summary or protocol decision.
+
+\textbf{Check.} Why inspect downstream absence?
+
+\textbf{Explanation and boundary.} A superficial error status can coexist with partial side effects if stage ordering is wrong.
+
+\subsection{Task 6: remove source authority}
+Run a valid request without the approved fictional protocol.
+
+\textbf{Worked reasoning.} The numerical mean can still be known while the protocol-based status is unavailable.
+
+\textbf{Check.} Is this the same as malformed input?
+
+\textbf{Explanation and boundary.} No. Separate numerical input validity from absence of evidence required for the requested conclusion.
+
+\subsection{Task 7: diagnose the denominator patch}
+Use a nonzero-mean fixture to expose sum/(n+1).
+
+\textbf{Worked reasoning.} [79,80,81] has true mean 80; dividing by four gives 60 and misses the inclusive review condition.
+
+\textbf{Check.} Why is this more informative than [0,0,0]?
+
+\textbf{Explanation and boundary.} A zero numerator yields zero under both denominators, hiding the defect.
+
+\subsection{Task 8: package and hand over}
+Export reference results, traces and response fields without invented answers.
+
+\textbf{Worked reasoning.} The reviewer recomputes a mean and checks the source threshold and review rule.
+
+\textbf{Check.} What should happen if a field is blank?
+
+\textbf{Explanation and boundary.} Keep draft status. Nonempty explanations establish completeness only, not correctness.
+
+\subsection{Summary: expand scope only with new tests}
+Optional A adds K conversion; optional B checks reading-order invariance.
+
+\textbf{Worked reasoning.} Identify a computed number, a source-derived rule and an unverified physical assumption.
+
+\textbf{Check.} What connects to Studio II?
+
+\textbf{Explanation and boundary.} Evaluate competing implementations on a frozen case set, including both ordinary functionality and required rejections.
+
+\section{Mathematical reference}\[C=(F-32)\frac59,\qquad \bar{x}=\frac1n\sum_i x_i,\qquad s=\sqrt{\frac{\sum_i(x_i-\bar{x})^2}{n-1}},\quad n\geq2.\]For [78,80,82] C, the mean is 80 C and the sample SD is 2 C. The fictional protocol requests review when the converted mean, rounded to ten decimal places, is at least 80 C. This numerical convention is not a physical uncertainty model.
+\section{Eight core practice tasks}
+\subsection{Task 1: Predict the four contract outcomes}
+Classify low, equality, high and malformed requests before running. Reported does not mean physically safe.
+
+\textbf{Self-check.} Equality triggers the inclusive >= rule. A malformed request has no claimed numeric result.
+\subsection{Task 2: Inspect provenance before prose}
+Locate case ID, input hash, protocol ID and implementation version, then explain the question each answers.
+
+\textbf{Self-check.} A matching input digest establishes identity relative to canonical request bytes, not measurement authenticity.
+\subsection{Task 3: Check equivalent Celsius and Fahrenheit requests}
+Predict equal means and sample SDs. Keep distinct request hashes because raw input representations differ.
+
+\textbf{Self-check.} The declared rounded comparison prevents a binary-rounding equality flip. It is a computational convention, not a measurement uncertainty model.
+\subsection{Task 4: Reconstruct the sample spread}
+Show deviations, squared deviations and the n-1 denominator for the synthetic reference.
+
+\textbf{Self-check.} This spread does not estimate systematic calibration bias or establish independence of repeated readings.
+\subsection{Task 5: Stop at the invalid unit boundary}
+Change only the unit to an unsupported value and inspect which downstream stages are absent.
+
+\textbf{Self-check.} The workflow must not convert, summarize or conclude before validating the input contract.
+\subsection{Task 6: Abstain without approved source evidence}
+Keep readings valid but remove the protocol. A known mean does not authorize a threshold-based conclusion.
+
+\textbf{Self-check.} This is evidence unavailability, not malformed numeric input. No default threshold is silently substituted.
+\subsection{Task 7: Expose a plausible denominator patch}
+The supplied buggy branch divides by n+1. Predict why it misses the equality review case before comparing.
+
+\textbf{Self-check.} This is an intentionally supplied implementation defect, not an observed mistake from a real language model.
+\subsection{Task 8: Save the input, protocol, source and result}
+Retain the unchanged reference alongside any experimental patch. Preserve actual source in the export.
+
+\textbf{Self-check.} Download the final ZIP before the runtime expires. Preserve source, not only a screenshot.
+\section{Evidence handover and summary}
+Build a source-bounded thermal-report workflow from synthetic readings with explicit units, checks and review status. Save eight predictions, eight explanations and three reflections. Preserve source, data, versions, traces and one limitation. The notebook exports a draft when fields are blank; response completeness does not establish correctness. Save the edited notebook separately if changing code.
+\section{Primary references}
+\begin{itemize}
+\item scikit-learn common pitfalls: \url{https://scikit-learn.org/stable/common_pitfalls.html}.
+\item NIST Generative AI Profile: \url{https://doi.org/10.6028/NIST.AI.600-1}.
+\end{itemize}

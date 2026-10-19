@@ -1,0 +1,37 @@
+{
+  "week": 12,
+  "date": "2026-11-23",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "From next-token prediction to tool proposals",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-12-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Structured outputs and bounded tool execution",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-12-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Tool-contract studio: test, explain, export",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-12-hour-3/"
+    }
+  ],
+  "core_exercises": 8,
+  "optional_challenges": 2,
+  "explanation_minutes": 60,
+  "practice_minutes": 120
+}

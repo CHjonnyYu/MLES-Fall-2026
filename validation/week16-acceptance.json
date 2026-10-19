@@ -1,0 +1,84 @@
+{
+  "week": 16,
+  "date": "2026-12-21",
+  "checked": "2026-10-19",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "Design an evaluation before the demonstration",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-16-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Run the harness and explain candidate failures",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-16-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Studio II: evaluate, challenge, rehearse",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-16-hour-3/"
+    }
+  ],
+  "slides": {
+    "count": 90,
+    "all_rendered": true,
+    "automated_geometry_images_logos_sources_timing": "passed",
+    "interactions": "passed",
+    "visual_review": "All slides in deck overviews, plus selected individual full-size technical and interaction pages. Not an independent human full-size review of every slide."
+  },
+  "notebooks": [
+    {
+      "week": 16,
+      "kind": "practice",
+      "status": "passed",
+      "notebook": "notebooks/week-16-practice.ipynb",
+      "sha256": "aee7718bf4536733a99112019e4eaf8c4faa7e73149ea506e0e10f82e83e521a",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w16-practice-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    },
+    {
+      "week": 16,
+      "kind": "exercise",
+      "status": "passed",
+      "notebook": "notebooks/exercises/week-16-exercise.ipynb",
+      "sha256": "556233afb13a55023241544aa2256502b3a635185ad55fbbf5d08d338d1059ab",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w16-exercise-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    }
+  ],
+  "execution_scope": "Fresh local CPU Jupyter kernels; not Google Colab-browser execution.",
+  "latex": {
+    "compiled": true,
+    "reader_pages": 11,
+    "no_overfull_or_undefined_references": true
+  },
+  "content_scope": "Original synthetic teaching fixtures and bounded deterministic workflows; Week12 also trains a character bigram. No live LLM, physical validation, real mail or consequential external actions.",
+  "generated_visuals": {
+    "count": 1,
+    "usage": "H1 cover only",
+    "provenance": "/assets/week16/visual-provenance.json"
+  },
+  "practice_policy": "60 minutes explanation +120 minutes practice;8core+2optional; no new weekly graded homework."
+}

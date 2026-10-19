@@ -1,0 +1,321 @@
+\chapter{Retrieval, source evidence, and structured knowledge}\label{chap:w13-studio}\label{chap:retrieval}
+\emergencystretch=3em
+\courseweek{Week 13: 2026-11-30, Monday 14:00--17:00.}
+
+Use original fictional lab passages and independently labeled questions. This lexical retrieval and extractive evidence workflow does not call a generative model; it is a baseline for, not a full implementation of, RAG.
+\begin{learningbox}Build a lexical retrieval baseline; measure retrieval separately from grounded claim support; abstain without evidence.\end{learningbox}
+The meeting contains three 60-minute modules: 60 minutes explanation and 120 minutes practice. The eight core exercises and two optional challenges are in-class practice, not additional weekly graded homework.
+\section{H1: Represent documents and retrieve evidence}
+\subsection{Retrieval selects evidence, not truth}
+Find relevant passages before composing a source-bounded response.
+
+\textbf{Worked reasoning.} Document identity; lexical vectors; cosine similarity; ranking; threshold; Task 1 and Task 2.
+
+\textbf{Check.} Can the best-ranked passage be wrong?
+
+\textbf{Explanation and boundary.} Yes. Ranking measures a chosen similarity, not the authority or factual correctness of a source.
+
+\subsection{Document identity must survive chunking}
+Store source ID, version and chunk location with every passage.
+
+\textbf{Worked reasoning.} LAB-02:v1:chunk0 identifies an original teaching protocol passage; it is not an external scientific publication.
+
+\textbf{Check.} What breaks when IDs are just row positions?
+
+\textbf{Explanation and boundary.} Inserting a passage changes positional identities. Use stable source keys and preserve the indexed text snapshot.
+
+\subsection{Tokenization defines lexical overlap}
+A vocabulary maps terms to coordinates; preprocessing changes what matches.
+
+\textbf{Worked reasoning.} Vocabulary [heat,limit,mean]; document 'heat heat limit' maps to [2,1,0].
+
+\textbf{Check.} Does this representation preserve word order?
+
+\textbf{Explanation and boundary.} No. Bag-of-words counts lose order; negation and relational meaning can be missed.
+
+\subsection{IDF discounts corpus-common terms}
+Smoothed IDF is ln((1+N)/(1+df))+1 in this notebook.
+
+\textbf{Worked reasoning.} N=4, df=1 gives ln(5/2)+1=1.916; df=4 gives 1.0.
+
+\textbf{Check.} Is a rare term necessarily an important fact?
+
+\textbf{Explanation and boundary.} No. IDF is a statistical corpus weight. Rare typos and irrelevant words can also receive large weights.
+
+\subsection{TF-IDF is a fitted representation}
+Fit the vectorizer on the frozen corpus; transform questions with it.
+
+\textbf{Worked reasoning.} The same query should be scored against one fixed index. New documents require an explicit index version.
+
+\textbf{Check.} What happens to unseen query words?
+
+\textbf{Explanation and boundary.} They do not create new fitted coordinates. A fully out-of-vocabulary query gives a zero vector under this baseline.
+
+\subsection{Cosine compares directions}
+Normalize vectors before using their dot product as similarity.
+
+\textbf{Worked reasoning.} q=[1,1], d=[2,0]; cosine=2/(sqrt(2)*2)=0.707.
+
+\textbf{Check.} Is cosine a probability that the passage is correct?
+
+\textbf{Explanation and boundary.} No. It is a geometric similarity under the representation. A threshold is an operating rule, not calibrated confidence.
+
+\subsection{Top-k is a selection rule}
+Rank descending; break equal-score ties with stable source IDs.
+
+\textbf{Worked reasoning.} If scores are equal, sort document IDs lexically so the same snapshot returns the same order.
+
+\textbf{Check.} Can a deterministic tie rule improve relevance?
+
+\textbf{Explanation and boundary.} Not inherently. It improves reproducibility and makes ambiguous rankings visible.
+
+\subsection{Thresholds trade coverage and abstention}
+Return no evidence when the maximum score is below a declared threshold.
+
+\textbf{Worked reasoning.} Use an in-vocabulary protocol question and an unrelated vocabulary question. Inspect full score vectors.
+
+\textbf{Check.} Does a low score prove the answer does not exist?
+
+\textbf{Explanation and boundary.} No. Lexical mismatch can hide a relevant passage. Abstention is a limitation-aware action, not a proof of absence.
+
+\subsection{Chunking can remove required context}
+A passage without its units or exception can support the wrong claim.
+
+\textbf{Worked reasoning.} Compare 'review if mean at least 80 C' with a chunk containing only 'review if mean at least 80'.
+
+\textbf{Check.} Why is the shorter chunk risky?
+
+\textbf{Explanation and boundary.} The missing unit changes interpretation, and retrieval alone cannot recover a qualifier absent from the supplied passage.
+
+\subsection{Summary: freeze the representation}
+Preserve corpus, source IDs, vectorizer configuration and ranking rule.
+
+\textbf{Worked reasoning.} Show the exact quote, score and source version. Explain one lexical retrieval limitation.
+
+\textbf{Check.} What will the next hour add?
+
+\textbf{Explanation and boundary.} Independent relevance labels and claim-support checks. A retrieved citation is not yet a verified answer.
+
+\section{H2: Measure retrieval and check claim support}
+\subsection{Two evaluation layers answer different questions}
+Retrieval asks whether evidence was found; grounding asks whether a claim follows.
+
+\textbf{Worked reasoning.} A relevant passage can be retrieved while the answer misstates its threshold.
+
+\textbf{Check.} Can perfect retrieval recall guarantee a correct response?
+
+\textbf{Explanation and boundary.} No. Generation, interpretation and citation entailment can fail after retrieval succeeds.
+
+\subsection{Recall at k needs a relevance set}
+Recall@k = retrieved relevant sources / all labeled relevant sources.
+
+\textbf{Worked reasoning.} Relevant=\{A,B\}; top2=\{A,C\}; recall@2=1/2. Precision@2=1/2.
+
+\textbf{Check.} What if no relevant source is labeled?
+
+\textbf{Explanation and boundary.} Do not divide by zero or fabricate relevance. Evaluate no-evidence/abstention cases separately.
+
+\subsection{Reciprocal rank rewards the first hit}
+For an answerable query, RR = 1/rank of the first relevant result.
+
+\textbf{Worked reasoning.} [C,A,B] and [A,C,B] may have the same recall@3 but different reciprocal rank.
+
+\textbf{Check.} Why report the rank convention?
+
+\textbf{Explanation and boundary.} Metrics depend on k, relevance labels, tie rules and zero-hit handling. Preserve these definitions with the result.
+
+\subsection{An evidence quote has a narrow role}
+An exact substring proves text location, not whether every derived claim follows.
+
+\textbf{Worked reasoning.} Source: threshold 80 C. Claim: threshold 95 C. A correct source ID does not rescue the wrong number.
+
+\textbf{Check.} What does automatic quote containment miss?
+
+\textbf{Explanation and boundary.} It misses paraphrase meaning, omitted exceptions and contradictions. Human or task-specific semantic checks remain necessary.
+
+\subsection{Task 3: score fixed retrieval questions}
+Use independently written relevance IDs; do not derive labels from ranking.
+
+\textbf{Worked reasoning.} Compute macro recall only across answerable queries; list no-evidence outcomes separately.
+
+\textbf{Check.} Why not label the top result as relevant?
+
+\textbf{Explanation and boundary.} That would make the system grade itself and conceal retrieval failures.
+
+\subsection{Task 4: inspect false support}
+Test wrong citation IDs, fabricated quotes and changed numeric thresholds.
+
+\textbf{Worked reasoning.} Unknown source; absent quote; quoted text with a contradictory threshold. They require different diagnoses.
+
+\textbf{Check.} Will string checks catch every wrong claim?
+
+\textbf{Explanation and boundary.} No. They are necessary structural checks in this exercise, not a universal entailment detector.
+
+\subsection{Task 5: change k under a fixed index}
+Keep questions, labels and threshold fixed while varying k.
+
+\textbf{Worked reasoning.} Recall cannot decrease when adding ranked results under the same accepted query; precision can decrease.
+
+\textbf{Check.} Why can a threshold obscure that comparison?
+
+\textbf{Explanation and boundary.} A changed threshold changes which results are eligible. Keep it fixed and report abstention separately.
+
+\subsection{Treat source instructions as data}
+A malicious sentence in a passage cannot alter tool permissions.
+
+\textbf{Worked reasoning.} The corpus includes an explicitly marked untrusted instruction. Retrieval may return it, but the workflow never executes it.
+
+\textbf{Check.} Does a low similarity score secure a RAG system?
+
+\textbf{Explanation and boundary.} No. Relevant malicious text can rank highly. Security enforcement must not depend on the retriever missing it.
+
+\subsection{Structured knowledge needs provenance too}
+A table row should retain units, source ID, version and extraction status.
+
+\textbf{Worked reasoning.} name=review threshold; value=80; unit=C; source=LAB-02:v1; status=teaching fixture.
+
+\textbf{Check.} Why not call this a validated engineering limit?
+
+\textbf{Explanation and boundary.} It is an original fictional class protocol. It has no external safety authority or hardware validation.
+
+\subsection{Summary: evidence retrieval precedes explanation}
+Find a passage, preserve its identity, then check what it actually supports.
+
+\textbf{Worked reasoning.} Save ranked IDs, scores, labels and one support failure. Do not export a bare average.
+
+\textbf{Check.} What should a partner be able to reconstruct?
+
+\textbf{Explanation and boundary.} Which question, index snapshot, ranking and relevance labels produced each reported metric.
+
+\section{H3: Retrieval studio: diagnose and package failures}
+\subsection{Build an evidence-first retrieval record}
+Complete eight core tasks, then preserve an honest failure.
+
+\textbf{Worked reasoning.} Restore 5 min; tasks 25 min; source audit 15 min; export and explain-back 15 min.
+
+\textbf{Check.} What is the artifact, not just the score?
+
+\textbf{Explanation and boundary.} A corpus snapshot, ranking configuration, per-query records, response fields, figures and hashes.
+
+\subsection{Task 1: distinguish answerable and unknown}
+Inspect the maximum cosine and abstention status for both questions.
+
+\textbf{Worked reasoning.} The system returns no evidence instead of inventing a threshold or citation.
+
+\textbf{Check.} What does the abstention support?
+
+\textbf{Explanation and boundary.} Only that this index and operating rule supplied no accepted passage for this query.
+
+\subsection{Task 2: explain one weighted term}
+Compare term frequency, document frequency and IDF contribution.
+
+\textbf{Worked reasoning.} An IDF of 1.0 is not zero; the default smoothed formula retains corpus-common terms.
+
+\textbf{Check.} What changes if the corpus changes?
+
+\textbf{Explanation and boundary.} Vocabulary, document frequencies, IDF, norms and rankings may all change. Preserve an index version.
+
+\subsection{Task 3: compute macro retrieval recall}
+Calculate per-query recall before averaging answerable cases.
+
+\textbf{Worked reasoning.} Two queries with one and two relevant documents each receive equal weight under macro averaging.
+
+\textbf{Check.} Is macro recall the same as pooled recall?
+
+\textbf{Explanation and boundary.} Not generally. Pooled recall weights by the number of relevant documents. Name the aggregation you use.
+
+\subsection{Task 4: find a citation failure}
+Compare a truthful quote with a wrong-threshold claim.
+
+\textbf{Worked reasoning.} Do not say only 'bad citation'. Identify the changed number, missing unit or absent quote.
+
+\textbf{Check.} Can an automatic pass replace source reading?
+
+\textbf{Explanation and boundary.} No. The class checks exact fields and narrow numeric facts; general semantic support remains a separate review.
+
+\subsection{Task 5: vary k without tuning on the final set}
+Use development questions for exploration; preserve held-out questions.
+
+\textbf{Worked reasoning.} Record k and threshold before examining the held-out results. If already seen, label further work exploratory.
+
+\textbf{Check.} What makes a final report optimistic?
+
+\textbf{Explanation and boundary.} Repeatedly changing retrieval settings after seeing held-out outcomes and reporting only the best score.
+
+\subsection{Task 6: add a genuinely independent query}
+Write its relevant IDs before execution and justify them from source text.
+
+\textbf{Worked reasoning.} Try a paraphrase to expose lexical mismatch. Explain whether a miss is due to wording or missing corpus evidence.
+
+\textbf{Check.} Is one new query a representative benchmark?
+
+\textbf{Explanation and boundary.} No. It is a diagnostic probe. Broader coverage requires a task-based question set.
+
+\subsection{Task 7: separate tool results from passages}
+A computed mean is not a retrieved protocol threshold.
+
+\textbf{Worked reasoning.} Mean 81 C is computed from readings; threshold 80 C comes from the fictional protocol; comparison requests review.
+
+\textbf{Check.} What remains outside this exercise?
+
+\textbf{Explanation and boundary.} Physical measurement validity, real safety limits, automatic control authority and external deployment validation.
+
+\subsection{Task 8: export source-bounded evidence}
+Keep corpus hash and exact retrieved text with the metric table.
+
+\textbf{Worked reasoning.} They select a query, locate its IDs and quotes, and reproduce its recall from the labeled relevant set.
+
+\textbf{Check.} Why preserve text as well as a link?
+
+\textbf{Explanation and boundary.} Sources and chunks can change. A frozen snapshot makes the reported computation inspectable.
+
+\subsection{Summary: ask what the source entails}
+Optional A changes chunking; optional B adds an adversarial passage.
+
+\textbf{Worked reasoning.} Explain each outcome using a specific source or absent source, not a vague model-confidence story.
+
+\textbf{Check.} What connects to the next week?
+
+\textbf{Explanation and boundary.} The same untrusted evidence must pass through explicit permissions, budgets and approval gates before any action.
+
+\section{Mathematical reference}\[\operatorname{idf}(t)=\log\frac{1+N}{1+\operatorname{df}(t)}+1,\qquad \cos(q,d)=\frac{q^\top d}{\lVert q\rVert\lVert d\rVert}.\]\[\operatorname{Recall@k}=\frac{|R\cap K|}{|R|},\quad |R|>0,\qquad \operatorname{RR}=\frac{1}{\text{first relevant rank}}.\]Handle zero relevant sources as a separate no-evidence evaluation, not a zero-denominator recall. Lexical similarity is not calibrated confidence.
+\section{Eight core practice tasks}
+\subsection{Task 1: Compare relevant evidence and abstention}
+Predict the returned source for a unit question and the behavior for an out-of-vocabulary question.
+
+\textbf{Self-check.} The unknown query has no accepted passage. Similarity values are not calibrated factual-confidence probabilities.
+\subsection{Task 2: Inspect the fitted lexical representation}
+Predict whether a rarer word receives larger IDF. Then inspect actual vocabulary and normalized document coordinates.
+
+\textbf{Self-check.} All six nonzero document vectors have L2 norm 1. Corpus-common terms still have nonzero smoothed IDF.
+\subsection{Task 3: Evaluate fixed held-out relevance labels}
+Freeze k=2 and threshold=0.12 before this cell. Predict a source for each held-out question and report no-evidence cases separately.
+
+\textbf{Self-check.} Do not average an undefined recall for the no-evidence query as zero. After seeing this set, later tuning is exploratory.
+\subsection{Task 4: Separate citation structure from claim support}
+Predict which failure each answer should trigger. Exact-quote checking is only one layer of support.
+
+\textbf{Self-check.} Even the first answer still requires semantic review. The checker handles a narrow numeric fixture, not general entailment.
+\subsection{Task 5: Change k on development questions only}
+Compare k=1 and k=2 with the same fitted corpus and threshold. Keep held-out results fixed and name this as development exploration.
+
+\textbf{Self-check.} Recall cannot decrease when an unchanged accepted ranked list is extended. This is not permission to tune on already inspected held-out outcomes.
+\subsection{Task 6: Add one independently labeled diagnostic query}
+Write a paraphrase and relevant IDs before retrieval. The supplied example is a diagnostic, not a representative new benchmark.
+
+\textbf{Self-check.} A lexical miss is useful evidence. Do not silently relabel a missed source as irrelevant after seeing the ranking.
+\subsection{Task 7: Combine a numeric result and a source rule}
+Compute the mean independently, retrieve the class threshold passage and keep their provenance separate.
+
+\textbf{Self-check.} The value 81 is computed, while the threshold 80 is source-derived. Neither establishes a real equipment limit.
+\subsection{Task 8: Preserve corpus identity and one failure}
+Export ranked IDs, exact text, fixed labels and one unsupported claim. The source snapshot is part of the evidence.
+
+\textbf{Self-check.} Source IDs and exact quotes are provenance anchors, not a guarantee that the source is true.
+\section{Evidence handover and summary}
+Build a lexical retrieval baseline; measure retrieval separately from grounded claim support; abstain without evidence. Save eight predictions, eight explanations and three reflections. Preserve source, data, versions, traces and one limitation. The notebook exports a draft when fields are blank; response completeness does not establish correctness. Save the edited notebook separately if changing code.
+\section{Primary references}
+\begin{itemize}
+\item Retrieval-Augmented Generation: \url{https://arxiv.org/abs/2005.11401}.
+\item TfidfVectorizer reference: \url{https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html}.
+\end{itemize}

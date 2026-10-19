@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Retrieval studio: diagnose and package failures",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Build an evidence-first retrieval record. Define: Complete eight core tasks, then preserve an honest failure. Walk through: Restore 5 min; tasks 25 min; source audit 15 min; export and explain-back 15 min. Ask: What is the artifact, not just the score? Expected answer and boundary: A corpus snapshot, ranking configuration, per-query records, response fields, figures and hashes. Visual purpose: show Question > Ranked evidence > Support audit > Export. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Question > Ranked evidence > Support audit > Export",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Protect the final peer review",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Build an evidence-first retrieval record. Define: Complete eight core tasks, then preserve an honest failure. Walk through: Restore 5 min; tasks 25 min; source audit 15 min; export and explain-back 15 min. Ask: What is the artifact, not just the score? Expected answer and boundary: A corpus snapshot, ranking configuration, per-query records, response fields, figures and hashes. Visual purpose: show Question > Ranked evidence > Support audit > Export. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Question > Ranked evidence > Support audit > Export",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Build an evidence-first retrieval record",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Build an evidence-first retrieval record. Define: Complete eight core tasks, then preserve an honest failure. Walk through: Restore 5 min; tasks 25 min; source audit 15 min; export and explain-back 15 min. Ask: What is the artifact, not just the score? Expected answer and boundary: A corpus snapshot, ranking configuration, per-query records, response fields, figures and hashes. Visual purpose: show Question > Ranked evidence > Support audit > Export. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Question > Ranked evidence > Support audit > Export",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Task 1: distinguish answerable and unknown",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: distinguish answerable and unknown. Define: Inspect the maximum cosine and abstention status for both questions. Walk through: The system returns no evidence instead of inventing a threshold or citation. Ask: What does the abstention support? Expected answer and boundary: Only that this index and operating rule supplied no accepted passage for this query. Visual purpose: show Known vocabulary | Unknown vocabulary | Explicit abstention. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Known vocabulary | Unknown vocabulary | Explicit abstention",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "An unknown topic is not a low-quality answer",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: distinguish answerable and unknown. Define: Inspect the maximum cosine and abstention status for both questions. Walk through: The system returns no evidence instead of inventing a threshold or citation. Ask: What does the abstention support? Expected answer and boundary: Only that this index and operating rule supplied no accepted passage for this query. Visual purpose: show Known vocabulary | Unknown vocabulary | Explicit abstention. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Known vocabulary | Unknown vocabulary | Explicit abstention",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Task 1: distinguish answerable and unknown",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: distinguish answerable and unknown. Define: Inspect the maximum cosine and abstention status for both questions. Walk through: The system returns no evidence instead of inventing a threshold or citation. Ask: What does the abstention support? Expected answer and boundary: Only that this index and operating rule supplied no accepted passage for this query. Visual purpose: show Known vocabulary | Unknown vocabulary | Explicit abstention. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Known vocabulary | Unknown vocabulary | Explicit abstention",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Task 2: explain one weighted term",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: explain one weighted term. Define: Compare term frequency, document frequency and IDF contribution. Walk through: An IDF of 1.0 is not zero; the default smoothed formula retains corpus-common terms. Ask: What changes if the corpus changes? Expected answer and boundary: Vocabulary, document frequencies, IDF, norms and rankings may all change. Preserve an index version. Visual purpose: show Term count > Document frequency > IDF > Vector norm. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Term count > Document frequency > IDF > Vector norm",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "A common term can still contribute",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: explain one weighted term. Define: Compare term frequency, document frequency and IDF contribution. Walk through: An IDF of 1.0 is not zero; the default smoothed formula retains corpus-common terms. Ask: What changes if the corpus changes? Expected answer and boundary: Vocabulary, document frequencies, IDF, norms and rankings may all change. Preserve an index version. Visual purpose: show Term count > Document frequency > IDF > Vector norm. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Term count > Document frequency > IDF > Vector norm",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Task 2: explain one weighted term",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: explain one weighted term. Define: Compare term frequency, document frequency and IDF contribution. Walk through: An IDF of 1.0 is not zero; the default smoothed formula retains corpus-common terms. Ask: What changes if the corpus changes? Expected answer and boundary: Vocabulary, document frequencies, IDF, norms and rankings may all change. Preserve an index version. Visual purpose: show Term count > Document frequency > IDF > Vector norm. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Term count > Document frequency > IDF > Vector norm",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Task 3: compute macro retrieval recall",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: compute macro retrieval recall. Define: Calculate per-query recall before averaging answerable cases. Walk through: Two queries with one and two relevant documents each receive equal weight under macro averaging. Ask: Is macro recall the same as pooled recall? Expected answer and boundary: Not generally. Pooled recall weights by the number of relevant documents. Name the aggregation you use. Visual purpose: show Per-query intersection > Denominator > Recall > Macro mean. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Per-query intersection > Denominator > Recall > Macro mean",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Use explicit denominators",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: compute macro retrieval recall. Define: Calculate per-query recall before averaging answerable cases. Walk through: Two queries with one and two relevant documents each receive equal weight under macro averaging. Ask: Is macro recall the same as pooled recall? Expected answer and boundary: Not generally. Pooled recall weights by the number of relevant documents. Name the aggregation you use. Visual purpose: show Per-query intersection > Denominator > Recall > Macro mean. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Per-query intersection > Denominator > Recall > Macro mean",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Task 3: compute macro retrieval recall",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: compute macro retrieval recall. Define: Calculate per-query recall before averaging answerable cases. Walk through: Two queries with one and two relevant documents each receive equal weight under macro averaging. Ask: Is macro recall the same as pooled recall? Expected answer and boundary: Not generally. Pooled recall weights by the number of relevant documents. Name the aggregation you use. Visual purpose: show Per-query intersection > Denominator > Recall > Macro mean. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Per-query intersection > Denominator > Recall > Macro mean",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Task 4: find a citation failure",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: find a citation failure. Define: Compare a truthful quote with a wrong-threshold claim. Walk through: Do not say only 'bad citation'. Identify the changed number, missing unit or absent quote. Ask: Can an automatic pass replace source reading? Expected answer and boundary: No. The class checks exact fields and narrow numeric facts; general semantic support remains a separate review. Visual purpose: show Source exists > Quote exact > Numeric claim agrees? > Review. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Source exists > Quote exact > Numeric claim agrees? > Review",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Write the unsupported part explicitly",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: find a citation failure. Define: Compare a truthful quote with a wrong-threshold claim. Walk through: Do not say only 'bad citation'. Identify the changed number, missing unit or absent quote. Ask: Can an automatic pass replace source reading? Expected answer and boundary: No. The class checks exact fields and narrow numeric facts; general semantic support remains a separate review. Visual purpose: show Source exists > Quote exact > Numeric claim agrees? > Review. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Source exists > Quote exact > Numeric claim agrees? > Review",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Task 4: find a citation failure",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: find a citation failure. Define: Compare a truthful quote with a wrong-threshold claim. Walk through: Do not say only 'bad citation'. Identify the changed number, missing unit or absent quote. Ask: Can an automatic pass replace source reading? Expected answer and boundary: No. The class checks exact fields and narrow numeric facts; general semantic support remains a separate review. Visual purpose: show Source exists > Quote exact > Numeric claim agrees? > Review. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Source exists > Quote exact > Numeric claim agrees? > Review",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Task 5: vary k without tuning on the final set",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: vary k without tuning on the final set. Define: Use development questions for exploration; preserve held-out questions. Walk through: Record k and threshold before examining the held-out results. If already seen, label further work exploratory. Ask: What makes a final report optimistic? Expected answer and boundary: Repeatedly changing retrieval settings after seeing held-out outcomes and reporting only the best score. Visual purpose: show Development queries > Freeze k > Held-out report > No reselection. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Development queries > Freeze k > Held-out report > No reselection",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Keep a configuration notebook entry",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: vary k without tuning on the final set. Define: Use development questions for exploration; preserve held-out questions. Walk through: Record k and threshold before examining the held-out results. If already seen, label further work exploratory. Ask: What makes a final report optimistic? Expected answer and boundary: Repeatedly changing retrieval settings after seeing held-out outcomes and reporting only the best score. Visual purpose: show Development queries > Freeze k > Held-out report > No reselection. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Development queries > Freeze k > Held-out report > No reselection",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Task 5: vary k without tuning on the final set",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: vary k without tuning on the final set. Define: Use development questions for exploration; preserve held-out questions. Walk through: Record k and threshold before examining the held-out results. If already seen, label further work exploratory. Ask: What makes a final report optimistic? Expected answer and boundary: Repeatedly changing retrieval settings after seeing held-out outcomes and reporting only the best score. Visual purpose: show Development queries > Freeze k > Held-out report > No reselection. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Development queries > Freeze k > Held-out report > No reselection",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Task 6: add a genuinely independent query",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: add a genuinely independent query. Define: Write its relevant IDs before execution and justify them from source text. Walk through: Try a paraphrase to expose lexical mismatch. Explain whether a miss is due to wording or missing corpus evidence. Ask: Is one new query a representative benchmark? Expected answer and boundary: No. It is a diagnostic probe. Broader coverage requires a task-based question set. Visual purpose: show New query > Independent labels > Run > Inspect. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "New query > Independent labels > Run > Inspect",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Avoid copying a source sentence verbatim",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: add a genuinely independent query. Define: Write its relevant IDs before execution and justify them from source text. Walk through: Try a paraphrase to expose lexical mismatch. Explain whether a miss is due to wording or missing corpus evidence. Ask: Is one new query a representative benchmark? Expected answer and boundary: No. It is a diagnostic probe. Broader coverage requires a task-based question set. Visual purpose: show New query > Independent labels > Run > Inspect. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "New query > Independent labels > Run > Inspect",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 6: add a genuinely independent query",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: add a genuinely independent query. Define: Write its relevant IDs before execution and justify them from source text. Walk through: Try a paraphrase to expose lexical mismatch. Explain whether a miss is due to wording or missing corpus evidence. Ask: Is one new query a representative benchmark? Expected answer and boundary: No. It is a diagnostic probe. Broader coverage requires a task-based question set. Visual purpose: show New query > Independent labels > Run > Inspect. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "New query > Independent labels > Run > Inspect",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Task 7: separate tool results from passages",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: separate tool results from passages. Define: A computed mean is not a retrieved protocol threshold. Walk through: Mean 81 C is computed from readings; threshold 80 C comes from the fictional protocol; comparison requests review. Ask: What remains outside this exercise? Expected answer and boundary: Physical measurement validity, real safety limits, automatic control authority and external deployment validation. Visual purpose: show Readings > Calculation | Protocol > Retrieval. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Readings > Calculation | Protocol > Retrieval",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Combine two evidence types carefully",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: separate tool results from passages. Define: A computed mean is not a retrieved protocol threshold. Walk through: Mean 81 C is computed from readings; threshold 80 C comes from the fictional protocol; comparison requests review. Ask: What remains outside this exercise? Expected answer and boundary: Physical measurement validity, real safety limits, automatic control authority and external deployment validation. Visual purpose: show Readings > Calculation | Protocol > Retrieval. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Readings > Calculation | Protocol > Retrieval",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Task 7: separate tool results from passages",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: separate tool results from passages. Define: A computed mean is not a retrieved protocol threshold. Walk through: Mean 81 C is computed from readings; threshold 80 C comes from the fictional protocol; comparison requests review. Ask: What remains outside this exercise? Expected answer and boundary: Physical measurement validity, real safety limits, automatic control authority and external deployment validation. Visual purpose: show Readings > Calculation | Protocol > Retrieval. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Readings > Calculation | Protocol > Retrieval",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Task 8: export source-bounded evidence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: export source-bounded evidence. Define: Keep corpus hash and exact retrieved text with the metric table. Walk through: They select a query, locate its IDs and quotes, and reproduce its recall from the labeled relevant set. Ask: Why preserve text as well as a link? Expected answer and boundary: Sources and chunks can change. A frozen snapshot makes the reported computation inspectable. Visual purpose: show Corpus > Query records > Support checks > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus > Query records > Support checks > ZIP",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "A classmate checks one full chain",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: export source-bounded evidence. Define: Keep corpus hash and exact retrieved text with the metric table. Walk through: They select a query, locate its IDs and quotes, and reproduce its recall from the labeled relevant set. Ask: Why preserve text as well as a link? Expected answer and boundary: Sources and chunks can change. A frozen snapshot makes the reported computation inspectable. Visual purpose: show Corpus > Query records > Support checks > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus > Query records > Support checks > ZIP",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Task 8: export source-bounded evidence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: export source-bounded evidence. Define: Keep corpus hash and exact retrieved text with the metric table. Walk through: They select a query, locate its IDs and quotes, and reproduce its recall from the labeled relevant set. Ask: Why preserve text as well as a link? Expected answer and boundary: Sources and chunks can change. A frozen snapshot makes the reported computation inspectable. Visual purpose: show Corpus > Query records > Support checks > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus > Query records > Support checks > ZIP",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: ask what the source entails",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: ask what the source entails. Define: Optional A changes chunking; optional B adds an adversarial passage. Walk through: Explain each outcome using a specific source or absent source, not a vague model-confidence story. Ask: What connects to the next week? Expected answer and boundary: The same untrusted evidence must pass through explicit permissions, budgets and approval gates before any action. Visual purpose: show Controlled change > Ranking impact > Support impact > Limits. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Controlled change > Ranking impact > Support impact > Limits",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: one success, one miss, one abstention",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: ask what the source entails. Define: Optional A changes chunking; optional B adds an adversarial passage. Walk through: Explain each outcome using a specific source or absent source, not a vague model-confidence story. Ask: What connects to the next week? Expected answer and boundary: The same untrusted evidence must pass through explicit permissions, budgets and approval gates before any action. Visual purpose: show Controlled change > Ranking impact > Support impact > Limits. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Controlled change > Ranking impact > Support impact > Limits",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: ask what the source entails",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: ask what the source entails. Define: Optional A changes chunking; optional B adds an adversarial passage. Walk through: Explain each outcome using a specific source or absent source, not a vague model-confidence story. Ask: What connects to the next week? Expected answer and boundary: The same untrusted evidence must pass through explicit permissions, budgets and approval gates before any action. Visual purpose: show Controlled change > Ranking impact > Support impact > Limits. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Controlled change > Ranking impact > Support impact > Limits",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  }
+]

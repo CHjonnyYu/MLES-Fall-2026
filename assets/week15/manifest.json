@@ -1,0 +1,37 @@
+{
+  "week": 15,
+  "date": "2026-12-14",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "Specify an engineering evidence workflow",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-15-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Implement a checked analysis pipeline",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-15-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Studio I: build, probe, and explain",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-15-hour-3/"
+    }
+  ],
+  "core_exercises": 8,
+  "optional_challenges": 2,
+  "explanation_minutes": 60,
+  "practice_minutes": 120
+}

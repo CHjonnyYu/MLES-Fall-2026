@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Replay, integrity checks, and oral defense",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: The ZIP must contain everything it promises. Define: Use a required-file list rather than archiving arbitrary runtime state. Walk through: Read source and paths. The reference extraction rejects unexpected members and does not execute received code automatically. Ask: Why avoid arbitrary runtime archives? Expected answer and boundary: They may leak secrets, personal files or irrelevant state and make the intended procedure unclear. Visual purpose: show Whitelist > ZIP > Extract > Verify > Replay. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Whitelist > ZIP > Extract > Verify > Replay",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Inspect before executing",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: The ZIP must contain everything it promises. Define: Use a required-file list rather than archiving arbitrary runtime state. Walk through: Read source and paths. The reference extraction rejects unexpected members and does not execute received code automatically. Ask: Why avoid arbitrary runtime archives? Expected answer and boundary: They may leak secrets, personal files or irrelevant state and make the intended procedure unclear. Visual purpose: show Whitelist > ZIP > Extract > Verify > Replay. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Whitelist > ZIP > Extract > Verify > Replay",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: The ZIP must contain everything it promises",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: The ZIP must contain everything it promises. Define: Use a required-file list rather than archiving arbitrary runtime state. Walk through: Read source and paths. The reference extraction rejects unexpected members and does not execute received code automatically. Ask: Why avoid arbitrary runtime archives? Expected answer and boundary: They may leak secrets, personal files or irrelevant state and make the intended procedure unclear. Visual purpose: show Whitelist > ZIP > Extract > Verify > Replay. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Whitelist > ZIP > Extract > Verify > Replay",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Task 4: extract into a fresh directory",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Task 4: extract into a fresh directory. Define: Verify manifest keys and bytes before starting the runner. Walk through: Removing protocol.json must fail before the analysis claims a protocol-based result. Ask: What should a failed integrity check do? Expected answer and boundary: Stop with a specific error. Do not retrain, repair or regenerate missing evidence silently. Visual purpose: show ZIP > Safe member names > Required files > Digests. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "ZIP > Safe member names > Required files > Digests",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Test a missing payload",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Task 4: extract into a fresh directory. Define: Verify manifest keys and bytes before starting the runner. Walk through: Removing protocol.json must fail before the analysis claims a protocol-based result. Ask: What should a failed integrity check do? Expected answer and boundary: Stop with a specific error. Do not retrain, repair or regenerate missing evidence silently. Visual purpose: show ZIP > Safe member names > Required files > Digests. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "ZIP > Safe member names > Required files > Digests",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Task 4: extract into a fresh directory",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Task 4: extract into a fresh directory. Define: Verify manifest keys and bytes before starting the runner. Walk through: Removing protocol.json must fail before the analysis claims a protocol-based result. Ask: What should a failed integrity check do? Expected answer and boundary: Stop with a specific error. Do not retrain, repair or regenerate missing evidence silently. Visual purpose: show ZIP > Safe member names > Required files > Digests. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "ZIP > Safe member names > Required files > Digests",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Task 5: replay from saved files",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Task 5: replay from saved files. Define: Use an explicit interpreter, runner path, bundle root and output path. Walk through: A launched process is not completed execution. Check successful termination and parse its result file. Ask: Why preserve stderr on failure? Expected answer and boundary: It is evidence of the failing dependency or predicate. Replacing it with a success message destroys diagnosability. Visual purpose: show Python executable > Runner > Root argument > New output. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Python executable > Runner > Root argument > New output",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Read return code and output",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: replay from saved files. Define: Use an explicit interpreter, runner path, bundle root and output path. Walk through: A launched process is not completed execution. Check successful termination and parse its result file. Ask: Why preserve stderr on failure? Expected answer and boundary: It is evidence of the failing dependency or predicate. Replacing it with a success message destroys diagnosability. Visual purpose: show Python executable > Runner > Root argument > New output. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Python executable > Runner > Root argument > New output",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Task 5: replay from saved files",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: replay from saved files. Define: Use an explicit interpreter, runner path, bundle root and output path. Walk through: A launched process is not completed execution. Check successful termination and parse its result file. Ask: Why preserve stderr on failure? Expected answer and boundary: It is evidence of the failing dependency or predicate. Replacing it with a success message destroys diagnosability. Visual purpose: show Python executable > Runner > Root argument > New output. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Python executable > Runner > Root argument > New output",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Task 6: compare an aligned result vector",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: compare an aligned result vector. Define: Use case IDs then the declared absolute-plus-relative tolerance. Walk through: This small runner should agree numerically in this environment. Report the actual maximum difference, not a promised zero. Ask: What if a metric agrees but predictions differ? Expected answer and boundary: Do not call it a successful replay. Aggregate agreement can conceal per-case differences. Visual purpose: show ID set > Declared order > Numeric difference > Limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "ID set > Declared order > Numeric difference > Limit",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "State the expected replay boundary",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: compare an aligned result vector. Define: Use case IDs then the declared absolute-plus-relative tolerance. Walk through: This small runner should agree numerically in this environment. Report the actual maximum difference, not a promised zero. Ask: What if a metric agrees but predictions differ? Expected answer and boundary: Do not call it a successful replay. Aggregate agreement can conceal per-case differences. Visual purpose: show ID set > Declared order > Numeric difference > Limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "ID set > Declared order > Numeric difference > Limit",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Task 6: compare an aligned result vector",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: compare an aligned result vector. Define: Use case IDs then the declared absolute-plus-relative tolerance. Walk through: This small runner should agree numerically in this environment. Report the actual maximum difference, not a promised zero. Ask: What if a metric agrees but predictions differ? Expected answer and boundary: Do not call it a successful replay. Aggregate agreement can conceal per-case differences. Visual purpose: show ID set > Declared order > Numeric difference > Limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "ID set > Declared order > Numeric difference > Limit",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Tamper detection is not authenticity",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Tamper detection is not authenticity. Define: A changed copied payload should fail against the preserved manifest. Walk through: A harmless-looking blank line changes the exact-file hash even if a parser would ignore it. Ask: What if both payload and manifest are replaced? Expected answer and boundary: Unsigned consistency checks may pass. A trusted external reference or signature is needed for sender authenticity. Visual purpose: show Original digest | Altered bytes | Mismatch | Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Original digest | Altered bytes | Mismatch | Stop",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Task 7: append bytes to a copy",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Tamper detection is not authenticity. Define: A changed copied payload should fail against the preserved manifest. Walk through: A harmless-looking blank line changes the exact-file hash even if a parser would ignore it. Ask: What if both payload and manifest are replaced? Expected answer and boundary: Unsigned consistency checks may pass. A trusted external reference or signature is needed for sender authenticity. Visual purpose: show Original digest | Altered bytes | Mismatch | Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Original digest | Altered bytes | Mismatch | Stop",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Tamper detection is not authenticity",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Tamper detection is not authenticity. Define: A changed copied payload should fail against the preserved manifest. Walk through: A harmless-looking blank line changes the exact-file hash even if a parser would ignore it. Ask: What if both payload and manifest are replaced? Expected answer and boundary: Unsigned consistency checks may pass. A trusted external reference or signature is needed for sender authenticity. Visual purpose: show Original digest | Altered bytes | Mismatch | Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Original digest | Altered bytes | Mismatch | Stop",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Explain the mechanism in a short defense",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Explain the mechanism in a short defense. Define: Use claim, evidence, limitation and an invalidating change. Walk through: Name the fixture, show the trace, recompute a value and identify what the evidence does not establish. Ask: Why is memorizing a score insufficient? Expected answer and boundary: It does not demonstrate the split, procedure, source or reasoning that gives the score meaning. Visual purpose: show Claim > Actual artifact > Limitation > New test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Claim > Actual artifact > Limitation > New test",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "A two-minute oral response",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Explain the mechanism in a short defense. Define: Use claim, evidence, limitation and an invalidating change. Walk through: Name the fixture, show the trace, recompute a value and identify what the evidence does not establish. Ask: Why is memorizing a score insufficient? Expected answer and boundary: It does not demonstrate the split, procedure, source or reasoning that gives the score meaning. Visual purpose: show Claim > Actual artifact > Limitation > New test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Claim > Actual artifact > Limitation > New test",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Explain the mechanism in a short defense",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Explain the mechanism in a short defense. Define: Use claim, evidence, limitation and an invalidating change. Walk through: Name the fixture, show the trace, recompute a value and identify what the evidence does not establish. Ask: Why is memorizing a score insufficient? Expected answer and boundary: It does not demonstrate the split, procedure, source or reasoning that gives the score meaning. Visual purpose: show Claim > Actual artifact > Limitation > New test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Claim > Actual artifact > Limitation > New test",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Budget the five-minute demonstration",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Budget the five-minute demonstration. Define: Make every segment point to a real artifact. Walk through: Show one exact input, one executed success, one expected rejection, then how a peer can replay it. Ask: Must every student submit a new video this week? Expected answer and boundary: No. This is in-class rehearsal only; the separately announced stock-prediction HW retains its own five-minute video requirement. Visual purpose: show 45s problem | 60s mechanism | 75s success | 60s failure | 60s limits. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "45s problem | 60s mechanism | 75s success | 60s failure | 60s limits",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "The outline totals 300 seconds",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Budget the five-minute demonstration. Define: Make every segment point to a real artifact. Walk through: Show one exact input, one executed success, one expected rejection, then how a peer can replay it. Ask: Must every student submit a new video this week? Expected answer and boundary: No. This is in-class rehearsal only; the separately announced stock-prediction HW retains its own five-minute video requirement. Visual purpose: show 45s problem | 60s mechanism | 75s success | 60s failure | 60s limits. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "45s problem | 60s mechanism | 75s success | 60s failure | 60s limits",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Budget the five-minute demonstration",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Budget the five-minute demonstration. Define: Make every segment point to a real artifact. Walk through: Show one exact input, one executed success, one expected rejection, then how a peer can replay it. Ask: Must every student submit a new video this week? Expected answer and boundary: No. This is in-class rehearsal only; the separately announced stock-prediction HW retains its own five-minute video requirement. Visual purpose: show 45s problem | 60s mechanism | 75s success | 60s failure | 60s limits. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "45s problem | 60s mechanism | 75s success | 60s failure | 60s limits",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Written and oral assessment remain separate",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Written and oral assessment remain separate. Define: The project evidence supports explanation but does not replace either examination. Walk through: What breaks if a threshold changes units, a tool gains side effects or a retrieved source loses a qualifier? Ask: Should the course publish live exam answers here? Expected answer and boundary: No. These are public study prompts and worked practice, not confidential examination papers or new grading rules. Visual purpose: show Written transfer | Oral mechanism | Project evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Written transfer | Oral mechanism | Project evidence",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Prepare a transfer question",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Written and oral assessment remain separate. Define: The project evidence supports explanation but does not replace either examination. Walk through: What breaks if a threshold changes units, a tool gains side effects or a retrieved source loses a qualifier? Ask: Should the course publish live exam answers here? Expected answer and boundary: No. These are public study prompts and worked practice, not confidential examination papers or new grading rules. Visual purpose: show Written transfer | Oral mechanism | Project evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Written transfer | Oral mechanism | Project evidence",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Written and oral assessment remain separate",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Written and oral assessment remain separate. Define: The project evidence supports explanation but does not replace either examination. Walk through: What breaks if a threshold changes units, a tool gains side effects or a retrieved source loses a qualifier? Ask: Should the course publish live exam answers here? Expected answer and boundary: No. These are public study prompts and worked practice, not confidential examination papers or new grading rules. Visual purpose: show Written transfer | Oral mechanism | Project evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Written transfer | Oral mechanism | Project evidence",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Peer handover is an adversarial usability test",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Peer handover is an adversarial usability test. Define: A partner locates inputs, expected behavior and one known failure without coaching. Walk through: Capture what the partner could and could not reconstruct. Incomplete handover remains a documented limitation. Ask: Can a partner's successful replay establish generalization? Expected answer and boundary: No. It supports portability within the checked environment, not external predictive or security validity. Visual purpose: show Partner > Locate > Inspect > Replay > Explain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Partner > Locate > Inspect > Replay > Explain",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Task 8: record the handover result",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Peer handover is an adversarial usability test. Define: A partner locates inputs, expected behavior and one known failure without coaching. Walk through: Capture what the partner could and could not reconstruct. Incomplete handover remains a documented limitation. Ask: Can a partner's successful replay establish generalization? Expected answer and boundary: No. It supports portability within the checked environment, not external predictive or security validity. Visual purpose: show Partner > Locate > Inspect > Replay > Explain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Partner > Locate > Inspect > Replay > Explain",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Peer handover is an adversarial usability test",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Peer handover is an adversarial usability test. Define: A partner locates inputs, expected behavior and one known failure without coaching. Walk through: Capture what the partner could and could not reconstruct. Incomplete handover remains a documented limitation. Ask: Can a partner's successful replay establish generalization? Expected answer and boundary: No. It supports portability within the checked environment, not external predictive or security validity. Visual purpose: show Partner > Locate > Inspect > Replay > Explain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Partner > Locate > Inspect > Replay > Explain",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: preserve the observed state",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: preserve the observed state. Define: Keep passed, failed and untested items distinct in the final result card. Walk through: Save source, inputs, manifest, replay result and draft/completed response record. Ask: What must not be upgraded into completion? Expected answer and boundary: A prepared ZIP, launched job or connected runtime without successful execution and inspected outputs. Visual purpose: show Passed | Failed | Untested | Proposed next step. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Passed | Failed | Untested | Proposed next step",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Checkpoint for independent integration",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: preserve the observed state. Define: Keep passed, failed and untested items distinct in the final result card. Walk through: Save source, inputs, manifest, replay result and draft/completed response record. Ask: What must not be upgraded into completion? Expected answer and boundary: A prepared ZIP, launched job or connected runtime without successful execution and inspected outputs. Visual purpose: show Passed | Failed | Untested | Proposed next step. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Passed | Failed | Untested | Proposed next step",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: preserve the observed state",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: preserve the observed state. Define: Keep passed, failed and untested items distinct in the final result card. Walk through: Save source, inputs, manifest, replay result and draft/completed response record. Ask: What must not be upgraded into completion? Expected answer and boundary: A prepared ZIP, launched job or connected runtime without successful execution and inspected outputs. Visual purpose: show Passed | Failed | Untested | Proposed next step. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://numpy.org/doc/stable/reference/random/compatibility.html ; https://scikit-learn.org/stable/model_persistence.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week17/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Passed | Failed | Untested | Proposed next step",
+    "source_urls": [
+      "https://numpy.org/doc/stable/reference/random/compatibility.html",
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  }
+]

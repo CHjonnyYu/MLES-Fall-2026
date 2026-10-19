@@ -1,0 +1,84 @@
+{
+  "week": 12,
+  "date": "2026-11-23",
+  "checked": "2026-10-19",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "From next-token prediction to tool proposals",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-12-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Structured outputs and bounded tool execution",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-12-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Tool-contract studio: test, explain, export",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-12-hour-3/"
+    }
+  ],
+  "slides": {
+    "count": 90,
+    "all_rendered": true,
+    "automated_geometry_images_logos_sources_timing": "passed",
+    "interactions": "passed",
+    "visual_review": "All slides in deck overviews, plus selected individual full-size technical and interaction pages. Not an independent human full-size review of every slide."
+  },
+  "notebooks": [
+    {
+      "week": 12,
+      "kind": "practice",
+      "status": "passed",
+      "notebook": "notebooks/week-12-practice.ipynb",
+      "sha256": "c83afa157c862b52fca338c2420c559d756fa2ee498e908bb9b5720ff9b2e424",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w12-practice-2",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    },
+    {
+      "week": 12,
+      "kind": "exercise",
+      "status": "passed",
+      "notebook": "notebooks/exercises/week-12-exercise.ipynb",
+      "sha256": "6c6da7af57285c57e5ca9a1583be422adaea8414adbd2c7e01acec94144d871f",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w12-exercise-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    }
+  ],
+  "execution_scope": "Fresh local CPU Jupyter kernels; not Google Colab-browser execution.",
+  "latex": {
+    "compiled": true,
+    "reader_pages": 11,
+    "no_overfull_or_undefined_references": true
+  },
+  "content_scope": "Original synthetic teaching fixtures and bounded deterministic workflows; Week12 also trains a character bigram. No live LLM, physical validation, real mail or consequential external actions.",
+  "generated_visuals": {
+    "count": 1,
+    "usage": "H1 cover only",
+    "provenance": "/assets/week12/visual-provenance.json"
+  },
+  "practice_policy": "60 minutes explanation +120 minutes practice;8core+2optional; no new weekly graded homework."
+}

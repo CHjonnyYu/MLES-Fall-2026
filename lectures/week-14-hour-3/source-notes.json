@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Oversight studio: attack the boundary",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Probe the harness without real side effects. Define: All destructive, messaging and approval operations remain simulated. Walk through: Restore 5 min; core tests 25 min; approval review 15 min; peer audit and export 15 min. Ask: What is not being tested? Expected answer and boundary: Real identity services, real mail APIs, operating-system sandboxes and a live language model. Visual purpose: show Fixture > Simulator > Trace > Assertions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixture > Simulator > Trace > Assertions",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Keep the lab local",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Probe the harness without real side effects. Define: All destructive, messaging and approval operations remain simulated. Walk through: Restore 5 min; core tests 25 min; approval review 15 min; peer audit and export 15 min. Ask: What is not being tested? Expected answer and boundary: Real identity services, real mail APIs, operating-system sandboxes and a live language model. Visual purpose: show Fixture > Simulator > Trace > Assertions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixture > Simulator > Trace > Assertions",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Probe the harness without real side effects",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Probe the harness without real side effects. Define: All destructive, messaging and approval operations remain simulated. Walk through: Restore 5 min; core tests 25 min; approval review 15 min; peer audit and export 15 min. Ask: What is not being tested? Expected answer and boundary: Real identity services, real mail APIs, operating-system sandboxes and a live language model. Visual purpose: show Fixture > Simulator > Trace > Assertions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixture > Simulator > Trace > Assertions",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Task 1: accept a legitimate operation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: accept a legitimate operation. Define: Verify the permitted mean and its independent expected value. Walk through: A dispatcher that rejects every proposal is not a useful reference even if it never performs a forbidden action. Ask: Which denominator belongs to legitimate success? Expected answer and boundary: The number of valid requests in the declared suite, not all requests including deliberate attacks. Visual purpose: show Allowed name > Finite readings > Correct mean > Trace. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Allowed name > Finite readings > Correct mean > Trace",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Functionality is part of evaluation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: accept a legitimate operation. Define: Verify the permitted mean and its independent expected value. Walk through: A dispatcher that rejects every proposal is not a useful reference even if it never performs a forbidden action. Ask: Which denominator belongs to legitimate success? Expected answer and boundary: The number of valid requests in the declared suite, not all requests including deliberate attacks. Visual purpose: show Allowed name > Finite readings > Correct mean > Trace. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Allowed name > Finite readings > Correct mean > Trace",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Task 1: accept a legitimate operation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: accept a legitimate operation. Define: Verify the permitted mean and its independent expected value. Walk through: A dispatcher that rejects every proposal is not a useful reference even if it never performs a forbidden action. Ask: Which denominator belongs to legitimate success? Expected answer and boundary: The number of valid requests in the declared suite, not all requests including deliberate attacks. Visual purpose: show Allowed name > Finite readings > Correct mean > Trace. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Allowed name > Finite readings > Correct mean > Trace",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Task 2: keep malicious text powerless",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: keep malicious text powerless. Define: Pass the injection fixture as content, never as executable instructions. Walk through: The allowed-tool tuple and approval registry must not be modified by retrieved prose. Ask: What would invalidate the test? Expected answer and boundary: Changing the contract in the test to make the attack pass or executing a parsed instruction from the hostile text. Visual purpose: show Hostile content > Recorded observation > Unchanged permissions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Hostile content > Recorded observation > Unchanged permissions",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Compare contract before and after",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: keep malicious text powerless. Define: Pass the injection fixture as content, never as executable instructions. Walk through: The allowed-tool tuple and approval registry must not be modified by retrieved prose. Ask: What would invalidate the test? Expected answer and boundary: Changing the contract in the test to make the attack pass or executing a parsed instruction from the hostile text. Visual purpose: show Hostile content > Recorded observation > Unchanged permissions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Hostile content > Recorded observation > Unchanged permissions",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Task 2: keep malicious text powerless",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: keep malicious text powerless. Define: Pass the injection fixture as content, never as executable instructions. Walk through: The allowed-tool tuple and approval registry must not be modified by retrieved prose. Ask: What would invalidate the test? Expected answer and boundary: Changing the contract in the test to make the attack pass or executing a parsed instruction from the hostile text. Visual purpose: show Hostile content > Recorded observation > Unchanged permissions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Hostile content > Recorded observation > Unchanged permissions",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Task 3: prove one-use approval",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: prove one-use approval. Define: Inspect the digest and event count after the first use and replay. Walk through: A replay test needs the same registry. A fresh registry would represent a different authorization context. Ask: Why does this matter for reproducibility? Expected answer and boundary: Stateful security behavior depends on event order. Preserve initial state and the exact sequence of requests. Visual purpose: show Fresh approval > One event > Consumed record > Replay rejected. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fresh approval > One event > Consumed record > Replay rejected",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Do not reset state between these two calls",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: prove one-use approval. Define: Inspect the digest and event count after the first use and replay. Walk through: A replay test needs the same registry. A fresh registry would represent a different authorization context. Ask: Why does this matter for reproducibility? Expected answer and boundary: Stateful security behavior depends on event order. Preserve initial state and the exact sequence of requests. Visual purpose: show Fresh approval > One event > Consumed record > Replay rejected. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fresh approval > One event > Consumed record > Replay rejected",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Task 3: prove one-use approval",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: prove one-use approval. Define: Inspect the digest and event count after the first use and replay. Walk through: A replay test needs the same registry. A fresh registry would represent a different authorization context. Ask: Why does this matter for reproducibility? Expected answer and boundary: Stateful security behavior depends on event order. Preserve initial state and the exact sequence of requests. Visual purpose: show Fresh approval > One event > Consumed record > Replay rejected. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fresh approval > One event > Consumed record > Replay rejected",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Task 4: differentiate malformed inputs",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: differentiate malformed inputs. Define: Name the failing precondition for each deliberately invalid proposal. Walk through: For True, explain numeric subtype confusion; for NaN, explain nonfinite arithmetic and JSON portability. Ask: Why not catch every exception and return success? Expected answer and boundary: It would erase the failure semantics and could hide partial execution or implementation errors. Visual purpose: show Wrong field | Wrong type | Nonfinite value | Empty values. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Wrong field | Wrong type | Nonfinite value | Empty values",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Write a test-specific explanation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: differentiate malformed inputs. Define: Name the failing precondition for each deliberately invalid proposal. Walk through: For True, explain numeric subtype confusion; for NaN, explain nonfinite arithmetic and JSON portability. Ask: Why not catch every exception and return success? Expected answer and boundary: It would erase the failure semantics and could hide partial execution or implementation errors. Visual purpose: show Wrong field | Wrong type | Nonfinite value | Empty values. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Wrong field | Wrong type | Nonfinite value | Empty values",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Task 4: differentiate malformed inputs",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: differentiate malformed inputs. Define: Name the failing precondition for each deliberately invalid proposal. Walk through: For True, explain numeric subtype confusion; for NaN, explain nonfinite arithmetic and JSON portability. Ask: Why not catch every exception and return success? Expected answer and boundary: It would erase the failure semantics and could hide partial execution or implementation errors. Visual purpose: show Wrong field | Wrong type | Nonfinite value | Empty values. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Wrong field | Wrong type | Nonfinite value | Empty values",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Task 5: inspect the terminal state",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: inspect the terminal state. Define: After cap exhaustion, compare the complete action log before and after. Walk through: Reset only by an explicit new session with a fresh state record and a new evidence ID. Ask: When is a reset legitimate? Expected answer and boundary: When declared as a new run, not as an invisible way to exceed the budget of an ongoing task. Visual purpose: show Stopped state > Later proposal > Same protected log. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Stopped state > Later proposal > Same protected log",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Attempt counts do not reset silently",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: inspect the terminal state. Define: After cap exhaustion, compare the complete action log before and after. Walk through: Reset only by an explicit new session with a fresh state record and a new evidence ID. Ask: When is a reset legitimate? Expected answer and boundary: When declared as a new run, not as an invisible way to exceed the budget of an ongoing task. Visual purpose: show Stopped state > Later proposal > Same protected log. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Stopped state > Later proposal > Same protected log",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Task 5: inspect the terminal state",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: inspect the terminal state. Define: After cap exhaustion, compare the complete action log before and after. Walk through: Reset only by an explicit new session with a fresh state record and a new evidence ID. Ask: When is a reset legitimate? Expected answer and boundary: When declared as a new run, not as an invisible way to exceed the budget of an ongoing task. Visual purpose: show Stopped state > Later proposal > Same protected log. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Stopped state > Later proposal > Same protected log",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Task 6: modify an approved request",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: modify an approved request. Define: Change one argument without issuing a new approval. Walk through: A partner should see exactly which field changed and why the original approval no longer matches. Ask: Could the caller approve its own changed request? Expected answer and boundary: Not under this contract. Approval creation is a separate trusted teaching action, not an allowed model tool. Visual purpose: show Original digest | Modified digest | Mismatch rejection. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Original digest | Modified digest | Mismatch rejection",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Preserve both request versions",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: modify an approved request. Define: Change one argument without issuing a new approval. Walk through: A partner should see exactly which field changed and why the original approval no longer matches. Ask: Could the caller approve its own changed request? Expected answer and boundary: Not under this contract. Approval creation is a separate trusted teaching action, not an allowed model tool. Visual purpose: show Original digest | Modified digest | Mismatch rejection. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Original digest | Modified digest | Mismatch rejection",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 6: modify an approved request",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: modify an approved request. Define: Change one argument without issuing a new approval. Walk through: A partner should see exactly which field changed and why the original approval no longer matches. Ask: Could the caller approve its own changed request? Expected answer and boundary: Not under this contract. Approval creation is a separate trusted teaching action, not an allowed model tool. Visual purpose: show Original digest | Modified digest | Mismatch rejection. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Original digest | Modified digest | Mismatch rejection",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Task 7: reconstruct the first failure",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: reconstruct the first failure. Define: Follow the trace from proposal to rejection to stop. Walk through: Explain the observed predicate and result. Avoid inventing what a model internally thought. Ask: What is a defensible explanation? Expected answer and boundary: A mechanism tied to code, inputs and trace events with a stated boundary on what was observed. Visual purpose: show Initial state > First violated invariant > Rejection > No side effect. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Initial state > First violated invariant > Rejection > No side effect",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Do not infer hidden reasoning",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: reconstruct the first failure. Define: Follow the trace from proposal to rejection to stop. Walk through: Explain the observed predicate and result. Avoid inventing what a model internally thought. Ask: What is a defensible explanation? Expected answer and boundary: A mechanism tied to code, inputs and trace events with a stated boundary on what was observed. Visual purpose: show Initial state > First violated invariant > Rejection > No side effect. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Initial state > First violated invariant > Rejection > No side effect",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Task 7: reconstruct the first failure",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: reconstruct the first failure. Define: Follow the trace from proposal to rejection to stop. Walk through: Explain the observed predicate and result. Avoid inventing what a model internally thought. Ask: What is a defensible explanation? Expected answer and boundary: A mechanism tied to code, inputs and trace events with a stated boundary on what was observed. Visual purpose: show Initial state > First violated invariant > Rejection > No side effect. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Initial state > First violated invariant > Rejection > No side effect",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Task 8: preserve a negative result",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: preserve a negative result. Define: Export a case that fails as expected and one valid success. Walk through: The expected error must be caught by the test, not hidden by removing assertions. Ask: When does an expected rejection become a defect? Expected answer and boundary: When a valid request is rejected or an invalid request causes an unauthorized side effect. Visual purpose: show Expected rejection | Actual rejection | Protected state | Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Expected rejection | Actual rejection | Protected state | Evidence",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "A negative test is positive evidence of a gate",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: preserve a negative result. Define: Export a case that fails as expected and one valid success. Walk through: The expected error must be caught by the test, not hidden by removing assertions. Ask: When does an expected rejection become a defect? Expected answer and boundary: When a valid request is rejected or an invalid request causes an unauthorized side effect. Visual purpose: show Expected rejection | Actual rejection | Protected state | Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Expected rejection | Actual rejection | Protected state | Evidence",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Task 8: preserve a negative result",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: preserve a negative result. Define: Export a case that fails as expected and one valid success. Walk through: The expected error must be caught by the test, not hidden by removing assertions. Ask: When does an expected rejection become a defect? Expected answer and boundary: When a valid request is rejected or an invalid request causes an unauthorized side effect. Visual purpose: show Expected rejection | Actual rejection | Protected state | Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Expected rejection | Actual rejection | Protected state | Evidence",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: extend one threat model at a time",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: extend one threat model at a time. Define: Optional A adds a bounded retry; optional B alters one approved argument. Walk through: Name a real-world boundary that the local simulator cannot establish and propose a suitable next test. Ask: What connects to Studio I? Expected answer and boundary: The workflow will combine retrieval and numerical evidence while preserving these same permission and stop boundaries. Visual purpose: show Threat > Expected invariant > Probe > Limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Threat > Expected invariant > Probe > Limit",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: state one untested threat",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: extend one threat model at a time. Define: Optional A adds a bounded retry; optional B alters one approved argument. Walk through: Name a real-world boundary that the local simulator cannot establish and propose a suitable next test. Ask: What connects to Studio I? Expected answer and boundary: The workflow will combine retrieval and numerical evidence while preserving these same permission and stop boundaries. Visual purpose: show Threat > Expected invariant > Probe > Limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Threat > Expected invariant > Probe > Limit",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: extend one threat model at a time",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: extend one threat model at a time. Define: Optional A adds a bounded retry; optional B alters one approved argument. Walk through: Name a real-world boundary that the local simulator cannot establish and propose a suitable next test. Ask: What connects to Studio I? Expected answer and boundary: The workflow will combine retrieval and numerical evidence while preserving these same permission and stop boundaries. Visual purpose: show Threat > Expected invariant > Probe > Limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Threat > Expected invariant > Probe > Limit",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  }
+]

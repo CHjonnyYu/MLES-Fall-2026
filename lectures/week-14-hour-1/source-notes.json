@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "State, budgets, and trust boundaries",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: An agent is a controlled loop. Define: An action proposal must pass the harness before changing the environment. Walk through: State; transition; attempt budget; tool permissions; tool errors; approvals; trace evidence. Ask: Where does the model lose authority? Expected answer and boundary: At every deterministic gate. A proposal cannot change the action set or enlarge its own budget. Visual purpose: show Observe > Propose > Validate > Act > Verify > Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observe > Propose > Validate > Act > Verify > Stop",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Today: mechanism, practice, evidence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: An agent is a controlled loop. Define: An action proposal must pass the harness before changing the environment. Walk through: State; transition; attempt budget; tool permissions; tool errors; approvals; trace evidence. Ask: Where does the model lose authority? Expected answer and boundary: At every deterministic gate. A proposal cannot change the action set or enlarge its own budget. Visual purpose: show Observe > Propose > Validate > Act > Verify > Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observe > Propose > Validate > Act > Verify > Stop",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: An agent is a controlled loop",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: An agent is a controlled loop. Define: An action proposal must pass the harness before changing the environment. Walk through: State; transition; attempt budget; tool permissions; tool errors; approvals; trace evidence. Ask: Where does the model lose authority? Expected answer and boundary: At every deterministic gate. A proposal cannot change the action set or enlarge its own budget. Visual purpose: show Observe > Propose > Validate > Act > Verify > Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observe > Propose > Validate > Act > Verify > Stop",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Workflow and agent are not synonyms",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Workflow and agent are not synonyms. Define: A fixed graph is a workflow; model-directed choices add an agent decision layer. Walk through: A three-step measurement report can use a script. Do not add open-ended planning when the steps are known. Ask: Does a loop alone make a system an LLM agent? Expected answer and boundary: No. The core notebook is a deterministic harness simulator. The language-model decision component is deliberately absent. Visual purpose: show Fixed route | Model-selected route | Same enforced boundary. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed route | Model-selected route | Same enforced boundary",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Choose the simpler implementation",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Workflow and agent are not synonyms. Define: A fixed graph is a workflow; model-directed choices add an agent decision layer. Walk through: A three-step measurement report can use a script. Do not add open-ended planning when the steps are known. Ask: Does a loop alone make a system an LLM agent? Expected answer and boundary: No. The core notebook is a deterministic harness simulator. The language-model decision component is deliberately absent. Visual purpose: show Fixed route | Model-selected route | Same enforced boundary. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed route | Model-selected route | Same enforced boundary",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Workflow and agent are not synonyms",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Workflow and agent are not synonyms. Define: A fixed graph is a workflow; model-directed choices add an agent decision layer. Walk through: A three-step measurement report can use a script. Do not add open-ended planning when the steps are known. Ask: Does a loop alone make a system an LLM agent? Expected answer and boundary: No. The core notebook is a deterministic harness simulator. The language-model decision component is deliberately absent. Visual purpose: show Fixed route | Model-selected route | Same enforced boundary. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed route | Model-selected route | Same enforced boundary",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Represent state before writing actions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Represent state before writing actions. Define: State records attempts, observations, pending approval and terminal status. Walk through: After budget_exhausted, later proposals must not execute. A terminal status is not just a displayed message. Ask: What is the invariant after stopping? Expected answer and boundary: The executed action count and side-effect log do not change. Tests should attempt an additional action. Visual purpose: show State > Proposed transition > Invariant check > New state. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "State > Proposed transition > Invariant check > New state",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Trace a terminal state",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Represent state before writing actions. Define: State records attempts, observations, pending approval and terminal status. Walk through: After budget_exhausted, later proposals must not execute. A terminal status is not just a displayed message. Ask: What is the invariant after stopping? Expected answer and boundary: The executed action count and side-effect log do not change. Tests should attempt an additional action. Visual purpose: show State > Proposed transition > Invariant check > New state. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "State > Proposed transition > Invariant check > New state",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Represent state before writing actions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Represent state before writing actions. Define: State records attempts, observations, pending approval and terminal status. Walk through: After budget_exhausted, later proposals must not execute. A terminal status is not just a displayed message. Ask: What is the invariant after stopping? Expected answer and boundary: The executed action count and side-effect log do not change. Tests should attempt an additional action. Visual purpose: show State > Proposed transition > Invariant check > New state. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "State > Proposed transition > Invariant check > New state",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Budgets need an accounting unit",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Budgets need an accounting unit. Define: Count attempts, tool calls and declared work separately. Walk through: Three invalid proposals under a two-attempt cap must stop at the cap even though no tool ran. Ask: Can a tool-call cap guarantee short runtime? Expected answer and boundary: No. One call may hang or be expensive. Wall-clock limits and resource isolation are distinct controls. Visual purpose: show Attempt count | Dispatch count | Work limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Attempt count | Dispatch count | Work limit",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Rejected proposals still cost attention",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Budgets need an accounting unit. Define: Count attempts, tool calls and declared work separately. Walk through: Three invalid proposals under a two-attempt cap must stop at the cap even though no tool ran. Ask: Can a tool-call cap guarantee short runtime? Expected answer and boundary: No. One call may hang or be expensive. Wall-clock limits and resource isolation are distinct controls. Visual purpose: show Attempt count | Dispatch count | Work limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Attempt count | Dispatch count | Work limit",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Budgets need an accounting unit",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Budgets need an accounting unit. Define: Count attempts, tool calls and declared work separately. Walk through: Three invalid proposals under a two-attempt cap must stop at the cap even though no tool ran. Ask: Can a tool-call cap guarantee short runtime? Expected answer and boundary: No. One call may hang or be expensive. Wall-clock limits and resource isolation are distinct controls. Visual purpose: show Attempt count | Dispatch count | Work limit. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Attempt count | Dispatch count | Work limit",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Validate before dispatch",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Validate before dispatch. Define: Unknown tool names must not reach an implementation or external service. Walk through: Compare a permitted mean request with a fake send_email request. The simulator sends no real message. Ask: What must the trace prove about the forbidden request? Expected answer and boundary: It was rejected before dispatch; do not rely on a downstream tool happening to fail. Visual purpose: show Name allowlist > Exact schema > Argument checks > Dispatch. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Name allowlist > Exact schema > Argument checks > Dispatch",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Task 1: inspect the dispatch path",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Validate before dispatch. Define: Unknown tool names must not reach an implementation or external service. Walk through: Compare a permitted mean request with a fake send_email request. The simulator sends no real message. Ask: What must the trace prove about the forbidden request? Expected answer and boundary: It was rejected before dispatch; do not rely on a downstream tool happening to fail. Visual purpose: show Name allowlist > Exact schema > Argument checks > Dispatch. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Name allowlist > Exact schema > Argument checks > Dispatch",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Validate before dispatch",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Validate before dispatch. Define: Unknown tool names must not reach an implementation or external service. Walk through: Compare a permitted mean request with a fake send_email request. The simulator sends no real message. Ask: What must the trace prove about the forbidden request? Expected answer and boundary: It was rejected before dispatch; do not rely on a downstream tool happening to fail. Visual purpose: show Name allowlist > Exact schema > Argument checks > Dispatch. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Name allowlist > Exact schema > Argument checks > Dispatch",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Use typed errors with narrow recovery",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Use typed errors with narrow recovery. Define: Invalid input, transient tool failure and permission failure need different next steps. Walk through: A bounded retry can handle a simulated transient error; it cannot authorize a forbidden operation. Ask: Why can retries make behavior worse? Expected answer and boundary: Repeated side effects, cost and duplicate operations may occur. Retry only a declared safe operation with a bound. Visual purpose: show Invalid input | Transient error | Permission denial. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid input | Transient error | Permission denial",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Do not retry every failure",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Use typed errors with narrow recovery. Define: Invalid input, transient tool failure and permission failure need different next steps. Walk through: A bounded retry can handle a simulated transient error; it cannot authorize a forbidden operation. Ask: Why can retries make behavior worse? Expected answer and boundary: Repeated side effects, cost and duplicate operations may occur. Retry only a declared safe operation with a bound. Visual purpose: show Invalid input | Transient error | Permission denial. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid input | Transient error | Permission denial",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Use typed errors with narrow recovery",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Use typed errors with narrow recovery. Define: Invalid input, transient tool failure and permission failure need different next steps. Walk through: A bounded retry can handle a simulated transient error; it cannot authorize a forbidden operation. Ask: Why can retries make behavior worse? Expected answer and boundary: Repeated side effects, cost and duplicate operations may occur. Retry only a declared safe operation with a bound. Visual purpose: show Invalid input | Transient error | Permission denial. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid input | Transient error | Permission denial",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Untrusted text cannot amend policy",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Untrusted text cannot amend policy. Define: Retrieved instructions are data even if they imitate a system message. Walk through: Store the fixture text and show that the allowed tools remain unchanged after it is observed. Ask: Does this test prove universal prompt-injection resistance? Expected answer and boundary: No. It tests one deterministic boundary and supplied cases; real model-mediated paths require broader adversarial evaluation. Visual purpose: show Source content > Untrusted boundary > Fixed contract. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Source content > Untrusted boundary > Fixed contract",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Task 2: preserve the hostile sentence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Untrusted text cannot amend policy. Define: Retrieved instructions are data even if they imitate a system message. Walk through: Store the fixture text and show that the allowed tools remain unchanged after it is observed. Ask: Does this test prove universal prompt-injection resistance? Expected answer and boundary: No. It tests one deterministic boundary and supplied cases; real model-mediated paths require broader adversarial evaluation. Visual purpose: show Source content > Untrusted boundary > Fixed contract. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Source content > Untrusted boundary > Fixed contract",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Untrusted text cannot amend policy",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Untrusted text cannot amend policy. Define: Retrieved instructions are data even if they imitate a system message. Walk through: Store the fixture text and show that the allowed tools remain unchanged after it is observed. Ask: Does this test prove universal prompt-injection resistance? Expected answer and boundary: No. It tests one deterministic boundary and supplied cases; real model-mediated paths require broader adversarial evaluation. Visual purpose: show Source content > Untrusted boundary > Fixed contract. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Source content > Untrusted boundary > Fixed contract",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Approval must name the exact action",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Approval must name the exact action. Define: Bind action, arguments and a unique nonce into a reviewed digest. Walk through: An approval for draft A cannot be reused for draft B with different content or destination. Ask: Why is an 'approved=true' field insufficient? Expected answer and boundary: Untrusted callers could set it themselves. Approval must come from a separate authority and be checked against the exact request. Visual purpose: show Action + Args + Nonce > Digest > Reviewer approval. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Action + Args + Nonce > Digest > Reviewer approval",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "A changed recipient invalidates approval",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Approval must name the exact action. Define: Bind action, arguments and a unique nonce into a reviewed digest. Walk through: An approval for draft A cannot be reused for draft B with different content or destination. Ask: Why is an 'approved=true' field insufficient? Expected answer and boundary: Untrusted callers could set it themselves. Approval must come from a separate authority and be checked against the exact request. Visual purpose: show Action + Args + Nonce > Digest > Reviewer approval. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Action + Args + Nonce > Digest > Reviewer approval",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Approval must name the exact action",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Approval must name the exact action. Define: Bind action, arguments and a unique nonce into a reviewed digest. Walk through: An approval for draft A cannot be reused for draft B with different content or destination. Ask: Why is an 'approved=true' field insufficient? Expected answer and boundary: Untrusted callers could set it themselves. Approval must come from a separate authority and be checked against the exact request. Visual purpose: show Action + Args + Nonce > Digest > Reviewer approval. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Action + Args + Nonce > Digest > Reviewer approval",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Consumption prevents approval replay",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Consumption prevents approval replay. Define: A valid approval is one-use and has a declared expiration rule. Walk through: The first simulated action can succeed; the second must be rejected without a duplicate event. Ask: What limitation remains in this teaching approval? Expected answer and boundary: It models a local trusted registry, not distributed identity, cryptographic authentication, real messaging or production security. Visual purpose: show Known approval > Digest match > Not expired > Consume once. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Known approval > Digest match > Not expired > Consume once",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Task 3: use then reuse approval",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Consumption prevents approval replay. Define: A valid approval is one-use and has a declared expiration rule. Walk through: The first simulated action can succeed; the second must be rejected without a duplicate event. Ask: What limitation remains in this teaching approval? Expected answer and boundary: It models a local trusted registry, not distributed identity, cryptographic authentication, real messaging or production security. Visual purpose: show Known approval > Digest match > Not expired > Consume once. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Known approval > Digest match > Not expired > Consume once",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Consumption prevents approval replay",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Consumption prevents approval replay. Define: A valid approval is one-use and has a declared expiration rule. Walk through: The first simulated action can succeed; the second must be rejected without a duplicate event. Ask: What limitation remains in this teaching approval? Expected answer and boundary: It models a local trusted registry, not distributed identity, cryptographic authentication, real messaging or production security. Visual purpose: show Known approval > Digest match > Not expired > Consume once. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Known approval > Digest match > Not expired > Consume once",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: make unsafe transitions impossible",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: make unsafe transitions impossible. Define: Place gates in code rather than hoping a model follows instructions. Walk through: Show why a retrieved sentence cannot reach the simulated send action without a separately approved digest. Ask: What will the next hour measure? Expected answer and boundary: Expected versus actual behavior for each boundary, including errors, stops and approval misuse. Visual purpose: show Fixed policy > Checked transitions > Observable trace > Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed policy > Checked transitions > Observable trace > Stop",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: draw one forbidden edge",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: make unsafe transitions impossible. Define: Place gates in code rather than hoping a model follows instructions. Walk through: Show why a retrieved sentence cannot reach the simulated send action without a separately approved digest. Ask: What will the next hour measure? Expected answer and boundary: Expected versus actual behavior for each boundary, including errors, stops and approval misuse. Visual purpose: show Fixed policy > Checked transitions > Observable trace > Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed policy > Checked transitions > Observable trace > Stop",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: make unsafe transitions impossible",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: make unsafe transitions impossible. Define: Place gates in code rather than hoping a model follows instructions. Walk through: Show why a retrieved sentence cannot reach the simulated send action without a separately approved digest. Ask: What will the next hour measure? Expected answer and boundary: Expected versus actual behavior for each boundary, including errors, stops and approval misuse. Visual purpose: show Fixed policy > Checked transitions > Observable trace > Stop. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/building-effective-agents ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week14/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed policy > Checked transitions > Observable trace > Stop",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  }
+]

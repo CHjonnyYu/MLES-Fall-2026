@@ -1,0 +1,84 @@
+{
+  "week": 14,
+  "date": "2026-12-07",
+  "checked": "2026-10-19",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "State, budgets, and trust boundaries",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-14-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Failure cases and human approval tests",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-14-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Oversight studio: attack the boundary",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-14-hour-3/"
+    }
+  ],
+  "slides": {
+    "count": 90,
+    "all_rendered": true,
+    "automated_geometry_images_logos_sources_timing": "passed",
+    "interactions": "passed",
+    "visual_review": "All slides in deck overviews, plus selected individual full-size technical and interaction pages. Not an independent human full-size review of every slide."
+  },
+  "notebooks": [
+    {
+      "week": 14,
+      "kind": "practice",
+      "status": "passed",
+      "notebook": "notebooks/week-14-practice.ipynb",
+      "sha256": "4e5932be53c584f55635a84cfd1a7300a6b2f6b261c1f8f885487f59e63fe6eb",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w14-practice-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    },
+    {
+      "week": 14,
+      "kind": "exercise",
+      "status": "passed",
+      "notebook": "notebooks/exercises/week-14-exercise.ipynb",
+      "sha256": "bc97d6ed4c161f8c180440509a66257ec7ef9c0eb2a8e876df9dcd9a20f93491",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w14-exercise-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    }
+  ],
+  "execution_scope": "Fresh local CPU Jupyter kernels; not Google Colab-browser execution.",
+  "latex": {
+    "compiled": true,
+    "reader_pages": 11,
+    "no_overfull_or_undefined_references": true
+  },
+  "content_scope": "Original synthetic teaching fixtures and bounded deterministic workflows; Week12 also trains a character bigram. No live LLM, physical validation, real mail or consequential external actions.",
+  "generated_visuals": {
+    "count": 1,
+    "usage": "H1 cover only",
+    "provenance": "/assets/week14/visual-provenance.json"
+  },
+  "practice_policy": "60 minutes explanation +120 minutes practice;8core+2optional; no new weekly graded homework."
+}

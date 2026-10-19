@@ -102,7 +102,7 @@
   {
     "week": 4,
     "id": "04",
-    "title": "No class — Teachers’ Day holiday",
+    "title": "No class \u2014 Teachers\u2019 Day holiday",
     "date": "2026-09-28",
     "type": "holiday",
     "slides": [],
@@ -185,7 +185,7 @@
   {
     "week": 7,
     "id": "07",
-    "title": "Sequences → LSTM → Attention → Transformer",
+    "title": "Sequences \u2192 LSTM \u2192 Attention \u2192 Transformer",
     "date": "2026-10-19",
     "type": "teaching",
     "slides": [
@@ -241,7 +241,7 @@
   {
     "week": 8,
     "id": "08",
-    "title": "No class — observed Retrocession Day holiday",
+    "title": "No class \u2014 observed Retrocession Day holiday",
     "date": "2026-10-26",
     "type": "holiday",
     "slides": [],
@@ -378,20 +378,54 @@
     "title": "LLMs, bounded agents, and vibe coding",
     "date": "2026-11-23",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: From next-token prediction to tool proposals (30 slides)",
+        "url": "/lectures/week-12-hour-1/"
+      },
+      {
+        "title": "H2: Structured outputs and bounded tool execution (30 slides)",
+        "url": "/lectures/week-12-hour-2/"
+      },
+      {
+        "title": "H3: Tool-contract studio: test, explain, export (30 slides)",
+        "url": "/lectures/week-12-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 12 in Colab",
+        "title": "Worked practice in Colab",
         "file": "week-12-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-12-practice.ipynb",
         "download": "/notebooks/week-12-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-12-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-12-exercise.ipynb",
+        "download": "/notebooks/exercises/week-12-exercise.ipynb"
       }
     ],
     "exercises": [
       {
         "title": "Week 12 exercise",
         "url": "/notes/exercises/week-12-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "reader": "/textbook/W12-llms-and-bounded-tools.pdf",
+    "notes": "/notes/week-12-practice.html",
+    "references": [
+      {
+        "title": "Attention Is All You Need",
+        "url": "https://arxiv.org/abs/1706.03762"
+      },
+      {
+        "title": "Building effective agents",
+        "url": "https://www.anthropic.com/engineering/building-effective-agents"
       }
     ]
   },
@@ -401,20 +435,54 @@
     "title": "Retrieval, source evidence, and structured knowledge",
     "date": "2026-11-30",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: Represent documents and retrieve evidence (30 slides)",
+        "url": "/lectures/week-13-hour-1/"
+      },
+      {
+        "title": "H2: Measure retrieval and check claim support (30 slides)",
+        "url": "/lectures/week-13-hour-2/"
+      },
+      {
+        "title": "H3: Retrieval studio: diagnose and package failures (30 slides)",
+        "url": "/lectures/week-13-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 13 in Colab",
+        "title": "Worked practice in Colab",
         "file": "week-13-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-13-practice.ipynb",
         "download": "/notebooks/week-13-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-13-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-13-exercise.ipynb",
+        "download": "/notebooks/exercises/week-13-exercise.ipynb"
       }
     ],
     "exercises": [
       {
         "title": "Week 13 exercise",
         "url": "/notes/exercises/week-13-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "reader": "/textbook/W13-retrieval-and-source-evidence.pdf",
+    "notes": "/notes/week-13-practice.html",
+    "references": [
+      {
+        "title": "Retrieval-Augmented Generation",
+        "url": "https://arxiv.org/abs/2005.11401"
+      },
+      {
+        "title": "TfidfVectorizer reference",
+        "url": "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
       }
     ]
   },
@@ -424,20 +492,54 @@
     "title": "Agent testing, failure cases, and oversight",
     "date": "2026-12-07",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: State, budgets, and trust boundaries (30 slides)",
+        "url": "/lectures/week-14-hour-1/"
+      },
+      {
+        "title": "H2: Failure cases and human approval tests (30 slides)",
+        "url": "/lectures/week-14-hour-2/"
+      },
+      {
+        "title": "H3: Oversight studio: attack the boundary (30 slides)",
+        "url": "/lectures/week-14-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 14 in Colab",
+        "title": "Worked practice in Colab",
         "file": "week-14-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-14-practice.ipynb",
         "download": "/notebooks/week-14-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-14-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-14-exercise.ipynb",
+        "download": "/notebooks/exercises/week-14-exercise.ipynb"
       }
     ],
     "exercises": [
       {
         "title": "Week 14 exercise",
         "url": "/notes/exercises/week-14-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "reader": "/textbook/W14-agent-testing-and-oversight.pdf",
+    "notes": "/notes/week-14-practice.html",
+    "references": [
+      {
+        "title": "Building effective agents",
+        "url": "https://www.anthropic.com/engineering/building-effective-agents"
+      },
+      {
+        "title": "NIST Generative AI Profile",
+        "url": "https://doi.org/10.6028/NIST.AI.600-1"
       }
     ]
   },
@@ -447,20 +549,54 @@
     "title": "Agent Studio I: build a bounded workflow",
     "date": "2026-12-14",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: Specify an engineering evidence workflow (30 slides)",
+        "url": "/lectures/week-15-hour-1/"
+      },
+      {
+        "title": "H2: Implement a checked analysis pipeline (30 slides)",
+        "url": "/lectures/week-15-hour-2/"
+      },
+      {
+        "title": "H3: Studio I: build, probe, and explain (30 slides)",
+        "url": "/lectures/week-15-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 15 in Colab",
+        "title": "Worked practice in Colab",
         "file": "week-15-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-15-practice.ipynb",
         "download": "/notebooks/week-15-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-15-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-15-exercise.ipynb",
+        "download": "/notebooks/exercises/week-15-exercise.ipynb"
       }
     ],
     "exercises": [
       {
         "title": "Week 15 exercise",
         "url": "/notes/exercises/week-15-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "reader": "/textbook/W15-bounded-engineering-workflow.pdf",
+    "notes": "/notes/week-15-practice.html",
+    "references": [
+      {
+        "title": "scikit-learn common pitfalls",
+        "url": "https://scikit-learn.org/stable/common_pitfalls.html"
+      },
+      {
+        "title": "NIST Generative AI Profile",
+        "url": "https://doi.org/10.6028/NIST.AI.600-1"
       }
     ]
   },
@@ -470,20 +606,54 @@
     "title": "Agent Studio II: evaluation and demo rehearsal",
     "date": "2026-12-21",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: Design an evaluation before the demonstration (30 slides)",
+        "url": "/lectures/week-16-hour-1/"
+      },
+      {
+        "title": "H2: Run the harness and explain candidate failures (30 slides)",
+        "url": "/lectures/week-16-hour-2/"
+      },
+      {
+        "title": "H3: Studio II: evaluate, challenge, rehearse (30 slides)",
+        "url": "/lectures/week-16-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 16 in Colab",
+        "title": "Worked practice in Colab",
         "file": "week-16-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-16-practice.ipynb",
         "download": "/notebooks/week-16-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-16-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-16-exercise.ipynb",
+        "download": "/notebooks/exercises/week-16-exercise.ipynb"
       }
     ],
     "exercises": [
       {
         "title": "Week 16 exercise",
         "url": "/notes/exercises/week-16-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "reader": "/textbook/W16-agent-evaluation-and-rehearsal.pdf",
+    "notes": "/notes/week-16-practice.html",
+    "references": [
+      {
+        "title": "Demystifying evals for AI agents",
+        "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents"
+      },
+      {
+        "title": "scikit-learn model evaluation",
+        "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
       }
     ]
   },
@@ -493,20 +663,54 @@
     "title": "Project integration and oral-exam preparation",
     "date": "2026-12-28",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: Integrate the final evidence contract (30 slides)",
+        "url": "/lectures/week-17-hour-1/"
+      },
+      {
+        "title": "H2: Replay, integrity checks, and oral defense (30 slides)",
+        "url": "/lectures/week-17-hour-2/"
+      },
+      {
+        "title": "H3: Final integration studio and explain-back (30 slides)",
+        "url": "/lectures/week-17-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 17 in Colab",
+        "title": "Worked practice in Colab",
         "file": "week-17-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-17-practice.ipynb",
         "download": "/notebooks/week-17-practice.ipynb"
+      },
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-17-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-17-exercise.ipynb",
+        "download": "/notebooks/exercises/week-17-exercise.ipynb"
       }
     ],
     "exercises": [
       {
         "title": "Week 17 exercise",
         "url": "/notes/exercises/week-17-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "reader": "/textbook/W17-project-integration-and-replay.pdf",
+    "notes": "/notes/week-17-practice.html",
+    "references": [
+      {
+        "title": "NumPy reproducibility policy",
+        "url": "https://numpy.org/doc/stable/reference/random/compatibility.html"
+      },
+      {
+        "title": "scikit-learn model persistence",
+        "url": "https://scikit-learn.org/stable/model_persistence.html"
       }
     ]
   },

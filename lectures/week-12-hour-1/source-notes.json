@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "From next-token prediction to tool proposals",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: Language is an interface, not an oracle. Define: Generate a proposal, then verify the claim outside the model. Walk through: Token probabilities; sampling; structured proposals; validation; Task 1 prediction. Ask: What could make fluent output incorrect? Expected answer and boundary: A likely token sequence can lack factual evidence, correct arithmetic, or permission. Separate these checks. Visual purpose: show Request > Model proposal > Independent check > Bounded result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Request > Model proposal > Independent check > Bounded result",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Today: mechanism, practice, evidence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Language is an interface, not an oracle. Define: Generate a proposal, then verify the claim outside the model. Walk through: Token probabilities; sampling; structured proposals; validation; Task 1 prediction. Ask: What could make fluent output incorrect? Expected answer and boundary: A likely token sequence can lack factual evidence, correct arithmetic, or permission. Separate these checks. Visual purpose: show Request > Model proposal > Independent check > Bounded result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Request > Model proposal > Independent check > Bounded result",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Language is an interface, not an oracle",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Language is an interface, not an oracle. Define: Generate a proposal, then verify the claim outside the model. Walk through: Token probabilities; sampling; structured proposals; validation; Task 1 prediction. Ask: What could make fluent output incorrect? Expected answer and boundary: A likely token sequence can lack factual evidence, correct arithmetic, or permission. Separate these checks. Visual purpose: show Request > Model proposal > Independent check > Bounded result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Request > Model proposal > Independent check > Bounded result",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "A token is not necessarily a word",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A token is not necessarily a word. Define: A tokenizer maps text to integer IDs using a specified vocabulary. Walk through: Character demo: hot = h,o,t; a production subword tokenizer can split differently. Preserve tokenizer identity. Ask: Can one word always be counted as one token? Expected answer and boundary: No. Token boundaries depend on the tokenizer and text. The notebook uses characters, not a production LLM tokenizer. Visual purpose: show Text > Token boundaries > Integer IDs > Context sequence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text > Token boundaries > Integer IDs > Context sequence",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Compare characters and subwords",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A token is not necessarily a word. Define: A tokenizer maps text to integer IDs using a specified vocabulary. Walk through: Character demo: hot = h,o,t; a production subword tokenizer can split differently. Preserve tokenizer identity. Ask: Can one word always be counted as one token? Expected answer and boundary: No. Token boundaries depend on the tokenizer and text. The notebook uses characters, not a production LLM tokenizer. Visual purpose: show Text > Token boundaries > Integer IDs > Context sequence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text > Token boundaries > Integer IDs > Context sequence",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: A token is not necessarily a word",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A token is not necessarily a word. Define: A tokenizer maps text to integer IDs using a specified vocabulary. Walk through: Character demo: hot = h,o,t; a production subword tokenizer can split differently. Preserve tokenizer identity. Ask: Can one word always be counted as one token? Expected answer and boundary: No. Token boundaries depend on the tokenizer and text. The notebook uses characters, not a production LLM tokenizer. Visual purpose: show Text > Token boundaries > Integer IDs > Context sequence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text > Token boundaries > Integer IDs > Context sequence",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Autoregression factorizes a sequence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Autoregression factorizes a sequence. Define: Each conditional distribution uses the preceding context only. Walk through: p(A)=0.5; p(B given A)=0.6; p(C given AB)=0.2; joint probability=0.06. Ask: Does the factorization prove the sequence is true? Expected answer and boundary: No. It describes sequence probability under a model, not truth. The multiplication follows the chain rule. Visual purpose: show p(x1...xT) = product p(xt given x before t). Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "p(x1...xT) = product p(xt given x before t)",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Trace a three-token continuation",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Autoregression factorizes a sequence. Define: Each conditional distribution uses the preceding context only. Walk through: p(A)=0.5; p(B given A)=0.6; p(C given AB)=0.2; joint probability=0.06. Ask: Does the factorization prove the sequence is true? Expected answer and boundary: No. It describes sequence probability under a model, not truth. The multiplication follows the chain rule. Visual purpose: show p(x1...xT) = product p(xt given x before t). Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "p(x1...xT) = product p(xt given x before t)",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Autoregression factorizes a sequence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Autoregression factorizes a sequence. Define: Each conditional distribution uses the preceding context only. Walk through: p(A)=0.5; p(B given A)=0.6; p(C given AB)=0.2; joint probability=0.06. Ask: Does the factorization prove the sequence is true? Expected answer and boundary: No. It describes sequence probability under a model, not truth. The multiplication follows the chain rule. Visual purpose: show p(x1...xT) = product p(xt given x before t). Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "p(x1...xT) = product p(xt given x before t)",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Cross-entropy penalizes surprise",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Cross-entropy penalizes surprise. Define: Training lowers negative log probability on observed next tokens. Walk through: If p=0.8 then -ln(p)=0.223; if p=0.2 then loss=1.609. Mean=0.916 nats. Ask: Why is assigning low probability to the observed token costly? Expected answer and boundary: Negative log grows as probability approaches zero. Mean teacher-forced loss is not factual verification. Visual purpose: show Observed token > Predicted probability > Negative log > Mean loss. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observed token > Predicted probability > Negative log > Mean loss",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Compute two token losses",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Cross-entropy penalizes surprise. Define: Training lowers negative log probability on observed next tokens. Walk through: If p=0.8 then -ln(p)=0.223; if p=0.2 then loss=1.609. Mean=0.916 nats. Ask: Why is assigning low probability to the observed token costly? Expected answer and boundary: Negative log grows as probability approaches zero. Mean teacher-forced loss is not factual verification. Visual purpose: show Observed token > Predicted probability > Negative log > Mean loss. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observed token > Predicted probability > Negative log > Mean loss",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Cross-entropy penalizes surprise",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Cross-entropy penalizes surprise. Define: Training lowers negative log probability on observed next tokens. Walk through: If p=0.8 then -ln(p)=0.223; if p=0.2 then loss=1.609. Mean=0.916 nats. Ask: Why is assigning low probability to the observed token costly? Expected answer and boundary: Negative log grows as probability approaches zero. Mean teacher-forced loss is not factual verification. Visual purpose: show Observed token > Predicted probability > Negative log > Mean loss. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observed token > Predicted probability > Negative log > Mean loss",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Attention selects context-dependent mixtures",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Attention selects context-dependent mixtures. Define: Causal masking prevents a position from reading later tokens. Walk through: At position 2, keys 1 and 2 are allowed; keys 3 and 4 are blocked before softmax. Ask: Does attention provide an external source of facts? Expected answer and boundary: No. It mixes representations from supplied context. Retrieved evidence and its quality remain separate responsibilities. Visual purpose: show QK transpose / sqrt(dk) > Causal mask > Row softmax > Weighted V. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "QK transpose / sqrt(dk) > Causal mask > Row softmax > Weighted V",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Recall the Week 7 mask",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Attention selects context-dependent mixtures. Define: Causal masking prevents a position from reading later tokens. Walk through: At position 2, keys 1 and 2 are allowed; keys 3 and 4 are blocked before softmax. Ask: Does attention provide an external source of facts? Expected answer and boundary: No. It mixes representations from supplied context. Retrieved evidence and its quality remain separate responsibilities. Visual purpose: show QK transpose / sqrt(dk) > Causal mask > Row softmax > Weighted V. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "QK transpose / sqrt(dk) > Causal mask > Row softmax > Weighted V",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Attention selects context-dependent mixtures",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Attention selects context-dependent mixtures. Define: Causal masking prevents a position from reading later tokens. Walk through: At position 2, keys 1 and 2 are allowed; keys 3 and 4 are blocked before softmax. Ask: Does attention provide an external source of facts? Expected answer and boundary: No. It mixes representations from supplied context. Retrieved evidence and its quality remain separate responsibilities. Visual purpose: show QK transpose / sqrt(dk) > Causal mask > Row softmax > Weighted V. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "QK transpose / sqrt(dk) > Causal mask > Row softmax > Weighted V",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Pretraining and post-training differ",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Pretraining and post-training differ. Define: Pretraining learns broad prediction; post-training changes response behavior. Walk through: A polite response with well-formed JSON can contain an incorrect number or an unsupported citation. Ask: Does instruction tuning remove the need for tests? Expected answer and boundary: No. Behavior adaptation is not a guarantee of accuracy, authorization, or grounding. Visual purpose: show Text prediction | Instruction following | Preference shaping. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text prediction | Instruction following | Preference shaping",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "A helpful style can still be wrong",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Pretraining and post-training differ. Define: Pretraining learns broad prediction; post-training changes response behavior. Walk through: A polite response with well-formed JSON can contain an incorrect number or an unsupported citation. Ask: Does instruction tuning remove the need for tests? Expected answer and boundary: No. Behavior adaptation is not a guarantee of accuracy, authorization, or grounding. Visual purpose: show Text prediction | Instruction following | Preference shaping. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text prediction | Instruction following | Preference shaping",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Pretraining and post-training differ",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Pretraining and post-training differ. Define: Pretraining learns broad prediction; post-training changes response behavior. Walk through: A polite response with well-formed JSON can contain an incorrect number or an unsupported citation. Ask: Does instruction tuning remove the need for tests? Expected answer and boundary: No. Behavior adaptation is not a guarantee of accuracy, authorization, or grounding. Visual purpose: show Text prediction | Instruction following | Preference shaping. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text prediction | Instruction following | Preference shaping",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Sampling changes a distribution",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Sampling changes a distribution. Define: Temperature divides logits before softmax; it is not a truth control. Walk through: Logits [2,0]: T=1 gives [0.881,0.119]; T=2 gives [0.731,0.269]. Ask: What does increasing temperature change here? Expected answer and boundary: It flattens this distribution and raises the lower-logit token probability. It does not make the content more or less factual by definition. Visual purpose: show Logits > Divide by T > Softmax > Sample. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Logits > Divide by T > Softmax > Sample",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Compare a two-token distribution",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Sampling changes a distribution. Define: Temperature divides logits before softmax; it is not a truth control. Walk through: Logits [2,0]: T=1 gives [0.881,0.119]; T=2 gives [0.731,0.269]. Ask: What does increasing temperature change here? Expected answer and boundary: It flattens this distribution and raises the lower-logit token probability. It does not make the content more or less factual by definition. Visual purpose: show Logits > Divide by T > Softmax > Sample. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Logits > Divide by T > Softmax > Sample",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Sampling changes a distribution",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Sampling changes a distribution. Define: Temperature divides logits before softmax; it is not a truth control. Walk through: Logits [2,0]: T=1 gives [0.881,0.119]; T=2 gives [0.731,0.269]. Ask: What does increasing temperature change here? Expected answer and boundary: It flattens this distribution and raises the lower-logit token probability. It does not make the content more or less factual by definition. Visual purpose: show Logits > Divide by T > Softmax > Sample. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Logits > Divide by T > Softmax > Sample",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "A tiny language model is inspectable",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A tiny language model is inspectable. Define: Character bigrams estimate the next character from one previous character. Walk through: Run the fixed original teaching corpus. Find the most frequent successor of a space and compare its count with its probability. Ask: Is this a miniature Transformer? Expected answer and boundary: No. It is a trained conditional-count language model with one-character context; it lacks attention and contextual embeddings. Visual purpose: show Training text > Transition counts > Add-one smoothing > Next-character probabilities. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Training text > Transition counts > Add-one smoothing > Next-character probabilities",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Task 1: inspect actual counts",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: A tiny language model is inspectable. Define: Character bigrams estimate the next character from one previous character. Walk through: Run the fixed original teaching corpus. Find the most frequent successor of a space and compare its count with its probability. Ask: Is this a miniature Transformer? Expected answer and boundary: No. It is a trained conditional-count language model with one-character context; it lacks attention and contextual embeddings. Visual purpose: show Training text > Transition counts > Add-one smoothing > Next-character probabilities. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Training text > Transition counts > Add-one smoothing > Next-character probabilities",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: A tiny language model is inspectable",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: A tiny language model is inspectable. Define: Character bigrams estimate the next character from one previous character. Walk through: Run the fixed original teaching corpus. Find the most frequent successor of a space and compare its count with its probability. Ask: Is this a miniature Transformer? Expected answer and boundary: No. It is a trained conditional-count language model with one-character context; it lacks attention and contextual embeddings. Visual purpose: show Training text > Transition counts > Add-one smoothing > Next-character probabilities. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Training text > Transition counts > Add-one smoothing > Next-character probabilities",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Prediction before sampling creates evidence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Prediction before sampling creates evidence. Define: Keep corpus, vocabulary, smoothing and random seed with the generated text. Walk through: Predict whether lower temperature concentrates probabilities; compare entropy and sampled continuations without changing the corpus. Ask: Must a lower-entropy model produce a better answer? Expected answer and boundary: No. Entropy measures distribution concentration. Quality needs a task-specific evaluation independent of sampling sharpness. Visual purpose: show Corpus hash > Vocabulary > Counts > Seeded generation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus hash > Vocabulary > Counts > Seeded generation",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Task 2: change temperature only",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Prediction before sampling creates evidence. Define: Keep corpus, vocabulary, smoothing and random seed with the generated text. Walk through: Predict whether lower temperature concentrates probabilities; compare entropy and sampled continuations without changing the corpus. Ask: Must a lower-entropy model produce a better answer? Expected answer and boundary: No. Entropy measures distribution concentration. Quality needs a task-specific evaluation independent of sampling sharpness. Visual purpose: show Corpus hash > Vocabulary > Counts > Seeded generation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus hash > Vocabulary > Counts > Seeded generation",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Prediction before sampling creates evidence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Prediction before sampling creates evidence. Define: Keep corpus, vocabulary, smoothing and random seed with the generated text. Walk through: Predict whether lower temperature concentrates probabilities; compare entropy and sampled continuations without changing the corpus. Ask: Must a lower-entropy model produce a better answer? Expected answer and boundary: No. Entropy measures distribution concentration. Quality needs a task-specific evaluation independent of sampling sharpness. Visual purpose: show Corpus hash > Vocabulary > Counts > Seeded generation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus hash > Vocabulary > Counts > Seeded generation",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: separate probability and proof",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: separate probability and proof. Define: A language model proposes tokens; verified tools establish bounded numeric results. Walk through: Show one next-character distribution, one computed loss and one limitation of the bigram model. Ask: Which component will authorize the next tool call? Expected answer and boundary: Deterministic validation outside the model. A model probability cannot grant permission. Visual purpose: show Probability > Proposal > Verification > Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Probability > Proposal > Verification > Evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit evidence for the next hour",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: separate probability and proof. Define: A language model proposes tokens; verified tools establish bounded numeric results. Walk through: Show one next-character distribution, one computed loss and one limitation of the bigram model. Ask: Which component will authorize the next tool call? Expected answer and boundary: Deterministic validation outside the model. A model probability cannot grant permission. Visual purpose: show Probability > Proposal > Verification > Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Probability > Proposal > Verification > Evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: separate probability and proof",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: separate probability and proof. Define: A language model proposes tokens; verified tools establish bounded numeric results. Walk through: Show one next-character distribution, one computed loss and one limitation of the bigram model. Ask: Which component will authorize the next tool call? Expected answer and boundary: Deterministic validation outside the model. A model probability cannot grant permission. Visual purpose: show Probability > Proposal > Verification > Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Probability > Proposal > Verification > Evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  }
+]

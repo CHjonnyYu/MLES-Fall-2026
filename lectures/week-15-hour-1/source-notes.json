@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Specify an engineering evidence workflow",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: Build a report, not a physical controller. Define: The system summarizes synthetic readings and requests review; it never controls equipment. Walk through: Measurement meaning; unit conversion; repeated readings; uncertainty; threshold; source provenance. Ask: What does 'review required' mean here? Expected answer and boundary: A fictional class protocol requests human review. It is not a hardware safety diagnosis or a command to act. Visual purpose: show Synthetic request > Checked analysis > Protocol evidence > Draft report. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Synthetic request > Checked analysis > Protocol evidence > Draft report",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Today: mechanism, practice, evidence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Build a report, not a physical controller. Define: The system summarizes synthetic readings and requests review; it never controls equipment. Walk through: Measurement meaning; unit conversion; repeated readings; uncertainty; threshold; source provenance. Ask: What does 'review required' mean here? Expected answer and boundary: A fictional class protocol requests human review. It is not a hardware safety diagnosis or a command to act. Visual purpose: show Synthetic request > Checked analysis > Protocol evidence > Draft report. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Synthetic request > Checked analysis > Protocol evidence > Draft report",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Build a report, not a physical controller",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Build a report, not a physical controller. Define: The system summarizes synthetic readings and requests review; it never controls equipment. Walk through: Measurement meaning; unit conversion; repeated readings; uncertainty; threshold; source provenance. Ask: What does 'review required' mean here? Expected answer and boundary: A fictional class protocol requests human review. It is not a hardware safety diagnosis or a command to act. Visual purpose: show Synthetic request > Checked analysis > Protocol evidence > Draft report. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Synthetic request > Checked analysis > Protocol evidence > Draft report",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "A row needs physical meaning",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A row needs physical meaning. Define: Our readings are repeated temperature observations of one synthetic bench case. Walk through: Five repeated readings belong to one fictional case, not five independent deployment trials. Ask: Why does row meaning affect evaluation? Expected answer and boundary: It determines the unit of analysis and whether a reported sample size counts cases, readings or correlated repeats. Visual purpose: show Case ID > Repeated readings > Unit > Measurement context. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case ID > Repeated readings > Unit > Measurement context",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Avoid pretending these are independent patients",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A row needs physical meaning. Define: Our readings are repeated temperature observations of one synthetic bench case. Walk through: Five repeated readings belong to one fictional case, not five independent deployment trials. Ask: Why does row meaning affect evaluation? Expected answer and boundary: It determines the unit of analysis and whether a reported sample size counts cases, readings or correlated repeats. Visual purpose: show Case ID > Repeated readings > Unit > Measurement context. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case ID > Repeated readings > Unit > Measurement context",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: A row needs physical meaning",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A row needs physical meaning. Define: Our readings are repeated temperature observations of one synthetic bench case. Walk through: Five repeated readings belong to one fictional case, not five independent deployment trials. Ask: Why does row meaning affect evaluation? Expected answer and boundary: It determines the unit of analysis and whether a reported sample size counts cases, readings or correlated repeats. Visual purpose: show Case ID > Repeated readings > Unit > Measurement context. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case ID > Repeated readings > Unit > Measurement context",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Units are part of the input type",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Units are part of the input type. Define: Accept C or F explicitly; convert before comparing a Celsius threshold. Walk through: 176 F becomes (176-32)*5/9 = 80 C. Mean 176 F is not compared directly with 80 C. Ask: What should happen to an unknown unit? Expected answer and boundary: Reject it with a specific error. Never infer units from a plausible numeric range. Visual purpose: show Declared unit > Conversion > Celsius values > Rule. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Declared unit > Conversion > Celsius values > Rule",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Convert a known fixture",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Units are part of the input type. Define: Accept C or F explicitly; convert before comparing a Celsius threshold. Walk through: 176 F becomes (176-32)*5/9 = 80 C. Mean 176 F is not compared directly with 80 C. Ask: What should happen to an unknown unit? Expected answer and boundary: Reject it with a specific error. Never infer units from a plausible numeric range. Visual purpose: show Declared unit > Conversion > Celsius values > Rule. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Declared unit > Conversion > Celsius values > Rule",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Units are part of the input type",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Units are part of the input type. Define: Accept C or F explicitly; convert before comparing a Celsius threshold. Walk through: 176 F becomes (176-32)*5/9 = 80 C. Mean 176 F is not compared directly with 80 C. Ask: What should happen to an unknown unit? Expected answer and boundary: Reject it with a specific error. Never infer units from a plausible numeric range. Visual purpose: show Declared unit > Conversion > Celsius values > Rule. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Declared unit > Conversion > Celsius values > Rule",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Summaries answer different questions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Summaries answer different questions. Define: Mean describes location; sample standard deviation describes observed spread. Walk through: [78,80,82] C has mean 80 C and sample SD 2 C, using denominator n-1. Ask: Is sample SD an uncertainty guarantee? Expected answer and boundary: No. It summarizes observed spread; calibration, dependence, drift and measurement uncertainty require additional evidence. Visual purpose: show Readings > Mean | Sample SD > Separate interpretations. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Readings > Mean | Sample SD > Separate interpretations",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Compute three repeated readings",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Summaries answer different questions. Define: Mean describes location; sample standard deviation describes observed spread. Walk through: [78,80,82] C has mean 80 C and sample SD 2 C, using denominator n-1. Ask: Is sample SD an uncertainty guarantee? Expected answer and boundary: No. It summarizes observed spread; calibration, dependence, drift and measurement uncertainty require additional evidence. Visual purpose: show Readings > Mean | Sample SD > Separate interpretations. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Readings > Mean | Sample SD > Separate interpretations",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Summaries answer different questions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Summaries answer different questions. Define: Mean describes location; sample standard deviation describes observed spread. Walk through: [78,80,82] C has mean 80 C and sample SD 2 C, using denominator n-1. Ask: Is sample SD an uncertainty guarantee? Expected answer and boundary: No. It summarizes observed spread; calibration, dependence, drift and measurement uncertainty require additional evidence. Visual purpose: show Readings > Mean | Sample SD > Separate interpretations. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Readings > Mean | Sample SD > Separate interpretations",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Missing and nonfinite data require a policy",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Missing and nonfinite data require a policy. Define: Reject missing, Boolean, infinite and NaN readings in this reference. Walk through: A missing reading does not become zero, and dropping it changes the sample definition. Ask: Why require at least two readings? Expected answer and boundary: The sample SD with denominator n-1 is undefined for one observation. A different contract could return an explicit unavailable spread. Visual purpose: show Exact schema > Finite numbers > Minimum n > Analyze. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Exact schema > Finite numbers > Minimum n > Analyze",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Do not silently repair the request",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Missing and nonfinite data require a policy. Define: Reject missing, Boolean, infinite and NaN readings in this reference. Walk through: A missing reading does not become zero, and dropping it changes the sample definition. Ask: Why require at least two readings? Expected answer and boundary: The sample SD with denominator n-1 is undefined for one observation. A different contract could return an explicit unavailable spread. Visual purpose: show Exact schema > Finite numbers > Minimum n > Analyze. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Exact schema > Finite numbers > Minimum n > Analyze",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Missing and nonfinite data require a policy",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Missing and nonfinite data require a policy. Define: Reject missing, Boolean, infinite and NaN readings in this reference. Walk through: A missing reading does not become zero, and dropping it changes the sample definition. Ask: Why require at least two readings? Expected answer and boundary: The sample SD with denominator n-1 is undefined for one observation. A different contract could return an explicit unavailable spread. Visual purpose: show Exact schema > Finite numbers > Minimum n > Analyze. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Exact schema > Finite numbers > Minimum n > Analyze",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "The threshold comes from a source",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: The threshold comes from a source. Define: A versioned fictional teaching protocol sets review if mean >=80 C. Walk through: Mean exactly 80 C must request review under the declared inclusive rule. Ask: Is this a certified safety limit? Expected answer and boundary: No. It is a transparent original teaching fixture with no real equipment authority. Visual purpose: show Protocol ID > Version > Threshold + Unit > Review rule. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Protocol ID > Version > Threshold + Unit > Review rule",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Keep the equality case visible",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: The threshold comes from a source. Define: A versioned fictional teaching protocol sets review if mean >=80 C. Walk through: Mean exactly 80 C must request review under the declared inclusive rule. Ask: Is this a certified safety limit? Expected answer and boundary: No. It is a transparent original teaching fixture with no real equipment authority. Visual purpose: show Protocol ID > Version > Threshold + Unit > Review rule. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Protocol ID > Version > Threshold + Unit > Review rule",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: The threshold comes from a source",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: The threshold comes from a source. Define: A versioned fictional teaching protocol sets review if mean >=80 C. Walk through: Mean exactly 80 C must request review under the declared inclusive rule. Ask: Is this a certified safety limit? Expected answer and boundary: No. It is a transparent original teaching fixture with no real equipment authority. Visual purpose: show Protocol ID > Version > Threshold + Unit > Review rule. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Protocol ID > Version > Threshold + Unit > Review rule",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Predeclare behavior for disagreement",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Predeclare behavior for disagreement. Define: If required source evidence is absent, abstain rather than invent a threshold. Walk through: Mean 81 C without the source threshold does not justify a protocol-based review status. Ask: Can a model fill the missing protocol from memory? Expected answer and boundary: Not under this evidence contract. Ask for the approved source snapshot. Visual purpose: show Missing protocol > Abstain | Valid protocol > Checked comparison. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Missing protocol > Abstain | Valid protocol > Checked comparison",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "A number alone is not a report",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Predeclare behavior for disagreement. Define: If required source evidence is absent, abstain rather than invent a threshold. Walk through: Mean 81 C without the source threshold does not justify a protocol-based review status. Ask: Can a model fill the missing protocol from memory? Expected answer and boundary: Not under this evidence contract. Ask for the approved source snapshot. Visual purpose: show Missing protocol > Abstain | Valid protocol > Checked comparison. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Missing protocol > Abstain | Valid protocol > Checked comparison",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Predeclare behavior for disagreement",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Predeclare behavior for disagreement. Define: If required source evidence is absent, abstain rather than invent a threshold. Walk through: Mean 81 C without the source threshold does not justify a protocol-based review status. Ask: Can a model fill the missing protocol from memory? Expected answer and boundary: Not under this evidence contract. Ask for the approved source snapshot. Visual purpose: show Missing protocol > Abstain | Valid protocol > Checked comparison. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Missing protocol > Abstain | Valid protocol > Checked comparison",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Separate data errors from review decisions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Separate data errors from review decisions. Define: A valid high mean can yield review; invalid readings yield rejection. Walk through: Valid low mean, valid equality mean and missing unit must have different statuses. Ask: Why is this distinction important? Expected answer and boundary: A data-quality failure cannot be presented as a successful numerical or engineering conclusion. Visual purpose: show Invalid input > Rejected | Valid high mean > Review required. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid input > Rejected | Valid high mean > Review required",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Task 1: predict three outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Separate data errors from review decisions. Define: A valid high mean can yield review; invalid readings yield rejection. Walk through: Valid low mean, valid equality mean and missing unit must have different statuses. Ask: Why is this distinction important? Expected answer and boundary: A data-quality failure cannot be presented as a successful numerical or engineering conclusion. Visual purpose: show Invalid input > Rejected | Valid high mean > Review required. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid input > Rejected | Valid high mean > Review required",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Separate data errors from review decisions",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Separate data errors from review decisions. Define: A valid high mean can yield review; invalid readings yield rejection. Walk through: Valid low mean, valid equality mean and missing unit must have different statuses. Ask: Why is this distinction important? Expected answer and boundary: A data-quality failure cannot be presented as a successful numerical or engineering conclusion. Visual purpose: show Invalid input > Rejected | Valid high mean > Review required. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid input > Rejected | Valid high mean > Review required",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Make the report schema explicit",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Make the report schema explicit. Define: Return case ID, input hash, mean C, sample SD C, source and status. Walk through: Locate the exact source ID and input digest before reading the prose summary. Ask: Which field proves measurement authenticity? Expected answer and boundary: None. A digest preserves byte identity relative to a reference, not instrument authenticity or physical validity. Visual purpose: show Identity > Numeric evidence > Source > Status > Limitation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Identity > Numeric evidence > Source > Status > Limitation",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Task 2: read the evidence object",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Make the report schema explicit. Define: Return case ID, input hash, mean C, sample SD C, source and status. Walk through: Locate the exact source ID and input digest before reading the prose summary. Ask: Which field proves measurement authenticity? Expected answer and boundary: None. A digest preserves byte identity relative to a reference, not instrument authenticity or physical validity. Visual purpose: show Identity > Numeric evidence > Source > Status > Limitation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Identity > Numeric evidence > Source > Status > Limitation",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Make the report schema explicit",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Make the report schema explicit. Define: Return case ID, input hash, mean C, sample SD C, source and status. Walk through: Locate the exact source ID and input digest before reading the prose summary. Ask: Which field proves measurement authenticity? Expected answer and boundary: None. A digest preserves byte identity relative to a reference, not instrument authenticity or physical validity. Visual purpose: show Identity > Numeric evidence > Source > Status > Limitation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Identity > Numeric evidence > Source > Status > Limitation",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: define meaning before automation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: define meaning before automation. Define: Units, sample definition, protocol and forbidden actions precede code generation. Walk through: Explain why a single reading is rejected and why equality triggers review. Ask: What does the next hour implement? Expected answer and boundary: A deterministic workflow and trace. An optional LLM can propose structured inputs but cannot bypass its checks. Visual purpose: show Meaning > Contract > Reference calculation > Tests. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Meaning > Contract > Reference calculation > Tests",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: defend one design choice",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: define meaning before automation. Define: Units, sample definition, protocol and forbidden actions precede code generation. Walk through: Explain why a single reading is rejected and why equality triggers review. Ask: What does the next hour implement? Expected answer and boundary: A deterministic workflow and trace. An optional LLM can propose structured inputs but cannot bypass its checks. Visual purpose: show Meaning > Contract > Reference calculation > Tests. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Meaning > Contract > Reference calculation > Tests",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: define meaning before automation",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: define meaning before automation. Define: Units, sample definition, protocol and forbidden actions precede code generation. Walk through: Explain why a single reading is rejected and why equality triggers review. Ask: What does the next hour implement? Expected answer and boundary: A deterministic workflow and trace. An optional LLM can propose structured inputs but cannot bypass its checks. Visual purpose: show Meaning > Contract > Reference calculation > Tests. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Meaning > Contract > Reference calculation > Tests",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  }
+]

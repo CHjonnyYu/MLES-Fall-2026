@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Studio I: build, probe, and explain",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Deliver one complete analysis chain. Define: A partner must follow input, conversion, source and conclusion. Walk through: Restore 5 min; fixtures 20 min; controlled change 15 min; peer handover and export 20 min. Ask: What is the minimum useful handover? Expected answer and boundary: Runnable source plus inputs, expected fixtures, actual trace, result and an honest limitation. Visual purpose: show Input > Calculation > Protocol > Review status > Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Input > Calculation > Protocol > Review status > Evidence",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Use the hour for implementation and explanation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Deliver one complete analysis chain. Define: A partner must follow input, conversion, source and conclusion. Walk through: Restore 5 min; fixtures 20 min; controlled change 15 min; peer handover and export 20 min. Ask: What is the minimum useful handover? Expected answer and boundary: Runnable source plus inputs, expected fixtures, actual trace, result and an honest limitation. Visual purpose: show Input > Calculation > Protocol > Review status > Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Input > Calculation > Protocol > Review status > Evidence",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Deliver one complete analysis chain",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Deliver one complete analysis chain. Define: A partner must follow input, conversion, source and conclusion. Walk through: Restore 5 min; fixtures 20 min; controlled change 15 min; peer handover and export 20 min. Ask: What is the minimum useful handover? Expected answer and boundary: Runnable source plus inputs, expected fixtures, actual trace, result and an honest limitation. Visual purpose: show Input > Calculation > Protocol > Review status > Evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Input > Calculation > Protocol > Review status > Evidence",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Task 1: classify the contract outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: classify the contract outcomes. Define: Predict low, equality, high and malformed cases before execution. Walk through: Low returns reported; equal/high return review_required; malformed returns rejected. Ask: Does reported mean physically safe? Expected answer and boundary: No. It means the fictional report pipeline completed below its class threshold. No real safety claim is authorized. Visual purpose: show Valid low | Valid equal | Valid high | Invalid data. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid low | Valid equal | Valid high | Invalid data",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Keep all four outcomes distinct",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: classify the contract outcomes. Define: Predict low, equality, high and malformed cases before execution. Walk through: Low returns reported; equal/high return review_required; malformed returns rejected. Ask: Does reported mean physically safe? Expected answer and boundary: No. It means the fictional report pipeline completed below its class threshold. No real safety claim is authorized. Visual purpose: show Valid low | Valid equal | Valid high | Invalid data. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid low | Valid equal | Valid high | Invalid data",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Task 1: classify the contract outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: classify the contract outcomes. Define: Predict low, equality, high and malformed cases before execution. Walk through: Low returns reported; equal/high return review_required; malformed returns rejected. Ask: Does reported mean physically safe? Expected answer and boundary: No. It means the fictional report pipeline completed below its class threshold. No real safety claim is authorized. Visual purpose: show Valid low | Valid equal | Valid high | Invalid data. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid low | Valid equal | Valid high | Invalid data",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Task 2: audit provenance fields",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: audit provenance fields. Define: Find case ID, request hash, protocol ID and implementation version. Walk through: A case ID names a record; a hash identifies canonical JSON bytes; a source ID locates the protocol. Ask: Can any one identifier replace the others? Expected answer and boundary: No. They answer different questions and each has a limited scope of uniqueness or trust. Visual purpose: show Case identity > Input identity > Source identity > Code identity. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case identity > Input identity > Source identity > Code identity",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Explain each identity separately",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: audit provenance fields. Define: Find case ID, request hash, protocol ID and implementation version. Walk through: A case ID names a record; a hash identifies canonical JSON bytes; a source ID locates the protocol. Ask: Can any one identifier replace the others? Expected answer and boundary: No. They answer different questions and each has a limited scope of uniqueness or trust. Visual purpose: show Case identity > Input identity > Source identity > Code identity. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case identity > Input identity > Source identity > Code identity",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Task 2: audit provenance fields",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: audit provenance fields. Define: Find case ID, request hash, protocol ID and implementation version. Walk through: A case ID names a record; a hash identifies canonical JSON bytes; a source ID locates the protocol. Ask: Can any one identifier replace the others? Expected answer and boundary: No. They answer different questions and each has a limited scope of uniqueness or trust. Visual purpose: show Case identity > Input identity > Source identity > Code identity. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case identity > Input identity > Source identity > Code identity",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Task 3: prove unit equivalence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: prove unit equivalence. Define: Compare equivalent C and F requests with the same underlying values. Walk through: Use explicit tolerance for mean and SD, then compare the declared rounded decision value. Ask: What if raw values match but units differ? Expected answer and boundary: They represent different temperatures. Numeric equality without units is not physical equivalence. Visual purpose: show C fixture > Canonical C | F fixture > Canonical C. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "C fixture > Canonical C | F fixture > Canonical C",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Check value and decision agreement",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: prove unit equivalence. Define: Compare equivalent C and F requests with the same underlying values. Walk through: Use explicit tolerance for mean and SD, then compare the declared rounded decision value. Ask: What if raw values match but units differ? Expected answer and boundary: They represent different temperatures. Numeric equality without units is not physical equivalence. Visual purpose: show C fixture > Canonical C | F fixture > Canonical C. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "C fixture > Canonical C | F fixture > Canonical C",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Task 3: prove unit equivalence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: prove unit equivalence. Define: Compare equivalent C and F requests with the same underlying values. Walk through: Use explicit tolerance for mean and SD, then compare the declared rounded decision value. Ask: What if raw values match but units differ? Expected answer and boundary: They represent different temperatures. Numeric equality without units is not physical equivalence. Visual purpose: show C fixture > Canonical C | F fixture > Canonical C. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "C fixture > Canonical C | F fixture > Canonical C",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Task 4: explain one spread calculation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: explain one spread calculation. Define: Show the intermediate squared deviations and denominator. Walk through: [78,80,82] gives deviations [-2,0,2], squares [4,0,4] and SD 2 C. Ask: What does the result not quantify? Expected answer and boundary: Systematic sensor bias, calibration uncertainty or independence of repeated observations. Visual purpose: show Mean > Deviations > Squares > n-1 > SD. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Mean > Deviations > Squares > n-1 > SD",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "A three-reading worked check",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: explain one spread calculation. Define: Show the intermediate squared deviations and denominator. Walk through: [78,80,82] gives deviations [-2,0,2], squares [4,0,4] and SD 2 C. Ask: What does the result not quantify? Expected answer and boundary: Systematic sensor bias, calibration uncertainty or independence of repeated observations. Visual purpose: show Mean > Deviations > Squares > n-1 > SD. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Mean > Deviations > Squares > n-1 > SD",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Task 4: explain one spread calculation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: explain one spread calculation. Define: Show the intermediate squared deviations and denominator. Walk through: [78,80,82] gives deviations [-2,0,2], squares [4,0,4] and SD 2 C. Ask: What does the result not quantify? Expected answer and boundary: Systematic sensor bias, calibration uncertainty or independence of repeated observations. Visual purpose: show Mean > Deviations > Squares > n-1 > SD. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Mean > Deviations > Squares > n-1 > SD",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Task 5: locate a stopped stage",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: locate a stopped stage. Define: Inject an invalid unit and find where the trace ends. Walk through: The failure trace must not include a completed summary or protocol decision. Ask: Why inspect downstream absence? Expected answer and boundary: A superficial error status can coexist with partial side effects if stage ordering is wrong. Visual purpose: show Validation failure > No conversion > No summary > No report. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Validation failure > No conversion > No summary > No report",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Compare success and failure traces",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: locate a stopped stage. Define: Inject an invalid unit and find where the trace ends. Walk through: The failure trace must not include a completed summary or protocol decision. Ask: Why inspect downstream absence? Expected answer and boundary: A superficial error status can coexist with partial side effects if stage ordering is wrong. Visual purpose: show Validation failure > No conversion > No summary > No report. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Validation failure > No conversion > No summary > No report",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Task 5: locate a stopped stage",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: locate a stopped stage. Define: Inject an invalid unit and find where the trace ends. Walk through: The failure trace must not include a completed summary or protocol decision. Ask: Why inspect downstream absence? Expected answer and boundary: A superficial error status can coexist with partial side effects if stage ordering is wrong. Visual purpose: show Validation failure > No conversion > No summary > No report. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Validation failure > No conversion > No summary > No report",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Task 6: remove source authority",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: remove source authority. Define: Run a valid request without the approved fictional protocol. Walk through: The numerical mean can still be known while the protocol-based status is unavailable. Ask: Is this the same as malformed input? Expected answer and boundary: No. Separate numerical input validity from absence of evidence required for the requested conclusion. Visual purpose: show Valid readings > Source missing > Abstain > No threshold conclusion. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid readings > Source missing > Abstain > No threshold conclusion",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Preserve the failed source lookup",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: remove source authority. Define: Run a valid request without the approved fictional protocol. Walk through: The numerical mean can still be known while the protocol-based status is unavailable. Ask: Is this the same as malformed input? Expected answer and boundary: No. Separate numerical input validity from absence of evidence required for the requested conclusion. Visual purpose: show Valid readings > Source missing > Abstain > No threshold conclusion. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid readings > Source missing > Abstain > No threshold conclusion",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 6: remove source authority",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: remove source authority. Define: Run a valid request without the approved fictional protocol. Walk through: The numerical mean can still be known while the protocol-based status is unavailable. Ask: Is this the same as malformed input? Expected answer and boundary: No. Separate numerical input validity from absence of evidence required for the requested conclusion. Visual purpose: show Valid readings > Source missing > Abstain > No threshold conclusion. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid readings > Source missing > Abstain > No threshold conclusion",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Task 7: diagnose the denominator patch",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: diagnose the denominator patch. Define: Use a nonzero-mean fixture to expose sum/(n+1). Walk through: [79,80,81] has true mean 80; dividing by four gives 60 and misses the inclusive review condition. Ask: Why is this more informative than [0,0,0]? Expected answer and boundary: A zero numerator yields zero under both denominators, hiding the defect. Visual purpose: show Correct n | Wrong n+1 | Different mean | Different decision. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Correct n | Wrong n+1 | Different mean | Different decision",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Choose a threshold-sensitive fixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: diagnose the denominator patch. Define: Use a nonzero-mean fixture to expose sum/(n+1). Walk through: [79,80,81] has true mean 80; dividing by four gives 60 and misses the inclusive review condition. Ask: Why is this more informative than [0,0,0]? Expected answer and boundary: A zero numerator yields zero under both denominators, hiding the defect. Visual purpose: show Correct n | Wrong n+1 | Different mean | Different decision. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Correct n | Wrong n+1 | Different mean | Different decision",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Task 7: diagnose the denominator patch",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: diagnose the denominator patch. Define: Use a nonzero-mean fixture to expose sum/(n+1). Walk through: [79,80,81] has true mean 80; dividing by four gives 60 and misses the inclusive review condition. Ask: Why is this more informative than [0,0,0]? Expected answer and boundary: A zero numerator yields zero under both denominators, hiding the defect. Visual purpose: show Correct n | Wrong n+1 | Different mean | Different decision. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Correct n | Wrong n+1 | Different mean | Different decision",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Task 8: package and hand over",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: package and hand over. Define: Export reference results, traces and response fields without invented answers. Walk through: The reviewer recomputes a mean and checks the source threshold and review rule. Ask: What should happen if a field is blank? Expected answer and boundary: Keep draft status. Nonempty explanations establish completeness only, not correctness. Visual purpose: show Reference source > Fixtures > Observations > Responses > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Reference source > Fixtures > Observations > Responses > ZIP",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Peer review one source-bounded report",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: package and hand over. Define: Export reference results, traces and response fields without invented answers. Walk through: The reviewer recomputes a mean and checks the source threshold and review rule. Ask: What should happen if a field is blank? Expected answer and boundary: Keep draft status. Nonempty explanations establish completeness only, not correctness. Visual purpose: show Reference source > Fixtures > Observations > Responses > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Reference source > Fixtures > Observations > Responses > ZIP",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Task 8: package and hand over",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: package and hand over. Define: Export reference results, traces and response fields without invented answers. Walk through: The reviewer recomputes a mean and checks the source threshold and review rule. Ask: What should happen if a field is blank? Expected answer and boundary: Keep draft status. Nonempty explanations establish completeness only, not correctness. Visual purpose: show Reference source > Fixtures > Observations > Responses > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Reference source > Fixtures > Observations > Responses > ZIP",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: expand scope only with new tests",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: expand scope only with new tests. Define: Optional A adds K conversion; optional B checks reading-order invariance. Walk through: Identify a computed number, a source-derived rule and an unverified physical assumption. Ask: What connects to Studio II? Expected answer and boundary: Evaluate competing implementations on a frozen case set, including both ordinary functionality and required rejections. Visual purpose: show One extension > Independent fixture > Regression tests > Separate result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "One extension > Independent fixture > Regression tests > Separate result",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: distinguish three kinds of evidence",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: expand scope only with new tests. Define: Optional A adds K conversion; optional B checks reading-order invariance. Walk through: Identify a computed number, a source-derived rule and an unverified physical assumption. Ask: What connects to Studio II? Expected answer and boundary: Evaluate competing implementations on a frozen case set, including both ordinary functionality and required rejections. Visual purpose: show One extension > Independent fixture > Regression tests > Separate result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "One extension > Independent fixture > Regression tests > Separate result",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: expand scope only with new tests",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: expand scope only with new tests. Define: Optional A adds K conversion; optional B checks reading-order invariance. Walk through: Identify a computed number, a source-derived rule and an unverified physical assumption. Ask: What connects to Studio II? Expected answer and boundary: Evaluate competing implementations on a frozen case set, including both ordinary functionality and required rejections. Visual purpose: show One extension > Independent fixture > Regression tests > Separate result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://scikit-learn.org/stable/common_pitfalls.html ; https://doi.org/10.6028/NIST.AI.600-1. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week15/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "One extension > Independent fixture > Regression tests > Separate result",
+    "source_urls": [
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  }
+]

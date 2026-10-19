@@ -1,0 +1,207 @@
+{
+  "week": 17,
+  "execution": "Fresh local CPU Jupyter kernel; not Colab-browser execution",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "scikit_learn": "1.9.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "observations": {
+    "task1": {
+      "required_files": [
+        "config.json",
+        "protocol.json",
+        "reference.json",
+        "request.json",
+        "runner.py"
+      ],
+      "runner_sha256": "6f7866c37c8e3741d2b11cb5678813bcd1528dd3386c30434d08866b325d7ba4",
+      "scope": "Readable standard-library runner; no notebook globals or plotting dependency."
+    },
+    "task2": {
+      "expected_ids": [
+        "synthetic-A",
+        "synthetic-B"
+      ],
+      "reordered_ids": [
+        "synthetic-B",
+        "synthetic-A"
+      ],
+      "aligned_ids": [
+        "synthetic-A",
+        "synthetic-B"
+      ]
+    },
+    "task3": {
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.5.4",
+        "matplotlib": "3.11.2",
+        "scikit_learn": "1.9.1",
+        "platform": "macOS-26.6.2-arm64-arm-64bit"
+      },
+      "runner_dependencies": "Python standard library only",
+      "notebook_dependencies": [
+        "numpy",
+        "matplotlib",
+        "scikit-learn"
+      ],
+      "seed": 2026
+    },
+    "task4": {
+      "archive_members": [
+        "config.json",
+        "manifest.json",
+        "protocol.json",
+        "reference.json",
+        "request.json",
+        "runner.py"
+      ],
+      "verified": true,
+      "scope": "Only reviewed local fixture source; do not execute arbitrary received Python."
+    },
+    "task5": {
+      "replay": {
+        "results": [
+          {
+            "status": "review_required",
+            "reason": null,
+            "trace": [
+              {
+                "stage": "validate",
+                "status": "ok",
+                "input_sha256": "21e2166b330ad317a926c334cd8018bc3f89fcd8f6b497589f432779824d24c8"
+              },
+              {
+                "stage": "convert",
+                "unit": "C",
+                "n": 3
+              },
+              {
+                "stage": "summarize",
+                "mean_C": 80.0,
+                "sample_sd_C": 2.0
+              },
+              {
+                "stage": "protocol",
+                "source_id": "LAB-P1:v1",
+                "threshold_C": 80.0
+              },
+              {
+                "stage": "report",
+                "status": "review_required"
+              }
+            ],
+            "case_id": "synthetic-A",
+            "mean_C": 80.0,
+            "sample_sd_C": 2.0,
+            "decision_value_C": 80.0,
+            "input_sha256": "21e2166b330ad317a926c334cd8018bc3f89fcd8f6b497589f432779824d24c8",
+            "protocol_id": "LAB-P1:v1",
+            "version": "thermal-workflow-1.0",
+            "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+          },
+          {
+            "status": "reported",
+            "reason": null,
+            "trace": [
+              {
+                "stage": "validate",
+                "status": "ok",
+                "input_sha256": "bb9708835a82339b37008aaa5d0ed6060d4edf173df39bf8fa1bbf8a7e61c3ba"
+              },
+              {
+                "stage": "convert",
+                "unit": "C",
+                "n": 3
+              },
+              {
+                "stage": "summarize",
+                "mean_C": 72.0,
+                "sample_sd_C": 2.0
+              },
+              {
+                "stage": "protocol",
+                "source_id": "LAB-P1:v1",
+                "threshold_C": 80.0
+              },
+              {
+                "stage": "report",
+                "status": "reported"
+              }
+            ],
+            "case_id": "synthetic-B",
+            "mean_C": 72.0,
+            "sample_sd_C": 2.0,
+            "decision_value_C": 72.0,
+            "input_sha256": "bb9708835a82339b37008aaa5d0ed6060d4edf173df39bf8fa1bbf8a7e61c3ba",
+            "protocol_id": "LAB-P1:v1",
+            "version": "thermal-workflow-1.0",
+            "limitation": "Synthetic class readings and fictional protocol; not a physical safety conclusion."
+          }
+        ],
+        "python": "3.12.14"
+      },
+      "process": "New Python interpreter; new working directory; extracted payloads",
+      "returncode": 0
+    },
+    "task6": {
+      "mean_differences_C": [
+        0.0,
+        0.0
+      ],
+      "max_abs_mean_difference_C": 0.0,
+      "comparison": {
+        "protocol_id": "LAB-P1:v1",
+        "atol": 1e-08,
+        "rtol": 1e-10,
+        "comparison": "case ID sequence, status, mean and sample SD"
+      }
+    },
+    "task7": {
+      "tamper_rejected": true,
+      "message": "checksum mismatch: request.json",
+      "original_verified": true,
+      "limit": "Unsigned manifest checks integrity, not sender authenticity."
+    },
+    "task8": {
+      "claim": "These frozen synthetic workflow results replayed under the declared local procedure.",
+      "evidence": [
+        "handover.zip",
+        "fresh-process-result.json",
+        "replay-differences.png"
+      ],
+      "passed": [
+        "required files",
+        "payload hashes",
+        "ID sequence",
+        "statuses",
+        "mean and sample SD tolerance"
+      ],
+      "failed": [],
+      "untested": [
+        "physical validation",
+        "external population",
+        "live LLM quality",
+        "real permissions"
+      ],
+      "oral_prompts": [
+        "What breaks if units change?",
+        "Which source authorizes the threshold?",
+        "What would invalidate your claim?"
+      ],
+      "next_action": "Evaluate a separately designed independent fixture set before expanding scope."
+    }
+  },
+  "optional_challenge_checks": [
+    "A_metadata",
+    "B_peer_checklist"
+  ],
+  "notebook_sha256": "9ac13e2fbd0587e4d48d59a1196ce0e1429f5aa0052923a3d9c8474a46af41d6",
+  "figures": [
+    "evidence-status.png",
+    "replay-differences.png"
+  ]
+}

@@ -1,0 +1,321 @@
+\chapter{Project integration and oral-exam preparation}\label{chap:w17-studio}
+\emergencystretch=3em
+\courseweek{Week 17: 2026-12-28, Monday 14:00--17:00.}
+
+Package the same synthetic workflow in readable source and JSON. Verify exact payload bytes, run a new Python process from a new working directory, and distinguish numerical replay from physical or model validation.
+\begin{learningbox}Package a bounded workflow, reproduce it in a fresh process, audit artifacts, and defend claim, evidence and limitation.\end{learningbox}
+The meeting contains three 60-minute modules: 60 minutes explanation and 120 minutes practice. The eight core exercises and two optional challenges are in-class practice, not additional weekly graded homework.
+\section{H1: Integrate the final evidence contract}
+\subsection{Integration means a reconstructable result}
+Connect input, source, code, configuration and output into one evidence chain.
+
+\textbf{Worked reasoning.} Artifact identities; manifest; runner; environment; replay comparison; oral explanation.
+
+\textbf{Check.} What does a project screenshot omit?
+
+\textbf{Explanation and boundary.} Executable procedure, inputs, dependency versions, rejected cases and the basis of its claims.
+
+\subsection{Scope the final claim before packaging}
+State exactly what the synthetic workflow demonstrated and did not demonstrate.
+
+\textbf{Worked reasoning.} The frozen local implementation matches these independent teaching fixtures; no physical deployment or live-model evaluation is established.
+
+\textbf{Check.} Why not say the agent is reliable?
+
+\textbf{Explanation and boundary.} That omits the task, tested cases, assumptions and scope. Use a claim that the exported evidence can actually support.
+
+\subsection{The manifest names required payloads}
+Hash input, protocol, configuration and source; exclude the manifest from hashing itself.
+
+\textbf{Worked reasoning.} A file cannot generally include its own final hash. Keep the required payload hashes in a separate manifest.
+
+\textbf{Check.} Does a matching unsigned manifest authenticate a sender?
+
+\textbf{Explanation and boundary.} No. Someone can replace both payload and digest. Trust needs an external reference or signature.
+
+\subsection{Use canonical JSON deliberately}
+Sort keys and fixed serialization identify one representation, not all equivalent objects.
+
+\textbf{Worked reasoning.} Whitespace changes a raw-file hash. Canonical hashing compares the declared serialized representation.
+
+\textbf{Check.} Which hash should the handover record use?
+
+\textbf{Explanation and boundary.} Declare whether it hashes exact files or canonical values. This package uses exact saved payload bytes for integrity.
+
+\subsection{Source is safer to inspect than opaque objects}
+A readable runner rebuilds the workflow from supplied files.
+
+\textbf{Worked reasoning.} The package contains JSON and Python source, not serialized executable model objects.
+
+\textbf{Check.} Does readable source make execution safe?
+
+\textbf{Explanation and boundary.} No. Review it and use an appropriate environment. Arbitrary Python can still perform harmful operations.
+
+\subsection{A new process removes hidden globals}
+Run the saved source from a fresh working directory with explicit paths.
+
+\textbf{Worked reasoning.} The runner must not require an in-memory variable, previous cell or current notebook directory.
+
+\textbf{Check.} What does a fresh process still share?
+
+\textbf{Explanation and boundary.} It can share interpreter, packages, operating system and hardware. It is not independent scientific replication.
+
+\subsection{Replay compares computations, not outcomes}
+A zero replay difference does not imply an accurate physical model.
+
+\textbf{Worked reasoning.} Prediction error compares against observations; replay difference compares outputs of the same declared procedure.
+
+\textbf{Check.} Can an incorrect workflow replay perfectly?
+
+\textbf{Explanation and boundary.} Yes. Reproducibility preserves the computation, including its defects. Independent fixtures test correctness separately.
+
+\subsection{Align identities before values}
+Compare case IDs and output fields before applying numeric tolerance.
+
+\textbf{Worked reasoning.} A comparison must join by stable IDs or require the declared sequence. Bare positional vectors can mismatch cases.
+
+\textbf{Check.} Does matching aggregate mean prove row alignment?
+
+\textbf{Explanation and boundary.} No. Permutations can preserve an aggregate while assigning values to the wrong cases.
+
+\subsection{Record the actual environment}
+Save Python, package versions, platform, source hash and invocation.
+
+\textbf{Worked reasoning.} The replay runner is standard-library only; plotting stays in the notebook. Preserve both scopes.
+
+\textbf{Check.} Does a seed guarantee cross-version equality?
+
+\textbf{Explanation and boundary.} No. Algorithms, libraries and numeric implementations can change. Name the environment and comparison criterion.
+
+\subsection{Summary: package the claim with its limits}
+An honest handover includes failures, replay evidence and missing validation.
+
+\textbf{Worked reasoning.} A different protocol, unit convention or population can invalidate the original conclusion.
+
+\textbf{Check.} What will the next hour test?
+
+\textbf{Explanation and boundary.} Extracted files, corrupted payloads, explicit failure messages and a complete five-minute explanation.
+
+\section{H2: Replay, integrity checks, and oral defense}
+\subsection{The ZIP must contain everything it promises}
+Use a required-file list rather than archiving arbitrary runtime state.
+
+\textbf{Worked reasoning.} Read source and paths. The reference extraction rejects unexpected members and does not execute received code automatically.
+
+\textbf{Check.} Why avoid arbitrary runtime archives?
+
+\textbf{Explanation and boundary.} They may leak secrets, personal files or irrelevant state and make the intended procedure unclear.
+
+\subsection{Task 4: extract into a fresh directory}
+Verify manifest keys and bytes before starting the runner.
+
+\textbf{Worked reasoning.} Removing protocol.json must fail before the analysis claims a protocol-based result.
+
+\textbf{Check.} What should a failed integrity check do?
+
+\textbf{Explanation and boundary.} Stop with a specific error. Do not retrain, repair or regenerate missing evidence silently.
+
+\subsection{Task 5: replay from saved files}
+Use an explicit interpreter, runner path, bundle root and output path.
+
+\textbf{Worked reasoning.} A launched process is not completed execution. Check successful termination and parse its result file.
+
+\textbf{Check.} Why preserve stderr on failure?
+
+\textbf{Explanation and boundary.} It is evidence of the failing dependency or predicate. Replacing it with a success message destroys diagnosability.
+
+\subsection{Task 6: compare an aligned result vector}
+Use case IDs then the declared absolute-plus-relative tolerance.
+
+\textbf{Worked reasoning.} This small runner should agree numerically in this environment. Report the actual maximum difference, not a promised zero.
+
+\textbf{Check.} What if a metric agrees but predictions differ?
+
+\textbf{Explanation and boundary.} Do not call it a successful replay. Aggregate agreement can conceal per-case differences.
+
+\subsection{Tamper detection is not authenticity}
+A changed copied payload should fail against the preserved manifest.
+
+\textbf{Worked reasoning.} A harmless-looking blank line changes the exact-file hash even if a parser would ignore it.
+
+\textbf{Check.} What if both payload and manifest are replaced?
+
+\textbf{Explanation and boundary.} Unsigned consistency checks may pass. A trusted external reference or signature is needed for sender authenticity.
+
+\subsection{Explain the mechanism in a short defense}
+Use claim, evidence, limitation and an invalidating change.
+
+\textbf{Worked reasoning.} Name the fixture, show the trace, recompute a value and identify what the evidence does not establish.
+
+\textbf{Check.} Why is memorizing a score insufficient?
+
+\textbf{Explanation and boundary.} It does not demonstrate the split, procedure, source or reasoning that gives the score meaning.
+
+\subsection{Budget the five-minute demonstration}
+Make every segment point to a real artifact.
+
+\textbf{Worked reasoning.} Show one exact input, one executed success, one expected rejection, then how a peer can replay it.
+
+\textbf{Check.} Must every student submit a new video this week?
+
+\textbf{Explanation and boundary.} No. This is in-class rehearsal only; the separately announced stock-prediction HW retains its own five-minute video requirement.
+
+\subsection{Written and oral assessment remain separate}
+The project evidence supports explanation but does not replace either examination.
+
+\textbf{Worked reasoning.} What breaks if a threshold changes units, a tool gains side effects or a retrieved source loses a qualifier?
+
+\textbf{Check.} Should the course publish live exam answers here?
+
+\textbf{Explanation and boundary.} No. These are public study prompts and worked practice, not confidential examination papers or new grading rules.
+
+\subsection{Peer handover is an adversarial usability test}
+A partner locates inputs, expected behavior and one known failure without coaching.
+
+\textbf{Worked reasoning.} Capture what the partner could and could not reconstruct. Incomplete handover remains a documented limitation.
+
+\textbf{Check.} Can a partner's successful replay establish generalization?
+
+\textbf{Explanation and boundary.} No. It supports portability within the checked environment, not external predictive or security validity.
+
+\subsection{Summary: preserve the observed state}
+Keep passed, failed and untested items distinct in the final result card.
+
+\textbf{Worked reasoning.} Save source, inputs, manifest, replay result and draft/completed response record.
+
+\textbf{Check.} What must not be upgraded into completion?
+
+\textbf{Explanation and boundary.} A prepared ZIP, launched job or connected runtime without successful execution and inspected outputs.
+
+\section{H3: Final integration studio and explain-back}
+\subsection{Finish a rerunnable bounded project record}
+This lab integrates existing evidence rather than adding untested autonomy.
+
+\textbf{Worked reasoning.} Restore 5 min; package and replay 20 min; integrity challenge 15 min; peer defense and export 20 min.
+
+\textbf{Check.} What counts as an honest stopping point?
+
+\textbf{Explanation and boundary.} A draft with explicit missing evidence and next action, not fabricated success or copied metrics.
+
+\subsection{Task 1: locate every hidden dependency}
+List expected payloads and identify any notebook-only variable.
+
+\textbf{Worked reasoning.} Use a fresh working directory; the runner should use explicit paths rather than assume the notebook location.
+
+\textbf{Check.} What if it only runs beside the notebook?
+
+\textbf{Explanation and boundary.} The portability claim is too broad. Fix the path contract or state the required working directory explicitly.
+
+\subsection{Task 2: check case identity and ordering}
+Reorder a copied output and detect sequence mismatch before numeric comparison.
+
+\textbf{Worked reasoning.} A length match alone does not establish observation identity.
+
+\textbf{Check.} When is an explicit ID join acceptable?
+
+\textbf{Explanation and boundary.} When IDs are unique and required membership is checked, and the alignment rule is recorded in the evidence.
+
+\subsection{Task 3: state the actual environment}
+Read the generated version record rather than an assumed Colab configuration.
+
+\textbf{Worked reasoning.} A Colab link is a launch route, not proof that the notebook was run in a Google Colab browser.
+
+\textbf{Check.} Why does this distinction matter?
+
+\textbf{Explanation and boundary.} Dependency, network and runtime behavior can differ. Execution claims should name the environment actually tested.
+
+\subsection{Task 4: inspect the extracted package}
+Check file whitelist, manifest completeness and payload hashes.
+
+\textbf{Worked reasoning.} Do not replace an absent file with a freshly invented one and call the same bundle complete.
+
+\textbf{Check.} What does an intact archive prove?
+
+\textbf{Explanation and boundary.} Its stored bytes can be read without CRC errors; it does not prove scientific correctness or code safety.
+
+\subsection{Task 5: require actual process completion}
+Check return code and parsed output after the new interpreter exits.
+
+\textbf{Worked reasoning.} A failed or timed-out process remains an observed failure with its diagnostic output.
+
+\textbf{Check.} What is the acceptance condition?
+
+\textbf{Explanation and boundary.} Successful termination, required result schema and the declared per-case agreement checks.
+
+\subsection{Task 6: explain computational agreement}
+Compare saved and replayed means by case ID under fixed tolerance.
+
+\textbf{Worked reasoning.} If nonzero but within tolerance, report that fact rather than replacing it with zero.
+
+\textbf{Check.} What does zero difference leave untested?
+
+\textbf{Explanation and boundary.} Physical data validity, external populations, real LLM behavior and unseen adversarial inputs.
+
+\subsection{Task 7: detect copied-file tampering}
+Modify a temporary payload and preserve the original reference.
+
+\textbf{Worked reasoning.} A mismatch must prevent analysis from proceeding under the reference claim.
+
+\textbf{Check.} Can a matching digest replace peer source review?
+
+\textbf{Explanation and boundary.} No. Integrity and trust are distinct; a harmful file can have a perfectly matching digest.
+
+\subsection{Task 8: defend claim and limitation}
+A partner asks one unexpected question about mechanism or scope.
+
+\textbf{Worked reasoning.} What if the readings are correlated or the protocol changes? Separate computational validity from a changed scientific task.
+
+\textbf{Check.} What is a strong answer?
+
+\textbf{Explanation and boundary.} One grounded in an actual artifact and explicit assumptions, with no invented deployment or accuracy claims.
+
+\subsection{Summary: prepare, do not replace, the final exam}
+Optional A tests metadata-only changes; optional B expands a handover checklist.
+
+\textbf{Worked reasoning.} State passed, failed, untested and next action. Week 18 remains the written and oral final examination.
+
+\textbf{Check.} What should continue after this course?
+
+\textbf{Explanation and boundary.} The habit of defining the task, preserving data, checking execution, explaining results and bounding every claim.
+
+\section{Replay reference}\[\Delta_i=\text{replayed mean}_i-\text{reference mean}_i.\]Compare unique case identities and declared order before values. Use the saved absolute-plus-relative tolerance. A zero maximum replay difference establishes agreement between computations in the checked environment, not physical accuracy, scientific replication or live-model quality.
+\section{Eight core practice tasks}
+\subsection{Task 1: Find notebook-only dependencies}
+Predict which globals a new process can see. Inspect the saved source and explicit path arguments before executing.
+
+\textbf{Self-check.} A new interpreter still shares the installed Python environment and operating system. Do not call it independent scientific replication.
+\subsection{Task 2: Check identity before numeric values}
+Reverse a copied result list, detect a sequence mismatch, then align explicitly by unique stable IDs.
+
+\textbf{Self-check.} A length match or aggregate score is not an ID alignment check. Explicitly reject missing or duplicate IDs.
+\subsection{Task 3: Record the environment that actually ran}
+Inspect the actual Python and package record. A Colab launch URL does not establish Colab-browser execution.
+
+\textbf{Self-check.} If you run in Colab, record its actual versions. Cross-version bitwise identity is not promised.
+\subsection{Task 4: Extract a whitelisted handover ZIP}
+Inspect each archive member and its manifest before execution. The supplied extractor accepts exactly six known base names.
+
+\textbf{Self-check.} A ZIP CRC check establishes readable archive storage, not code safety. Source review remains required.
+\subsection{Task 5: Require a completed new process}
+Run the reviewed runner from the extracted directory, with a fresh working directory and explicit output path.
+
+\textbf{Self-check.} The process is awaited with a timeout and checked return code. A process launch alone would not be evidence of completion.
+\subsection{Task 6: Compare aligned numeric outputs}
+Check exact ID sequence and status first. Then apply the frozen absolute-plus-relative numeric tolerance.
+
+\textbf{Self-check.} Zero replay difference does not establish physical accuracy. The original workflow can be reproduced even when its scientific assumptions are wrong.
+\subsection{Task 7: Detect tampering on a copy}
+Append bytes to a copied request payload. Verify the reference copy is unchanged and the copied bundle is rejected.
+
+\textbf{Self-check.} This change can preserve parsed values while changing bytes. A sender replacing both payload and manifest remains outside this integrity check.
+\subsection{Task 8: Create a defensible handover card}
+Keep passed, failed and untested claims separate. Adapt the public study prompts to your own project artifacts.
+
+\textbf{Self-check.} Week 18 remains written and oral examination. This notebook neither publishes live exam answers nor introduces a new weekly graded task.
+\section{Evidence handover and summary}
+Package a bounded workflow, reproduce it in a fresh process, audit artifacts, and defend claim, evidence and limitation. Save eight predictions, eight explanations and three reflections. Preserve source, data, versions, traces and one limitation. The notebook exports a draft when fields are blank; response completeness does not establish correctness. Save the edited notebook separately if changing code.
+\section{Primary references}
+\begin{itemize}
+\item NumPy reproducibility policy: \url{https://numpy.org/doc/stable/reference/random/compatibility.html}.
+\item scikit-learn model persistence: \url{https://scikit-learn.org/stable/model_persistence.html}.
+\end{itemize}

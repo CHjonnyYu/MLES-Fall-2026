@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Run the harness and explain candidate failures",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: One harness must judge both candidates. Define: Apply identical cases, labels and tolerance to each implementation. Walk through: Do not grant one candidate a different input repair rule or a more generous tolerance. Ask: What invalidates the comparison? Expected answer and boundary: Changing the evaluation procedure by candidate without an explicit reason and a separate reported protocol. Visual purpose: show Candidate A | Shared harness | Candidate B. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Candidate A | Shared harness | Candidate B",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Keep the comparison symmetric",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: One harness must judge both candidates. Define: Apply identical cases, labels and tolerance to each implementation. Walk through: Do not grant one candidate a different input repair rule or a more generous tolerance. Ask: What invalidates the comparison? Expected answer and boundary: Changing the evaluation procedure by candidate without an explicit reason and a separate reported protocol. Visual purpose: show Candidate A | Shared harness | Candidate B. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Candidate A | Shared harness | Candidate B",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: One harness must judge both candidates",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: One harness must judge both candidates. Define: Apply identical cases, labels and tolerance to each implementation. Walk through: Do not grant one candidate a different input repair rule or a more generous tolerance. Ask: What invalidates the comparison? Expected answer and boundary: Changing the evaluation procedure by candidate without an explicit reason and a separate reported protocol. Visual purpose: show Candidate A | Shared harness | Candidate B. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Candidate A | Shared harness | Candidate B",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Return structured failures, not silent skips",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Return structured failures, not silent skips. Define: A candidate exception is an observed outcome with a case ID. Walk through: Skipping failed cases can inflate the apparent success rate. Ask: Should every exception be treated as a security breach? Expected answer and boundary: No. Classify invalid input handling, implementation errors and side-effect violations separately. Visual purpose: show Case > Candidate > Outcome or exception > Component checks. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case > Candidate > Outcome or exception > Component checks",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Count the exception in the denominator",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Return structured failures, not silent skips. Define: A candidate exception is an observed outcome with a case ID. Walk through: Skipping failed cases can inflate the apparent success rate. Ask: Should every exception be treated as a security breach? Expected answer and boundary: No. Classify invalid input handling, implementation errors and side-effect violations separately. Visual purpose: show Case > Candidate > Outcome or exception > Component checks. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case > Candidate > Outcome or exception > Component checks",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Return structured failures, not silent skips",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Return structured failures, not silent skips. Define: A candidate exception is an observed outcome with a case ID. Walk through: Skipping failed cases can inflate the apparent success rate. Ask: Should every exception be treated as a security breach? Expected answer and boundary: No. Classify invalid input handling, implementation errors and side-effect violations separately. Visual purpose: show Case > Candidate > Outcome or exception > Component checks. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case > Candidate > Outcome or exception > Component checks",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Task 3: inspect the per-case table",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Task 3: inspect the per-case table. Define: Show expected status, actual status, mean error and pass flag. Walk through: A failed equality case should connect the wrong denominator to the missed review status. Ask: Why export rows as well as a chart? Expected answer and boundary: A bar chart cannot identify which fixture failed or reconstruct the mechanism. Visual purpose: show Case ID > Expected > Observed > Failure component. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case ID > Expected > Observed > Failure component",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Recompute one row manually",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: inspect the per-case table. Define: Show expected status, actual status, mean error and pass flag. Walk through: A failed equality case should connect the wrong denominator to the missed review status. Ask: Why export rows as well as a chart? Expected answer and boundary: A bar chart cannot identify which fixture failed or reconstruct the mechanism. Visual purpose: show Case ID > Expected > Observed > Failure component. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case ID > Expected > Observed > Failure component",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Task 3: inspect the per-case table",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: inspect the per-case table. Define: Show expected status, actual status, mean error and pass flag. Walk through: A failed equality case should connect the wrong denominator to the missed review status. Ask: Why export rows as well as a chart? Expected answer and boundary: A bar chart cannot identify which fixture failed or reconstruct the mechanism. Visual purpose: show Case ID > Expected > Observed > Failure component. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case ID > Expected > Observed > Failure component",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "A zero-mean case can conceal a bug",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: A zero-mean case can conceal a bug. Define: Changing n to n+1 leaves a zero numerator unchanged. Walk through: [0,0,0] can pass the mean check; [79,80,81] cannot pass under the buggy denominator. Ask: What kind of testing lesson is this? Expected answer and boundary: Test discriminating inputs that separate plausible defects, not merely convenient examples. Visual purpose: show Sum=0 | Divide by n | Divide by n+1 | Same zero. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Sum=0 | Divide by n | Divide by n+1 | Same zero",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Task 4: contrast two fixtures",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: A zero-mean case can conceal a bug. Define: Changing n to n+1 leaves a zero numerator unchanged. Walk through: [0,0,0] can pass the mean check; [79,80,81] cannot pass under the buggy denominator. Ask: What kind of testing lesson is this? Expected answer and boundary: Test discriminating inputs that separate plausible defects, not merely convenient examples. Visual purpose: show Sum=0 | Divide by n | Divide by n+1 | Same zero. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Sum=0 | Divide by n | Divide by n+1 | Same zero",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: A zero-mean case can conceal a bug",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: A zero-mean case can conceal a bug. Define: Changing n to n+1 leaves a zero numerator unchanged. Walk through: [0,0,0] can pass the mean check; [79,80,81] cannot pass under the buggy denominator. Ask: What kind of testing lesson is this? Expected answer and boundary: Test discriminating inputs that separate plausible defects, not merely convenient examples. Visual purpose: show Sum=0 | Divide by n | Divide by n+1 | Same zero. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Sum=0 | Divide by n | Divide by n+1 | Same zero",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Measure the declared subgroup outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Measure the declared subgroup outcomes. Define: Report valid cases, invalid cases and boundary cases separately. Walk through: A 100 percent result on one case is a count of one, not a robust population estimate. Ask: Can overlapping groups be added as a total? Expected answer and boundary: No. A boundary case may also be valid. Use the complete unique case list for overall denominators. Visual purpose: show Valid group | Invalid group | Boundary group. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid group | Invalid group | Boundary group",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Always show group counts",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Measure the declared subgroup outcomes. Define: Report valid cases, invalid cases and boundary cases separately. Walk through: A 100 percent result on one case is a count of one, not a robust population estimate. Ask: Can overlapping groups be added as a total? Expected answer and boundary: No. A boundary case may also be valid. Use the complete unique case list for overall denominators. Visual purpose: show Valid group | Invalid group | Boundary group. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid group | Invalid group | Boundary group",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Measure the declared subgroup outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Measure the declared subgroup outcomes. Define: Report valid cases, invalid cases and boundary cases separately. Walk through: A 100 percent result on one case is a count of one, not a robust population estimate. Ask: Can overlapping groups be added as a total? Expected answer and boundary: No. A boundary case may also be valid. Use the complete unique case list for overall denominators. Visual purpose: show Valid group | Invalid group | Boundary group. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Valid group | Invalid group | Boundary group",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Fixed-case uncertainty is not population certainty",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Fixed-case uncertainty is not population certainty. Define: A small nonrandom suite estimates no universal deployment success rate. Walk through: The fixture list was designed for bugs, not sampled independently from a deployment population. Ask: What would support a population performance estimate? Expected answer and boundary: A justified sampling design, representative cases, independent units and uncertainty appropriate to that design. Visual purpose: show Observed fixtures > Local result | Unknown deployment distribution. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observed fixtures > Local result | Unknown deployment distribution",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Do not add a misleading confidence interval",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Fixed-case uncertainty is not population certainty. Define: A small nonrandom suite estimates no universal deployment success rate. Walk through: The fixture list was designed for bugs, not sampled independently from a deployment population. Ask: What would support a population performance estimate? Expected answer and boundary: A justified sampling design, representative cases, independent units and uncertainty appropriate to that design. Visual purpose: show Observed fixtures > Local result | Unknown deployment distribution. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observed fixtures > Local result | Unknown deployment distribution",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Fixed-case uncertainty is not population certainty",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Fixed-case uncertainty is not population certainty. Define: A small nonrandom suite estimates no universal deployment success rate. Walk through: The fixture list was designed for bugs, not sampled independently from a deployment population. Ask: What would support a population performance estimate? Expected answer and boundary: A justified sampling design, representative cases, independent units and uncertainty appropriate to that design. Visual purpose: show Observed fixtures > Local result | Unknown deployment distribution. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Observed fixtures > Local result | Unknown deployment distribution",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Task 5: inspect an invalid-input success",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: inspect an invalid-input success. Define: A required rejection is a correct case outcome, not missing data. Walk through: An invalid case has no expected numeric mean. Do not fabricate zero to fit it into a numeric-error plot. Ask: What should a numeric error be for rejected inputs? Expected answer and boundary: Unavailable, with a reason. Numeric metrics should use only cases for which the quantity is defined. Visual purpose: show Malformed request > Expected rejection > Actual rejection > Pass. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Malformed request > Expected rejection > Actual rejection > Pass",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Keep acceptance and safety distinct",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: inspect an invalid-input success. Define: A required rejection is a correct case outcome, not missing data. Walk through: An invalid case has no expected numeric mean. Do not fabricate zero to fit it into a numeric-error plot. Ask: What should a numeric error be for rejected inputs? Expected answer and boundary: Unavailable, with a reason. Numeric metrics should use only cases for which the quantity is defined. Visual purpose: show Malformed request > Expected rejection > Actual rejection > Pass. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Malformed request > Expected rejection > Actual rejection > Pass",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 5: inspect an invalid-input success",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: inspect an invalid-input success. Define: A required rejection is a correct case outcome, not missing data. Walk through: An invalid case has no expected numeric mean. Do not fabricate zero to fit it into a numeric-error plot. Ask: What should a numeric error be for rejected inputs? Expected answer and boundary: Unavailable, with a reason. Numeric metrics should use only cases for which the quantity is defined. Visual purpose: show Malformed request > Expected rejection > Actual rejection > Pass. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Malformed request > Expected rejection > Actual rejection > Pass",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Task 6: apply the frozen release gate",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: apply the frozen release gate. Define: A candidate with any required fixture failure remains blocked. Walk through: All declared mandatory cases must pass; report exact failing case IDs for a blocked candidate. Ask: Is passing this gate deployment authorization? Expected answer and boundary: No. It is a local demonstration-readiness decision with explicit untested threats. Visual purpose: show Full fixture table > Gate > Decision > Scope. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Full fixture table > Gate > Decision > Scope",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "A classroom gate is intentionally strict",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: apply the frozen release gate. Define: A candidate with any required fixture failure remains blocked. Walk through: All declared mandatory cases must pass; report exact failing case IDs for a blocked candidate. Ask: Is passing this gate deployment authorization? Expected answer and boundary: No. It is a local demonstration-readiness decision with explicit untested threats. Visual purpose: show Full fixture table > Gate > Decision > Scope. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Full fixture table > Gate > Decision > Scope",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Task 6: apply the frozen release gate",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: apply the frozen release gate. Define: A candidate with any required fixture failure remains blocked. Walk through: All declared mandatory cases must pass; report exact failing case IDs for a blocked candidate. Ask: Is passing this gate deployment authorization? Expected answer and boundary: No. It is a local demonstration-readiness decision with explicit untested threats. Visual purpose: show Full fixture table > Gate > Decision > Scope. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Full fixture table > Gate > Decision > Scope",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Rehearse evidence before screenshots",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Rehearse evidence before screenshots. Define: The demonstration should show one success and one expected failure. Walk through: Problem 45s; mechanism 60s; successful run 75s; failed case 60s; limits and replay 60s. Ask: Why preserve the failure in the demo? Expected answer and boundary: It shows the system boundary and evidence of control rather than implying universal success. Visual purpose: show Contract > Success > Failure > Trace > Limitation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Contract > Success > Failure > Trace > Limitation",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Task 7: use a five-minute script",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Rehearse evidence before screenshots. Define: The demonstration should show one success and one expected failure. Walk through: Problem 45s; mechanism 60s; successful run 75s; failed case 60s; limits and replay 60s. Ask: Why preserve the failure in the demo? Expected answer and boundary: It shows the system boundary and evidence of control rather than implying universal success. Visual purpose: show Contract > Success > Failure > Trace > Limitation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Contract > Success > Failure > Trace > Limitation",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Rehearse evidence before screenshots",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Rehearse evidence before screenshots. Define: The demonstration should show one success and one expected failure. Walk through: Problem 45s; mechanism 60s; successful run 75s; failed case 60s; limits and replay 60s. Ask: Why preserve the failure in the demo? Expected answer and boundary: It shows the system boundary and evidence of control rather than implying universal success. Visual purpose: show Contract > Success > Failure > Trace > Limitation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Contract > Success > Failure > Trace > Limitation",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: explain why a candidate failed",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: explain why a candidate failed. Define: Name the fixture, violated rule and causal code path. Walk through: Save candidate hashes, suite hash, per-case CSV, release JSON and plots. Ask: What may you change after held-out inspection? Expected answer and boundary: Make an explicitly exploratory repair, then evaluate on a new independent set before a new final claim. Visual purpose: show Case > Defect > Observed outcome > Bounded explanation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case > Defect > Observed outcome > Bounded explanation",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Checkpoint for the studio",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: explain why a candidate failed. Define: Name the fixture, violated rule and causal code path. Walk through: Save candidate hashes, suite hash, per-case CSV, release JSON and plots. Ask: What may you change after held-out inspection? Expected answer and boundary: Make an explicitly exploratory repair, then evaluate on a new independent set before a new final claim. Visual purpose: show Case > Defect > Observed outcome > Bounded explanation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case > Defect > Observed outcome > Bounded explanation",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: explain why a candidate failed",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: explain why a candidate failed. Define: Name the fixture, violated rule and causal code path. Walk through: Save candidate hashes, suite hash, per-case CSV, release JSON and plots. Ask: What may you change after held-out inspection? Expected answer and boundary: Make an explicitly exploratory repair, then evaluate on a new independent set before a new final claim. Visual purpose: show Case > Defect > Observed outcome > Bounded explanation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents ; https://scikit-learn.org/stable/modules/model_evaluation.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week16/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Case > Defect > Observed outcome > Bounded explanation",
+    "source_urls": [
+      "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  }
+]

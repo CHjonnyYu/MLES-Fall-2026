@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Tool-contract studio: test, explain, export",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Build a proposal-to-evidence artifact. Define: Finish eight core tasks before attempting optional changes. Walk through: Restore 5 min; core tasks 25 min; peer checks 20 min; export and exit 10 min. Ask: What do you restore after a runtime reset? Expected answer and boundary: Run the notebook top to bottom; do not paste a remembered result into an evidence record. Visual purpose: show Predict > Execute > Inspect > Explain > Export. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Predict > Execute > Inspect > Explain > Export",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Plan the lab in four blocks",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Build a proposal-to-evidence artifact. Define: Finish eight core tasks before attempting optional changes. Walk through: Restore 5 min; core tasks 25 min; peer checks 20 min; export and exit 10 min. Ask: What do you restore after a runtime reset? Expected answer and boundary: Run the notebook top to bottom; do not paste a remembered result into an evidence record. Visual purpose: show Predict > Execute > Inspect > Explain > Export. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Predict > Execute > Inspect > Explain > Export",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Build a proposal-to-evidence artifact",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Build a proposal-to-evidence artifact. Define: Finish eight core tasks before attempting optional changes. Walk through: Restore 5 min; core tasks 25 min; peer checks 20 min; export and exit 10 min. Ask: What do you restore after a runtime reset? Expected answer and boundary: Run the notebook top to bottom; do not paste a remembered result into an evidence record. Visual purpose: show Predict > Execute > Inspect > Explain > Export. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Predict > Execute > Inspect > Explain > Export",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Task 1: read a learned distribution",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: read a learned distribution. Define: Compare successor counts with add-one probabilities for one context character. Walk through: With vocabulary size V and context count N, add-one assigns 1/(N+V) to an unseen successor. Ask: What did smoothing assume? Expected answer and boundary: A symmetric pseudo-count over the vocabulary. It avoids zero probability but is not evidence that the successor was observed. Visual purpose: show Context > Counts > Smoothing > Normalization. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Context > Counts > Smoothing > Normalization",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "A zero count can still have mass",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: read a learned distribution. Define: Compare successor counts with add-one probabilities for one context character. Walk through: With vocabulary size V and context count N, add-one assigns 1/(N+V) to an unseen successor. Ask: What did smoothing assume? Expected answer and boundary: A symmetric pseudo-count over the vocabulary. It avoids zero probability but is not evidence that the successor was observed. Visual purpose: show Context > Counts > Smoothing > Normalization. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Context > Counts > Smoothing > Normalization",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Task 1: read a learned distribution",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: read a learned distribution. Define: Compare successor counts with add-one probabilities for one context character. Walk through: With vocabulary size V and context count N, add-one assigns 1/(N+V) to an unseen successor. Ask: What did smoothing assume? Expected answer and boundary: A symmetric pseudo-count over the vocabulary. It avoids zero probability but is not evidence that the successor was observed. Visual purpose: show Context > Counts > Smoothing > Normalization. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Context > Counts > Smoothing > Normalization",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Task 2: compare sampling controls",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: compare sampling controls. Define: Record entropy for the same logits at two positive temperatures. Walk through: Use a fixed seed per run and preserve the probability vectors, not just the sampled strings. Ask: Can two different temperatures produce the same short string? Expected answer and boundary: Yes. One sampled continuation is a noisy observation and does not identify the underlying distribution. Visual purpose: show Fixed logits | T=0.5 | T=2.0. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed logits | T=0.5 | T=2.0",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Keep the comparison controlled",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: compare sampling controls. Define: Record entropy for the same logits at two positive temperatures. Walk through: Use a fixed seed per run and preserve the probability vectors, not just the sampled strings. Ask: Can two different temperatures produce the same short string? Expected answer and boundary: Yes. One sampled continuation is a noisy observation and does not identify the underlying distribution. Visual purpose: show Fixed logits | T=0.5 | T=2.0. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed logits | T=0.5 | T=2.0",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Task 2: compare sampling controls",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: compare sampling controls. Define: Record entropy for the same logits at two positive temperatures. Walk through: Use a fixed seed per run and preserve the probability vectors, not just the sampled strings. Ask: Can two different temperatures produce the same short string? Expected answer and boundary: Yes. One sampled continuation is a noisy observation and does not identify the underlying distribution. Visual purpose: show Fixed logits | T=0.5 | T=2.0. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixed logits | T=0.5 | T=2.0",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "Task 3: reject the unknown capability",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: reject the unknown capability. Define: Send an unknown tool name to the same dispatcher. Walk through: Record expected status before calling the dispatcher. Verify that no accepted result is produced. Ask: Should the validator silently rename an unknown tool? Expected answer and boundary: No. Silent repair changes the requested operation. Return a specific failure and require an explicit new proposal. Visual purpose: show Unknown name > Allowlist check > Rejection > No execution. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Unknown name > Allowlist check > Rejection > No execution",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Predict before the rejection test",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: reject the unknown capability. Define: Send an unknown tool name to the same dispatcher. Walk through: Record expected status before calling the dispatcher. Verify that no accepted result is produced. Ask: Should the validator silently rename an unknown tool? Expected answer and boundary: No. Silent repair changes the requested operation. Return a specific failure and require an explicit new proposal. Visual purpose: show Unknown name > Allowlist check > Rejection > No execution. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Unknown name > Allowlist check > Rejection > No execution",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: Task 3: reject the unknown capability",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: reject the unknown capability. Define: Send an unknown tool name to the same dispatcher. Walk through: Record expected status before calling the dispatcher. Verify that no accepted result is produced. Ask: Should the validator silently rename an unknown tool? Expected answer and boundary: No. Silent repair changes the requested operation. Return a specific failure and require an explicit new proposal. Visual purpose: show Unknown name > Allowlist check > Rejection > No execution. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Unknown name > Allowlist check > Rejection > No execution",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Task 4: classify malformed readings",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: classify malformed readings. Define: Test empty, Boolean, string, NaN and infinite values separately. Walk through: The JSON parser rejects nonstandard constants; numeric validation also rejects nonfinite native Python values. Ask: Why keep separate tests for text and Python objects? Expected answer and boundary: They enter through different boundaries. Passing one path does not prove the other path uses the same checks. Visual purpose: show Input case > Expected failure > Actual failure > Explanation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Input case > Expected failure > Actual failure > Explanation",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Separate parsing from numeric validation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: classify malformed readings. Define: Test empty, Boolean, string, NaN and infinite values separately. Walk through: The JSON parser rejects nonstandard constants; numeric validation also rejects nonfinite native Python values. Ask: Why keep separate tests for text and Python objects? Expected answer and boundary: They enter through different boundaries. Passing one path does not prove the other path uses the same checks. Visual purpose: show Input case > Expected failure > Actual failure > Explanation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Input case > Expected failure > Actual failure > Explanation",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Task 4: classify malformed readings",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: classify malformed readings. Define: Test empty, Boolean, string, NaN and infinite values separately. Walk through: The JSON parser rejects nonstandard constants; numeric validation also rejects nonfinite native Python values. Ask: Why keep separate tests for text and Python objects? Expected answer and boundary: They enter through different boundaries. Passing one path does not prove the other path uses the same checks. Visual purpose: show Input case > Expected failure > Actual failure > Explanation. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Input case > Expected failure > Actual failure > Explanation",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Task 5: stop a repeated proposal loop",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: stop a repeated proposal loop. Define: A cap counts every attempt, not only successful actions. Walk through: A cap of two permits at most two validations/dispatch attempts; the third event records a budget stop. Ask: What would happen if only successes counted? Expected answer and boundary: A sequence of malformed proposals could make no progress indefinitely while never reaching the cap. Visual purpose: show Attempt count > Compare cap > Validate > Append trace. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Attempt count > Compare cap > Validate > Append trace",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Show the cap on a trace",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: stop a repeated proposal loop. Define: A cap counts every attempt, not only successful actions. Walk through: A cap of two permits at most two validations/dispatch attempts; the third event records a budget stop. Ask: What would happen if only successes counted? Expected answer and boundary: A sequence of malformed proposals could make no progress indefinitely while never reaching the cap. Visual purpose: show Attempt count > Compare cap > Validate > Append trace. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Attempt count > Compare cap > Validate > Append trace",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Task 5: stop a repeated proposal loop",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: stop a repeated proposal loop. Define: A cap counts every attempt, not only successful actions. Walk through: A cap of two permits at most two validations/dispatch attempts; the third event records a budget stop. Ask: What would happen if only successes counted? Expected answer and boundary: A sequence of malformed proposals could make no progress indefinitely while never reaching the cap. Visual purpose: show Attempt count > Compare cap > Validate > Append trace. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Attempt count > Compare cap > Validate > Append trace",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Task 6: repair syntax without changing intent",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: repair syntax without changing intent. Define: Correct malformed JSON manually and rerun the exact same contract. Walk through: Repair a trailing comma. Explain why the fixed string still needs semantic validation. Ask: Does syntax repair justify executing a newly added tool? Expected answer and boundary: No. A repair may change meaning. Compare fields and retain the allowlist regardless of parse success. Visual purpose: show Invalid JSON > Human review > Revised JSON > Same gates. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid JSON > Human review > Revised JSON > Same gates",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Keep the before and after proposals",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: repair syntax without changing intent. Define: Correct malformed JSON manually and rerun the exact same contract. Walk through: Repair a trailing comma. Explain why the fixed string still needs semantic validation. Ask: Does syntax repair justify executing a newly added tool? Expected answer and boundary: No. A repair may change meaning. Compare fields and retain the allowlist regardless of parse success. Visual purpose: show Invalid JSON > Human review > Revised JSON > Same gates. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid JSON > Human review > Revised JSON > Same gates",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 6: repair syntax without changing intent",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 6: repair syntax without changing intent. Define: Correct malformed JSON manually and rerun the exact same contract. Walk through: Repair a trailing comma. Explain why the fixed string still needs semantic validation. Ask: Does syntax repair justify executing a newly added tool? Expected answer and boundary: No. A repair may change meaning. Compare fields and retain the allowlist regardless of parse success. Visual purpose: show Invalid JSON > Human review > Revised JSON > Same gates. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Invalid JSON > Human review > Revised JSON > Same gates",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Task 7: expose arithmetic with a fixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: expose arithmetic with a fixture. Define: Check mean([1,2,6]) = 3 before reading a model explanation. Walk through: A zero-mean fixture can hide a wrong denominator; [1,2,6] makes the expected result informative. Ask: What does one passing fixture establish? Expected answer and boundary: Agreement on that fixture only. Add empty, large, negative and length-bound cases before broader claims. Visual purpose: show Fixture > Independent expected value > Tool result > Compare. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixture > Independent expected value > Tool result > Compare",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Use a deliberately uneven fixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: expose arithmetic with a fixture. Define: Check mean([1,2,6]) = 3 before reading a model explanation. Walk through: A zero-mean fixture can hide a wrong denominator; [1,2,6] makes the expected result informative. Ask: What does one passing fixture establish? Expected answer and boundary: Agreement on that fixture only. Add empty, large, negative and length-bound cases before broader claims. Visual purpose: show Fixture > Independent expected value > Tool result > Compare. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixture > Independent expected value > Tool result > Compare",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Task 7: expose arithmetic with a fixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 7: expose arithmetic with a fixture. Define: Check mean([1,2,6]) = 3 before reading a model explanation. Walk through: A zero-mean fixture can hide a wrong denominator; [1,2,6] makes the expected result informative. Ask: What does one passing fixture establish? Expected answer and boundary: Agreement on that fixture only. Add empty, large, negative and length-bound cases before broader claims. Visual purpose: show Fixture > Independent expected value > Tool result > Compare. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Fixture > Independent expected value > Tool result > Compare",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Task 8: hand over the evidence ZIP",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: hand over the evidence ZIP. Define: Export eight predictions, eight explanations and three reflections. Walk through: Blank answers yield draft status. Filled fields mean ready for discussion, not automatically correct. Ask: What should a partner inspect first? Expected answer and boundary: Read the contract and code before running it; compare actual results with independently calculated fixtures. Visual purpose: show Contract > Trace > Responses > Manifest > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Contract > Trace > Responses > Manifest > ZIP",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Drafts are useful, not failures to hide",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: hand over the evidence ZIP. Define: Export eight predictions, eight explanations and three reflections. Walk through: Blank answers yield draft status. Filled fields mean ready for discussion, not automatically correct. Ask: What should a partner inspect first? Expected answer and boundary: Read the contract and code before running it; compare actual results with independently calculated fixtures. Visual purpose: show Contract > Trace > Responses > Manifest > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Contract > Trace > Responses > Manifest > ZIP",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Task 8: hand over the evidence ZIP",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 8: hand over the evidence ZIP. Define: Export eight predictions, eight explanations and three reflections. Walk through: Blank answers yield draft status. Filled fields mean ready for discussion, not automatically correct. Ask: What should a partner inspect first? Expected answer and boundary: Read the contract and code before running it; compare actual results with independently calculated fixtures. Visual purpose: show Contract > Trace > Responses > Manifest > ZIP. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Contract > Trace > Responses > Manifest > ZIP",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: extend only a declared boundary",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: extend only a declared boundary. Define: Optional A adds median; optional B tests proposal formatting variants. Walk through: Explain one observation for each concept and one limitation. Keep the original reference unchanged. Ask: Why are these three different questions? Expected answer and boundary: Token likelihood describes generation, permission controls actions, and correctness requires task evidence. None implies the others. Visual purpose: show Reference > One change > New tests > Separate result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Reference > One change > New tests > Separate result",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: probability, permission, correctness",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: extend only a declared boundary. Define: Optional A adds median; optional B tests proposal formatting variants. Walk through: Explain one observation for each concept and one limitation. Keep the original reference unchanged. Ask: Why are these three different questions? Expected answer and boundary: Token likelihood describes generation, permission controls actions, and correctness requires task evidence. None implies the others. Visual purpose: show Reference > One change > New tests > Separate result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Reference > One change > New tests > Separate result",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: extend only a declared boundary",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: extend only a declared boundary. Define: Optional A adds median; optional B tests proposal formatting variants. Walk through: Explain one observation for each concept and one limitation. Keep the original reference unchanged. Ask: Why are these three different questions? Expected answer and boundary: Token likelihood describes generation, permission controls actions, and correctness requires task evidence. None implies the others. Visual purpose: show Reference > One change > New tests > Separate result. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/1706.03762 ; https://www.anthropic.com/engineering/building-effective-agents. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week12/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Reference > One change > New tests > Separate result",
+    "source_urls": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "week": 14,
+  "tool": "Built-in image generation tool",
+  "date": "2026-10-19",
+  "asset": "/assets/week14/cover.png",
+  "original": "/Users/jonnyyu/.codex/generated_images/01a02c61-7161-7d81-a2d9-bdc803a8f864/exec-bf42bfbd-db4b-4446-a48e-c7a9a13b59fc.png",
+  "prompt": "Use case: scientific-educational. Asset: one coherent landscape conceptual lecture-cover artwork. A precision robotics workcell seen in editorial cutaway, with an obvious physical transparent safety boundary, a separate keyed human-approval interlock outside the tool's reach, and a tool halted before an unauthorized path. No human figures, no robot faces. Teach that authorization is enforced outside the decision component, not supplied by a warning sign. High-end Keynote technical editorial style, warm ivory, ink navy, teal and maroon, refined physical materials, scientifically legible connections, uncluttered composition. No embedded text, labels, logos, numbers, fake interfaces, result charts, people, brains or decorative humanoid robots. Not a collage; conceptual metaphor only, no fabricated experimental evidence.",
+  "scope": "Conceptual metaphor, not scientific or model performance evidence",
+  "usage": "Week 14 H1 slide 1 only"
+}

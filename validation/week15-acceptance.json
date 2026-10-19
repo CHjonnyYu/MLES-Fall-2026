@@ -1,0 +1,84 @@
+{
+  "week": 15,
+  "date": "2026-12-14",
+  "checked": "2026-10-19",
+  "modules": [
+    {
+      "hour": 1,
+      "title": "Specify an engineering evidence workflow",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-15-hour-1/"
+    },
+    {
+      "hour": 2,
+      "title": "Implement a checked analysis pipeline",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-15-hour-2/"
+    },
+    {
+      "hour": 3,
+      "title": "Studio I: build, probe, and explain",
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-15-hour-3/"
+    }
+  ],
+  "slides": {
+    "count": 90,
+    "all_rendered": true,
+    "automated_geometry_images_logos_sources_timing": "passed",
+    "interactions": "passed",
+    "visual_review": "All slides in deck overviews, plus selected individual full-size technical and interaction pages. Not an independent human full-size review of every slide."
+  },
+  "notebooks": [
+    {
+      "week": 15,
+      "kind": "practice",
+      "status": "passed",
+      "notebook": "notebooks/week-15-practice.ipynb",
+      "sha256": "2b3252c596166e3323709c53f243a37264d79ff5641a39d13e8e8cf3d448ac60",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w15-practice-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    },
+    {
+      "week": 15,
+      "kind": "exercise",
+      "status": "passed",
+      "notebook": "notebooks/exercises/week-15-exercise.ipynb",
+      "sha256": "545a8cbe071cb3cbaa9cba1e4e68a7ccc4502d2f4f50225e06bc25296b9e0983",
+      "executed_code_cells": 22,
+      "work": "/tmp/mles-finish-execution/w15-exercise-1",
+      "plots": 2,
+      "core_tasks": 8,
+      "optional_branches": 2,
+      "blank_and_completed_export": "passed",
+      "zip_and_manifest": "passed"
+    }
+  ],
+  "execution_scope": "Fresh local CPU Jupyter kernels; not Google Colab-browser execution.",
+  "latex": {
+    "compiled": true,
+    "reader_pages": 11,
+    "no_overfull_or_undefined_references": true
+  },
+  "content_scope": "Original synthetic teaching fixtures and bounded deterministic workflows; Week12 also trains a character bigram. No live LLM, physical validation, real mail or consequential external actions.",
+  "generated_visuals": {
+    "count": 1,
+    "usage": "H1 cover only",
+    "provenance": "/assets/week15/visual-provenance.json"
+  },
+  "practice_policy": "60 minutes explanation +120 minutes practice;8core+2optional; no new weekly graded homework."
+}

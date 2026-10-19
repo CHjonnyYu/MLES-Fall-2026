@@ -1,0 +1,321 @@
+\chapter{Agent Studio II: evaluation and demo rehearsal}\label{chap:w16-studio}
+\emergencystretch=3em
+\courseweek{Week 16: 2026-12-21, Monday 14:00--17:00.}
+
+Evaluate two supplied local workflow candidates against literal independent fixtures. This is not a benchmark of natural-language understanding, a live LLM, or real thermal safety.
+\begin{learningbox}Compare workflow candidates against independent fixtures; retain per-case failures and make a bounded release decision.\end{learningbox}
+The meeting contains three 60-minute modules: 60 minutes explanation and 120 minutes practice. The eight core exercises and two optional challenges are in-class practice, not additional weekly graded homework.
+\section{H1: Design an evaluation before the demonstration}
+\subsection{Evaluate behavior, not presentation polish}
+A convincing demo can hide a wrong calculation or forbidden operation.
+
+\textbf{Worked reasoning.} Case; expected status; numeric tolerance; safety violation; split; release gate.
+
+\textbf{Check.} What does a beautiful report fail to establish?
+
+\textbf{Explanation and boundary.} Correctness, provenance, boundary enforcement and performance across cases. Each needs its own evidence.
+
+\subsection{The case is the unit of evaluation}
+One fixture specifies a complete input and expected behavior.
+
+\textbf{Worked reasoning.} A request containing three readings is one workflow case, not three independent successes.
+
+\textbf{Check.} Why state the denominator?
+
+\textbf{Explanation and boundary.} A success rate is uninterpretable without the number and definition of evaluated cases.
+
+\subsection{Expected answers must be independent}
+Write literal fixture expectations before running either candidate.
+
+\textbf{Worked reasoning.} [79,80,81] C must have mean 80 and review\_required under the inclusive class protocol.
+
+\textbf{Check.} Why not call the reference to generate every label?
+
+\textbf{Explanation and boundary.} A shared bug could make the reference and candidate agree. Independent fixtures expose correlated implementation errors.
+
+\subsection{Separate development and held-out cases}
+Use development failures to change code, then freeze before evaluation.
+
+\textbf{Worked reasoning.} Named dev and held-out lists are explicit; do not shuffle repeatedly to find an attractive score.
+
+\textbf{Check.} Does a held-out fixture set prove deployment validity?
+
+\textbf{Explanation and boundary.} No. It bounds one local evaluation and may not represent real measurement distributions or adversaries.
+
+\subsection{Status correctness and numeric accuracy differ}
+A candidate can match the number while returning the wrong action status.
+
+\textbf{Worked reasoning.} Valid cases pass only when mean, SD and status match; invalid cases pass only with the declared rejection.
+
+\textbf{Check.} Why keep component failures?
+
+\textbf{Explanation and boundary.} They reveal the mechanism of error and prevent a single aggregate from hiding safety or data-handling defects.
+
+\subsection{Numerical tolerance is a rule, not a repair}
+Compare absolute error to atol + rtol*abs(expected).
+
+\textbf{Worked reasoning.} Expected=80, atol=1e-8, rtol=1e-10 gives limit 1.8e-8.
+
+\textbf{Check.} Can increasing tolerance after a failure be legitimate?
+
+\textbf{Explanation and boundary.} Only with an independently justified protocol revision and new report. Do not widen it merely to make a candidate pass.
+
+\subsection{An error budget is not a safety excuse}
+Report forbidden-action violations separately from task correctness.
+
+\textbf{Worked reasoning.} One unauthorized operation remains unacceptable even if nine ordinary cases succeed.
+
+\textbf{Check.} Why avoid averaging severity away?
+
+\textbf{Explanation and boundary.} Different failures have different consequences. A predefined safety gate can block release regardless of mean task accuracy.
+
+\subsection{The baseline makes added complexity accountable}
+A deterministic pipeline is the first candidate, not an embarrassment.
+
+\textbf{Worked reasoning.} The supplied buggy candidate uses n+1 for its mean; nonzero inputs expose it.
+
+\textbf{Check.} Is this an LLM quality benchmark?
+
+\textbf{Explanation and boundary.} No. It evaluates local workflow implementations. Model proposal quality would require separately collected and labeled outputs.
+
+\subsection{Predeclare a release rule}
+All required fixtures pass and zero protected side effects occur in this class gate.
+
+\textbf{Worked reasoning.} No candidate is approved for real deployment; passing means eligible for the classroom demonstration only.
+
+\textbf{Check.} Why include the scope in the decision?
+
+\textbf{Explanation and boundary.} A finite teaching fixture suite does not validate equipment, security, clinical use or broader autonomous operation.
+
+\subsection{Summary: freeze what will be compared}
+Preserve candidates, cases, expected outputs, tolerance and release gate.
+
+\textbf{Worked reasoning.} Explain which defect it could expose and why current cases might miss it.
+
+\textbf{Check.} What happens next?
+
+\textbf{Explanation and boundary.} Execute both candidates, retain the full failure table and rehearse a truthful demonstration.
+
+\section{H2: Run the harness and explain candidate failures}
+\subsection{One harness must judge both candidates}
+Apply identical cases, labels and tolerance to each implementation.
+
+\textbf{Worked reasoning.} Do not grant one candidate a different input repair rule or a more generous tolerance.
+
+\textbf{Check.} What invalidates the comparison?
+
+\textbf{Explanation and boundary.} Changing the evaluation procedure by candidate without an explicit reason and a separate reported protocol.
+
+\subsection{Return structured failures, not silent skips}
+A candidate exception is an observed outcome with a case ID.
+
+\textbf{Worked reasoning.} Skipping failed cases can inflate the apparent success rate.
+
+\textbf{Check.} Should every exception be treated as a security breach?
+
+\textbf{Explanation and boundary.} No. Classify invalid input handling, implementation errors and side-effect violations separately.
+
+\subsection{Task 3: inspect the per-case table}
+Show expected status, actual status, mean error and pass flag.
+
+\textbf{Worked reasoning.} A failed equality case should connect the wrong denominator to the missed review status.
+
+\textbf{Check.} Why export rows as well as a chart?
+
+\textbf{Explanation and boundary.} A bar chart cannot identify which fixture failed or reconstruct the mechanism.
+
+\subsection{A zero-mean case can conceal a bug}
+Changing n to n+1 leaves a zero numerator unchanged.
+
+\textbf{Worked reasoning.} [0,0,0] can pass the mean check; [79,80,81] cannot pass under the buggy denominator.
+
+\textbf{Check.} What kind of testing lesson is this?
+
+\textbf{Explanation and boundary.} Test discriminating inputs that separate plausible defects, not merely convenient examples.
+
+\subsection{Measure the declared subgroup outcomes}
+Report valid cases, invalid cases and boundary cases separately.
+
+\textbf{Worked reasoning.} A 100 percent result on one case is a count of one, not a robust population estimate.
+
+\textbf{Check.} Can overlapping groups be added as a total?
+
+\textbf{Explanation and boundary.} No. A boundary case may also be valid. Use the complete unique case list for overall denominators.
+
+\subsection{Fixed-case uncertainty is not population certainty}
+A small nonrandom suite estimates no universal deployment success rate.
+
+\textbf{Worked reasoning.} The fixture list was designed for bugs, not sampled independently from a deployment population.
+
+\textbf{Check.} What would support a population performance estimate?
+
+\textbf{Explanation and boundary.} A justified sampling design, representative cases, independent units and uncertainty appropriate to that design.
+
+\subsection{Task 5: inspect an invalid-input success}
+A required rejection is a correct case outcome, not missing data.
+
+\textbf{Worked reasoning.} An invalid case has no expected numeric mean. Do not fabricate zero to fit it into a numeric-error plot.
+
+\textbf{Check.} What should a numeric error be for rejected inputs?
+
+\textbf{Explanation and boundary.} Unavailable, with a reason. Numeric metrics should use only cases for which the quantity is defined.
+
+\subsection{Task 6: apply the frozen release gate}
+A candidate with any required fixture failure remains blocked.
+
+\textbf{Worked reasoning.} All declared mandatory cases must pass; report exact failing case IDs for a blocked candidate.
+
+\textbf{Check.} Is passing this gate deployment authorization?
+
+\textbf{Explanation and boundary.} No. It is a local demonstration-readiness decision with explicit untested threats.
+
+\subsection{Rehearse evidence before screenshots}
+The demonstration should show one success and one expected failure.
+
+\textbf{Worked reasoning.} Problem 45s; mechanism 60s; successful run 75s; failed case 60s; limits and replay 60s.
+
+\textbf{Check.} Why preserve the failure in the demo?
+
+\textbf{Explanation and boundary.} It shows the system boundary and evidence of control rather than implying universal success.
+
+\subsection{Summary: explain why a candidate failed}
+Name the fixture, violated rule and causal code path.
+
+\textbf{Worked reasoning.} Save candidate hashes, suite hash, per-case CSV, release JSON and plots.
+
+\textbf{Check.} What may you change after held-out inspection?
+
+\textbf{Explanation and boundary.} Make an explicitly exploratory repair, then evaluate on a new independent set before a new final claim.
+
+\section{H3: Studio II: evaluate, challenge, rehearse}
+\subsection{Keep the evaluator independent of the candidate}
+Do not repair expected labels to match generated results.
+
+\textbf{Worked reasoning.} Restore 5 min; evaluation 25 min; challenge design 15 min; rehearsal and export 15 min.
+
+\textbf{Check.} What is the evidence contract?
+
+\textbf{Explanation and boundary.} Per-case outcomes, explicit denominators, candidate and suite identity, release gate and an untested limitation.
+
+\subsection{Task 1: predict which fixture exposes n+1}
+Select a nonzero-mean case before running the buggy candidate.
+
+\textbf{Worked reasoning.} Manually compute sum/len for the selected fixture and preserve that expected value.
+
+\textbf{Check.} What if the candidate accidentally passes one case?
+
+\textbf{Explanation and boundary.} Report the pass honestly but inspect whether the fixture discriminates the suspected defect.
+
+\subsection{Task 2: freeze the release gate}
+Write the all-required-cases rule and zero-side-effect condition.
+
+\textbf{Worked reasoning.} A later relaxed rule is a different experiment, not the same passing result.
+
+\textbf{Check.} Why record gate identity with the output?
+
+\textbf{Explanation and boundary.} Without it, the word pass does not identify what was checked or how strict the conditions were.
+
+\subsection{Task 3: inspect one failing row}
+Read case ID, expected status, actual status and numeric mismatch.
+
+\textbf{Worked reasoning.} An incorrect low mean can prevent required review even when the output format is valid.
+
+\textbf{Check.} Is schema validity enough here?
+
+\textbf{Explanation and boundary.} No. It establishes structure but not the numeric and decision semantics.
+
+\subsection{Task 4: explain the hidden zero numerator}
+A zero numerator erases a denominator defect on that fixture.
+
+\textbf{Worked reasoning.} Use [1,2,6] or a threshold-sensitive case and explain why the outputs differ.
+
+\textbf{Check.} Does adding this after seeing failures preserve a held-out claim?
+
+\textbf{Explanation and boundary.} No. Treat it as a diagnostic development probe unless a fresh independent evaluation is declared.
+
+\subsection{Task 5: check a required rejection}
+Inspect empty values and an unknown unit as separate cases.
+
+\textbf{Worked reasoning.} A made-up mean on malformed input is not useful behavior under the contract.
+
+\textbf{Check.} Why keep rejected inputs in the case table?
+
+\textbf{Explanation and boundary.} They define the interface boundary and prevent functionality-only tests from overlooking unsafe acceptance.
+
+\subsection{Task 6: defend the release decision}
+Show the exact failed IDs or all passing required IDs.
+
+\textbf{Worked reasoning.} A blocked candidate is not repaired by the success of the reference.
+
+\textbf{Check.} What limitation survives a passing suite?
+
+\textbf{Explanation and boundary.} Coverage is finite and synthetic. It does not establish real-world reliability or live LLM behavior.
+
+\subsection{Task 7: rehearse the five-minute narrative}
+Show inputs and actual outputs before interpreting their meaning.
+
+\textbf{Worked reasoning.} Keep the full 300-second budget and identify the artifact supporting each segment.
+
+\textbf{Check.} Is another five-minute submission required?
+
+\textbf{Explanation and boundary.} No. This is optional in-class rehearsal. It does not add a new weekly graded video assignment.
+
+\subsection{Task 8: export an inspectable evaluation}
+Download case table, configuration, hashes, responses and plots.
+
+\textbf{Worked reasoning.} A classmate counts unique cases and checks one composite pass rule from the exported rows.
+
+\textbf{Check.} Why not export only aggregate accuracy?
+
+\textbf{Explanation and boundary.} It loses failure identity, subgroup denominators and the distinction between numeric and interface errors.
+
+\subsection{Summary: improve tests before adding autonomy}
+Optional A adds a metamorphic relation; optional B proposes a new held-out fixture.
+
+\textbf{Worked reasoning.} Choose one defect or coverage gap and design a specific independent check.
+
+\textbf{Check.} What connects to Week 17?
+
+\textbf{Explanation and boundary.} Package this evidence so a new process and a classmate can reconstruct the demonstration and its limits.
+
+\section{Evaluation reference}\[|a-e|\leq\mathrm{atol}+\mathrm{rtol}|e|.\]A valid case passes only when status and all required numeric fields match. An invalid case passes by the specified rejection, with no fabricated numeric target. The class release rule requires all mandatory fixtures to pass and no protected side effects. The designed fixture suite is not a random sample from deployment; no population success interval is claimed.
+\section{Eight core practice tasks}
+\subsection{Task 1: Predict which fixture exposes the denominator}
+Use development cases first. Calculate the expected mean manually and compare both supplied candidates.
+
+\textbf{Self-check.} The zero case passes the supplied buggy mean because the numerator is zero. That does not clear the implementation.
+\subsection{Task 2: Freeze the release gate and candidate identities}
+Write the mandatory rule before opening the held-out result. The side-effect count below is zero by construction: these candidates have no action tools.
+
+\textbf{Self-check.} Passing means classroom demonstration readiness only. A frozen gate is not a new grading policy.
+\subsection{Task 3: Run the same held-out harness for both candidates}
+Inspect every row before reading an aggregate. Exceptions remain failures with their case IDs.
+
+\textbf{Self-check.} A required rejection has no expected numeric error. Never replace unavailable numeric values with zero.
+\subsection{Task 4: Explain why the zero case hid a defect}
+Contrast D-zero with the held-out inclusive boundary fixture; diagnose, but do not repair and re-report on the same held-out set.
+
+\textbf{Self-check.} A numeric defect can also change a review decision. A polished report does not repair the calculation.
+\subsection{Task 5: Inspect required rejections separately}
+Count valid and invalid fixtures explicitly, and check the same component rules for both candidates.
+
+\textbf{Self-check.} The case, not each repeated reading, is the evaluation unit. Show counts alongside every percentage.
+\subsection{Task 6: Apply the unchanged classroom release gate}
+Name exact failing IDs and the finite scope of each decision.
+
+\textbf{Self-check.} The structural absence of side-effect tools is not a live security benchmark. No real deployment authorization is implied.
+\subsection{Task 7: Rehearse a five-minute evidence narrative}
+Identify the artifact supporting each segment. This is in-class practice, not an additional video submission.
+
+\textbf{Self-check.} Show the actual T-boundary failure, not an invented model anecdote. Keep the original frozen evaluation intact.
+\subsection{Task 8: Export rows, not only averages}
+Save a CSV with defined numeric fields and explicit unavailable values for required rejection cases.
+
+\textbf{Self-check.} The final ZIP includes configuration, source and all actual observations. Blank reflection fields remain draft.
+\section{Evidence handover and summary}
+Compare workflow candidates against independent fixtures; retain per-case failures and make a bounded release decision. Save eight predictions, eight explanations and three reflections. Preserve source, data, versions, traces and one limitation. The notebook exports a draft when fields are blank; response completeness does not establish correctness. Save the edited notebook separately if changing code.
+\section{Primary references}
+\begin{itemize}
+\item Demystifying evals for AI agents: \url{https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents}.
+\item scikit-learn model evaluation: \url{https://scikit-learn.org/stable/modules/model_evaluation.html}.
+\end{itemize}

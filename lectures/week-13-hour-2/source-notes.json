@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Measure retrieval and check claim support",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: Two evaluation layers answer different questions. Define: Retrieval asks whether evidence was found; grounding asks whether a claim follows. Walk through: A relevant passage can be retrieved while the answer misstates its threshold. Ask: Can perfect retrieval recall guarantee a correct response? Expected answer and boundary: No. Generation, interpretation and citation entailment can fail after retrieval succeeds. Visual purpose: show Query labels > Retrieved IDs | Claim > Exact source support. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Query labels > Retrieved IDs | Claim > Exact source support",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Keep the scoreboards separate",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Two evaluation layers answer different questions. Define: Retrieval asks whether evidence was found; grounding asks whether a claim follows. Walk through: A relevant passage can be retrieved while the answer misstates its threshold. Ask: Can perfect retrieval recall guarantee a correct response? Expected answer and boundary: No. Generation, interpretation and citation entailment can fail after retrieval succeeds. Visual purpose: show Query labels > Retrieved IDs | Claim > Exact source support. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Query labels > Retrieved IDs | Claim > Exact source support",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Two evaluation layers answer different questions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Two evaluation layers answer different questions. Define: Retrieval asks whether evidence was found; grounding asks whether a claim follows. Walk through: A relevant passage can be retrieved while the answer misstates its threshold. Ask: Can perfect retrieval recall guarantee a correct response? Expected answer and boundary: No. Generation, interpretation and citation entailment can fail after retrieval succeeds. Visual purpose: show Query labels > Retrieved IDs | Claim > Exact source support. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Query labels > Retrieved IDs | Claim > Exact source support",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Recall at k needs a relevance set",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Recall at k needs a relevance set. Define: Recall@k = retrieved relevant sources / all labeled relevant sources. Walk through: Relevant={A,B}; top2={A,C}; recall@2=1/2. Precision@2=1/2. Ask: What if no relevant source is labeled? Expected answer and boundary: Do not divide by zero or fabricate relevance. Evaluate no-evidence/abstention cases separately. Visual purpose: show Relevant intersection retrieved / Relevant count. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Relevant intersection retrieved / Relevant count",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "Compute one retrieval recall",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Recall at k needs a relevance set. Define: Recall@k = retrieved relevant sources / all labeled relevant sources. Walk through: Relevant={A,B}; top2={A,C}; recall@2=1/2. Precision@2=1/2. Ask: What if no relevant source is labeled? Expected answer and boundary: Do not divide by zero or fabricate relevance. Evaluate no-evidence/abstention cases separately. Visual purpose: show Relevant intersection retrieved / Relevant count. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Relevant intersection retrieved / Relevant count",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Recall at k needs a relevance set",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Recall at k needs a relevance set. Define: Recall@k = retrieved relevant sources / all labeled relevant sources. Walk through: Relevant={A,B}; top2={A,C}; recall@2=1/2. Precision@2=1/2. Ask: What if no relevant source is labeled? Expected answer and boundary: Do not divide by zero or fabricate relevance. Evaluate no-evidence/abstention cases separately. Visual purpose: show Relevant intersection retrieved / Relevant count. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Relevant intersection retrieved / Relevant count",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Reciprocal rank rewards the first hit",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Reciprocal rank rewards the first hit. Define: For an answerable query, RR = 1/rank of the first relevant result. Walk through: [C,A,B] and [A,C,B] may have the same recall@3 but different reciprocal rank. Ask: Why report the rank convention? Expected answer and boundary: Metrics depend on k, relevance labels, tie rules and zero-hit handling. Preserve these definitions with the result. Visual purpose: show Rank 1 > RR 1 | Rank 2 > RR 0.5 | No hit > RR 0. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Rank 1 > RR 1 | Rank 2 > RR 0.5 | No hit > RR 0",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Compare two ranked lists",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Reciprocal rank rewards the first hit. Define: For an answerable query, RR = 1/rank of the first relevant result. Walk through: [C,A,B] and [A,C,B] may have the same recall@3 but different reciprocal rank. Ask: Why report the rank convention? Expected answer and boundary: Metrics depend on k, relevance labels, tie rules and zero-hit handling. Preserve these definitions with the result. Visual purpose: show Rank 1 > RR 1 | Rank 2 > RR 0.5 | No hit > RR 0. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Rank 1 > RR 1 | Rank 2 > RR 0.5 | No hit > RR 0",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Reciprocal rank rewards the first hit",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Reciprocal rank rewards the first hit. Define: For an answerable query, RR = 1/rank of the first relevant result. Walk through: [C,A,B] and [A,C,B] may have the same recall@3 but different reciprocal rank. Ask: Why report the rank convention? Expected answer and boundary: Metrics depend on k, relevance labels, tie rules and zero-hit handling. Preserve these definitions with the result. Visual purpose: show Rank 1 > RR 1 | Rank 2 > RR 0.5 | No hit > RR 0. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Rank 1 > RR 1 | Rank 2 > RR 0.5 | No hit > RR 0",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "An evidence quote has a narrow role",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: An evidence quote has a narrow role. Define: An exact substring proves text location, not whether every derived claim follows. Walk through: Source: threshold 80 C. Claim: threshold 95 C. A correct source ID does not rescue the wrong number. Ask: What does automatic quote containment miss? Expected answer and boundary: It misses paraphrase meaning, omitted exceptions and contradictions. Human or task-specific semantic checks remain necessary. Visual purpose: show Citation ID > Quote containment > Meaning check > Bounded claim. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Citation ID > Quote containment > Meaning check > Bounded claim",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "A plausible but unsupported number",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: An evidence quote has a narrow role. Define: An exact substring proves text location, not whether every derived claim follows. Walk through: Source: threshold 80 C. Claim: threshold 95 C. A correct source ID does not rescue the wrong number. Ask: What does automatic quote containment miss? Expected answer and boundary: It misses paraphrase meaning, omitted exceptions and contradictions. Human or task-specific semantic checks remain necessary. Visual purpose: show Citation ID > Quote containment > Meaning check > Bounded claim. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Citation ID > Quote containment > Meaning check > Bounded claim",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: An evidence quote has a narrow role",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: An evidence quote has a narrow role. Define: An exact substring proves text location, not whether every derived claim follows. Walk through: Source: threshold 80 C. Claim: threshold 95 C. A correct source ID does not rescue the wrong number. Ask: What does automatic quote containment miss? Expected answer and boundary: It misses paraphrase meaning, omitted exceptions and contradictions. Human or task-specific semantic checks remain necessary. Visual purpose: show Citation ID > Quote containment > Meaning check > Bounded claim. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Citation ID > Quote containment > Meaning check > Bounded claim",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "Task 3: score fixed retrieval questions",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: score fixed retrieval questions. Define: Use independently written relevance IDs; do not derive labels from ranking. Walk through: Compute macro recall only across answerable queries; list no-evidence outcomes separately. Ask: Why not label the top result as relevant? Expected answer and boundary: That would make the system grade itself and conceal retrieval failures. Visual purpose: show Frozen questions > Fixed labels > Retrieval > Per-query metrics. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Frozen questions > Fixed labels > Retrieval > Per-query metrics",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Retain every missed query",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: score fixed retrieval questions. Define: Use independently written relevance IDs; do not derive labels from ranking. Walk through: Compute macro recall only across answerable queries; list no-evidence outcomes separately. Ask: Why not label the top result as relevant? Expected answer and boundary: That would make the system grade itself and conceal retrieval failures. Visual purpose: show Frozen questions > Fixed labels > Retrieval > Per-query metrics. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Frozen questions > Fixed labels > Retrieval > Per-query metrics",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: Task 3: score fixed retrieval questions",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: score fixed retrieval questions. Define: Use independently written relevance IDs; do not derive labels from ranking. Walk through: Compute macro recall only across answerable queries; list no-evidence outcomes separately. Ask: Why not label the top result as relevant? Expected answer and boundary: That would make the system grade itself and conceal retrieval failures. Visual purpose: show Frozen questions > Fixed labels > Retrieval > Per-query metrics. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Frozen questions > Fixed labels > Retrieval > Per-query metrics",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Task 4: inspect false support",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: inspect false support. Define: Test wrong citation IDs, fabricated quotes and changed numeric thresholds. Walk through: Unknown source; absent quote; quoted text with a contradictory threshold. They require different diagnoses. Ask: Will string checks catch every wrong claim? Expected answer and boundary: No. They are necessary structural checks in this exercise, not a universal entailment detector. Visual purpose: show Claim > Citation exists? > Quote present? > Meaning supported?. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Claim > Citation exists? > Quote present? > Meaning supported?",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Separate three invalid answers",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: inspect false support. Define: Test wrong citation IDs, fabricated quotes and changed numeric thresholds. Walk through: Unknown source; absent quote; quoted text with a contradictory threshold. They require different diagnoses. Ask: Will string checks catch every wrong claim? Expected answer and boundary: No. They are necessary structural checks in this exercise, not a universal entailment detector. Visual purpose: show Claim > Citation exists? > Quote present? > Meaning supported?. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Claim > Citation exists? > Quote present? > Meaning supported?",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Task 4: inspect false support",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: inspect false support. Define: Test wrong citation IDs, fabricated quotes and changed numeric thresholds. Walk through: Unknown source; absent quote; quoted text with a contradictory threshold. They require different diagnoses. Ask: Will string checks catch every wrong claim? Expected answer and boundary: No. They are necessary structural checks in this exercise, not a universal entailment detector. Visual purpose: show Claim > Citation exists? > Quote present? > Meaning supported?. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Claim > Citation exists? > Quote present? > Meaning supported?",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Task 5: change k under a fixed index",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: change k under a fixed index. Define: Keep questions, labels and threshold fixed while varying k. Walk through: Recall cannot decrease when adding ranked results under the same accepted query; precision can decrease. Ask: Why can a threshold obscure that comparison? Expected answer and boundary: A changed threshold changes which results are eligible. Keep it fixed and report abstention separately. Visual purpose: show Same index > k=1 > k=2 > Compare metrics. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Same index > k=1 > k=2 > Compare metrics",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Predict the mechanical tradeoff",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: change k under a fixed index. Define: Keep questions, labels and threshold fixed while varying k. Walk through: Recall cannot decrease when adding ranked results under the same accepted query; precision can decrease. Ask: Why can a threshold obscure that comparison? Expected answer and boundary: A changed threshold changes which results are eligible. Keep it fixed and report abstention separately. Visual purpose: show Same index > k=1 > k=2 > Compare metrics. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Same index > k=1 > k=2 > Compare metrics",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 5: change k under a fixed index",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: change k under a fixed index. Define: Keep questions, labels and threshold fixed while varying k. Walk through: Recall cannot decrease when adding ranked results under the same accepted query; precision can decrease. Ask: Why can a threshold obscure that comparison? Expected answer and boundary: A changed threshold changes which results are eligible. Keep it fixed and report abstention separately. Visual purpose: show Same index > k=1 > k=2 > Compare metrics. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Same index > k=1 > k=2 > Compare metrics",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Treat source instructions as data",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Treat source instructions as data. Define: A malicious sentence in a passage cannot alter tool permissions. Walk through: The corpus includes an explicitly marked untrusted instruction. Retrieval may return it, but the workflow never executes it. Ask: Does a low similarity score secure a RAG system? Expected answer and boundary: No. Relevant malicious text can rank highly. Security enforcement must not depend on the retriever missing it. Visual purpose: show Retrieved text > Evidence boundary > No policy change. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Retrieved text > Evidence boundary > No policy change",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Inspect the original injection fixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Treat source instructions as data. Define: A malicious sentence in a passage cannot alter tool permissions. Walk through: The corpus includes an explicitly marked untrusted instruction. Retrieval may return it, but the workflow never executes it. Ask: Does a low similarity score secure a RAG system? Expected answer and boundary: No. Relevant malicious text can rank highly. Security enforcement must not depend on the retriever missing it. Visual purpose: show Retrieved text > Evidence boundary > No policy change. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Retrieved text > Evidence boundary > No policy change",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Treat source instructions as data",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Treat source instructions as data. Define: A malicious sentence in a passage cannot alter tool permissions. Walk through: The corpus includes an explicitly marked untrusted instruction. Retrieval may return it, but the workflow never executes it. Ask: Does a low similarity score secure a RAG system? Expected answer and boundary: No. Relevant malicious text can rank highly. Security enforcement must not depend on the retriever missing it. Visual purpose: show Retrieved text > Evidence boundary > No policy change. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Retrieved text > Evidence boundary > No policy change",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Structured knowledge needs provenance too",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Structured knowledge needs provenance too. Define: A table row should retain units, source ID, version and extraction status. Walk through: name=review threshold; value=80; unit=C; source=LAB-02:v1; status=teaching fixture. Ask: Why not call this a validated engineering limit? Expected answer and boundary: It is an original fictional class protocol. It has no external safety authority or hardware validation. Visual purpose: show Passage > Extracted fields > Source link > Reviewed row. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Passage > Extracted fields > Source link > Reviewed row",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Record a bounded threshold fact",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Structured knowledge needs provenance too. Define: A table row should retain units, source ID, version and extraction status. Walk through: name=review threshold; value=80; unit=C; source=LAB-02:v1; status=teaching fixture. Ask: Why not call this a validated engineering limit? Expected answer and boundary: It is an original fictional class protocol. It has no external safety authority or hardware validation. Visual purpose: show Passage > Extracted fields > Source link > Reviewed row. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Passage > Extracted fields > Source link > Reviewed row",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Structured knowledge needs provenance too",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Structured knowledge needs provenance too. Define: A table row should retain units, source ID, version and extraction status. Walk through: name=review threshold; value=80; unit=C; source=LAB-02:v1; status=teaching fixture. Ask: Why not call this a validated engineering limit? Expected answer and boundary: It is an original fictional class protocol. It has no external safety authority or hardware validation. Visual purpose: show Passage > Extracted fields > Source link > Reviewed row. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Passage > Extracted fields > Source link > Reviewed row",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: evidence retrieval precedes explanation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: evidence retrieval precedes explanation. Define: Find a passage, preserve its identity, then check what it actually supports. Walk through: Save ranked IDs, scores, labels and one support failure. Do not export a bare average. Ask: What should a partner be able to reconstruct? Expected answer and boundary: Which question, index snapshot, ranking and relevance labels produced each reported metric. Visual purpose: show Retrieve > Attribute > Check > Answer or abstain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Retrieve > Attribute > Check > Answer or abstain",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Checkpoint for the lab",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: evidence retrieval precedes explanation. Define: Find a passage, preserve its identity, then check what it actually supports. Walk through: Save ranked IDs, scores, labels and one support failure. Do not export a bare average. Ask: What should a partner be able to reconstruct? Expected answer and boundary: Which question, index snapshot, ranking and relevance labels produced each reported metric. Visual purpose: show Retrieve > Attribute > Check > Answer or abstain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Retrieve > Attribute > Check > Answer or abstain",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: evidence retrieval precedes explanation",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: evidence retrieval precedes explanation. Define: Find a passage, preserve its identity, then check what it actually supports. Walk through: Save ranked IDs, scores, labels and one support failure. Do not export a bare average. Ask: What should a partner be able to reconstruct? Expected answer and boundary: Which question, index snapshot, ranking and relevance labels produced each reported metric. Visual purpose: show Retrieve > Attribute > Check > Answer or abstain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Retrieve > Attribute > Check > Answer or abstain",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  }
+]

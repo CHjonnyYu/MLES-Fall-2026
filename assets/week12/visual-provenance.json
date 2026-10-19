@@ -1,0 +1,10 @@
+{
+  "week": 12,
+  "tool": "Built-in image generation tool",
+  "date": "2026-10-19",
+  "asset": "/assets/week12/cover.png",
+  "original": "/Users/jonnyyu/.codex/generated_images/01a02c61-7161-7d81-a2d9-bdc803a8f864/exec-e2da1dbd-75a5-4763-97dd-fcdac22921a8.png",
+  "prompt": "Use case: scientific-educational. Asset: a single landscape conceptual cover illustration for an English university lecture on language-model proposals versus verified tool execution. Create an elegant high-technology editorial scientific cutaway: on the left an optical prism branches a stream into several possible continuations; on the right one proposed path passes through a physically distinct precision metrology gate into a calibrated calculation instrument. Clearly communicate that prediction and verification are different mechanisms, not that light is literally an LLM. Warm ivory, ink navy, restrained teal and maroon, realistic material detail, strong Keynote lecture composition, no text, labels, logos, numerical plots, fake interfaces, people, robots or brains. One coherent scene, not a collage; conceptual artwork only, never fabricated experimental evidence.",
+  "scope": "Conceptual metaphor, not scientific or model performance evidence",
+  "usage": "Week 12 H1 slide 1 only"
+}

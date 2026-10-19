@@ -1,0 +1,362 @@
+[
+  {
+    "slide": 1,
+    "title": "Represent documents and retrieve evidence",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: Retrieval selects evidence, not truth. Define: Find relevant passages before composing a source-bounded response. Walk through: Document identity; lexical vectors; cosine similarity; ranking; threshold; Task 1 and Task 2. Ask: Can the best-ranked passage be wrong? Expected answer and boundary: Yes. Ranking measures a chosen similarity, not the authority or factual correctness of a source. Visual purpose: show Question > Index > Ranked passages > Evidence check. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Question > Index > Ranked passages > Evidence check",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 2,
+    "title": "Today: mechanism, practice, evidence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Retrieval selects evidence, not truth. Define: Find relevant passages before composing a source-bounded response. Walk through: Document identity; lexical vectors; cosine similarity; ranking; threshold; Task 1 and Task 2. Ask: Can the best-ranked passage be wrong? Expected answer and boundary: Yes. Ranking measures a chosen similarity, not the authority or factual correctness of a source. Visual purpose: show Question > Index > Ranked passages > Evidence check. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Question > Index > Ranked passages > Evidence check",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 3,
+    "title": "Check: Retrieval selects evidence, not truth",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Retrieval selects evidence, not truth. Define: Find relevant passages before composing a source-bounded response. Walk through: Document identity; lexical vectors; cosine similarity; ranking; threshold; Task 1 and Task 2. Ask: Can the best-ranked passage be wrong? Expected answer and boundary: Yes. Ranking measures a chosen similarity, not the authority or factual correctness of a source. Visual purpose: show Question > Index > Ranked passages > Evidence check. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Question > Index > Ranked passages > Evidence check",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 4,
+    "title": "Document identity must survive chunking",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Document identity must survive chunking. Define: Store source ID, version and chunk location with every passage. Walk through: LAB-02:v1:chunk0 identifies an original teaching protocol passage; it is not an external scientific publication. Ask: What breaks when IDs are just row positions? Expected answer and boundary: Inserting a passage changes positional identities. Use stable source keys and preserve the indexed text snapshot. Visual purpose: show Document > Version > Chunk ID > Exact text. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Document > Version > Chunk ID > Exact text",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 5,
+    "title": "A citation needs a resolvable target",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Document identity must survive chunking. Define: Store source ID, version and chunk location with every passage. Walk through: LAB-02:v1:chunk0 identifies an original teaching protocol passage; it is not an external scientific publication. Ask: What breaks when IDs are just row positions? Expected answer and boundary: Inserting a passage changes positional identities. Use stable source keys and preserve the indexed text snapshot. Visual purpose: show Document > Version > Chunk ID > Exact text. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Document > Version > Chunk ID > Exact text",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 6,
+    "title": "Check: Document identity must survive chunking",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Document identity must survive chunking. Define: Store source ID, version and chunk location with every passage. Walk through: LAB-02:v1:chunk0 identifies an original teaching protocol passage; it is not an external scientific publication. Ask: What breaks when IDs are just row positions? Expected answer and boundary: Inserting a passage changes positional identities. Use stable source keys and preserve the indexed text snapshot. Visual purpose: show Document > Version > Chunk ID > Exact text. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Document > Version > Chunk ID > Exact text",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 7,
+    "title": "Tokenization defines lexical overlap",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Tokenization defines lexical overlap. Define: A vocabulary maps terms to coordinates; preprocessing changes what matches. Walk through: Vocabulary [heat,limit,mean]; document 'heat heat limit' maps to [2,1,0]. Ask: Does this representation preserve word order? Expected answer and boundary: No. Bag-of-words counts lose order; negation and relational meaning can be missed. Visual purpose: show Text > Lowercase words > Vocabulary > Count vector. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text > Lowercase words > Vocabulary > Count vector",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 8,
+    "title": "Inspect a small count vector",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Tokenization defines lexical overlap. Define: A vocabulary maps terms to coordinates; preprocessing changes what matches. Walk through: Vocabulary [heat,limit,mean]; document 'heat heat limit' maps to [2,1,0]. Ask: Does this representation preserve word order? Expected answer and boundary: No. Bag-of-words counts lose order; negation and relational meaning can be missed. Visual purpose: show Text > Lowercase words > Vocabulary > Count vector. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text > Lowercase words > Vocabulary > Count vector",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 9,
+    "title": "Check: Tokenization defines lexical overlap",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Tokenization defines lexical overlap. Define: A vocabulary maps terms to coordinates; preprocessing changes what matches. Walk through: Vocabulary [heat,limit,mean]; document 'heat heat limit' maps to [2,1,0]. Ask: Does this representation preserve word order? Expected answer and boundary: No. Bag-of-words counts lose order; negation and relational meaning can be missed. Visual purpose: show Text > Lowercase words > Vocabulary > Count vector. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Text > Lowercase words > Vocabulary > Count vector",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 10,
+    "title": "IDF discounts corpus-common terms",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: IDF discounts corpus-common terms. Define: Smoothed IDF is ln((1+N)/(1+df))+1 in this notebook. Walk through: N=4, df=1 gives ln(5/2)+1=1.916; df=4 gives 1.0. Ask: Is a rare term necessarily an important fact? Expected answer and boundary: No. IDF is a statistical corpus weight. Rare typos and irrelevant words can also receive large weights. Visual purpose: show Document frequency > Smoothed IDF > Term weights. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Document frequency > Smoothed IDF > Term weights",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 11,
+    "title": "Compute a rare-term weight",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: IDF discounts corpus-common terms. Define: Smoothed IDF is ln((1+N)/(1+df))+1 in this notebook. Walk through: N=4, df=1 gives ln(5/2)+1=1.916; df=4 gives 1.0. Ask: Is a rare term necessarily an important fact? Expected answer and boundary: No. IDF is a statistical corpus weight. Rare typos and irrelevant words can also receive large weights. Visual purpose: show Document frequency > Smoothed IDF > Term weights. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Document frequency > Smoothed IDF > Term weights",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 12,
+    "title": "Check: IDF discounts corpus-common terms",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: IDF discounts corpus-common terms. Define: Smoothed IDF is ln((1+N)/(1+df))+1 in this notebook. Walk through: N=4, df=1 gives ln(5/2)+1=1.916; df=4 gives 1.0. Ask: Is a rare term necessarily an important fact? Expected answer and boundary: No. IDF is a statistical corpus weight. Rare typos and irrelevant words can also receive large weights. Visual purpose: show Document frequency > Smoothed IDF > Term weights. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Document frequency > Smoothed IDF > Term weights",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 13,
+    "title": "TF-IDF is a fitted representation",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: TF-IDF is a fitted representation. Define: Fit the vectorizer on the frozen corpus; transform questions with it. Walk through: The same query should be scored against one fixed index. New documents require an explicit index version. Ask: What happens to unseen query words? Expected answer and boundary: They do not create new fitted coordinates. A fully out-of-vocabulary query gives a zero vector under this baseline. Visual purpose: show Frozen corpus > Fit vocabulary and IDF > Transform query. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Frozen corpus > Fit vocabulary and IDF > Transform query",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 14,
+    "title": "Do not refit for each question",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: TF-IDF is a fitted representation. Define: Fit the vectorizer on the frozen corpus; transform questions with it. Walk through: The same query should be scored against one fixed index. New documents require an explicit index version. Ask: What happens to unseen query words? Expected answer and boundary: They do not create new fitted coordinates. A fully out-of-vocabulary query gives a zero vector under this baseline. Visual purpose: show Frozen corpus > Fit vocabulary and IDF > Transform query. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Frozen corpus > Fit vocabulary and IDF > Transform query",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 15,
+    "title": "Check: TF-IDF is a fitted representation",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: TF-IDF is a fitted representation. Define: Fit the vectorizer on the frozen corpus; transform questions with it. Walk through: The same query should be scored against one fixed index. New documents require an explicit index version. Ask: What happens to unseen query words? Expected answer and boundary: They do not create new fitted coordinates. A fully out-of-vocabulary query gives a zero vector under this baseline. Visual purpose: show Frozen corpus > Fit vocabulary and IDF > Transform query. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Frozen corpus > Fit vocabulary and IDF > Transform query",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 16,
+    "title": "Cosine compares directions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Cosine compares directions. Define: Normalize vectors before using their dot product as similarity. Walk through: q=[1,1], d=[2,0]; cosine=2/(sqrt(2)*2)=0.707. Ask: Is cosine a probability that the passage is correct? Expected answer and boundary: No. It is a geometric similarity under the representation. A threshold is an operating rule, not calibrated confidence. Visual purpose: show Dot product / product of norms = cosine. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Dot product / product of norms = cosine",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 17,
+    "title": "Work a two-vector comparison",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Cosine compares directions. Define: Normalize vectors before using their dot product as similarity. Walk through: q=[1,1], d=[2,0]; cosine=2/(sqrt(2)*2)=0.707. Ask: Is cosine a probability that the passage is correct? Expected answer and boundary: No. It is a geometric similarity under the representation. A threshold is an operating rule, not calibrated confidence. Visual purpose: show Dot product / product of norms = cosine. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Dot product / product of norms = cosine",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 18,
+    "title": "Check: Cosine compares directions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Cosine compares directions. Define: Normalize vectors before using their dot product as similarity. Walk through: q=[1,1], d=[2,0]; cosine=2/(sqrt(2)*2)=0.707. Ask: Is cosine a probability that the passage is correct? Expected answer and boundary: No. It is a geometric similarity under the representation. A threshold is an operating rule, not calibrated confidence. Visual purpose: show Dot product / product of norms = cosine. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Dot product / product of norms = cosine",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 19,
+    "title": "Top-k is a selection rule",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Top-k is a selection rule. Define: Rank descending; break equal-score ties with stable source IDs. Walk through: If scores are equal, sort document IDs lexically so the same snapshot returns the same order. Ask: Can a deterministic tie rule improve relevance? Expected answer and boundary: Not inherently. It improves reproducibility and makes ambiguous rankings visible. Visual purpose: show Score > Stable tie rule > Top k > Positive evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Score > Stable tie rule > Top k > Positive evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 20,
+    "title": "Trace a tie explicitly",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Top-k is a selection rule. Define: Rank descending; break equal-score ties with stable source IDs. Walk through: If scores are equal, sort document IDs lexically so the same snapshot returns the same order. Ask: Can a deterministic tie rule improve relevance? Expected answer and boundary: Not inherently. It improves reproducibility and makes ambiguous rankings visible. Visual purpose: show Score > Stable tie rule > Top k > Positive evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Score > Stable tie rule > Top k > Positive evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 21,
+    "title": "Check: Top-k is a selection rule",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Top-k is a selection rule. Define: Rank descending; break equal-score ties with stable source IDs. Walk through: If scores are equal, sort document IDs lexically so the same snapshot returns the same order. Ask: Can a deterministic tie rule improve relevance? Expected answer and boundary: Not inherently. It improves reproducibility and makes ambiguous rankings visible. Visual purpose: show Score > Stable tie rule > Top k > Positive evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Score > Stable tie rule > Top k > Positive evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 22,
+    "title": "Thresholds trade coverage and abstention",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Thresholds trade coverage and abstention. Define: Return no evidence when the maximum score is below a declared threshold. Walk through: Use an in-vocabulary protocol question and an unrelated vocabulary question. Inspect full score vectors. Ask: Does a low score prove the answer does not exist? Expected answer and boundary: No. Lexical mismatch can hide a relevant passage. Abstention is a limitation-aware action, not a proof of absence. Visual purpose: show Max score < threshold > Abstain > Ask for evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Max score < threshold > Abstain > Ask for evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 23,
+    "title": "Task 1: compare two questions",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Thresholds trade coverage and abstention. Define: Return no evidence when the maximum score is below a declared threshold. Walk through: Use an in-vocabulary protocol question and an unrelated vocabulary question. Inspect full score vectors. Ask: Does a low score prove the answer does not exist? Expected answer and boundary: No. Lexical mismatch can hide a relevant passage. Abstention is a limitation-aware action, not a proof of absence. Visual purpose: show Max score < threshold > Abstain > Ask for evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Max score < threshold > Abstain > Ask for evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 24,
+    "title": "Check: Thresholds trade coverage and abstention",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Thresholds trade coverage and abstention. Define: Return no evidence when the maximum score is below a declared threshold. Walk through: Use an in-vocabulary protocol question and an unrelated vocabulary question. Inspect full score vectors. Ask: Does a low score prove the answer does not exist? Expected answer and boundary: No. Lexical mismatch can hide a relevant passage. Abstention is a limitation-aware action, not a proof of absence. Visual purpose: show Max score < threshold > Abstain > Ask for evidence. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Max score < threshold > Abstain > Ask for evidence",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 25,
+    "title": "Chunking can remove required context",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Chunking can remove required context. Define: A passage without its units or exception can support the wrong claim. Walk through: Compare 'review if mean at least 80 C' with a chunk containing only 'review if mean at least 80'. Ask: Why is the shorter chunk risky? Expected answer and boundary: The missing unit changes interpretation, and retrieval alone cannot recover a qualifier absent from the supplied passage. Visual purpose: show Full protocol | Truncated chunk | Lost qualifier. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Full protocol | Truncated chunk | Lost qualifier",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 26,
+    "title": "Task 2: preserve the threshold qualifier",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Chunking can remove required context. Define: A passage without its units or exception can support the wrong claim. Walk through: Compare 'review if mean at least 80 C' with a chunk containing only 'review if mean at least 80'. Ask: Why is the shorter chunk risky? Expected answer and boundary: The missing unit changes interpretation, and retrieval alone cannot recover a qualifier absent from the supplied passage. Visual purpose: show Full protocol | Truncated chunk | Lost qualifier. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Full protocol | Truncated chunk | Lost qualifier",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 27,
+    "title": "Check: Chunking can remove required context",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Chunking can remove required context. Define: A passage without its units or exception can support the wrong claim. Walk through: Compare 'review if mean at least 80 C' with a chunk containing only 'review if mean at least 80'. Ask: Why is the shorter chunk risky? Expected answer and boundary: The missing unit changes interpretation, and retrieval alone cannot recover a qualifier absent from the supplied passage. Visual purpose: show Full protocol | Truncated chunk | Lost qualifier. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Full protocol | Truncated chunk | Lost qualifier",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 28,
+    "title": "Summary: freeze the representation",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: freeze the representation. Define: Preserve corpus, source IDs, vectorizer configuration and ranking rule. Walk through: Show the exact quote, score and source version. Explain one lexical retrieval limitation. Ask: What will the next hour add? Expected answer and boundary: Independent relevance labels and claim-support checks. A retrieved citation is not yet a verified answer. Visual purpose: show Corpus hash > Fitted index > Query > Ranked IDs. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus hash > Fitted index > Query > Ranked IDs",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 29,
+    "title": "Exit: inspect one returned passage",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: freeze the representation. Define: Preserve corpus, source IDs, vectorizer configuration and ranking rule. Walk through: Show the exact quote, score and source version. Explain one lexical retrieval limitation. Ask: What will the next hour add? Expected answer and boundary: Independent relevance labels and claim-support checks. A retrieved citation is not yet a verified answer. Visual purpose: show Corpus hash > Fitted index > Query > Ranked IDs. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus hash > Fitted index > Query > Ranked IDs",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  },
+  {
+    "slide": 30,
+    "title": "Check: Summary: freeze the representation",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: freeze the representation. Define: Preserve corpus, source IDs, vectorizer configuration and ranking rule. Walk through: Show the exact quote, score and source version. Explain one lexical retrieval limitation. Ask: What will the next hour add? Expected answer and boundary: Independent relevance labels and claim-support checks. A retrieved citation is not yet a verified answer. Visual purpose: show Corpus hash > Fitted index > Query > Ranked IDs. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://arxiv.org/abs/2005.11401 ; https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week13/visual-provenance.json. Quantitative images: current week notebook execution record.",
+    "visual_purpose": "Corpus hash > Fitted index > Query > Ranked IDs",
+    "source_urls": [
+      "https://arxiv.org/abs/2005.11401",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html"
+    ]
+  }
+]
