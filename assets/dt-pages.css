@@ -1,0 +1,50 @@
+/* Digital Twin reading pages share the LAiMM course hub's type, color and chrome. */
+.dt-page{padding-top:28px;padding-bottom:80px;max-width:1120px}
+.dt-page a{color:var(--teal)}
+.dt-page .dt-local-nav{display:flex;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid var(--line);padding:0 0 20px;margin:0 0 48px;font-size:.88rem;font-weight:600}
+.dt-page .dt-local-nav a{text-decoration:none}
+.dt-page .dt-local-nav a:hover{text-decoration:underline}
+.dt-page h1{font-size:clamp(3rem,6vw,5.7rem);margin:12px 0 24px;max-width:1050px}
+.dt-page h2{font-size:clamp(2rem,3.7vw,3rem);margin:0 0 20px}
+.dt-page h3{font-size:clamp(1.5rem,2.4vw,2rem);margin:0 0 14px}
+.dt-page h4{font-family:"Iowan Old Style",Baskerville,Georgia,serif;font-size:1.45rem;font-weight:500;line-height:1.2;margin:0 0 12px}
+.dt-page p{max-width:82ch}
+.dt-page .lede,.dt-page .lead{max-width:780px;color:var(--muted);font-size:1.2rem;line-height:1.55}
+.dt-page .badge{display:inline-block;font-size:.74rem;letter-spacing:.17em;text-transform:uppercase;font-weight:700;color:var(--teal);margin-bottom:14px}
+.dt-page>section{margin-top:64px;scroll-margin-top:24px}
+.dt-page .panel,.dt-page .callout,.dt-page .case,.dt-page .module,.dt-page .card{background:var(--white);border:1px solid var(--line);padding:28px 32px}
+.dt-page .panel,.dt-page .callout{border-left:4px solid var(--gold);margin:30px 0}
+.dt-page .case{border-left:4px solid var(--teal)}
+.dt-page .module{margin:24px 0}
+.dt-page .module>section{border-top:1px solid var(--line);padding-top:23px;margin-top:27px}
+.dt-page .module p{margin-bottom:14px}
+.dt-page .links{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 8px}
+.dt-page .links a,.dt-page .weeks a{display:inline-flex;align-items:center;min-height:44px;padding:9px 15px;background:var(--ink);border:1px solid var(--ink);color:var(--white);text-decoration:none;font-size:.88rem;font-weight:600}
+.dt-page .links a:nth-child(2){background:transparent;color:var(--ink)}
+.dt-page .links a:hover,.dt-page .weeks a:hover{background:var(--teal);border-color:var(--teal);color:var(--white)}
+.dt-page details{background:#ece9dc;border-left:3px solid var(--gold);padding:12px 18px;margin:16px 0}
+.dt-page summary{cursor:pointer;font-weight:600}
+.dt-page details p{margin:12px 0 0}
+.dt-page .print-note,.dt-page .small,.dt-page .foot{font-size:.86rem;color:var(--muted)}
+.dt-page .worksheet{width:100%;border-collapse:collapse;font-size:.93rem}
+.dt-page .worksheet th,.dt-page .worksheet td{border:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}
+.dt-page .worksheet th{background:#ece9dc}
+.dt-page .worksheet td{height:58px;background:var(--white)}
+.dt-page .table-scroll{max-width:100%;overflow-x:auto}
+.dt-page .table-scroll .worksheet{min-width:670px}
+.dt-page .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.dt-page .grid .card{scroll-margin-top:20px}
+.dt-page .grid .card h2{font-size:1.7rem;line-height:1.2}
+.dt-page .grid .card dl{margin:17px 0}
+.dt-page .grid .card dt{color:var(--red);font-weight:700;margin-top:17px}
+.dt-page .grid .card dd{margin:3px 0 0}
+.dt-page .grid .card .badge{background:#e8eee8;color:var(--teal);letter-spacing:.08em;padding:5px 9px;margin:0}
+.dt-page .weeks{display:flex;flex-wrap:wrap;gap:7px;margin-top:21px}
+.dt-page .weeks a{min-height:36px;padding:4px 10px;font-size:.8rem}
+.dt-page .boundary{border-left:3px solid var(--gold);padding-left:12px}
+.dt-page .foot{border-top:1px solid var(--line);padding-top:20px;margin-top:50px}
+.dt-page .files li{margin:13px 0}
+.dt-page ol,.dt-page ul{padding-left:24px}
+.dt-page li{margin:8px 0}
+@media(max-width:760px){.dt-page{padding-top:18px;padding-bottom:52px}.dt-page .dt-local-nav{margin-bottom:32px}.dt-page h1{font-size:clamp(2.7rem,10vw,4rem)}.dt-page>section{margin-top:46px}.dt-page .grid{grid-template-columns:1fr}.dt-page .panel,.dt-page .callout,.dt-page .case,.dt-page .module,.dt-page .card{padding:20px}.dt-page .links a{width:100%;justify-content:center}}
+@media print{.masthead,.dt-local-nav,.footer,.dt-page .links{display:none!important}.dt-page{max-width:none;padding:0}.dt-page>section{margin-top:28px}.dt-page .module,.dt-page .card{break-inside:avoid}body{font-size:11pt}}
