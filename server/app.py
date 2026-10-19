@@ -364,6 +364,13 @@ def create_app(overrides=None):
             abort(404)
         return send_from_directory(ROOT/'courses'/slug,'index.html')
 
+    @app.get('/courses/digital-twin-ic-packaging/<path:subpath>')
+    def digital_twin_subpage(subpath):
+        if not re.fullmatch(r'(?:cases|week-(?:0[1-9]|1[0-8]))/(?:index\.html)?',subpath):
+            abort(404)
+        if subpath.endswith('/'):subpath+='index.html'
+        return send_from_directory(ROOT/'courses'/'digital-twin-ic-packaging',subpath)
+
     @app.get('/<path:filename>')
     def public_static(filename):
         allowed_prefixes=['assets/','lectures/','notebooks/','notes/','slides/','textbook/','validation/']
