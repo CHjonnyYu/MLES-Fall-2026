@@ -5,7 +5,7 @@ from datetime import datetime, timezone, timedelta
 from functools import wraps
 from pathlib import Path
 import copy, fcntl, hashlib, json, mimetypes, os, re, secrets, time, uuid
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 from flask import Flask, abort, flash, jsonify, redirect, render_template, request, send_file, send_from_directory, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -337,9 +337,30 @@ def create_app(overrides=None):
         response.headers['Cache-Control']='private,no-store' if item['status']=='draft' else 'public,max-age=60'
         return response
 
+    def machine_learning_page():
+        # Keep one authoritative ML page while supporting the course-hub URL.
+        html=(ROOT/'index.html').read_text(encoding='utf-8')
+        def absolute_resource(match):
+            value=match.group('value')
+            if not value or value.startswith(('/', '#')) or re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*:',value):
+                return match.group(0)
+            return match.group('attribute')+'='+match.group('quote')+urljoin('/',value)+match.group('quote')
+        html=re.sub(r'''(?P<attribute>\b(?:href|src))=(?P<quote>["'])(?P<value>[^"']*)(?P=quote)''',absolute_resource,html)
+        return re.sub(r'(<nav\b[^>]*>)',r'\1<a href="/">All courses</a>',html,count=1)
+
     @app.get('/')
+    def home():return send_from_directory(ROOT,'portal.html')
+
     @app.get('/index.html')
-    def home():return send_from_directory(ROOT,'index.html')
+    def legacy_machine_learning():return machine_learning_page()
+
+    @app.get('/courses/<slug>/')
+    @app.get('/courses/<slug>/index.html')
+    def course_home(slug):
+        if slug=='machine-learning':return machine_learning_page()
+        if slug not in {'digital-twin-ic-packaging','python-programming','optimization-reinforcement-learning'}:
+            abort(404)
+        return send_from_directory(ROOT/'courses'/slug,'index.html')
 
     @app.get('/<path:filename>')
     def public_static(filename):
