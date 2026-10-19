@@ -346,7 +346,9 @@ def create_app(overrides=None):
                 return match.group(0)
             return match.group('attribute')+'='+match.group('quote')+urljoin('/',value)+match.group('quote')
         html=re.sub(r'''(?P<attribute>\b(?:href|src))=(?P<quote>["'])(?P<value>[^"']*)(?P=quote)''',absolute_resource,html)
-        return re.sub(r'(<nav\b[^>]*>)',r'\1<a href="/">All courses</a>',html,count=1)
+        html=re.sub(r'(<nav\b[^>]*>)',r'\1<a href="/">All courses</a>',html,count=1)
+        cover='<figure style="width:calc(100% - 40px);max-width:1200px;margin:28px auto;"><img src="/assets/course-covers/machine-learning-v1.jpg" srcset="/assets/course-covers/machine-learning-v1-768.jpg 768w, /assets/course-covers/machine-learning-v1.jpg 1536w" sizes="(max-width:760px) 100vw, 1200px" width="1536" height="1024" fetchpriority="high" alt="Concept illustration: scattered observations become a learned surface and predicted outputs." style="display:block;width:100%;height:auto;aspect-ratio:2.2;object-fit:cover;"><figcaption style="font-size:12px;color:#52666b;padding-top:8px;">Learning patterns from data &middot; AI-generated concept illustration, not experimental evidence.</figcaption></figure>'
+        return re.sub(r'(<main\b[^>]*>)',lambda match:match.group(0)+cover,html,count=1)
 
     @app.get('/')
     def home():return send_from_directory(ROOT,'portal.html')
