@@ -300,9 +300,28 @@
     "title": "Reproducible ML workflow studio",
     "date": "2026-11-09",
     "type": "teaching",
-    "slides": [],
-    "slide_status": "in preparation",
+    "slides": [
+      {
+        "title": "H1: From a notebook to a reproducible contract (30 slides)",
+        "url": "/lectures/week-10-hour-1/"
+      },
+      {
+        "title": "H2: Build and verify a portable workflow (30 slides)",
+        "url": "/lectures/week-10-hour-2/"
+      },
+      {
+        "title": "H3: Workflow studio: break, replay, hand over (30 slides)",
+        "url": "/lectures/week-10-hour-3/"
+      }
+    ],
+    "slide_status": "available",
     "notebooks": [
+      {
+        "title": "Eight core exercises + two optional challenges",
+        "file": "exercises/week-10-exercise.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-10-exercise.ipynb",
+        "download": "/notebooks/exercises/week-10-exercise.ipynb"
+      },
       {
         "title": "Open Week 10 in Colab",
         "file": "week-10-practice.ipynb",
@@ -314,6 +333,19 @@
       {
         "title": "Week 10 exercise",
         "url": "/notes/exercises/week-10-exercise.html"
+      }
+    ],
+    "practice_minutes": 120,
+    "core_exercises": 8,
+    "optional_challenges": 2,
+    "videos": [
+      {
+        "title": "Video: Visualizing scikit-learn pipelines",
+        "url": "https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/03_categorical_pipeline_visualization_video.html"
+      },
+      {
+        "title": "Video: Validation of a model",
+        "url": "https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/02_numerical_pipeline_video_cross_validation.html"
       }
     ]
   },

@@ -1,0 +1,185 @@
+{
+  "week": 10,
+  "data_scope": "Packaged regression dataset; statistical teaching only, not clinical validation",
+  "config": {
+    "seed": 2026,
+    "dataset": "sklearn diabetes raw; statistical teaching only",
+    "train_n": 265,
+    "validation_n": 88,
+    "test_n": 89,
+    "alphas": [
+      1,
+      20,
+      100
+    ],
+    "candidate_order": [
+      "median",
+      "ridge-1",
+      "ridge-20",
+      "ridge-100"
+    ],
+    "selection": "validation MAE; exact tie follows candidate_order",
+    "atol": 1e-8,
+    "rtol": 1e-10
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "scikit_learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "scipy": "1.18.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "data_sha256": "a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4",
+  "selected_on_validation": "ridge-20",
+  "validation": {
+    "median": {
+      "n": 88,
+      "MAE": 64.06818181818181,
+      "RMSE": 74.72707918577017
+    },
+    "ridge-1": {
+      "n": 88,
+      "MAE": 49.00040229185163,
+      "RMSE": 59.686515510679946
+    },
+    "ridge-20": {
+      "n": 88,
+      "MAE": 48.34407523041293,
+      "RMSE": 58.72486552014926
+    },
+    "ridge-100": {
+      "n": 88,
+      "MAE": 48.48928695473337,
+      "RMSE": 58.25527716865494
+    }
+  },
+  "test": {
+    "median": {
+      "n": 89,
+      "MAE": 65.28089887640449,
+      "RMSE": 79.41895734972131
+    },
+    "ridge-20": {
+      "n": 89,
+      "MAE": 48.32575567867582,
+      "RMSE": 59.411283489138796
+    }
+  },
+  "coefficients": {
+    "candidate": "ridge-20",
+    "features": [
+      "age",
+      "sex",
+      "bmi",
+      "bp",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6"
+    ],
+    "standardized": [
+      -3.30544494247289,
+      -7.904806715809669,
+      22.745464622780474,
+      16.444706516899814,
+      -5.146839162899566,
+      -7.308956540595444,
+      -5.8063455208184065,
+      15.539431064358924,
+      22.573882730523998,
+      3.122267976436732
+    ],
+    "raw": [
+      -0.24693506893112407,
+      -15.86949833098155,
+      4.884468660210237,
+      1.1360737549979596,
+      -0.14391404183628873,
+      -0.23681657385974153,
+      -0.44557325924183644,
+      11.990359182627566,
+      43.236379141965024,
+      0.26870921643664103
+    ],
+    "raw_intercept": -247.8517885877707,
+    "training_mean": [
+      48.4377358490566,
+      1.4566037735849056,
+      26.611320754717,
+      94.6817358490566,
+      188.64905660377357,
+      115.21660377358494,
+      49.675471698113206,
+      4.049698113207546,
+      4.637500377358491,
+      91.22641509433963
+    ],
+    "training_scale": [
+      13.385887054361062,
+      0.49811320754716926,
+      4.656691690555645,
+      14.475034252445475,
+      35.76328687060585,
+      30.863365774915284,
+      13.03118039600979,
+      1.2959937919852718,
+      0.5221039129202634,
+      11.619504599958267
+    ]
+  },
+  "worst_test_rows": [
+    {
+      "row_id": "diabetes-0102",
+      "observed": 302,
+      "predicted": 141.99245750874405,
+      "residual": -160.00754249125595
+    },
+    {
+      "row_id": "diabetes-0359",
+      "observed": 311,
+      "predicted": 174.46650890191256,
+      "residual": -136.53349109808744
+    },
+    {
+      "row_id": "diabetes-0037",
+      "observed": 276,
+      "predicted": 144.98860183865835,
+      "residual": -131.01139816134165
+    },
+    {
+      "row_id": "diabetes-0363",
+      "observed": 58,
+      "predicted": 170.47824574587406,
+      "residual": 112.47824574587406
+    },
+    {
+      "row_id": "diabetes-0276",
+      "observed": 283,
+      "predicted": 180.18755385033762,
+      "residual": -102.81244614966238
+    }
+  ],
+  "claim_limit": "Frozen random-row teaching split; no external clinical, causal or deployment claim.",
+  "replay_max_prediction_difference": 0,
+  "contract_tests": [
+    {
+      "case": "duplicate ID",
+      "rejected": true,
+      "message": "schema: duplicate row ID"
+    },
+    {
+      "case": "non-finite",
+      "rejected": true,
+      "message": "schema: non-finite numeric value"
+    },
+    {
+      "case": "column order",
+      "rejected": true,
+      "message": "schema: exact column order required"
+    }
+  ],
+  "replay_scope": "Fresh interpreter and working directory; same installed environment, not independent replication"
+}

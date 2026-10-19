@@ -1,0 +1,723 @@
+{
+  "title": "Workflow studio: break, replay, hand over",
+  "slides": [
+    {
+      "title": "Deliver evidence another student can use",
+      "body": [
+        "Week 10 / H3 / 60-minute lab",
+        "Core tasks first; optional challenges last."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Predict",
+        "Run + inspect",
+        "Explain + test",
+        "Hand over"
+      ],
+      "teach": "Restore the H2 runtime or run the self-contained walkthrough once. Tasks1-2 were begun in H1 and Tasks3-5 guided in H2; H3 completes evidence and additional controlled tests. No new graded weekly homework is added.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Reserve time for the actual handover",
+      "body": [
+        "Do not spend the hour chasing a better score.",
+        "Protect replay, peer explanation and export time."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Lab segment",
+          "Minutes"
+        ],
+        [
+          "Restore + core checks",
+          "10"
+        ],
+        [
+          "Controlled change + explanation",
+          "16"
+        ],
+        [
+          "Manifest + optional probes",
+          "14"
+        ],
+        [
+          "Peer replay + export",
+          "20"
+        ]
+      ],
+      "teach": "The lab is60minutes total. Optional tasks can replace spare practice time, not extend the meeting. A valid draft with an honest stopping point is better than a fabricated completion claim. The notebook is scaffolded so pairs can progress independently.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Restore configuration, not a remembered score",
+      "body": [
+        "Locate selected candidate, versions and data hash.",
+        "Do not regenerate a preferred split."
+      ],
+      "kind": "code",
+      "payload": [
+        "print(selected)",
+        "print(data_sha256)",
+        "print(ENV)",
+        "print(CONFIG)"
+      ],
+      "teach": "The original reference selects Ridge20, but students identify their own record. If variables are missing in a new runtime, run the walkthrough in order rather than copying a number from the slides.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 1: set versus sequence",
+      "body": [
+        "ID membership can survive reordering.",
+        "Prediction comparison also needs aligned order."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Question",
+          "Correct object"
+        ],
+        [
+          "Same observations?",
+          "Compare ID sets"
+        ],
+        [
+          "Same vector positions?",
+          "Compare ID sequences"
+        ],
+        [
+          "Same predictions?",
+          "Compare aligned values"
+        ]
+      ],
+      "teach": "Students explain both set recovery and ordered lookup. A test that checks only a set cannot establish that individual predictions line up with observations. The runner uses the saved test-ID sequence.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 2: prove training-only scaling",
+      "body": [
+        "Find the pipeline scaler and training means.",
+        "Stop if their values disagree."
+      ],
+      "kind": "code",
+      "payload": [
+        "assert_allclose(scaler.mean_,",
+        "                X_train.mean(axis=0))",
+        "# Review transforms and split code too."
+      ],
+      "teach": "This assertion is necessary for the claimed preprocessing scope, but it is not a complete leakage audit. Have the reviewer locate the actual fit call and check that validation/test targets never fit transformations.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 3: preserve the chosen winner",
+      "body": [
+        "Validation MAE and the listed tie order decide.",
+        "Do not replace it after a final-test inspection."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Choice",
+          "Allowed evidence"
+        ],
+        [
+          "Candidate",
+          "Declared validation MAE"
+        ],
+        [
+          "Tie",
+          "Declared candidate order"
+        ],
+        [
+          "Final test",
+          "Evaluation, not reselection"
+        ]
+      ],
+      "teach": "Inspect Task3 observations and frozen config. No extra model comparison is required here. The goal is to defend the existing selection rule with actual evidence, not narrate a preference for a complex algorithm.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 4: read rejection messages",
+      "body": [
+        "A deliberate error should be caught locally.",
+        "Unexpected acceptance must remain a failure."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Fault",
+          "Where it fails"
+        ],
+        [
+          "Duplicate row ID",
+          "Identity validation"
+        ],
+        [
+          "NaN numeric value",
+          "Finite-value check"
+        ],
+        [
+          "Wrong column order",
+          "Exact header check"
+        ]
+      ],
+      "teach": "The notebook operates on temporary copies. Reviewer verifies each case reports rejected=True and that the original CSV hash remains unchanged. Do not remove failing assertions to force a successful demo.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Check Task 5: compare the process result",
+      "body": [
+        "Use exact test IDs before numeric tolerance.",
+        "Notebook globals must not rescue missing files."
+      ],
+      "kind": "code",
+      "payload": [
+        "assert fresh[\"test_ids\"] == saved_test_ids",
+        "assert_allclose(fresh[\"predictions\"],",
+        "                reference_predictions,",
+        "                atol=1e-8, rtol=1e-10)"
+      ],
+      "teach": "The exported replay process is separate from the notebook interpreter and working directory. It still shares Python packages. Passing establishes a bounded computational replay rather than independent scientific replication.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 6: predeclare one diagnostic change",
+      "body": [
+        "Use Ridge alpha 200 on the same train rows.",
+        "Report validation only; retain the original winner."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Object",
+          "Extension rule"
+        ],
+        [
+          "Alpha",
+          "200"
+        ],
+        [
+          "Training membership",
+          "Unchanged"
+        ],
+        [
+          "Reported comparison",
+          "Validation only"
+        ],
+        [
+          "Original selected model",
+          "Unchanged"
+        ]
+      ],
+      "teach": "Because final-test results have already been seen, this is exploratory work. A fresh evaluation protocol is needed before making a new model-selection claim. Do not compute an attractive new final score and call it unbiased.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 6: predict the direction first",
+      "body": [
+        "Stronger shrinkage reduces flexibility.",
+        "Validation MAE need not improve monotonically."
+      ],
+      "kind": "equations",
+      "payload": [
+        "Training objective includes alpha * ||beta||^2",
+        "Changing alpha changes the fitted function.",
+        "Validation loss still depends on the data."
+      ],
+      "teach": "Students write their prediction and reason, then fit the separate extension. Score direction should come from the actual output. A wrong prediction with an accurate mechanism-based correction is useful evidence of learning.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 6: keep the extension separate",
+      "body": [
+        "Record the new validation result explicitly.",
+        "Do not overwrite the reference configuration."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Reference record",
+          "Extension record"
+        ],
+        [
+          "Selected from four candidates",
+          "Alpha 200 diagnostic"
+        ],
+        [
+          "Original held-out result",
+          "Validation result only"
+        ],
+        [
+          "Preserved handover ZIP",
+          "Separate exercise JSON"
+        ]
+      ],
+      "teach": "The starter stores the extension in observations.task6 while the original selected variable/config and handover remain unchanged. Compare the training-row membership and clarify which result belongs to which protocol.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 7: explain a local function change",
+      "body": [
+        "Perturb one input by +0.1 training SD.",
+        "Predict delta from its standardized coefficient."
+      ],
+      "kind": "equations",
+      "payload": [
+        "z_j = (x_j - train_mean_j) / train_SD_j",
+        "Increase x_j by 0.1 * train_SD_j",
+        "Expected delta prediction = 0.1 * beta_j"
+      ],
+      "teach": "The fixed Ridge model is linear in standardized coordinates, so the identity is exact up to numerical tolerance. This is an additive function check. Correlated-feature feasibility and causal or clinical interpretations are not established.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 7: recover the raw equation too",
+      "body": [
+        "Raw beta_j = scaled beta_j / scale_j.",
+        "The intercept must change with centering."
+      ],
+      "kind": "equations",
+      "payload": [
+        "raw_beta_j = beta_j / scale_j",
+        "raw_b = b - sum_j(beta_j * mean_j / scale_j)",
+        "f(x) = raw_b + sum_j(raw_beta_j * x_j)"
+      ],
+      "teach": "Derive by substituting each standardized coordinate. Omitting the intercept adjustment is a common error. Use the explicit equation already checked against pipeline predictions before making an interpretation claim.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 7: compare expected and actual delta",
+      "body": [
+        "Hold all other coordinates fixed.",
+        "Keep the candidate name with the explanation."
+      ],
+      "kind": "code",
+      "payload": [
+        "changed[:, j] += 0.1 * scale[j]",
+        "delta = f(changed) - f(original)",
+        "expected = 0.1 * standardized_beta[j]",
+        "assert_allclose(delta, expected)"
+      ],
+      "teach": "The interpretation candidate is the selected Ridge model, or the separately declared Ridge20 if the baseline wins. Students must name it. Passing does not validate a medical recommendation or a causal intervention.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 8: verify all six payload hashes",
+      "body": [
+        "The manifest must name the exact required files.",
+        "Recheck original evidence before handover."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Pair of payloads",
+          "Preserved role"
+        ],
+        [
+          "Data / split",
+          "Measurements / membership"
+        ],
+        [
+          "Config / runner",
+          "Choices / procedure"
+        ],
+        [
+          "Predictions / result",
+          "Reference evidence"
+        ]
+      ],
+      "teach": "Compare the manifest key set and every current digest. Missing required files and mismatched digests are errors. The manifest file itself is excluded from its own digest map to avoid a circular definition.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "An unsigned manifest is not authentication",
+      "body": [
+        "Matching digests detect inconsistent copies.",
+        "A sender can replace both data and manifest."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Known reference manifest",
+        "Compare received payloads",
+        "Detect changed bytes",
+        "Separate trust decision"
+      ],
+      "teach": "Ask for an explicit attack counterexample: changing a file and its recorded digest passes a purely local consistency check. Authenticity needs a trusted out-of-band source or signature, beyond this exercise.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Write a precise result card",
+      "body": [
+        "Include task, actual result and failure ID.",
+        "Add limitation and next evaluation."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Part",
+          "Student evidence"
+        ],
+        [
+          "Claim",
+          "This frozen protocol"
+        ],
+        [
+          "Evidence",
+          "Metric + sample ID + digest"
+        ],
+        [
+          "Limitation",
+          "No external validation"
+        ],
+        [
+          "Next test",
+          "Fresh declared evaluation"
+        ]
+      ],
+      "teach": "Students fill the controlled-change and limitation reflections. The card should distinguish model error against outcomes from replay difference between computations. A perfect replay may preserve an imperfect model.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Separate the two error questions",
+      "body": [
+        "Prediction error compares model with outcomes.",
+        "Replay error compares two computations."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Error quantity",
+          "Comparison"
+        ],
+        [
+          "Model residual",
+          "Prediction - observation"
+        ],
+        [
+          "Replay difference",
+          "Replay - reference prediction"
+        ],
+        [
+          "Different conclusions",
+          "Accuracy versus reproducibility"
+        ]
+      ],
+      "teach": "Use the actual reference: held-out MAE is about48.326 target units while maximum replay difference is0. These values answer different questions and must not be plotted or described interchangeably.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Use AI for hypotheses, not fabricated runs",
+      "body": [
+        "Ask for an explanation or a debugging hypothesis.",
+        "Verify against files and executed outputs."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Possible AI help",
+          "Required check"
+        ],
+        [
+          "Explain a mismatch",
+          "IDs, versions, feature order"
+        ],
+        [
+          "Suggest a model change",
+          "Declare scope + protocol"
+        ],
+        [
+          "Draft a result card",
+          "Actual measured values"
+        ]
+      ],
+      "teach": "No AI account is required. If used, disclose material assistance and checks. A language model cannot establish that a cell executed or invent a valid test metric. Keep decisions and evidence under student control.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Optional A: alter a copied file",
+      "body": [
+        "Append a blank line to a copied CSV.",
+        "The manifest should reject it before training."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Copy the handover",
+        "Change CSV bytes",
+        "Check existing manifest",
+        "Reject mismatch"
+      ],
+      "teach": "The original reference remains untouched. A blank line can preserve parsed values while changing exact byte identity. The runner verifies checksums before loading/training, so the copied payload should fail as expected.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Optional A: interpret the rejection honestly",
+      "body": [
+        "Integrity checking worked for this alteration.",
+        "It did not authenticate an unknown sender."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Observation",
+          "Conclusion"
+        ],
+        [
+          "Original digest unchanged",
+          "Reference preserved"
+        ],
+        [
+          "Copied digest differs",
+          "Alteration detected"
+        ],
+        [
+          "Error before training",
+          "Fail-fast check worked"
+        ]
+      ],
+      "teach": "The optional code catches ValueError and asserts the message identifies a checksum mismatch. It does not assert that every malicious alteration or scientific error can be detected by this manifest.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Optional B: make an explicit name adapter",
+      "body": [
+        "A positional model expects canonical feature order.",
+        "Restore names before passing values."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Step",
+          "Rule"
+        ],
+        [
+          "Reordered columns",
+          "Strict interface rejects"
+        ],
+        [
+          "Declared adapter",
+          "Map values by names"
+        ],
+        [
+          "Canonical matrix",
+          "Then compare numeric values"
+        ]
+      ],
+      "teach": "An adapter must be explicit and tested, not a silent guess. The optional code reverses feature columns in memory, maps each value back by feature name, and asserts exact recovery of the original matrix.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Do not confuse adaptation with acceptance",
+      "body": [
+        "A strict interface can reject bad order.",
+        "A reviewed adapter can produce valid order."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Wrong header",
+        "Explicit adapter",
+        "Canonical header",
+        "Normal validation"
+      ],
+      "teach": "Both behaviors can be correct if their boundaries are declared. Do not weaken the original contract merely to avoid errors. An adapter also needs missing/duplicate-name handling in a real system; this controlled example uses a known unique list.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Fill the 19 core response fields",
+      "body": [
+        "Eight predictions, eight explanations.",
+        "Add change, limitation and AI disclosure."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Required reflection",
+          "Count"
+        ],
+        [
+          "Before-running predictions",
+          "8"
+        ],
+        [
+          "Evidence-backed explanations",
+          "8"
+        ],
+        [
+          "Change / limitation / AI",
+          "3"
+        ],
+        [
+          "Total",
+          "19"
+        ]
+      ],
+      "teach": "Response fields start blank in the published student notebook. Nonempty values establish completeness only. Optional challenges do not change the core count or create an extra submission requirement.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Export once, then re-export after editing",
+      "body": [
+        "Missing fields produce an honest draft.",
+        "Do not rerun initialization to update answers."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Edit response assignments",
+        "Run final export cell",
+        "Inspect missing fields",
+        "Download exercise ZIP"
+      ],
+      "teach": "The final exercise ZIP includes the handover ZIP and student observation/response JSON. Rerunning initialization resets responses, so edit assignments and rerun only the export. Ready for peer discussion is not a correctness grade.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Peer handover: locate evidence without help",
+      "body": [
+        "Partner identifies the selected candidate and failure.",
+        "Then follows the readable replay instructions."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Peer question",
+          "File to inspect"
+        ],
+        [
+          "Which rows?",
+          "split.json"
+        ],
+        [
+          "Which candidate?",
+          "config.json"
+        ],
+        [
+          "Which failure?",
+          "result / exercise JSON"
+        ],
+        [
+          "How to rerun?",
+          "replay.py + dependencies"
+        ]
+      ],
+      "teach": "Pairs can download the ZIP, inspect its contents and review the source. In a compatible environment, replay can be run after extraction. Do not ask students to execute untrusted arbitrary source merely because another student sent it.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Troubleshoot by dependency, not by score",
+      "body": [
+        "Check files, IDs, feature order and versions.",
+        "Do not adjust tolerances until the cause is understood."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "File integrity",
+        "Schema + ID alignment",
+        "Config + environment",
+        "Numerical comparison"
+      ],
+      "teach": "This is a diagnostic ordering, not a universal guarantee of cause. Missing dependencies, a wrong path or a stale export should be investigated before model changes. Keep the original failing evidence rather than overwriting it.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Prepare for the written and oral exam",
+      "body": [
+        "Explain your choices and one invalidating change.",
+        "The lab does not replace either examination."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Written explanation",
+          "Oral evidence"
+        ],
+        [
+          "Why this split?",
+          "Locate saved IDs"
+        ],
+        [
+          "Why this candidate?",
+          "Read validation rule"
+        ],
+        [
+          "What breaks the claim?",
+          "Name a new population"
+        ]
+      ],
+      "teach": "Week11 remains the written and oral midterm. Use a two-minute explain-back with one actual result and limitation. No new exam policy, project grading or weekly assignment is introduced by this studio.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Summary: make the workflow portable",
+      "body": [
+        "Preserve identity, contract, code and environment.",
+        "Verify independently, then bound the claim."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Freeze",
+        "Validate",
+        "Replay",
+        "Explain + hand over"
+      ],
+      "teach": "Retrieval: ask each pair for one concrete invariant and one limitation a passing replay cannot remove. Distinguish integrity, numerical reproducibility, predictive accuracy and external validity.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Exit: hand over a rerunnable result",
+      "body": [
+        "Show both ZIPs and one checked failure case.",
+        "Record one next evaluation before changing the model."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Deliverable",
+          "Evidence"
+        ],
+        [
+          "Handover ZIP",
+          "Frozen inputs + runner"
+        ],
+        [
+          "Exercise ZIP",
+          "Observations + explanations"
+        ],
+        [
+          "Two-minute explanation",
+          "Claim + evidence + limit"
+        ]
+      ],
+      "teach": "Close the60-minute lab with visible evidence. If incomplete, retain draft status and seek help rather than fabricate completion. The next scheduled week is the midterm written and oral examination; no new week is authored in this task.",
+      "minutes": 2,
+      "mode": "practice"
+    }
+  ]
+}

@@ -1,0 +1,1470 @@
+{
+  "week": 10,
+  "date": "2026-11-09",
+  "lecture_minutes": 60,
+  "practice_minutes": 120,
+  "modules": [
+    {
+      "hour": 1,
+      "title": "From a notebook to a reproducible contract",
+      "url": "/lectures/week-10-hour-1/",
+      "slides": 30,
+      "minutes": 60,
+      "lecture_minutes": 45,
+      "practice_minutes": 15,
+      "visuals": [
+        {
+          "slide": 1,
+          "title": "Can someone else rebuild your result?",
+          "kind": "cover",
+          "payload": "w10-cover.jpg"
+        },
+        {
+          "slide": 2,
+          "title": "The studio: explain 60, practise 120",
+          "kind": "table",
+          "payload": [
+            [
+              "Hour",
+              "Explain",
+              "Practise"
+            ],
+            [
+              "H1",
+              "45 min",
+              "15 min"
+            ],
+            [
+              "H2",
+              "15 min",
+              "45 min"
+            ],
+            [
+              "H3",
+              "0 min",
+              "60 min"
+            ]
+          ]
+        },
+        {
+          "slide": 3,
+          "title": "Two matching scores can still mislead",
+          "kind": "table",
+          "payload": [
+            [
+              "Row",
+              "Model A error",
+              "Model B error"
+            ],
+            [
+              "A",
+              "0",
+              "2"
+            ],
+            [
+              "B",
+              "2",
+              "0"
+            ],
+            [
+              "MAE",
+              "1",
+              "1"
+            ]
+          ]
+        },
+        {
+          "slide": 4,
+          "title": "Week 9 asked where a model fails",
+          "kind": "lineage",
+          "payload": [
+            "Observed failure",
+            "Frozen evidence",
+            "Independent interpreter",
+            "Bounded comparison"
+          ]
+        },
+        {
+          "slide": 5,
+          "title": "Define the claim before the tool",
+          "kind": "table",
+          "payload": [
+            [
+              "This lab establishes",
+              "It does not establish"
+            ],
+            [
+              "Same frozen inputs",
+              "A new population"
+            ],
+            [
+              "Same declared procedure",
+              "A new physical experiment"
+            ],
+            [
+              "Numerical agreement",
+              "Clinical validity"
+            ]
+          ]
+        },
+        {
+          "slide": 6,
+          "title": "A seed controls positions, not identity",
+          "kind": "schema",
+          "payload": [
+            [
+              "Position",
+              "Original row",
+              "Reversed row"
+            ],
+            [
+              "0",
+              "row-00",
+              "row-19"
+            ],
+            [
+              "1",
+              "row-01",
+              "row-18"
+            ],
+            [
+              "2",
+              "row-02",
+              "row-17"
+            ]
+          ]
+        },
+        {
+          "slide": 7,
+          "title": "Try the row-order trap",
+          "kind": "demo",
+          "payload": "ids"
+        },
+        {
+          "slide": 8,
+          "title": "Persist a partition as ID lists",
+          "kind": "equations",
+          "payload": [
+            "No pairwise overlap",
+            "Union of IDs = complete frozen dataset",
+            "No duplicate IDs inside any split"
+          ]
+        },
+        {
+          "slide": 9,
+          "title": "IDs have a scope of validity",
+          "kind": "lineage",
+          "payload": [
+            "Packaged dataset version",
+            "Assign source row IDs",
+            "Freeze CSV + ID lists",
+            "Preserve that pairing"
+          ]
+        },
+        {
+          "slide": 10,
+          "title": "Raw data prevents hidden global scaling",
+          "kind": "code",
+          "payload": [
+            "data = load_diabetes(scaled=False)",
+            "model.fit(X_train, y_train)",
+            "prediction = model.predict(X_test)"
+          ]
+        },
+        {
+          "slide": 11,
+          "title": "Write an executable data contract",
+          "kind": "schema",
+          "payload": [
+            [
+              "Field",
+              "Rule"
+            ],
+            [
+              "row_id",
+              "Unique, nonempty source identity"
+            ],
+            [
+              "10 features",
+              "Declared numeric column order"
+            ],
+            [
+              "target",
+              "Finite numeric value"
+            ],
+            [
+              "442 rows",
+              "Expected frozen membership"
+            ]
+          ]
+        },
+        {
+          "slide": 12,
+          "title": "A schema check is not a validity proof",
+          "kind": "table",
+          "payload": [
+            [
+              "Check passed",
+              "Still possible"
+            ],
+            [
+              "Finite target",
+              "Wrong label"
+            ],
+            [
+              "Unique ID",
+              "Wrong measurement"
+            ],
+            [
+              "Correct columns",
+              "Biased population"
+            ]
+          ]
+        },
+        {
+          "slide": 13,
+          "title": "Separate three kinds of identity",
+          "kind": "table",
+          "payload": [
+            [
+              "Identity",
+              "Example check"
+            ],
+            [
+              "Exact bytes",
+              "SHA-256"
+            ],
+            [
+              "Parsed records",
+              "ID-keyed values"
+            ],
+            [
+              "Scientific meaning",
+              "Source + domain validation"
+            ]
+          ]
+        },
+        {
+          "slide": 14,
+          "title": "A manifest makes changes visible",
+          "kind": "lineage",
+          "payload": [
+            "Required file list",
+            "Per-file SHA-256",
+            "Verify before fitting",
+            "Reject a mismatch"
+          ]
+        },
+        {
+          "slide": 15,
+          "title": "Preprocessing belongs inside the fit",
+          "kind": "lineage",
+          "payload": [
+            "Training inputs",
+            "Fit scaler",
+            "Fit Ridge",
+            "Predict held-out rows"
+          ]
+        },
+        {
+          "slide": 16,
+          "title": "A median baseline matches absolute loss",
+          "kind": "equations",
+          "payload": [
+            "Predict a constant c for every row",
+            "Choose c to minimize sum |y_i - c|",
+            "A training median is a minimizer."
+          ]
+        },
+        {
+          "slide": 17,
+          "title": "Ridge trades fit against coefficient size",
+          "kind": "equations",
+          "payload": [
+            "Loss = sum (y_i - predicted_i)^2",
+            "Penalty = alpha * sum beta_j^2",
+            "Intercept is not penalized here."
+          ]
+        },
+        {
+          "slide": 18,
+          "title": "Predeclare the candidate grid",
+          "kind": "table",
+          "payload": [
+            [
+              "Candidate",
+              "What is fitted"
+            ],
+            [
+              "Median",
+              "Training target median"
+            ],
+            [
+              "Ridge 1",
+              "Train scaler + alpha 1"
+            ],
+            [
+              "Ridge 20",
+              "Train scaler + alpha 20"
+            ],
+            [
+              "Ridge 100",
+              "Train scaler + alpha 100"
+            ]
+          ]
+        },
+        {
+          "slide": 19,
+          "title": "Keep final evaluation behind a boundary",
+          "kind": "partition",
+          "payload": "splits"
+        },
+        {
+          "slide": 20,
+          "title": "Record versions and tolerances",
+          "kind": "table",
+          "payload": [
+            [
+              "Object",
+              "Required record"
+            ],
+            [
+              "Data",
+              "CSV + SHA-256"
+            ],
+            [
+              "Code",
+              "Readable runner + digest"
+            ],
+            [
+              "Environment",
+              "Python + package versions"
+            ],
+            [
+              "Comparison",
+              "IDs + atol + rtol"
+            ]
+          ]
+        },
+        {
+          "slide": 21,
+          "title": "Never load an untrusted model file",
+          "kind": "lineage",
+          "payload": [
+            "Review trusted source",
+            "Read CSV + JSON",
+            "Rebuild declared pipeline",
+            "Compare predictions"
+          ]
+        },
+        {
+          "slide": 22,
+          "title": "A good handover has a stop condition",
+          "kind": "table",
+          "payload": [
+            [
+              "Injected fault",
+              "Expected behavior"
+            ],
+            [
+              "Duplicate ID",
+              "Reject"
+            ],
+            [
+              "Non-finite value",
+              "Reject"
+            ],
+            [
+              "Wrong column order",
+              "Reject"
+            ]
+          ]
+        },
+        {
+          "slide": 23,
+          "title": "Task 1: predict the membership change",
+          "kind": "schema",
+          "payload": [
+            [
+              "Selection basis",
+              "After reordering"
+            ],
+            [
+              "Array positions",
+              "May select different IDs"
+            ],
+            [
+              "Saved ID membership",
+              "Same observations"
+            ],
+            [
+              "ID order",
+              "May need realignment"
+            ]
+          ]
+        },
+        {
+          "slide": 24,
+          "title": "Task 1: recover by identity",
+          "kind": "code",
+          "payload": [
+            "lookup = {row.id: row for row in rows}",
+            "train = [lookup[i] for i in saved_ids]",
+            "assert set(train_ids) == set(saved_ids)"
+          ]
+        },
+        {
+          "slide": 25,
+          "title": "Task 2: inspect the learned means",
+          "kind": "equations",
+          "payload": [
+            "fitted mean_j = mean(training feature_j)",
+            "Diagnostic: all-row mean_j - train mean_j",
+            "Do not fit the competing all-row scaler."
+          ]
+        },
+        {
+          "slide": 26,
+          "title": "Task 2: choose a valid interpretation",
+          "kind": "table",
+          "payload": [
+            [
+              "Observation",
+              "Supported interpretation"
+            ],
+            [
+              "Training means match",
+              "Expected preprocessing scope"
+            ],
+            [
+              "All-row means differ",
+              "Different fitted statistics"
+            ],
+            [
+              "No mean gap",
+              "Not a full leakage audit"
+            ]
+          ]
+        },
+        {
+          "slide": 27,
+          "title": "Draft the portable evidence contract",
+          "kind": "table",
+          "payload": [
+            [
+              "Need",
+              "Portable file"
+            ],
+            [
+              "Measurements",
+              "frozen.csv"
+            ],
+            [
+              "Membership",
+              "split.json"
+            ],
+            [
+              "Choices",
+              "config.json"
+            ],
+            [
+              "Procedure",
+              "replay.py"
+            ]
+          ]
+        },
+        {
+          "slide": 28,
+          "title": "Prepare an honest limitation sentence",
+          "kind": "schema",
+          "payload": [
+            [
+              "Claim",
+              "Boundary"
+            ],
+            [
+              "Replay agrees",
+              "Same inputs and environment"
+            ],
+            [
+              "Test MAE",
+              "This random-row test only"
+            ],
+            [
+              "Coefficient response",
+              "Fitted function, not causation"
+            ]
+          ]
+        },
+        {
+          "slide": 29,
+          "title": "Summary: preserve identity and procedure",
+          "kind": "lineage",
+          "payload": [
+            "Stable identity",
+            "Declared procedure",
+            "Recorded environment",
+            "Bounded replay claim"
+          ]
+        },
+        {
+          "slide": 30,
+          "title": "Exit: what must a new process receive?",
+          "kind": "schema",
+          "payload": [
+            [
+              "Hidden state",
+              "Portable replacement"
+            ],
+            [
+              "X and y variables",
+              "Frozen CSV"
+            ],
+            [
+              "train_idx variable",
+              "Saved ID lists"
+            ],
+            [
+              "model object",
+              "Config + readable fit code"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "hour": 2,
+      "title": "Build and verify a portable workflow",
+      "url": "/lectures/week-10-hour-2/",
+      "slides": 30,
+      "minutes": 60,
+      "lecture_minutes": 15,
+      "practice_minutes": 45,
+      "visuals": [
+        {
+          "slide": 1,
+          "title": "Make the contract executable",
+          "kind": "lineage",
+          "payload": [
+            "Raw packaged rows",
+            "Frozen data + IDs",
+            "Fitted candidates",
+            "Checked handover"
+          ]
+        },
+        {
+          "slide": 2,
+          "title": "Inspect the packaged dataset contract",
+          "kind": "schema",
+          "payload": [
+            [
+              "Property",
+              "Declared scope"
+            ],
+            [
+              "Rows",
+              "442 source observations"
+            ],
+            [
+              "Inputs",
+              "10 raw numeric columns"
+            ],
+            [
+              "Target",
+              "Packaged regression response"
+            ],
+            [
+              "Use",
+              "Statistical teaching only"
+            ]
+          ]
+        },
+        {
+          "slide": 3,
+          "title": "Freeze all three partitions",
+          "kind": "bars",
+          "payload": [
+            [
+              "Train",
+              265
+            ],
+            [
+              "Validation",
+              88
+            ],
+            [
+              "Test",
+              89
+            ]
+          ]
+        },
+        {
+          "slide": 4,
+          "title": "Specify how the winner is chosen",
+          "kind": "lineage",
+          "payload": [
+            "Fit train-only candidates",
+            "Read validation MAE",
+            "Apply declared tie order",
+            "Freeze selected candidate"
+          ]
+        },
+        {
+          "slide": 5,
+          "title": "A fresh process removes hidden state",
+          "kind": "table",
+          "payload": [
+            [
+              "Removed",
+              "Still shared"
+            ],
+            [
+              "Notebook globals",
+              "Installed packages"
+            ],
+            [
+              "Fitted object memory",
+              "Same dataset source"
+            ],
+            [
+              "Notebook working dir",
+              "Same host environment"
+            ]
+          ]
+        },
+        {
+          "slide": 6,
+          "title": "Compare in the same ID order",
+          "kind": "schema",
+          "payload": [
+            [
+              "Saved ID",
+              "Reference",
+              "Replay"
+            ],
+            [
+              "A",
+              "pred(A)",
+              "pred(A)"
+            ],
+            [
+              "B",
+              "pred(B)",
+              "pred(B)"
+            ],
+            [
+              "Check",
+              "Same ID sequence",
+              "Then compare values"
+            ]
+          ]
+        },
+        {
+          "slide": 7,
+          "title": "Use a transparent tolerance rule",
+          "kind": "demo",
+          "payload": "tolerance"
+        },
+        {
+          "slide": 8,
+          "title": "Open one self-contained notebook",
+          "kind": "code",
+          "payload": [
+            "# Choose a free CPU runtime",
+            "# Run the walkthrough once, top to bottom",
+            "print(ENV)",
+            "print(CONFIG)"
+          ]
+        },
+        {
+          "slide": 9,
+          "title": "Inspect source columns before fitting",
+          "kind": "code",
+          "payload": [
+            "assert X.shape == (442, 10)",
+            "assert isfinite(X).all()",
+            "HEADER = [row_id, *FEATURES, target]"
+          ]
+        },
+        {
+          "slide": 10,
+          "title": "Read the actual split distributions",
+          "kind": "image",
+          "payload": "w10-target-distributions.png"
+        },
+        {
+          "slide": 11,
+          "title": "Write the CSV and split manifest",
+          "kind": "lineage",
+          "payload": [
+            "Source rows + names",
+            "CSV with row_id",
+            "Train/val/test ID lists",
+            "Per-file identity"
+          ]
+        },
+        {
+          "slide": 12,
+          "title": "Review the readable replay program",
+          "kind": "code",
+          "payload": [
+            "verify_required_file_hashes(root)",
+            "cohort = read_contract(root, config)",
+            "model.fit(train_inputs, train_targets)",
+            "prediction = model.predict(test_inputs)"
+          ]
+        },
+        {
+          "slide": 13,
+          "title": "Fit the median and three Ridge candidates",
+          "kind": "table",
+          "payload": [
+            [
+              "Candidate",
+              "Fit data"
+            ],
+            [
+              "Median",
+              "Training targets"
+            ],
+            [
+              "Ridge 1",
+              "Training features + targets"
+            ],
+            [
+              "Ridge 20",
+              "Training features + targets"
+            ],
+            [
+              "Ridge 100",
+              "Training features + targets"
+            ]
+          ]
+        },
+        {
+          "slide": 14,
+          "title": "Select from actual validation evidence",
+          "kind": "image",
+          "payload": "w10-validation-selection.png"
+        },
+        {
+          "slide": 15,
+          "title": "Read shrinkage separately from MAE",
+          "kind": "image",
+          "payload": "w10-regularization-path.png"
+        },
+        {
+          "slide": 16,
+          "title": "Open the final test only after selection",
+          "kind": "image",
+          "payload": "w10-test-metrics.png"
+        },
+        {
+          "slide": 17,
+          "title": "Inspect observed versus predicted values",
+          "kind": "image",
+          "payload": "w10-test-parity.png"
+        },
+        {
+          "slide": 18,
+          "title": "Inspect the signed residuals",
+          "kind": "image",
+          "payload": "w10-test-residuals.png"
+        },
+        {
+          "slide": 19,
+          "title": "Read a finite-sample error distribution",
+          "kind": "image",
+          "payload": "w10-error-cdf.png"
+        },
+        {
+          "slide": 20,
+          "title": "Locate one real failure by its row ID",
+          "kind": "schema",
+          "payload": [
+            [
+              "From actual output",
+              "Keep in evidence"
+            ],
+            [
+              "Source row ID",
+              "Find the original row"
+            ],
+            [
+              "Observed / predicted",
+              "Recompute the residual"
+            ],
+            [
+              "Signed residual",
+              "Explain over/underprediction"
+            ]
+          ]
+        },
+        {
+          "slide": 21,
+          "title": "Interpret the fitted coordinate system",
+          "kind": "image",
+          "payload": "w10-coefficients.png"
+        },
+        {
+          "slide": 22,
+          "title": "Audit the preprocessing scope numerically",
+          "kind": "image",
+          "payload": "w10-preprocessing-scope.png"
+        },
+        {
+          "slide": 23,
+          "title": "Task 3: defend the selected candidate",
+          "kind": "demo",
+          "payload": "selection"
+        },
+        {
+          "slide": 24,
+          "title": "Task 4: reject malformed copies",
+          "kind": "image",
+          "payload": "w10-contract-tests.png"
+        },
+        {
+          "slide": 25,
+          "title": "Build the required payload manifest",
+          "kind": "table",
+          "payload": [
+            [
+              "Payload",
+              "Purpose"
+            ],
+            [
+              "CSV + split JSON",
+              "Inputs + membership"
+            ],
+            [
+              "Config + source",
+              "Selected procedure"
+            ],
+            [
+              "Predictions + result",
+              "Reference evidence"
+            ],
+            [
+              "Manifest",
+              "Byte integrity checks"
+            ]
+          ]
+        },
+        {
+          "slide": 26,
+          "title": "Task 5: start the independent interpreter",
+          "kind": "code",
+          "payload": [
+            "subprocess.run([sys.executable, runner,",
+            "  \"--root\", bundle_path,",
+            "  \"--out\", output_path],",
+            "  cwd=fresh_directory, check=True)"
+          ]
+        },
+        {
+          "slide": 27,
+          "title": "Compare aligned prediction differences",
+          "kind": "image",
+          "payload": "w10-replay-differences.png"
+        },
+        {
+          "slide": 28,
+          "title": "Save the guided evidence checkpoint",
+          "kind": "lineage",
+          "payload": [
+            "Reviewed runner",
+            "Verified required files",
+            "Aligned replay comparison",
+            "Portable handover ZIP"
+          ]
+        },
+        {
+          "slide": 29,
+          "title": "Summary: reproducibility is a procedure",
+          "kind": "lineage",
+          "payload": [
+            "Fit only training",
+            "Select on validation",
+            "Replay from files",
+            "State the boundary"
+          ]
+        },
+        {
+          "slide": 30,
+          "title": "Exit: what did the new process not test?",
+          "kind": "table",
+          "payload": [
+            [
+              "Shared dependency",
+              "Not independently tested"
+            ],
+            [
+              "Installed environment",
+              "Cross-version compatibility"
+            ],
+            [
+              "Same dataset",
+              "External population"
+            ],
+            [
+              "Same fit design",
+              "Scientific validity"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "hour": 3,
+      "title": "Workflow studio: break, replay, hand over",
+      "url": "/lectures/week-10-hour-3/",
+      "slides": 30,
+      "minutes": 60,
+      "lecture_minutes": 0,
+      "practice_minutes": 60,
+      "visuals": [
+        {
+          "slide": 1,
+          "title": "Deliver evidence another student can use",
+          "kind": "lineage",
+          "payload": [
+            "Predict",
+            "Run + inspect",
+            "Explain + test",
+            "Hand over"
+          ]
+        },
+        {
+          "slide": 2,
+          "title": "Reserve time for the actual handover",
+          "kind": "table",
+          "payload": [
+            [
+              "Lab segment",
+              "Minutes"
+            ],
+            [
+              "Restore + core checks",
+              "10"
+            ],
+            [
+              "Controlled change + explanation",
+              "16"
+            ],
+            [
+              "Manifest + optional probes",
+              "14"
+            ],
+            [
+              "Peer replay + export",
+              "20"
+            ]
+          ]
+        },
+        {
+          "slide": 3,
+          "title": "Restore configuration, not a remembered score",
+          "kind": "code",
+          "payload": [
+            "print(selected)",
+            "print(data_sha256)",
+            "print(ENV)",
+            "print(CONFIG)"
+          ]
+        },
+        {
+          "slide": 4,
+          "title": "Check Task 1: set versus sequence",
+          "kind": "schema",
+          "payload": [
+            [
+              "Question",
+              "Correct object"
+            ],
+            [
+              "Same observations?",
+              "Compare ID sets"
+            ],
+            [
+              "Same vector positions?",
+              "Compare ID sequences"
+            ],
+            [
+              "Same predictions?",
+              "Compare aligned values"
+            ]
+          ]
+        },
+        {
+          "slide": 5,
+          "title": "Check Task 2: prove training-only scaling",
+          "kind": "code",
+          "payload": [
+            "assert_allclose(scaler.mean_,",
+            "                X_train.mean(axis=0))",
+            "# Review transforms and split code too."
+          ]
+        },
+        {
+          "slide": 6,
+          "title": "Check Task 3: preserve the chosen winner",
+          "kind": "table",
+          "payload": [
+            [
+              "Choice",
+              "Allowed evidence"
+            ],
+            [
+              "Candidate",
+              "Declared validation MAE"
+            ],
+            [
+              "Tie",
+              "Declared candidate order"
+            ],
+            [
+              "Final test",
+              "Evaluation, not reselection"
+            ]
+          ]
+        },
+        {
+          "slide": 7,
+          "title": "Check Task 4: read rejection messages",
+          "kind": "schema",
+          "payload": [
+            [
+              "Fault",
+              "Where it fails"
+            ],
+            [
+              "Duplicate row ID",
+              "Identity validation"
+            ],
+            [
+              "NaN numeric value",
+              "Finite-value check"
+            ],
+            [
+              "Wrong column order",
+              "Exact header check"
+            ]
+          ]
+        },
+        {
+          "slide": 8,
+          "title": "Check Task 5: compare the process result",
+          "kind": "code",
+          "payload": [
+            "assert fresh[\"test_ids\"] == saved_test_ids",
+            "assert_allclose(fresh[\"predictions\"],",
+            "                reference_predictions,",
+            "                atol=1e-8, rtol=1e-10)"
+          ]
+        },
+        {
+          "slide": 9,
+          "title": "Task 6: predeclare one diagnostic change",
+          "kind": "table",
+          "payload": [
+            [
+              "Object",
+              "Extension rule"
+            ],
+            [
+              "Alpha",
+              "200"
+            ],
+            [
+              "Training membership",
+              "Unchanged"
+            ],
+            [
+              "Reported comparison",
+              "Validation only"
+            ],
+            [
+              "Original selected model",
+              "Unchanged"
+            ]
+          ]
+        },
+        {
+          "slide": 10,
+          "title": "Task 6: predict the direction first",
+          "kind": "equations",
+          "payload": [
+            "Training objective includes alpha * ||beta||^2",
+            "Changing alpha changes the fitted function.",
+            "Validation loss still depends on the data."
+          ]
+        },
+        {
+          "slide": 11,
+          "title": "Task 6: keep the extension separate",
+          "kind": "schema",
+          "payload": [
+            [
+              "Reference record",
+              "Extension record"
+            ],
+            [
+              "Selected from four candidates",
+              "Alpha 200 diagnostic"
+            ],
+            [
+              "Original held-out result",
+              "Validation result only"
+            ],
+            [
+              "Preserved handover ZIP",
+              "Separate exercise JSON"
+            ]
+          ]
+        },
+        {
+          "slide": 12,
+          "title": "Task 7: explain a local function change",
+          "kind": "equations",
+          "payload": [
+            "z_j = (x_j - train_mean_j) / train_SD_j",
+            "Increase x_j by 0.1 * train_SD_j",
+            "Expected delta prediction = 0.1 * beta_j"
+          ]
+        },
+        {
+          "slide": 13,
+          "title": "Task 7: recover the raw equation too",
+          "kind": "equations",
+          "payload": [
+            "raw_beta_j = beta_j / scale_j",
+            "raw_b = b - sum_j(beta_j * mean_j / scale_j)",
+            "f(x) = raw_b + sum_j(raw_beta_j * x_j)"
+          ]
+        },
+        {
+          "slide": 14,
+          "title": "Task 7: compare expected and actual delta",
+          "kind": "code",
+          "payload": [
+            "changed[:, j] += 0.1 * scale[j]",
+            "delta = f(changed) - f(original)",
+            "expected = 0.1 * standardized_beta[j]",
+            "assert_allclose(delta, expected)"
+          ]
+        },
+        {
+          "slide": 15,
+          "title": "Task 8: verify all six payload hashes",
+          "kind": "schema",
+          "payload": [
+            [
+              "Pair of payloads",
+              "Preserved role"
+            ],
+            [
+              "Data / split",
+              "Measurements / membership"
+            ],
+            [
+              "Config / runner",
+              "Choices / procedure"
+            ],
+            [
+              "Predictions / result",
+              "Reference evidence"
+            ]
+          ]
+        },
+        {
+          "slide": 16,
+          "title": "An unsigned manifest is not authentication",
+          "kind": "lineage",
+          "payload": [
+            "Known reference manifest",
+            "Compare received payloads",
+            "Detect changed bytes",
+            "Separate trust decision"
+          ]
+        },
+        {
+          "slide": 17,
+          "title": "Write a precise result card",
+          "kind": "table",
+          "payload": [
+            [
+              "Part",
+              "Student evidence"
+            ],
+            [
+              "Claim",
+              "This frozen protocol"
+            ],
+            [
+              "Evidence",
+              "Metric + sample ID + digest"
+            ],
+            [
+              "Limitation",
+              "No external validation"
+            ],
+            [
+              "Next test",
+              "Fresh declared evaluation"
+            ]
+          ]
+        },
+        {
+          "slide": 18,
+          "title": "Separate the two error questions",
+          "kind": "schema",
+          "payload": [
+            [
+              "Error quantity",
+              "Comparison"
+            ],
+            [
+              "Model residual",
+              "Prediction - observation"
+            ],
+            [
+              "Replay difference",
+              "Replay - reference prediction"
+            ],
+            [
+              "Different conclusions",
+              "Accuracy versus reproducibility"
+            ]
+          ]
+        },
+        {
+          "slide": 19,
+          "title": "Use AI for hypotheses, not fabricated runs",
+          "kind": "table",
+          "payload": [
+            [
+              "Possible AI help",
+              "Required check"
+            ],
+            [
+              "Explain a mismatch",
+              "IDs, versions, feature order"
+            ],
+            [
+              "Suggest a model change",
+              "Declare scope + protocol"
+            ],
+            [
+              "Draft a result card",
+              "Actual measured values"
+            ]
+          ]
+        },
+        {
+          "slide": 20,
+          "title": "Optional A: alter a copied file",
+          "kind": "lineage",
+          "payload": [
+            "Copy the handover",
+            "Change CSV bytes",
+            "Check existing manifest",
+            "Reject mismatch"
+          ]
+        },
+        {
+          "slide": 21,
+          "title": "Optional A: interpret the rejection honestly",
+          "kind": "table",
+          "payload": [
+            [
+              "Observation",
+              "Conclusion"
+            ],
+            [
+              "Original digest unchanged",
+              "Reference preserved"
+            ],
+            [
+              "Copied digest differs",
+              "Alteration detected"
+            ],
+            [
+              "Error before training",
+              "Fail-fast check worked"
+            ]
+          ]
+        },
+        {
+          "slide": 22,
+          "title": "Optional B: make an explicit name adapter",
+          "kind": "schema",
+          "payload": [
+            [
+              "Step",
+              "Rule"
+            ],
+            [
+              "Reordered columns",
+              "Strict interface rejects"
+            ],
+            [
+              "Declared adapter",
+              "Map values by names"
+            ],
+            [
+              "Canonical matrix",
+              "Then compare numeric values"
+            ]
+          ]
+        },
+        {
+          "slide": 23,
+          "title": "Do not confuse adaptation with acceptance",
+          "kind": "lineage",
+          "payload": [
+            "Wrong header",
+            "Explicit adapter",
+            "Canonical header",
+            "Normal validation"
+          ]
+        },
+        {
+          "slide": 24,
+          "title": "Fill the 19 core response fields",
+          "kind": "table",
+          "payload": [
+            [
+              "Required reflection",
+              "Count"
+            ],
+            [
+              "Before-running predictions",
+              "8"
+            ],
+            [
+              "Evidence-backed explanations",
+              "8"
+            ],
+            [
+              "Change / limitation / AI",
+              "3"
+            ],
+            [
+              "Total",
+              "19"
+            ]
+          ]
+        },
+        {
+          "slide": 25,
+          "title": "Export once, then re-export after editing",
+          "kind": "lineage",
+          "payload": [
+            "Edit response assignments",
+            "Run final export cell",
+            "Inspect missing fields",
+            "Download exercise ZIP"
+          ]
+        },
+        {
+          "slide": 26,
+          "title": "Peer handover: locate evidence without help",
+          "kind": "table",
+          "payload": [
+            [
+              "Peer question",
+              "File to inspect"
+            ],
+            [
+              "Which rows?",
+              "split.json"
+            ],
+            [
+              "Which candidate?",
+              "config.json"
+            ],
+            [
+              "Which failure?",
+              "result / exercise JSON"
+            ],
+            [
+              "How to rerun?",
+              "replay.py + dependencies"
+            ]
+          ]
+        },
+        {
+          "slide": 27,
+          "title": "Troubleshoot by dependency, not by score",
+          "kind": "lineage",
+          "payload": [
+            "File integrity",
+            "Schema + ID alignment",
+            "Config + environment",
+            "Numerical comparison"
+          ]
+        },
+        {
+          "slide": 28,
+          "title": "Prepare for the written and oral exam",
+          "kind": "schema",
+          "payload": [
+            [
+              "Written explanation",
+              "Oral evidence"
+            ],
+            [
+              "Why this split?",
+              "Locate saved IDs"
+            ],
+            [
+              "Why this candidate?",
+              "Read validation rule"
+            ],
+            [
+              "What breaks the claim?",
+              "Name a new population"
+            ]
+          ]
+        },
+        {
+          "slide": 29,
+          "title": "Summary: make the workflow portable",
+          "kind": "lineage",
+          "payload": [
+            "Freeze",
+            "Validate",
+            "Replay",
+            "Explain + hand over"
+          ]
+        },
+        {
+          "slide": 30,
+          "title": "Exit: hand over a rerunnable result",
+          "kind": "table",
+          "payload": [
+            [
+              "Deliverable",
+              "Evidence"
+            ],
+            [
+              "Handover ZIP",
+              "Frozen inputs + runner"
+            ],
+            [
+              "Exercise ZIP",
+              "Observations + explanations"
+            ],
+            [
+              "Two-minute explanation",
+              "Claim + evidence + limit"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "data_sha256": "a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4",
+  "execution_scope": "Fresh CPU kernels; not the Colab browser"
+}

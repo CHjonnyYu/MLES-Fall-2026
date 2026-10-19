@@ -1,0 +1,702 @@
+{
+  "title": "From a notebook to a reproducible contract",
+  "slides": [
+    {
+      "title": "Can someone else rebuild your result?",
+      "body": [
+        "Week 10 / H1 / 9 November 2026",
+        "A workflow must travel without hidden state."
+      ],
+      "kind": "cover",
+      "payload": "w10-cover.jpg",
+      "teach": "Open with the sample cassette moving between two compatible measurement benches. Preserved identity and procedure make a comparison meaningful. The image is conceptual artwork, not evidence of an actual replication. Ask which digital objects correspond to sample, fixture and procedure.",
+      "minutes": 1,
+      "mode": "explanation"
+    },
+    {
+      "title": "The studio: explain 60, practise 120",
+      "body": [
+        "H1: 45 min explanation + 15 min practice.",
+        "H2: 15 + 45; H3: a 60-minute lab."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Hour",
+          "Explain",
+          "Practise"
+        ],
+        [
+          "H1",
+          "45 min",
+          "15 min"
+        ],
+        [
+          "H2",
+          "15 min",
+          "45 min"
+        ],
+        [
+          "H3",
+          "0 min",
+          "60 min"
+        ]
+      ],
+      "teach": "The outcome is a ZIP another interpreter can validate and replay. Prerequisites: pipelines, validation selection and error analysis from earlier weeks. Eight core tasks and two optional challenges are class practice, not new graded homework.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Two matching scores can still mislead",
+      "body": [
+        "Equal MAE does not imply equal predictions.",
+        "Compare row identities and prediction vectors."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Row",
+          "Model A error",
+          "Model B error"
+        ],
+        [
+          "A",
+          "0",
+          "2"
+        ],
+        [
+          "B",
+          "2",
+          "0"
+        ],
+        [
+          "MAE",
+          "1",
+          "1"
+        ]
+      ],
+      "teach": "This defined two-row example has identical aggregate MAE but different individual predictions. A replay claim should compare aligned vectors, not just a screenshot or rounded score. Ask which row a downstream decision would treat differently.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Week 9 asked where a model fails",
+      "body": [
+        "Week 10 asks whether its evidence can travel.",
+        "Good replay does not repair a bad model."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Observed failure",
+        "Frozen evidence",
+        "Independent interpreter",
+        "Bounded comparison"
+      ],
+      "teach": "Retrieve a slice failure from Week9. The new dependency is preserving identity, code and configuration so an independent process can reconstruct that computation. Reliability and reproducibility are distinct: a consistently wrong result is reproducible.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Define the claim before the tool",
+      "body": [
+        "Our goal is computational replay.",
+        "It is not independent scientific replication."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "This lab establishes",
+          "It does not establish"
+        ],
+        [
+          "Same frozen inputs",
+          "A new population"
+        ],
+        [
+          "Same declared procedure",
+          "A new physical experiment"
+        ],
+        [
+          "Numerical agreement",
+          "Clinical validity"
+        ]
+      ],
+      "teach": "State the operational definitions used in this course. A fresh process in the same installed environment removes notebook state, but not shared software dependencies or dataset limitations. Do not make a universal claim about terminology across disciplines.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "A seed controls positions, not identity",
+      "body": [
+        "A permutation returns indices into an order.",
+        "A changed input order changes their meaning."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Position",
+          "Original row",
+          "Reversed row"
+        ],
+        [
+          "0",
+          "row-00",
+          "row-19"
+        ],
+        [
+          "1",
+          "row-01",
+          "row-18"
+        ],
+        [
+          "2",
+          "row-02",
+          "row-17"
+        ]
+      ],
+      "teach": "Draw a distinction between an integer index and a stable dataset ID. If positions are reused after reordering, a fixed seed can select different observations. A row ID must be assigned before shuffling and kept with the measurement.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Try the row-order trap",
+      "body": [
+        "Toggle the input order; reuse 15 positions.",
+        "Compare positional selection with saved IDs."
+      ],
+      "kind": "demo",
+      "payload": "ids",
+      "teach": "The widget is a defined20-ID illustration, not an implementation of NumPy random permutations. It saves the first15IDs, reverses the input when toggled, and reuses positions. Ten IDs differ in the symmetric difference; ID-based recovery preserves the saved membership.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Persist a partition as ID lists",
+      "body": [
+        "Train, validation and test IDs form a contract.",
+        "Disjointness alone is not enough."
+      ],
+      "kind": "equations",
+      "payload": [
+        "No pairwise overlap",
+        "Union of IDs = complete frozen dataset",
+        "No duplicate IDs inside any split"
+      ],
+      "teach": "Explain why a missing row still allows empty intersections. All three properties and expected counts are checked. A single ID appearing twice in one list is a duplicate even if different lists do not overlap.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "IDs have a scope of validity",
+      "body": [
+        "Dataset row IDs are version-specific.",
+        "They are not global patient identities."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Packaged dataset version",
+        "Assign source row IDs",
+        "Freeze CSV + ID lists",
+        "Preserve that pairing"
+      ],
+      "teach": "The teaching IDs are source-row identifiers for a fixed442-row packaged dataset. If the underlying source changes, reassess identity rather than assuming a row number refers to the same person. Do not use IDs as predictive features.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Raw data prevents hidden global scaling",
+      "body": [
+        "Use load_diabetes(scaled=False).",
+        "Fit StandardScaler on training rows only."
+      ],
+      "kind": "code",
+      "payload": [
+        "data = load_diabetes(scaled=False)",
+        "model.fit(X_train, y_train)",
+        "prediction = model.predict(X_test)"
+      ],
+      "teach": "The loader default centers and scales using the full packaged dataset. Raw inputs make the training-only preprocessing boundary explicit. The dataset is a regression teaching fixture, not a clinical tool; no feature receives a medical interpretation here.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Write an executable data contract",
+      "body": [
+        "Require names, order, types and finite values.",
+        "Reject malformed inputs before prediction."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Field",
+          "Rule"
+        ],
+        [
+          "row_id",
+          "Unique, nonempty source identity"
+        ],
+        [
+          "10 features",
+          "Declared numeric column order"
+        ],
+        [
+          "target",
+          "Finite numeric value"
+        ],
+        [
+          "442 rows",
+          "Expected frozen membership"
+        ]
+      ],
+      "teach": "The runner checks exact fieldnames, row count, duplicates and finite values, then partitions by IDs. A data contract is executable behavior, not only a prose promise. Required row IDs are additionally verified against the saved partition.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "A schema check is not a validity proof",
+      "body": [
+        "A well-formed value can still be wrong.",
+        "Separate interface checks from scientific evidence."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Check passed",
+          "Still possible"
+        ],
+        [
+          "Finite target",
+          "Wrong label"
+        ],
+        [
+          "Unique ID",
+          "Wrong measurement"
+        ],
+        [
+          "Correct columns",
+          "Biased population"
+        ]
+      ],
+      "teach": "These are counterexamples to overclaiming a contract. No numeric interface check proves measurement validity or sample representativeness. The student should distinguish an accepted file from a justified performance claim.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Separate three kinds of identity",
+      "body": [
+        "Byte identity, record identity and meaning differ.",
+        "Use the right check for the claim."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Identity",
+          "Example check"
+        ],
+        [
+          "Exact bytes",
+          "SHA-256"
+        ],
+        [
+          "Parsed records",
+          "ID-keyed values"
+        ],
+        [
+          "Scientific meaning",
+          "Source + domain validation"
+        ]
+      ],
+      "teach": "Recall Week9 blank-line counterexample. A different hash may preserve parsed records; matching records can still contain scientifically incorrect measurements. This week uses exact bytes for handover integrity and IDs for alignment.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "A manifest makes changes visible",
+      "body": [
+        "Hash each required file separately.",
+        "Record data, split, config and executable source."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Required file list",
+        "Per-file SHA-256",
+        "Verify before fitting",
+        "Reject a mismatch"
+      ],
+      "teach": "The manifest lists exactly six payload files, including readable replay source and reference predictions. It is not self-authenticating: replacing both files and the manifest defeats an unsigned checksum record. Never treat it as a signature.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Preprocessing belongs inside the fit",
+      "body": [
+        "Training learns means, scales and coefficients.",
+        "Held-out rows must not fit transformations."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Training inputs",
+        "Fit scaler",
+        "Fit Ridge",
+        "Predict held-out rows"
+      ],
+      "teach": "The diagram describes a Pipeline, not independent all-row scaling followed by a split. Validation and test call predict only. A fixed mathematical feature mapping and learned preprocessing parameters are different concepts.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "A median baseline matches absolute loss",
+      "body": [
+        "The training-target median is a constant predictor.",
+        "It minimizes training absolute error."
+      ],
+      "kind": "equations",
+      "payload": [
+        "Predict a constant c for every row",
+        "Choose c to minimize sum |y_i - c|",
+        "A training median is a minimizer."
+      ],
+      "teach": "Explain the one-dimensional absolute-loss objective: moving c changes how many observations lie to its left and right, with a median balancing them. For even n, any point between middle order statistics is a minimizer. This does not guarantee best held-out performance.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Ridge trades fit against coefficient size",
+      "body": [
+        "Training minimizes squared error plus L2 penalty.",
+        "Alpha changes the strength of shrinkage."
+      ],
+      "kind": "equations",
+      "payload": [
+        "Loss = sum (y_i - predicted_i)^2",
+        "Penalty = alpha * sum beta_j^2",
+        "Intercept is not penalized here."
+      ],
+      "teach": "Use the scikit-learn Ridge objective convention: residual sum of squares plus alpha times squared coefficient norm. Features are standardized first. Selection uses validation MAE, a different quantity from the squared training objective.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Predeclare the candidate grid",
+      "body": [
+        "Median, Ridge 1, Ridge 20, Ridge 100.",
+        "Exact ties follow this listed order."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Candidate",
+          "What is fitted"
+        ],
+        [
+          "Median",
+          "Training target median"
+        ],
+        [
+          "Ridge 1",
+          "Train scaler + alpha 1"
+        ],
+        [
+          "Ridge 20",
+          "Train scaler + alpha 20"
+        ],
+        [
+          "Ridge 100",
+          "Train scaler + alpha 100"
+        ]
+      ],
+      "teach": "The baseline is eligible to win. Choose by actual validation MAE; do not promise a winner before execution. An exact tie follows a documented candidate order, not hidden preferences.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Keep final evaluation behind a boundary",
+      "body": [
+        "Validation selects; final test evaluates.",
+        "The random-row split has limited scope."
+      ],
+      "kind": "partition",
+      "payload": "splits",
+      "teach": "The442rows are divided265/88/89. These are fixed teaching observations, not an external clinical validation cohort. A random-row protocol cannot establish future-time or new-site generalization without additional evidence.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Record versions and tolerances",
+      "body": [
+        "Same seed is a conditional guarantee.",
+        "Store the actual numerical environment."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Object",
+          "Required record"
+        ],
+        [
+          "Data",
+          "CSV + SHA-256"
+        ],
+        [
+          "Code",
+          "Readable runner + digest"
+        ],
+        [
+          "Environment",
+          "Python + package versions"
+        ],
+        [
+          "Comparison",
+          "IDs + atol + rtol"
+        ]
+      ],
+      "teach": "NumPy documents strict conditions for random-stream compatibility. Do not promise every future version or platform is bit-identical. Prediction comparison uses explicit absolute and relative tolerances rather than a rounded aggregate score.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Never load an untrusted model file",
+      "body": [
+        "Pickle-based loaders may execute code.",
+        "A checksum does not make unknown code safe."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Review trusted source",
+        "Read CSV + JSON",
+        "Rebuild declared pipeline",
+        "Compare predictions"
+      ],
+      "teach": "We avoid loading model pickles in this lab by refitting from readable reviewed source. This does not make executing arbitrary Python safe; the runner is still code that must be trusted. Source review and restricted provenance remain necessary.",
+      "minutes": 3,
+      "mode": "explanation"
+    },
+    {
+      "title": "A good handover has a stop condition",
+      "body": [
+        "Malformed input must fail before training.",
+        "Unexpected acceptance is a failed test."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Injected fault",
+          "Expected behavior"
+        ],
+        [
+          "Duplicate ID",
+          "Reject"
+        ],
+        [
+          "Non-finite value",
+          "Reject"
+        ],
+        [
+          "Wrong column order",
+          "Reject"
+        ]
+      ],
+      "teach": "The notebook catches expected ValueError exceptions on temporary copies and records rejections. It should not crash for a deliberately handled probe, but it must assert if a malformed copy is accepted. The original data remains unchanged.",
+      "minutes": 3,
+      "mode": "explanation"
+    },
+    {
+      "title": "Task 1: predict the membership change",
+      "body": [
+        "Reverse 20 source rows and reuse 15 positions.",
+        "Will the same seed preserve train membership?"
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Selection basis",
+          "After reordering"
+        ],
+        [
+          "Array positions",
+          "May select different IDs"
+        ],
+        [
+          "Saved ID membership",
+          "Same observations"
+        ],
+        [
+          "ID order",
+          "May need realignment"
+        ]
+      ],
+      "teach": "Two-minute pair exercise. Students write a prediction before executing Task1. The distinction is membership versus order; a set comparison alone cannot prove prediction vectors are correctly aligned.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 1: recover by identity",
+      "body": [
+        "Select rows whose IDs are in the frozen list.",
+        "Restore the saved order for vector comparison."
+      ],
+      "kind": "code",
+      "payload": [
+        "lookup = {row.id: row for row in rows}",
+        "train = [lookup[i] for i in saved_ids]",
+        "assert set(train_ids) == set(saved_ids)"
+      ],
+      "teach": "The second line preserves saved ID order as well as membership. A mere filter over shuffled rows preserves membership but may change order. The full runner reconstructs cohorts from saved lists before comparing predictions.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 2: inspect the learned means",
+      "body": [
+        "Locate scaler.mean_ in the pipeline.",
+        "Compare it with training means, not all-row means."
+      ],
+      "kind": "equations",
+      "payload": [
+        "fitted mean_j = mean(training feature_j)",
+        "Diagnostic: all-row mean_j - train mean_j",
+        "Do not fit the competing all-row scaler."
+      ],
+      "teach": "This guided calculation inspects scope without building a misleading alternative winner. The subsequent actual chart expresses mean gaps in training standard-deviation coordinates; a gap alone does not determine score change.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 2: choose a valid interpretation",
+      "body": [
+        "A scope difference signals a different fit.",
+        "It does not prove the direction of error change."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Observation",
+          "Supported interpretation"
+        ],
+        [
+          "Training means match",
+          "Expected preprocessing scope"
+        ],
+        [
+          "All-row means differ",
+          "Different fitted statistics"
+        ],
+        [
+          "No mean gap",
+          "Not a full leakage audit"
+        ]
+      ],
+      "teach": "Ask students why zero difference on one statistic would not validate all code. Feature transformations, targets, split construction and later selection could still leak. Stop when each pair can name one additional check.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Draft the portable evidence contract",
+      "body": [
+        "Name the inputs, fit rule and comparison.",
+        "A screenshot is not a runnable artifact."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Need",
+          "Portable file"
+        ],
+        [
+          "Measurements",
+          "frozen.csv"
+        ],
+        [
+          "Membership",
+          "split.json"
+        ],
+        [
+          "Choices",
+          "config.json"
+        ],
+        [
+          "Procedure",
+          "replay.py"
+        ]
+      ],
+      "teach": "Have pairs map each item to an object they will inspect in H2. The reference predictions and result record complete the payload. No fitted Python object is required by the replay procedure.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Prepare an honest limitation sentence",
+      "body": [
+        "State what the frozen experiment can support.",
+        "Separate computation from application validity."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Claim",
+          "Boundary"
+        ],
+        [
+          "Replay agrees",
+          "Same inputs and environment"
+        ],
+        [
+          "Test MAE",
+          "This random-row test only"
+        ],
+        [
+          "Coefficient response",
+          "Fitted function, not causation"
+        ]
+      ],
+      "teach": "Students draft one sentence before running. The packaged health dataset is only a regression teaching example; explicitly exclude diagnosis, treatment and clinical efficacy claims. This prevents a clean software run being upgraded into clinical evidence.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Summary: preserve identity and procedure",
+      "body": [
+        "Stable IDs, training-only fits and declared choices.",
+        "Add hashes, versions and explicit comparison rules."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Stable identity",
+        "Declared procedure",
+        "Recorded environment",
+        "Bounded replay claim"
+      ],
+      "teach": "Two-minute retrieval: one student explains row order, another explains preprocessing scope, another explains the manifest limitation. Require concrete checks, not only the word reproducible.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Exit: what must a new process receive?",
+      "body": [
+        "List files, not notebook variable names.",
+        "H2 will build and execute the handover."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Hidden state",
+          "Portable replacement"
+        ],
+        [
+          "X and y variables",
+          "Frozen CSV"
+        ],
+        [
+          "train_idx variable",
+          "Saved ID lists"
+        ],
+        [
+          "model object",
+          "Config + readable fit code"
+        ]
+      ],
+      "teach": "One-minute exit. A new Python process cannot access the notebook model or arrays automatically. Ask how it will know feature order, selected alpha and target definition before starting the next hour.",
+      "minutes": 1,
+      "mode": "practice"
+    }
+  ]
+}

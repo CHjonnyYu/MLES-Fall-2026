@@ -1,0 +1,21 @@
+{
+  "generated": "2026-10-19",
+  "tool": "Built-in image generation tool",
+  "asset": "w10-cover.jpg",
+  "slide": "W10 H1 slide1",
+  "scope": "Conceptual artwork, not a measured replication",
+  "prompt": "Use case: scientific-educational. Asset type: 16:9 cover for a university technical lecture on reproducible ML workflow. Primary request: a sophisticated physically plausible editorial laboratory scene explaining evidence handover, not a generic AI robot. A precision machined metal calibration specimen on a small carrier is transferred through a transparent archival cassette that keeps each specimen in an individual uniquely shaped slot; an identical second bench on the right receives the same cassette and reconstructs the same measurement arrangement. Show a clear continuous unbroken chain from physical sample to protected archive to independent reconstruction; subtly show a tangled loose pile of untracked samples off to the far left as the contrast. The two benches have compatible fixtures and matching specimen geometry. No people or faces, no screens, no fake plots, no digits, no labels, no text, no equations, no logos, no imaginary measured outputs. Warm ivory laboratory, NCKU maroon, petroleum teal, brushed metal and restrained copper. Museum-quality scientific 3D rendering with cinematic lighting, exceptional detail, precise forms, not magical holograms. Subject fills a wide 16:9 frame. Conceptual artwork only, not an actual experiment or validated simulation.",
+  "quantitative_figures": {
+    "origin": "Fresh CPU execution of week-10-practice.ipynb",
+    "data_sha256": "a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4",
+    "environment": {
+      "python": "3.12.14",
+      "numpy": "2.5.4",
+      "scikit_learn": "1.9.1",
+      "matplotlib": "3.11.2",
+      "scipy": "1.18.1",
+      "platform": "macOS-26.6.2-arm64-arm-64bit"
+    }
+  },
+  "other_visuals": "Unique per-slide native workflow / schema diagrams, ID illustration and explicit tolerance demo. All data plots come from actual execution."
+}

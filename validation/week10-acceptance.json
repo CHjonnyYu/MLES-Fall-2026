@@ -1,0 +1,105 @@
+{
+  "week": 10,
+  "class_date": "2026-11-09",
+  "checked": "2026-10-19",
+  "modules": [
+    {
+      "hour": 1,
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 45,
+      "practice_minutes": 15
+    },
+    {
+      "hour": 2,
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 45
+    },
+    {
+      "hour": 3,
+      "slides": 30,
+      "minutes": 60,
+      "explanation_minutes": 0,
+      "practice_minutes": 60
+    }
+  ],
+  "core_exercises": 8,
+  "optional_challenges": 2,
+  "scope": "Computational replay of a packaged regression teaching experiment; no causal, clinical or external deployment validation",
+  "slides": {
+    "all_90": "Rendered geometry, SVG text boxes, image loading, dual logos, sources, notes, timing and JavaScript checks",
+    "remaining_failures": 0,
+    "visual_review": "All90 in deck overviews with individual full-size review of the cover, row-ID widget, schema pages, actual model results, replay chart and coefficient equations. Not claimed as a separate full-size human review of every slide."
+  },
+  "demos": [
+    {
+      "name": "ID reorder",
+      "symmetric_difference": 10,
+      "recovered_difference": 0,
+      "status": "passed"
+    },
+    {
+      "name": "Explicit tolerance",
+      "pass_at_1e8": true,
+      "fail_at_2e8": true,
+      "status": "passed"
+    },
+    {
+      "name": "Actual validation table",
+      "status": "passed"
+    }
+  ],
+  "notebooks": [
+    {
+      "kind": "practice",
+      "status": "passed",
+      "executed_code_matches_published": true,
+      "outputs_blank": true,
+      "code_cells": 10,
+      "figures": 11,
+      "extracted_ZIP_replay_max_difference": 0.0,
+      "sha256": "6ed2d1f576e9921e5f7418d6800be0ebf75e7e1281af3809874bfb40c1dc2b50"
+    },
+    {
+      "kind": "exercise",
+      "status": "passed",
+      "executed_code_matches_published": true,
+      "outputs_blank": true,
+      "code_cells": 21,
+      "figures": 11,
+      "extracted_ZIP_replay_max_difference": 0.0,
+      "sha256": "87f73e4b075fce6f4b71dead5ea471a673ba9e5a034cbad0241127be5450f88d"
+    }
+  ],
+  "execution_scope": "Fresh local CPU Jupyter kernels and separate replay interpreters; not Google Colab-browser execution.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "scikit_learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "scipy": "1.18.1",
+    "platform": "macOS-26.6.2-arm64-arm-64bit"
+  },
+  "checks": [
+    "8 core tasks",
+    "2 optional branches",
+    "19-field draft/completed export",
+    "Independent interpreter replay",
+    "Unzip handover into a new directory and replay",
+    "Malformed-input rejection including blank IDs and extra/missing row values",
+    "ZIP CRC integrity",
+    "Student outputs and responses blank"
+  ],
+  "latex": {
+    "reader": "compiled, no overfull boxes or undefined references",
+    "full_book": "compiled, no overfull boxes or undefined references"
+  },
+  "primary_sources": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html",
+    "https://scikit-learn.org/stable/common_pitfalls.html",
+    "https://scikit-learn.org/stable/model_persistence.html",
+    "https://numpy.org/doc/stable/reference/random/compatibility.html"
+  ]
+}

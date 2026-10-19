@@ -1,0 +1,557 @@
+{
+  "title": "Build and verify a portable workflow",
+  "slides": [
+    {
+      "title": "Make the contract executable",
+      "body": [
+        "Week 10 / H2 / guided studio",
+        "Turn the declared protocol into a portable package."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Raw packaged rows",
+        "Frozen data + IDs",
+        "Fitted candidates",
+        "Checked handover"
+      ],
+      "teach": "H2 provides15minutes explanation followed by45minutes guided computing. The evidence target is a verified handover ZIP plus a fresh-process prediction comparison. The complete walkthrough requires free CPU only.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Inspect the packaged dataset contract",
+      "body": [
+        "442 observations, 10 numeric features.",
+        "Use raw inputs; no clinical inference is claimed."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Property",
+          "Declared scope"
+        ],
+        [
+          "Rows",
+          "442 source observations"
+        ],
+        [
+          "Inputs",
+          "10 raw numeric columns"
+        ],
+        [
+          "Target",
+          "Packaged regression response"
+        ],
+        [
+          "Use",
+          "Statistical teaching only"
+        ]
+      ],
+      "teach": "The original Week10 used this bundled dataset. We preserve that teaching fixture but make raw-input loading and strict scope explicit. Do not infer a feature meaning where the dataset documentation is uncertain.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Freeze all three partitions",
+      "body": [
+        "265 train, 88 validation, 89 test.",
+        "Keep source IDs with measurements."
+      ],
+      "kind": "bars",
+      "payload": [
+        [
+          "Train",
+          265
+        ],
+        [
+          "Validation",
+          88
+        ],
+        [
+          "Test",
+          89
+        ]
+      ],
+      "teach": "Explain the integer counts sum to442. The seeded permutation selects membership once; lists are persisted in sorted source-index order. The runner reconstructs those exact sequences by ID, not by the current file row positions.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Specify how the winner is chosen",
+      "body": [
+        "Only validation MAE enters selection.",
+        "Do not use test scores to break a tie."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Fit train-only candidates",
+        "Read validation MAE",
+        "Apply declared tie order",
+        "Freeze selected candidate"
+      ],
+      "teach": "The four candidates and order were declared before fitting. The runner will refit only the frozen selected one rather than repeating model selection. If you later change candidates, label the work exploratory.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "A fresh process removes hidden state",
+      "body": [
+        "A new interpreter cannot see notebook arrays.",
+        "It still shares the installed environment."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Removed",
+          "Still shared"
+        ],
+        [
+          "Notebook globals",
+          "Installed packages"
+        ],
+        [
+          "Fitted object memory",
+          "Same dataset source"
+        ],
+        [
+          "Notebook working dir",
+          "Same host environment"
+        ]
+      ],
+      "teach": "This is a deliberately bounded experiment. A separate process and new working directory are stronger than a second local variable, but not an independent environment, machine or scientific replication.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Compare in the same ID order",
+      "body": [
+        "Matching vector positions must mean matching rows.",
+        "Preserve signed prediction differences."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "Saved ID",
+          "Reference",
+          "Replay"
+        ],
+        [
+          "A",
+          "pred(A)",
+          "pred(A)"
+        ],
+        [
+          "B",
+          "pred(B)",
+          "pred(B)"
+        ],
+        [
+          "Check",
+          "Same ID sequence",
+          "Then compare values"
+        ]
+      ],
+      "teach": "Different order can manufacture numerical differences or conceal them if values are sorted. Verify test IDs before the prediction comparison, and do not sort predictions independently of IDs.",
+      "minutes": 2,
+      "mode": "explanation"
+    },
+    {
+      "title": "Use a transparent tolerance rule",
+      "body": [
+        "Allow atol + rtol * abs(reference).",
+        "Tolerance is not a model-accuracy metric."
+      ],
+      "kind": "demo",
+      "payload": "tolerance",
+      "teach": "We use atol1e-8 and rtol1e-10. The widget fixes a reference prediction10, so the limit is1.1e-8. Students test differences on either side of the limit. A loose tolerance can hide a broken replay; it should not be tuned to force a pass.",
+      "minutes": 3,
+      "mode": "explanation"
+    },
+    {
+      "title": "Open one self-contained notebook",
+      "body": [
+        "The exercise notebook includes the walkthrough.",
+        "Do not run duplicate copies in the same runtime."
+      ],
+      "kind": "code",
+      "payload": [
+        "# Choose a free CPU runtime",
+        "# Run the walkthrough once, top to bottom",
+        "print(ENV)",
+        "print(CONFIG)"
+      ],
+      "teach": "Guided practice starts. No paid AI, GPU, API key or remote dataset download is needed. Package setup installs only missing free libraries. Record actual versions from the run instead of copying a reference environment.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Inspect source columns before fitting",
+      "body": [
+        "Verify shape, finite values and header order.",
+        "IDs stay outside the feature matrix."
+      ],
+      "kind": "code",
+      "payload": [
+        "assert X.shape == (442, 10)",
+        "assert isfinite(X).all()",
+        "HEADER = [row_id, *FEATURES, target]"
+      ],
+      "teach": "Teaching notation shows names symbolically; runnable checks are in the notebook. Have the reviewer locate the source-ID creation and confirm it is not appended as a feature. If any schema assertion fails, stop before fitting.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Read the actual split distributions",
+      "body": [
+        "Histograms show this random partition.",
+        "Similar shapes do not prove representativeness."
+      ],
+      "kind": "image",
+      "payload": "w10-target-distributions.png",
+      "teach": "Actual reference outputs from the notebook. Each split count appears in its legend. Empirical density uses a common target bin grid. The diagram is descriptive, not proof that a random-row split supports external or future clinical use.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Write the CSV and split manifest",
+      "body": [
+        "Freeze row IDs with exact feature values.",
+        "Save the three ID lists separately."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Source rows + names",
+        "CSV with row_id",
+        "Train/val/test ID lists",
+        "Per-file identity"
+      ],
+      "teach": "The frozen CSV stores full float representations, not rounded display values. Split membership is in split.json. The original measured pairings must remain intact if rows are reordered.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Review the readable replay program",
+      "body": [
+        "It verifies files and schema before fitting.",
+        "It reconstructs the already selected candidate."
+      ],
+      "kind": "code",
+      "payload": [
+        "verify_required_file_hashes(root)",
+        "cohort = read_contract(root, config)",
+        "model.fit(train_inputs, train_targets)",
+        "prediction = model.predict(test_inputs)"
+      ],
+      "teach": "This is an explanatory fragment of the complete exported replay.py. It does not reuse a model object from the notebook. It also does not reselect based on final-test outcomes. Students inspect the actual file before running it.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Fit the median and three Ridge candidates",
+      "body": [
+        "All fitted statistics use training rows only.",
+        "Read the actual validation table next."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Candidate",
+          "Fit data"
+        ],
+        [
+          "Median",
+          "Training targets"
+        ],
+        [
+          "Ridge 1",
+          "Training features + targets"
+        ],
+        [
+          "Ridge 20",
+          "Training features + targets"
+        ],
+        [
+          "Ridge 100",
+          "Training features + targets"
+        ]
+      ],
+      "teach": "Ask students to predict stronger-alpha effects before inspecting validation. Alpha controls the penalty but does not imply monotonic improvement of held-out MAE. Median baseline remains a legitimate candidate.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Select from actual validation evidence",
+      "body": [
+        "Read all four candidates on the same 88 rows.",
+        "Freeze the minimum-MAE candidate."
+      ],
+      "kind": "image",
+      "payload": "w10-validation-selection.png",
+      "teach": "Actual reference run selects Ridge20. Students must retain their actual measured table and candidate. Reference numbers are for an auditable teaching case, not guaranteed outputs for an arbitrary environment or modified data.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Read shrinkage separately from MAE",
+      "body": [
+        "Coefficient norm reflects regularization strength.",
+        "It is not the selection score."
+      ],
+      "kind": "image",
+      "payload": "w10-regularization-path.png",
+      "teach": "This chart uses standardized Ridge coefficients at the three declared alpha values. A smaller norm does not automatically imply better validation MAE. Both the training objective and the comparison metric should be named.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Open the final test only after selection",
+      "body": [
+        "Compare selected model with the median baseline.",
+        "Keep the selected candidate unchanged."
+      ],
+      "kind": "image",
+      "payload": "w10-test-metrics.png",
+      "teach": "Actual reference test n89. The selected Ridge20 MAE is about48.326 and the median baseline about65.281 in packaged target units. These finite random-row results must not become a clinical performance claim. No model retuning follows the test.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Inspect observed versus predicted values",
+      "body": [
+        "The diagonal means exact agreement.",
+        "Read individual departures from that line."
+      ],
+      "kind": "image",
+      "payload": "w10-test-parity.png",
+      "teach": "Actual selected-model held-out predictions. This model is imperfect even though later computational replay agrees exactly. Ask students to locate a high-target underprediction and distinguish absolute error from agreement of two software runs.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Inspect the signed residuals",
+      "body": [
+        "Positive residual means overprediction.",
+        "Look for patterns, not just an average."
+      ],
+      "kind": "image",
+      "payload": "w10-test-residuals.png",
+      "teach": "Residual convention remains prediction minus observation from Week9. The horizontal coordinate is the model prediction. A residual pattern can motivate a new hypothesis; it cannot prove a clinical cause or justify retuning on this final test.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Read a finite-sample error distribution",
+      "body": [
+        "The CDF compares fractions below each error.",
+        "It does not guarantee future error bounds."
+      ],
+      "kind": "image",
+      "payload": "w10-error-cdf.png",
+      "teach": "Each empirical CDF summarizes the same89test rows for a declared candidate. A threshold read from this plot is a description of the finite sample, not a validated deployment tolerance or a confidence interval.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Locate one real failure by its row ID",
+      "body": [
+        "Read the five largest absolute residuals.",
+        "Keep observation, prediction and sign together."
+      ],
+      "kind": "schema",
+      "payload": [
+        [
+          "From actual output",
+          "Keep in evidence"
+        ],
+        [
+          "Source row ID",
+          "Find the original row"
+        ],
+        [
+          "Observed / predicted",
+          "Recompute the residual"
+        ],
+        [
+          "Signed residual",
+          "Explain over/underprediction"
+        ]
+      ],
+      "teach": "Use worst_test_rows from the actual JSON rather than an invented example. The exact row ID is version-specific. No medical story should be inferred from a single large residual.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Interpret the fitted coordinate system",
+      "body": [
+        "Coefficients describe +1 training-SD changes.",
+        "Correlated inputs limit importance claims."
+      ],
+      "kind": "image",
+      "payload": "w10-coefficients.png",
+      "teach": "Actual coefficients of the declared interpretation candidate, selected Ridge20 in the reference case. Signed coefficients describe the fitted additive function. No causal, clinical or treatment recommendation follows from these coefficients.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Audit the preprocessing scope numerically",
+      "body": [
+        "Contrast all-row and training-only means.",
+        "The plotted gap is diagnostic, not a new fit."
+      ],
+      "kind": "image",
+      "payload": "w10-preprocessing-scope.png",
+      "teach": "Actual normalized mean differences. The plotted all-row statistic is inspected to teach the scope distinction; it is not used to fit the production candidate, select a winner or demonstrate a measured leakage improvement.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 3: defend the selected candidate",
+      "body": [
+        "Recompute the declared rule from validation only.",
+        "Explain the role of the baseline and tie order."
+      ],
+      "kind": "demo",
+      "payload": "selection",
+      "teach": "The widget displays actual saved validation scores and labels the reference-selected candidate. Exploring the table in the browser does not change the fitted notebook model. Students record their reasoning in Task3 before continuing.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 4: reject malformed copies",
+      "body": [
+        "Duplicate IDs, NaN and reordered columns.",
+        "The reference CSV must remain unchanged."
+      ],
+      "kind": "image",
+      "payload": "w10-contract-tests.png",
+      "teach": "Actual three rejection-test outcomes from temporary copies. Every expected exception is caught and recorded. An accepted malformed copy would fail an assertion. These are contract tests, not performance metrics or a safety assurance.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Build the required payload manifest",
+      "body": [
+        "Six payload digests plus manifest.json.",
+        "Trust still needs an external provenance decision."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Payload",
+          "Purpose"
+        ],
+        [
+          "CSV + split JSON",
+          "Inputs + membership"
+        ],
+        [
+          "Config + source",
+          "Selected procedure"
+        ],
+        [
+          "Predictions + result",
+          "Reference evidence"
+        ],
+        [
+          "Manifest",
+          "Byte integrity checks"
+        ]
+      ],
+      "teach": "A manifest listing its own hash would be circular, so the manifest hashes six payload files, not itself. It cannot authenticate a malicious sender who replaces both file and digest. Review generated source before executing it.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Task 5: start the independent interpreter",
+      "body": [
+        "Use a fresh temporary working directory.",
+        "Pass explicit root and output paths."
+      ],
+      "kind": "code",
+      "payload": [
+        "subprocess.run([sys.executable, runner,",
+        "  \"--root\", bundle_path,",
+        "  \"--out\", output_path],",
+        "  cwd=fresh_directory, check=True)"
+      ],
+      "teach": "The full notebook captures errors and uses a timeout. The process receives file paths, not globals. Ask what would happen if split.json were absent: validation fails instead of using a hidden train_idx variable.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Compare aligned prediction differences",
+      "body": [
+        "The reference replay has zero maximum difference.",
+        "This is computational agreement only."
+      ],
+      "kind": "image",
+      "payload": "w10-replay-differences.png",
+      "teach": "Actual fresh-process minus notebook prediction differences after exact ID alignment. Reference maximum is0 in this environment. The narrow vertical scale is explicit. Do not describe a flat replay curve as evidence of low prediction error against real outcomes.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Save the guided evidence checkpoint",
+      "body": [
+        "Download the handover ZIP and result record.",
+        "H3 will test, interpret and hand it to a partner."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Reviewed runner",
+        "Verified required files",
+        "Aligned replay comparison",
+        "Portable handover ZIP"
+      ],
+      "teach": "Check the ZIP includes its handover directory and actual evidence/figures. The full notebook uses a whitelist rather than archiving arbitrary runtime files. Save before the temporary Colab runtime expires.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Summary: reproducibility is a procedure",
+      "body": [
+        "Freeze identity, choices and executable checks.",
+        "Compare vectors before telling a performance story."
+      ],
+      "kind": "lineage",
+      "payload": [
+        "Fit only training",
+        "Select on validation",
+        "Replay from files",
+        "State the boundary"
+      ],
+      "teach": "Pairs retrieve the four stages and identify one actual output. Correct the misconception that a matching score or readable script alone is enough. A passing computational replay does not validate the dataset for clinical use.",
+      "minutes": 2,
+      "mode": "practice"
+    },
+    {
+      "title": "Exit: what did the new process not test?",
+      "body": [
+        "Name one shared dependency or limitation.",
+        "Bring the saved ZIP, not only a screenshot."
+      ],
+      "kind": "table",
+      "payload": [
+        [
+          "Shared dependency",
+          "Not independently tested"
+        ],
+        [
+          "Installed environment",
+          "Cross-version compatibility"
+        ],
+        [
+          "Same dataset",
+          "External population"
+        ],
+        [
+          "Same fit design",
+          "Scientific validity"
+        ]
+      ],
+      "teach": "One-minute exit. The next hour tests the handover and explanation without hidden notebook state. Partners must find actual file identities and outcomes rather than trust the presenter.",
+      "minutes": 1,
+      "mode": "practice"
+    }
+  ]
+}
