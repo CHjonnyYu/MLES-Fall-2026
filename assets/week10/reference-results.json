@@ -66,6 +66,288 @@
       "RMSE": 59.411283489138796
     }
   },
+  "worst_test_rows": [
+    {
+      "row_id": "diabetes-0102",
+      "observed": 302,
+      "predicted": 141.99245750874405,
+      "residual": -160.00754249125595
+    },
+    {
+      "row_id": "diabetes-0359",
+      "observed": 311,
+      "predicted": 174.46650890191256,
+      "residual": -136.53349109808744
+    },
+    {
+      "row_id": "diabetes-0037",
+      "observed": 276,
+      "predicted": 144.98860183865835,
+      "residual": -131.01139816134165
+    },
+    {
+      "row_id": "diabetes-0363",
+      "observed": 58,
+      "predicted": 170.47824574587406,
+      "residual": 112.47824574587406
+    },
+    {
+      "row_id": "diabetes-0276",
+      "observed": 283,
+      "predicted": 180.18755385033762,
+      "residual": -102.81244614966238
+    }
+  ],
+  "claim_limit": "Frozen random-row teaching split; no external clinical, causal or deployment claim.",
+  "replay_max_prediction_difference": 0,
+  "contract_tests": [
+    {
+      "case": "duplicate ID",
+      "rejected": true,
+      "reason": "schema: duplicate row ID"
+    },
+    {
+      "case": "non-finite",
+      "rejected": true,
+      "reason": "schema: non-finite numeric value"
+    },
+    {
+      "case": "column order",
+      "rejected": true,
+      "reason": "schema: exact column order required"
+    },
+    {
+      "case": "extra value",
+      "rejected": true,
+      "reason": "schema: row width"
+    },
+    {
+      "case": "missing value",
+      "rejected": true,
+      "reason": "schema: row width"
+    },
+    {
+      "case": "empty ID",
+      "rejected": true,
+      "reason": "schema: empty row ID"
+    },
+    {
+      "case": "invalid partition",
+      "rejected": true,
+      "reason": "schema: split overlap or missing IDs"
+    }
+  ],
+  "replay_scope": "Fresh interpreter and working directory, same installed environment; not independent scientific replication",
+  "observations": {
+    "task1": {
+      "saved": [
+        "row-14",
+        "row-18",
+        "row-00",
+        "row-09",
+        "row-13",
+        "row-01",
+        "row-06",
+        "row-15",
+        "row-02",
+        "row-12",
+        "row-11",
+        "row-08",
+        "row-17",
+        "row-16",
+        "row-03"
+      ],
+      "wrong": [
+        "row-05",
+        "row-01",
+        "row-19",
+        "row-10",
+        "row-06",
+        "row-18",
+        "row-13",
+        "row-04",
+        "row-17",
+        "row-07",
+        "row-08",
+        "row-11",
+        "row-02",
+        "row-03",
+        "row-16"
+      ],
+      "recovered": [
+        "row-14",
+        "row-18",
+        "row-00",
+        "row-09",
+        "row-13",
+        "row-01",
+        "row-06",
+        "row-15",
+        "row-02",
+        "row-12",
+        "row-11",
+        "row-08",
+        "row-17",
+        "row-16",
+        "row-03"
+      ],
+      "positional_membership_changed": true,
+      "same_recovered_sequence": true
+    },
+    "task2": {
+      "counts": {
+        "train": 265,
+        "validation": 88,
+        "test": 89
+      },
+      "training_mean_matches": true,
+      "mean_gap_train_sd": [
+        0.0060036139650923625,
+        0.023532839709310308,
+        -0.05057858994423887,
+        -0.0023987697569752002,
+        0.013735171803876905,
+        0.00721037684389956,
+        0.00867072950528195,
+        0.015857140441432365,
+        0.00748985455432063,
+        0.002905967362464221
+      ],
+      "row_id_is_feature": false
+    },
+    "task3": {
+      "validation": {
+        "median": {
+          "n": 88,
+          "MAE": 64.06818181818181,
+          "RMSE": 74.72707918577017
+        },
+        "ridge-1": {
+          "n": 88,
+          "MAE": 49.00040229185163,
+          "RMSE": 59.686515510679946
+        },
+        "ridge-20": {
+          "n": 88,
+          "MAE": 48.34407523041293,
+          "RMSE": 58.72486552014926
+        },
+        "ridge-100": {
+          "n": 88,
+          "MAE": 48.48928695473337,
+          "RMSE": 58.25527716865494
+        }
+      },
+      "selected": "ridge-20",
+      "test_used_for_selection": false
+    },
+    "task4": [
+      {
+        "case": "duplicate ID",
+        "rejected": true,
+        "reason": "schema: duplicate row ID"
+      },
+      {
+        "case": "non-finite",
+        "rejected": true,
+        "reason": "schema: non-finite numeric value"
+      },
+      {
+        "case": "column order",
+        "rejected": true,
+        "reason": "schema: exact column order required"
+      },
+      {
+        "case": "extra value",
+        "rejected": true,
+        "reason": "schema: row width"
+      },
+      {
+        "case": "missing value",
+        "rejected": true,
+        "reason": "schema: row width"
+      },
+      {
+        "case": "empty ID",
+        "rejected": true,
+        "reason": "schema: empty row ID"
+      },
+      {
+        "case": "invalid partition",
+        "rejected": true,
+        "reason": "schema: split overlap or missing IDs"
+      }
+    ],
+    "task5": {
+      "different_process": true,
+      "same_installed_environment": true,
+      "runner_compares_its_own_reference": true,
+      "max_difference": 0,
+      "worst_case": {
+        "row_id": "diabetes-0102",
+        "observed": 302,
+        "predicted": 141.99245750874405,
+        "residual": -160.00754249125595
+      }
+    },
+    "task6": {
+      "reference_sha256": "a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4",
+      "reviewed_copy_sha256": "d0938968766f23ee9466dee7a8c79be87bab6620edb8c398abbc3f367efa3bcd",
+      "ID_keyed_records_equal": true,
+      "saved_ID_sequence_equal": true,
+      "max_prediction_difference": 0,
+      "reference_unchanged": true
+    },
+    "task7": {
+      "candidate": "ridge-20",
+      "coordinate": "bmi",
+      "step_training_SD": 0.1,
+      "expected_delta": 2.2745464622780474,
+      "max_disagreement": 3.68594044175552e-14
+    },
+    "task8": {
+      "payload_hashes": {
+        "frozen.csv": true,
+        "split.json": true,
+        "config.json": true,
+        "reference-predictions.csv": true,
+        "replay.py": true,
+        "result.json": true
+      },
+      "selected": "ridge-20",
+      "test_metric": {
+        "n": 89,
+        "MAE": 48.32575567867582,
+        "RMSE": 59.411283489138796
+      },
+      "one_failure_ID": "diabetes-0102",
+      "fresh_process_difference": 0
+    }
+  },
+  "responses": {
+    "task1_prediction": "Reversing rows can change which observations the same positions select.",
+    "task1_explanation": "A seed fixes the positional procedure under stated conditions. Saved IDs recover membership; iterating in the saved ID order also restores vector alignment.",
+    "task2_prediction": "Training-only means can differ from all-row means because the fitted scope differs.",
+    "task2_explanation": "Raw loading avoids the loader’s global scaling. The scaler mean matches training rows, while a mean gap alone does not determine which score would improve.",
+    "task3_prediction": "A stronger penalty will shrink coefficients, but validation MAE need not improve monotonically.",
+    "task3_explanation": "Validation MAE selects among predeclared candidates. The training objective is different from the selection metric, and the frozen choice is not reopened after test inspection.",
+    "task4_prediction": "The strict reader should refuse malformed copies rather than silently guess a repair.",
+    "task4_explanation": "Expected caught ValueErrors count as successful rejection tests. A passed schema only establishes well-formed inputs relative to this contract.",
+    "task5_prediction": "The new interpreter needs the saved files and reviewed code; notebook globals cannot supply them.",
+    "task5_explanation": "The copied bundle and separate interpreter reconstruct the frozen selected candidate and compare its own reference file. This removes notebook state, not shared packages or dataset limitations.",
+    "task6_prediction": "Reordering valid records should change bytes but preserve an ID-based replay.",
+    "task6_explanation": "The reader reconstructs cohorts by saved ID sequence. We checked the record mapping before updating the copied manifest, then checked the resulting predictions; a rehashed file alone is not evidence of equivalence.",
+    "task7_prediction": "For this additive Ridge function, every row should change by 0.1 times the chosen standardized coefficient.",
+    "task7_explanation": "Undoing standardization reconstructs the same function. A coordinate change checks the algebra and units, not causal importance, medical guidance or new accuracy.",
+    "task8_prediction": "A classmate should be able to verify the declared files and reference comparison from the extracted bundle.",
+    "task8_explanation": "The handover links a result to saved inputs and procedure. Replay agreement does not remove prediction error or establish scientific, clinical or deployment validity.",
+    "controlled_change": "Task 6 reversed CSV data rows in a reviewed copy, preserved ID-keyed records and saved membership, and updated only that copy’s CSV digest.",
+    "limitation": "A new process shares the installed environment and the same observations. Numerical agreement does not establish external scientific or clinical validity.",
+    "ai_disclosure": "Worked course example. Replace this with an accurate disclosure of your own assistance."
+  },
+  "blank_fields": [],
+  "response_status": "ready for peer discussion; completeness only, not correctness",
+  "optional": {},
   "coefficients": {
     "candidate": "ridge-20",
     "features": [
@@ -129,57 +411,5 @@
       0.5221039129202634,
       11.619504599958267
     ]
-  },
-  "worst_test_rows": [
-    {
-      "row_id": "diabetes-0102",
-      "observed": 302,
-      "predicted": 141.99245750874405,
-      "residual": -160.00754249125595
-    },
-    {
-      "row_id": "diabetes-0359",
-      "observed": 311,
-      "predicted": 174.46650890191256,
-      "residual": -136.53349109808744
-    },
-    {
-      "row_id": "diabetes-0037",
-      "observed": 276,
-      "predicted": 144.98860183865835,
-      "residual": -131.01139816134165
-    },
-    {
-      "row_id": "diabetes-0363",
-      "observed": 58,
-      "predicted": 170.47824574587406,
-      "residual": 112.47824574587406
-    },
-    {
-      "row_id": "diabetes-0276",
-      "observed": 283,
-      "predicted": 180.18755385033762,
-      "residual": -102.81244614966238
-    }
-  ],
-  "claim_limit": "Frozen random-row teaching split; no external clinical, causal or deployment claim.",
-  "replay_max_prediction_difference": 0,
-  "contract_tests": [
-    {
-      "case": "duplicate ID",
-      "rejected": true,
-      "message": "schema: duplicate row ID"
-    },
-    {
-      "case": "non-finite",
-      "rejected": true,
-      "message": "schema: non-finite numeric value"
-    },
-    {
-      "case": "column order",
-      "rejected": true,
-      "message": "schema: exact column order required"
-    }
-  ],
-  "replay_scope": "Fresh interpreter and working directory; same installed environment, not independent replication"
+  }
 }

@@ -10,153 +10,73 @@
       "kind": "cover",
       "payload": "w10-cover.jpg",
       "teach": "Open with the sample cassette moving between two compatible measurement benches. Preserved identity and procedure make a comparison meaningful. The image is conceptual artwork, not evidence of an actual replication. Ask which digital objects correspond to sample, fixture and procedure.",
-      "minutes": 1,
+      "minutes": 3,
       "mode": "explanation"
     },
     {
-      "title": "The studio: explain 60, practise 120",
+      "title": "One notebook, eight tasks, three hours",
       "body": [
-        "H1: 45 min explanation + 15 min practice.",
-        "H2: 15 + 45; H3: a 60-minute lab."
+        "H1: preserve identity and training scope.",
+        "H2: fit, reject malformed copies, replay; H3: reorder, explain, hand over."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Hour",
-          "Explain",
-          "Practise"
-        ],
-        [
-          "H1",
-          "45 min",
-          "15 min"
-        ],
-        [
-          "H2",
-          "15 min",
-          "45 min"
-        ],
-        [
-          "H3",
-          "0 min",
-          "60 min"
-        ]
-      ],
-      "teach": "The outcome is a ZIP another interpreter can validate and replay. Prerequisites: pipelines, validation selection and error analysis from earlier weeks. Eight core tasks and two optional challenges are class practice, not new graded homework.",
+      "kind": "image",
+      "payload": "diagram-h1-s02.svg",
+      "teach": "Explain the 7/8,15/12/18 and15/12/13-minute task groups. Save20minutes in H3 for peer discussion, optional branches and export. Choose one complete exercise or worked notebook, not both.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Two matching scores can still mislead",
+      "title": "The same MAE can hide different predictions",
       "body": [
-        "Equal MAE does not imply equal predictions.",
-        "Compare row identities and prediction vectors."
+        "Model A errors [0,2]; Model B errors [2,0].",
+        "Both have MAE 1, but fail on different rows."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Row",
-          "Model A error",
-          "Model B error"
-        ],
-        [
-          "A",
-          "0",
-          "2"
-        ],
-        [
-          "B",
-          "2",
-          "0"
-        ],
-        [
-          "MAE",
-          "1",
-          "1"
-        ]
-      ],
-      "teach": "This defined two-row example has identical aggregate MAE but different individual predictions. A replay claim should compare aligned vectors, not just a screenshot or rounded score. Ask which row a downstream decision would treat differently.",
+      "kind": "image",
+      "payload": "diagram-equal-mae.png",
+      "teach": "Draw errors by row before computing the average. Reproducibility needs aligned predictions, not an equal rounded mean.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Analytic teaching illustration"
     },
     {
-      "title": "Week 9 asked where a model fails",
+      "title": "From same-kernel readback to a new process",
       "body": [
-        "Week 10 asks whether its evidence can travel.",
-        "Good replay does not repair a bad model."
+        "Week 9 reconstructed rows inside the current kernel.",
+        "Week 10 gives a fresh interpreter all required files."
       ],
-      "kind": "lineage",
-      "payload": [
-        "Observed failure",
-        "Frozen evidence",
-        "Independent interpreter",
-        "Bounded comparison"
-      ],
-      "teach": "Retrieve a slice failure from Week9. The new dependency is preserving identity, code and configuration so an independent process can reconstruct that computation. Reliability and reproducibility are distinct: a consistently wrong result is reproducible.",
+      "kind": "image",
+      "payload": "diagram-h1-s04.svg",
+      "teach": "The new process is independent of notebook global variables; installed dependencies are still shared. Reliability and computational replay ask different questions.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Define the claim before the tool",
+      "title": "State exactly what the replay establishes",
       "body": [
-        "Our goal is computational replay.",
-        "It is not independent scientific replication."
+        "Same frozen data and procedure; aligned numerical agreement.",
+        "A new process still shares installed packages."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "This lab establishes",
-          "It does not establish"
-        ],
-        [
-          "Same frozen inputs",
-          "A new population"
-        ],
-        [
-          "Same declared procedure",
-          "A new physical experiment"
-        ],
-        [
-          "Numerical agreement",
-          "Clinical validity"
-        ]
-      ],
-      "teach": "State the operational definitions used in this course. A fresh process in the same installed environment removes notebook state, but not shared software dependencies or dataset limitations. Do not make a universal claim about terminology across disciplines.",
+      "kind": "image",
+      "payload": "diagram-h1-s05.svg",
+      "teach": "Use the operational course definition. A rerun does not create a new population, machine, environment or physical experiment.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "A seed controls positions, not identity",
+      "title": "A seed fixes positions under stated conditions",
       "body": [
-        "A permutation returns indices into an order.",
-        "A changed input order changes their meaning."
+        "Reverse source rows, then reuse positional indices.",
+        "Saved source IDs identify the intended observations."
       ],
-      "kind": "schema",
-      "payload": [
-        [
-          "Position",
-          "Original row",
-          "Reversed row"
-        ],
-        [
-          "0",
-          "row-00",
-          "row-19"
-        ],
-        [
-          "1",
-          "row-01",
-          "row-18"
-        ],
-        [
-          "2",
-          "row-02",
-          "row-17"
-        ]
-      ],
-      "teach": "Draw a distinction between an integer index and a stable dataset ID. If positions are reused after reordering, a fixed seed can select different observations. A row ID must be assigned before shuffling and kept with the measurement.",
+      "kind": "image",
+      "payload": "diagram-h1-s06.svg",
+      "teach": "Contrast position0 with a source ID. In the widget, a fixed first15-ID illustration is used; Task1 uses a seeded permutation and may produce a different membership count.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "Try the row-order trap",
@@ -166,25 +86,22 @@
       ],
       "kind": "demo",
       "payload": "ids",
-      "teach": "The widget is a defined20-ID illustration, not an implementation of NumPy random permutations. It saves the first15IDs, reverses the input when toggled, and reuses positions. Ten IDs differ in the symmetric difference; ID-based recovery preserves the saved membership.",
+      "teach": "This widget uses the exact saved15 seeded positions from notebook Task1. Reversal changes positional membership while saved-ID lookup restores it. Compare membership and full ID sequence separately.",
       "minutes": 2,
       "mode": "explanation"
     },
     {
-      "title": "Persist a partition as ID lists",
+      "title": "Check both membership and sequence",
       "body": [
-        "Train, validation and test IDs form a contract.",
-        "Disjointness alone is not enough."
+        "Disjoint sets must also cover the full dataset.",
+        "Rebuild rows in the saved ID order before comparing vectors."
       ],
-      "kind": "equations",
-      "payload": [
-        "No pairwise overlap",
-        "Union of IDs = complete frozen dataset",
-        "No duplicate IDs inside any split"
-      ],
-      "teach": "Explain why a missing row still allows empty intersections. All three properties and expected counts are checked. A single ID appearing twice in one list is a duplicate even if different lists do not overlap.",
+      "kind": "image",
+      "payload": "diagram-h1-s08.svg",
+      "teach": "Check unique IDs, expected counts, pairwise disjointness and full union. A set equality check does not establish vector alignment.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "IDs have a scope of validity",
@@ -282,33 +199,17 @@
       "mode": "explanation"
     },
     {
-      "title": "Separate three kinds of identity",
+      "title": "Bytes, records and meaning are different checks",
       "body": [
-        "Byte identity, record identity and meaning differ.",
-        "Use the right check for the claim."
+        "SHA256 compares bytes against a saved reference.",
+        "Task 6 checks equal records after an explicit row reorder."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Identity",
-          "Example check"
-        ],
-        [
-          "Exact bytes",
-          "SHA-256"
-        ],
-        [
-          "Parsed records",
-          "ID-keyed values"
-        ],
-        [
-          "Scientific meaning",
-          "Source + domain validation"
-        ]
-      ],
-      "teach": "Recall Week9 blank-line counterexample. A different hash may preserve parsed records; matching records can still contain scientifically incorrect measurements. This week uses exact bytes for handover integrity and IDs for alignment.",
+      "kind": "image",
+      "payload": "diagram-h1-s13.svg",
+      "teach": "Do not infer semantic equality from a rehashed file alone. Task6 separately checks the complete ID-keyed record mapping and the resulting predictions.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "A manifest makes changes visible",
@@ -345,36 +246,30 @@
       "mode": "explanation"
     },
     {
-      "title": "A median baseline matches absolute loss",
+      "title": "A median minimizes absolute training loss",
       "body": [
-        "The training-target median is a constant predictor.",
-        "It minimizes training absolute error."
+        "For [0,1,4,8], every constant from 1 to 4 minimizes total absolute loss.",
+        "The training property does not guarantee the best held-out score."
       ],
-      "kind": "equations",
-      "payload": [
-        "Predict a constant c for every row",
-        "Choose c to minimize sum |y_i - c|",
-        "A training median is a minimizer."
-      ],
-      "teach": "Explain the one-dimensional absolute-loss objective: moving c changes how many observations lie to its left and right, with a median balancing them. For even n, any point between middle order statistics is a minimizer. This does not guarantee best held-out performance.",
+      "kind": "image",
+      "payload": "diagram-median-loss.png",
+      "teach": "Move the proposed constant across the four observations and count contributions to absolute loss. The real baseline uses only training targets.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Analytic teaching illustration"
     },
     {
       "title": "Ridge trades fit against coefficient size",
       "body": [
-        "Training minimizes squared error plus L2 penalty.",
-        "Alpha changes the strength of shrinkage."
+        "Squared training error + alpha times squared coefficients.",
+        "Validation MAE need not improve as alpha increases."
       ],
-      "kind": "equations",
-      "payload": [
-        "Loss = sum (y_i - predicted_i)^2",
-        "Penalty = alpha * sum beta_j^2",
-        "Intercept is not penalized here."
-      ],
-      "teach": "Use the scikit-learn Ridge objective convention: residual sum of squares plus alpha times squared coefficient norm. Features are standardized first. Selection uses validation MAE, a different quantity from the squared training objective.",
+      "kind": "image",
+      "payload": "diagram-ridge-loss.png",
+      "teach": "The one-coefficient illustration is not the fitted dataset result. Explain why shrinking a coefficient and improving validation MAE are different questions. The intercept is not penalized in the real scikit-learn fit.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Analytic teaching illustration"
     },
     {
       "title": "Predeclare the candidate grid",
@@ -422,54 +317,30 @@
       "mode": "explanation"
     },
     {
-      "title": "Record versions and tolerances",
+      "title": "Record the environment and comparison rule",
       "body": [
-        "Same seed is a conditional guarantee.",
-        "Store the actual numerical environment."
+        "A seed does not promise cross-version bit identity.",
+        "Save versions, stable IDs and absolute/relative tolerances."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Object",
-          "Required record"
-        ],
-        [
-          "Data",
-          "CSV + SHA-256"
-        ],
-        [
-          "Code",
-          "Readable runner + digest"
-        ],
-        [
-          "Environment",
-          "Python + package versions"
-        ],
-        [
-          "Comparison",
-          "IDs + atol + rtol"
-        ]
-      ],
-      "teach": "NumPy documents strict conditions for random-stream compatibility. Do not promise every future version or platform is bit-identical. Prediction comparison uses explicit absolute and relative tolerances rather than a rounded aggregate score.",
+      "kind": "image",
+      "payload": "diagram-tolerance.png",
+      "teach": "NumPy stream compatibility is conditional. Comparison uses abs(diff)<=atol+rtol*abs(reference), not a rounded metric. Do not relax tolerance to conceal a broken replay.",
       "minutes": 2,
-      "mode": "explanation"
+      "mode": "explanation",
+      "visual_scope": "Analytic teaching illustration"
     },
     {
-      "title": "Never load an untrusted model file",
+      "title": "Use reviewed source and frozen input files",
       "body": [
-        "Pickle-based loaders may execute code.",
-        "A checksum does not make unknown code safe."
+        "This lab rebuilds the declared pipeline from readable code.",
+        "It does not require a serialized fitted model."
       ],
-      "kind": "lineage",
-      "payload": [
-        "Review trusted source",
-        "Read CSV + JSON",
-        "Rebuild declared pipeline",
-        "Compare predictions"
-      ],
-      "teach": "We avoid loading model pickles in this lab by refitting from readable reviewed source. This does not make executing arbitrary Python safe; the runner is still code that must be trusted. Source review and restricted provenance remain necessary.",
-      "minutes": 3,
-      "mode": "explanation"
+      "kind": "image",
+      "payload": "diagram-h1-s21.svg",
+      "teach": "The runner is still executable Python, so inspect and trust its provenance. The hash manifest is not a signature or a justification for running unknown code.",
+      "minutes": 2,
+      "mode": "explanation",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "A good handover has a stop condition",
@@ -497,96 +368,57 @@
         ]
       ],
       "teach": "The notebook catches expected ValueError exceptions on temporary copies and records rejections. It should not crash for a deliberately handled probe, but it must assert if a malformed copy is accepted. The original data remains unchanged.",
-      "minutes": 3,
+      "minutes": 2,
       "mode": "explanation"
     },
     {
       "title": "Task 1: predict the membership change",
       "body": [
-        "Reverse 20 source rows and reuse 15 positions.",
-        "Will the same seed preserve train membership?"
+        "Reverse 20 source IDs and reuse seeded positions.",
+        "Record your prediction before running."
       ],
-      "kind": "schema",
-      "payload": [
-        [
-          "Selection basis",
-          "After reordering"
-        ],
-        [
-          "Array positions",
-          "May select different IDs"
-        ],
-        [
-          "Saved ID membership",
-          "Same observations"
-        ],
-        [
-          "ID order",
-          "May need realignment"
-        ]
-      ],
-      "teach": "Two-minute pair exercise. Students write a prediction before executing Task1. The distinction is membership versus order; a set comparison alone cannot prove prediction vectors are correctly aligned.",
+      "kind": "image",
+      "payload": "diagram-h1-s23.svg",
+      "teach": "Seven minutes for Task1. Compare saved IDs, wrong positional selection and recovered sequence. No model is needed.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 1: recover by identity",
+      "title": "Task 1: recover the saved sequence",
       "body": [
-        "Select rows whose IDs are in the frozen list.",
-        "Restore the saved order for vector comparison."
+        "Build an ID-keyed lookup.",
+        "Iterate over saved IDs to restore both membership and order."
       ],
-      "kind": "code",
-      "payload": [
-        "lookup = {row.id: row for row in rows}",
-        "train = [lookup[i] for i in saved_ids]",
-        "assert set(train_ids) == set(saved_ids)"
-      ],
-      "teach": "The second line preserves saved ID order as well as membership. A mere filter over shuffled rows preserves membership but may change order. The full runner reconstructs cohorts from saved lists before comparing predictions.",
+      "kind": "image",
+      "payload": "diagram-h1-s24.svg",
+      "teach": "The assertion compares the full ID sequence. Filtering reordered input by an ID set alone can retain a different order.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 2: inspect the learned means",
+      "title": "Task 2: freeze raw data before fitting",
       "body": [
-        "Locate scaler.mean_ in the pipeline.",
-        "Compare it with training means, not all-row means."
+        "442 raw rows → 265 train / 88 validation / 89 test.",
+        "Fit the diagnostic scaler only on training rows."
       ],
-      "kind": "equations",
-      "payload": [
-        "fitted mean_j = mean(training feature_j)",
-        "Diagnostic: all-row mean_j - train mean_j",
-        "Do not fit the competing all-row scaler."
-      ],
-      "teach": "This guided calculation inspects scope without building a misleading alternative winner. The subsequent actual chart expresses mean gaps in training standard-deviation coordinates; a gap alone does not determine score change.",
+      "kind": "image",
+      "payload": "diagram-h1-s25.svg",
+      "teach": "Eight minutes for Task2. Source IDs are assigned before splitting and are excluded from features. Assert disjointness and full union. No all-row scaler is fitted.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 2: choose a valid interpretation",
+      "title": "Task 2: inspect the training-only means",
       "body": [
-        "A scope difference signals a different fit.",
-        "It does not prove the direction of error change."
+        "Compare fitted means with training means.",
+        "The all-row mean gap alone does not determine an accuracy change."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Observation",
-          "Supported interpretation"
-        ],
-        [
-          "Training means match",
-          "Expected preprocessing scope"
-        ],
-        [
-          "All-row means differ",
-          "Different fitted statistics"
-        ],
-        [
-          "No mean gap",
-          "Not a full leakage audit"
-        ]
-      ],
-      "teach": "Ask students why zero difference on one statistic would not validate all code. Feature transformations, targets, split construction and later selection could still leak. Stop when each pair can name one additional check.",
+      "kind": "image",
+      "payload": "w10-preprocessing-scope.png",
+      "teach": "Use the actual training-SD normalized gaps. Candidate pipelines in Task3 must also match these training means.",
       "minutes": 2,
       "mode": "practice"
     },

@@ -21,35 +21,15 @@
     {
       "title": "Reserve time for the actual handover",
       "body": [
-        "Do not spend the hour chasing a better score.",
-        "Protect replay, peer explanation and export time."
+        "Task 6: 15 min; Task 7: 12; Task 8: 13.",
+        "Keep 20 min for peer explanation, export and optional work."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Lab segment",
-          "Minutes"
-        ],
-        [
-          "Restore + core checks",
-          "10"
-        ],
-        [
-          "Controlled change + explanation",
-          "16"
-        ],
-        [
-          "Manifest + optional probes",
-          "14"
-        ],
-        [
-          "Peer replay + export",
-          "20"
-        ]
-      ],
-      "teach": "The lab is60minutes total. Optional tasks can replace spare practice time, not extend the meeting. A valid draft with an honest stopping point is better than a fabricated completion claim. The notebook is scaffolded so pairs can progress independently.",
+      "kind": "image",
+      "payload": "diagram-h3-s02.svg",
+      "teach": "These are H3 practice allocations. Total class practice is120minutes, not120 plus a second walkthrough.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "Restore configuration, not a remembered score",
@@ -105,9 +85,9 @@
       ],
       "kind": "code",
       "payload": [
-        "assert_allclose(scaler.mean_,",
-        "                X_train.mean(axis=0))",
-        "# Review transforms and split code too."
+        "m = models['ridge-20']",
+        "mu = m.named_steps['standardscaler'].mean_",
+        "np.testing.assert_allclose(mu, Xtr.mean(0))"
       ],
       "teach": "This assertion is necessary for the claimed preprocessing scope, but it is not a complete leakage audit. Have the reviewer locate the actual fit call and check that validation/test targets never fit transformations.",
       "minutes": 2,
@@ -138,7 +118,7 @@
           "Evaluation, not reselection"
         ]
       ],
-      "teach": "Inspect Task3 observations and frozen config. No extra model comparison is required here. The goal is to defend the existing selection rule with actual evidence, not narrate a preference for a complex algorithm.",
+      "teach": "The validation winner remains fixed through Tasks4–8. The new Task6 changes only CSV row order in an explicitly reviewed copy, not the selected alpha.",
       "minutes": 2,
       "mode": "practice"
     },
@@ -179,139 +159,89 @@
       ],
       "kind": "code",
       "payload": [
-        "assert fresh[\"test_ids\"] == saved_test_ids",
-        "assert_allclose(fresh[\"predictions\"],",
-        "                reference_predictions,",
-        "                atol=1e-8, rtol=1e-10)"
+        "assert replay['test_ids'] == SPLITS['test']",
+        "np.testing.assert_allclose(",
+        "  replay['predictions'], pred,",
+        "  atol=1e-8, rtol=1e-10)"
       ],
       "teach": "The exported replay process is separate from the notebook interpreter and working directory. It still shares Python packages. Passing establishes a bounded computational replay rather than independent scientific replication.",
       "minutes": 2,
       "mode": "practice"
     },
     {
-      "title": "Task 6: predeclare one diagnostic change",
+      "title": "Task 6: reorder data rows in a reviewed copy",
       "body": [
-        "Use Ridge alpha 200 on the same train rows.",
-        "Report validation only; retain the original winner."
+        "Reverse CSV data rows; preserve saved ID lists.",
+        "Check every ID-keyed record before updating the copy’s digest."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Object",
-          "Extension rule"
-        ],
-        [
-          "Alpha",
-          "200"
-        ],
-        [
-          "Training membership",
-          "Unchanged"
-        ],
-        [
-          "Reported comparison",
-          "Validation only"
-        ],
-        [
-          "Original selected model",
-          "Unchanged"
-        ]
-      ],
-      "teach": "Because final-test results have already been seen, this is exploratory work. A fresh evaluation protocol is needed before making a new model-selection claim. Do not compute an attractive new final score and call it unbiased.",
+      "kind": "image",
+      "payload": "diagram-h3-s09.svg",
+      "teach": "Only the temporary copy changes. The original byte hash and chosen model remain unchanged. This is a reviewed transformation, not blind rehashing to force acceptance.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 6: predict the direction first",
+      "title": "Task 6: different bytes can preserve the records",
       "body": [
-        "Stronger shrinkage reduces flexibility.",
-        "Validation MAE need not improve monotonically."
+        "CSV row order changes its SHA256.",
+        "The full ID-keyed value mapping can still be equal."
       ],
-      "kind": "equations",
-      "payload": [
-        "Training objective includes alpha * ||beta||^2",
-        "Changing alpha changes the fitted function.",
-        "Validation loss still depends on the data."
-      ],
-      "teach": "Students write their prediction and reason, then fit the separate extension. Score direction should come from the actual output. A wrong prediction with an accurate mechanism-based correction is useful evidence of learning.",
+      "kind": "image",
+      "payload": "diagram-h3-s10.svg",
+      "teach": "Distinguish exact byte identity from record identity. Both are checked rather than assuming a matching prediction means every record is equal.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 6: keep the extension separate",
+      "title": "Task 6: test alignment after the reorder",
       "body": [
-        "Record the new validation result explicitly.",
-        "Do not overwrite the reference configuration."
+        "A fresh process rebuilds cohorts in saved ID order.",
+        "Compare the 89-row prediction vector again."
       ],
-      "kind": "schema",
-      "payload": [
-        [
-          "Reference record",
-          "Extension record"
-        ],
-        [
-          "Selected from four candidates",
-          "Alpha 200 diagnostic"
-        ],
-        [
-          "Original held-out result",
-          "Validation result only"
-        ],
-        [
-          "Preserved handover ZIP",
-          "Separate exercise JSON"
-        ]
-      ],
-      "teach": "The starter stores the extension in observations.task6 while the original selected variable/config and handover remain unchanged. Compare the training-row membership and clarify which result belongs to which protocol.",
+      "kind": "image",
+      "payload": "diagram-h3-s11.svg",
+      "teach": "The legitimate copy has an explicitly updated CSV digest after record equality is established. Its selected candidate is unchanged. OptionalA instead keeps the old digest and expects rejection.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 7: explain a local function change",
+      "title": "Task 7: predict a coordinate response",
       "body": [
-        "Perturb one input by +0.1 training SD.",
-        "Predict delta from its standardized coefficient."
+        "Add 0.1 training SD to the bmi coordinate only.",
+        "Expected fitted response change is 0.1 times its standardized coefficient."
       ],
-      "kind": "equations",
-      "payload": [
-        "z_j = (x_j - train_mean_j) / train_SD_j",
-        "Increase x_j by 0.1 * train_SD_j",
-        "Expected delta prediction = 0.1 * beta_j"
-      ],
-      "teach": "The fixed Ridge model is linear in standardized coordinates, so the identity is exact up to numerical tolerance. This is an additive function check. Correlated-feature feasibility and causal or clinical interpretations are not established.",
+      "kind": "image",
+      "payload": "diagram-function-delta.png",
+      "teach": "This checks the additive fitted function, not medical causation or a feasible intervention. Record which candidate is being interpreted.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 7: recover the raw equation too",
+      "title": "Recover the same function in raw coordinates",
       "body": [
-        "Raw beta_j = scaled beta_j / scale_j.",
-        "The intercept must change with centering."
+        "Divide standardized coefficients by training scales.",
+        "Adjust the intercept and compare every prediction."
       ],
-      "kind": "equations",
-      "payload": [
-        "raw_beta_j = beta_j / scale_j",
-        "raw_b = b - sum_j(beta_j * mean_j / scale_j)",
-        "f(x) = raw_b + sum_j(raw_beta_j * x_j)"
-      ],
-      "teach": "Derive by substituting each standardized coordinate. Omitting the intercept adjustment is a common error. Use the explicit equation already checked against pipeline predictions before making an interpretation claim.",
+      "kind": "image",
+      "payload": "diagram-h3-s13.svg",
+      "teach": "The median has no slope interpretation; if it won, the notebook explicitly inspects the separately predeclared Ridge20 candidate.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Task 7: compare expected and actual delta",
+      "title": "Check the entire response-change vector",
       "body": [
-        "Hold all other coordinates fixed.",
-        "Keep the candidate name with the explanation."
+        "Compare observed minus slope-predicted change.",
+        "An average alone can hide mismatched rows."
       ],
-      "kind": "code",
-      "payload": [
-        "changed[:, j] += 0.1 * scale[j]",
-        "delta = f(changed) - f(original)",
-        "expected = 0.1 * standardized_beta[j]",
-        "assert_allclose(delta, expected)"
-      ],
-      "teach": "The interpretation candidate is the selected Ridge model, or the separately declared Ridge20 if the baseline wins. Students must name it. Passing does not validate a medical recommendation or a causal intervention.",
+      "kind": "image",
+      "payload": "w10-function-check.png",
+      "teach": "All89 differences are compared under the declared tolerance. This uses no new target labels and is not a fresh accuracy estimate.",
       "minutes": 2,
       "mode": "practice"
     },
@@ -395,33 +325,17 @@
       "mode": "practice"
     },
     {
-      "title": "Separate the two error questions",
+      "title": "Prediction error and replay difference answer different questions",
       "body": [
-        "Prediction error compares model with outcomes.",
-        "Replay error compares two computations."
+        "A good replay retains the original model’s failures.",
+        "Show both numbers and name what each compares."
       ],
-      "kind": "schema",
-      "payload": [
-        [
-          "Error quantity",
-          "Comparison"
-        ],
-        [
-          "Model residual",
-          "Prediction - observation"
-        ],
-        [
-          "Replay difference",
-          "Replay - reference prediction"
-        ],
-        [
-          "Different conclusions",
-          "Accuracy versus reproducibility"
-        ]
-      ],
-      "teach": "Use the actual reference: held-out MAE is about48.326 target units while maximum replay difference is0. These values answer different questions and must not be plotted or described interchangeably.",
+      "kind": "image",
+      "payload": "diagram-h3-s18.svg",
+      "teach": "Ask the student to locate one actual failure ID and the separate zero-centered process difference. Do not use a zero process difference as a model-accuracy claim.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "Use AI for hypotheses, not fabricated runs",
@@ -545,54 +459,30 @@
       "mode": "practice"
     },
     {
-      "title": "Fill the 19 core response fields",
+      "title": "Nineteen fields preserve your reasoning",
       "body": [
-        "Eight predictions, eight explanations.",
-        "Add change, limitation and AI disclosure."
+        "Eight predictions + eight explanations + three reflections.",
+        "Blank fields produce a draft; text completeness is not correctness."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Required reflection",
-          "Count"
-        ],
-        [
-          "Before-running predictions",
-          "8"
-        ],
-        [
-          "Evidence-backed explanations",
-          "8"
-        ],
-        [
-          "Change / limitation / AI",
-          "3"
-        ],
-        [
-          "Total",
-          "19"
-        ]
-      ],
-      "teach": "Response fields start blank in the published student notebook. Nonempty values establish completeness only. Optional challenges do not change the core count or create an extra submission requirement.",
+      "kind": "image",
+      "payload": "diagram-h3-s24.svg",
+      "teach": "All response cells are pre-created. There is no need to insert cells or rerun response initialization after writing.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Export once, then re-export after editing",
+      "title": "Export the handover after updating responses",
       "body": [
-        "Missing fields produce an honest draft.",
-        "Do not rerun initialization to update answers."
+        "Download one ZIP and save the edited notebook separately.",
+        "The inner reference bundle remains frozen."
       ],
-      "kind": "lineage",
-      "payload": [
-        "Edit response assignments",
-        "Run final export cell",
-        "Inspect missing fields",
-        "Download exercise ZIP"
-      ],
-      "teach": "The final exercise ZIP includes the handover ZIP and student observation/response JSON. Rerunning initialization resets responses, so edit assignments and rerun only the export. Ready for peer discussion is not a correctness grade.",
+      "kind": "image",
+      "payload": "diagram-h3-s25.svg",
+      "teach": "The ZIP includes the seven-file handover directory, actual plots and the current response/evidence record. Re-export after response edits; do not overwrite a reference file to make a check pass.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
       "title": "Peer handover: locate evidence without help",
@@ -616,7 +506,7 @@
         ],
         [
           "Which failure?",
-          "result / exercise JSON"
+          "week10-evidence.json"
         ],
         [
           "How to rerun?",
@@ -674,50 +564,30 @@
       "mode": "practice"
     },
     {
-      "title": "Summary: make the workflow portable",
+      "title": "Summary: preserve, validate, replay, explain",
       "body": [
-        "Preserve identity, contract, code and environment.",
-        "Verify independently, then bound the claim."
+        "Stable IDs and frozen choices make comparisons meaningful.",
+        "A standalone reference check makes the handover inspectable."
       ],
-      "kind": "lineage",
-      "payload": [
-        "Freeze",
-        "Validate",
-        "Replay",
-        "Explain + hand over"
-      ],
-      "teach": "Retrieval: ask each pair for one concrete invariant and one limitation a passing replay cannot remove. Distinguish integrity, numerical reproducibility, predictive accuracy and external validity.",
+      "kind": "image",
+      "payload": "diagram-h3-s29.svg",
+      "teach": "Use one concrete example for identity, contract rejection, fresh-process comparison and the limits of the result.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Exit: hand over a rerunnable result",
+      "title": "Exit: explain your result without hidden notebook state",
       "body": [
-        "Show both ZIPs and one checked failure case.",
-        "Record one next evaluation before changing the model."
+        "Locate the winner, one failure ID and the replay comparison.",
+        "State one limitation and the next needed evaluation."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Deliverable",
-          "Evidence"
-        ],
-        [
-          "Handover ZIP",
-          "Frozen inputs + runner"
-        ],
-        [
-          "Exercise ZIP",
-          "Observations + explanations"
-        ],
-        [
-          "Two-minute explanation",
-          "Claim + evidence + limit"
-        ]
-      ],
-      "teach": "Close the60-minute lab with visible evidence. If incomplete, retain draft status and seek help rather than fabricate completion. The next scheduled week is the midterm written and oral examination; no new week is authored in this task.",
+      "kind": "image",
+      "payload": "diagram-h3-s30.svg",
+      "teach": "Prepare for the written and oral midterm on16November. This is formative practice and does not replace either assessment.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     }
   ]
 }

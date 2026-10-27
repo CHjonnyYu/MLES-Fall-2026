@@ -318,13 +318,13 @@
     "slide_status": "available",
     "notebooks": [
       {
-        "title": "Eight core exercises + two optional challenges",
+        "title": "Complete Exercise: Tasks1\u20138 in order",
         "file": "exercises/week-10-exercise.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-10-exercise.ipynb",
         "download": "/notebooks/exercises/week-10-exercise.ipynb"
       },
       {
-        "title": "Open Week 10 in Colab",
+        "title": "Worked alternative with example responses",
         "file": "week-10-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-10-practice.ipynb",
         "download": "/notebooks/week-10-practice.ipynb"
@@ -348,7 +348,8 @@
         "title": "Video: Validation of a model",
         "url": "https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/02_numerical_pipeline_video_cross_validation.html"
       }
-    ]
+    ],
+    "revision": "2026-10-27"
   },
   {
     "week": 11,

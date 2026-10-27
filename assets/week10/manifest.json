@@ -21,118 +21,33 @@
         },
         {
           "slide": 2,
-          "title": "The studio: explain 60, practise 120",
-          "kind": "table",
-          "payload": [
-            [
-              "Hour",
-              "Explain",
-              "Practise"
-            ],
-            [
-              "H1",
-              "45 min",
-              "15 min"
-            ],
-            [
-              "H2",
-              "15 min",
-              "45 min"
-            ],
-            [
-              "H3",
-              "0 min",
-              "60 min"
-            ]
-          ]
+          "title": "One notebook, eight tasks, three hours",
+          "kind": "image",
+          "payload": "diagram-h1-s02.svg"
         },
         {
           "slide": 3,
-          "title": "Two matching scores can still mislead",
-          "kind": "table",
-          "payload": [
-            [
-              "Row",
-              "Model A error",
-              "Model B error"
-            ],
-            [
-              "A",
-              "0",
-              "2"
-            ],
-            [
-              "B",
-              "2",
-              "0"
-            ],
-            [
-              "MAE",
-              "1",
-              "1"
-            ]
-          ]
+          "title": "The same MAE can hide different predictions",
+          "kind": "image",
+          "payload": "diagram-equal-mae.png"
         },
         {
           "slide": 4,
-          "title": "Week 9 asked where a model fails",
-          "kind": "lineage",
-          "payload": [
-            "Observed failure",
-            "Frozen evidence",
-            "Independent interpreter",
-            "Bounded comparison"
-          ]
+          "title": "From same-kernel readback to a new process",
+          "kind": "image",
+          "payload": "diagram-h1-s04.svg"
         },
         {
           "slide": 5,
-          "title": "Define the claim before the tool",
-          "kind": "table",
-          "payload": [
-            [
-              "This lab establishes",
-              "It does not establish"
-            ],
-            [
-              "Same frozen inputs",
-              "A new population"
-            ],
-            [
-              "Same declared procedure",
-              "A new physical experiment"
-            ],
-            [
-              "Numerical agreement",
-              "Clinical validity"
-            ]
-          ]
+          "title": "State exactly what the replay establishes",
+          "kind": "image",
+          "payload": "diagram-h1-s05.svg"
         },
         {
           "slide": 6,
-          "title": "A seed controls positions, not identity",
-          "kind": "schema",
-          "payload": [
-            [
-              "Position",
-              "Original row",
-              "Reversed row"
-            ],
-            [
-              "0",
-              "row-00",
-              "row-19"
-            ],
-            [
-              "1",
-              "row-01",
-              "row-18"
-            ],
-            [
-              "2",
-              "row-02",
-              "row-17"
-            ]
-          ]
+          "title": "A seed fixes positions under stated conditions",
+          "kind": "image",
+          "payload": "diagram-h1-s06.svg"
         },
         {
           "slide": 7,
@@ -142,13 +57,9 @@
         },
         {
           "slide": 8,
-          "title": "Persist a partition as ID lists",
-          "kind": "equations",
-          "payload": [
-            "No pairwise overlap",
-            "Union of IDs = complete frozen dataset",
-            "No duplicate IDs inside any split"
-          ]
+          "title": "Check both membership and sequence",
+          "kind": "image",
+          "payload": "diagram-h1-s08.svg"
         },
         {
           "slide": 9,
@@ -223,26 +134,9 @@
         },
         {
           "slide": 13,
-          "title": "Separate three kinds of identity",
-          "kind": "table",
-          "payload": [
-            [
-              "Identity",
-              "Example check"
-            ],
-            [
-              "Exact bytes",
-              "SHA-256"
-            ],
-            [
-              "Parsed records",
-              "ID-keyed values"
-            ],
-            [
-              "Scientific meaning",
-              "Source + domain validation"
-            ]
-          ]
+          "title": "Bytes, records and meaning are different checks",
+          "kind": "image",
+          "payload": "diagram-h1-s13.svg"
         },
         {
           "slide": 14,
@@ -268,23 +162,15 @@
         },
         {
           "slide": 16,
-          "title": "A median baseline matches absolute loss",
-          "kind": "equations",
-          "payload": [
-            "Predict a constant c for every row",
-            "Choose c to minimize sum |y_i - c|",
-            "A training median is a minimizer."
-          ]
+          "title": "A median minimizes absolute training loss",
+          "kind": "image",
+          "payload": "diagram-median-loss.png"
         },
         {
           "slide": 17,
           "title": "Ridge trades fit against coefficient size",
-          "kind": "equations",
-          "payload": [
-            "Loss = sum (y_i - predicted_i)^2",
-            "Penalty = alpha * sum beta_j^2",
-            "Intercept is not penalized here."
-          ]
+          "kind": "image",
+          "payload": "diagram-ridge-loss.png"
         },
         {
           "slide": 18,
@@ -321,41 +207,15 @@
         },
         {
           "slide": 20,
-          "title": "Record versions and tolerances",
-          "kind": "table",
-          "payload": [
-            [
-              "Object",
-              "Required record"
-            ],
-            [
-              "Data",
-              "CSV + SHA-256"
-            ],
-            [
-              "Code",
-              "Readable runner + digest"
-            ],
-            [
-              "Environment",
-              "Python + package versions"
-            ],
-            [
-              "Comparison",
-              "IDs + atol + rtol"
-            ]
-          ]
+          "title": "Record the environment and comparison rule",
+          "kind": "image",
+          "payload": "diagram-tolerance.png"
         },
         {
           "slide": 21,
-          "title": "Never load an untrusted model file",
-          "kind": "lineage",
-          "payload": [
-            "Review trusted source",
-            "Read CSV + JSON",
-            "Rebuild declared pipeline",
-            "Compare predictions"
-          ]
+          "title": "Use reviewed source and frozen input files",
+          "kind": "image",
+          "payload": "diagram-h1-s21.svg"
         },
         {
           "slide": 22,
@@ -383,68 +243,26 @@
         {
           "slide": 23,
           "title": "Task 1: predict the membership change",
-          "kind": "schema",
-          "payload": [
-            [
-              "Selection basis",
-              "After reordering"
-            ],
-            [
-              "Array positions",
-              "May select different IDs"
-            ],
-            [
-              "Saved ID membership",
-              "Same observations"
-            ],
-            [
-              "ID order",
-              "May need realignment"
-            ]
-          ]
+          "kind": "image",
+          "payload": "diagram-h1-s23.svg"
         },
         {
           "slide": 24,
-          "title": "Task 1: recover by identity",
-          "kind": "code",
-          "payload": [
-            "lookup = {row.id: row for row in rows}",
-            "train = [lookup[i] for i in saved_ids]",
-            "assert set(train_ids) == set(saved_ids)"
-          ]
+          "title": "Task 1: recover the saved sequence",
+          "kind": "image",
+          "payload": "diagram-h1-s24.svg"
         },
         {
           "slide": 25,
-          "title": "Task 2: inspect the learned means",
-          "kind": "equations",
-          "payload": [
-            "fitted mean_j = mean(training feature_j)",
-            "Diagnostic: all-row mean_j - train mean_j",
-            "Do not fit the competing all-row scaler."
-          ]
+          "title": "Task 2: freeze raw data before fitting",
+          "kind": "image",
+          "payload": "diagram-h1-s25.svg"
         },
         {
           "slide": 26,
-          "title": "Task 2: choose a valid interpretation",
-          "kind": "table",
-          "payload": [
-            [
-              "Observation",
-              "Supported interpretation"
-            ],
-            [
-              "Training means match",
-              "Expected preprocessing scope"
-            ],
-            [
-              "All-row means differ",
-              "Different fitted statistics"
-            ],
-            [
-              "No mean gap",
-              "Not a full leakage audit"
-            ]
-          ]
+          "title": "Task 2: inspect the training-only means",
+          "kind": "image",
+          "payload": "w10-preprocessing-scope.png"
         },
         {
           "slide": 27,
@@ -554,110 +372,33 @@
         },
         {
           "slide": 2,
-          "title": "Inspect the packaged dataset contract",
-          "kind": "schema",
-          "payload": [
-            [
-              "Property",
-              "Declared scope"
-            ],
-            [
-              "Rows",
-              "442 source observations"
-            ],
-            [
-              "Inputs",
-              "10 raw numeric columns"
-            ],
-            [
-              "Target",
-              "Packaged regression response"
-            ],
-            [
-              "Use",
-              "Statistical teaching only"
-            ]
-          ]
+          "title": "Inspect the retained packaged fixture",
+          "kind": "image",
+          "payload": "diagram-h2-s02.svg"
         },
         {
           "slide": 3,
-          "title": "Freeze all three partitions",
-          "kind": "bars",
-          "payload": [
-            [
-              "Train",
-              265
-            ],
-            [
-              "Validation",
-              88
-            ],
-            [
-              "Test",
-              89
-            ]
-          ]
+          "title": "Freeze the three cohorts by source ID",
+          "kind": "image",
+          "payload": "diagram-h2-s03.svg"
         },
         {
           "slide": 4,
-          "title": "Specify how the winner is chosen",
-          "kind": "lineage",
-          "payload": [
-            "Fit train-only candidates",
-            "Read validation MAE",
-            "Apply declared tie order",
-            "Freeze selected candidate"
-          ]
+          "title": "Validation fixes the candidate before test inspection",
+          "kind": "image",
+          "payload": "diagram-h2-s04.svg"
         },
         {
           "slide": 5,
-          "title": "A fresh process removes hidden state",
-          "kind": "table",
-          "payload": [
-            [
-              "Removed",
-              "Still shared"
-            ],
-            [
-              "Notebook globals",
-              "Installed packages"
-            ],
-            [
-              "Fitted object memory",
-              "Same dataset source"
-            ],
-            [
-              "Notebook working dir",
-              "Same host environment"
-            ]
-          ]
+          "title": "A new interpreter removes notebook state",
+          "kind": "image",
+          "payload": "diagram-h2-s05.svg"
         },
         {
           "slide": 6,
-          "title": "Compare in the same ID order",
-          "kind": "schema",
-          "payload": [
-            [
-              "Saved ID",
-              "Reference",
-              "Replay"
-            ],
-            [
-              "A",
-              "pred(A)",
-              "pred(A)"
-            ],
-            [
-              "B",
-              "pred(B)",
-              "pred(B)"
-            ],
-            [
-              "Check",
-              "Same ID sequence",
-              "Then compare values"
-            ]
-          ]
+          "title": "Align observations before comparing predictions",
+          "kind": "image",
+          "payload": "diagram-h2-s06.svg"
         },
         {
           "slide": 7,
@@ -667,251 +408,141 @@
         },
         {
           "slide": 8,
-          "title": "Open one self-contained notebook",
-          "kind": "code",
-          "payload": [
-            "# Choose a free CPU runtime",
-            "# Run the walkthrough once, top to bottom",
-            "print(ENV)",
-            "print(CONFIG)"
-          ]
+          "title": "Task 3: open one complete notebook",
+          "kind": "image",
+          "payload": "diagram-h2-s08.svg"
         },
         {
           "slide": 9,
-          "title": "Inspect source columns before fitting",
-          "kind": "code",
-          "payload": [
-            "assert X.shape == (442, 10)",
-            "assert isfinite(X).all()",
-            "HEADER = [row_id, *FEATURES, target]"
-          ]
+          "title": "Check raw columns and saved membership",
+          "kind": "image",
+          "payload": "diagram-h2-s09.svg"
         },
         {
           "slide": 10,
-          "title": "Read the actual split distributions",
+          "title": "Fit four predeclared candidates",
           "kind": "image",
-          "payload": "w10-target-distributions.png"
+          "payload": "diagram-h2-s10.svg"
         },
         {
           "slide": 11,
-          "title": "Write the CSV and split manifest",
-          "kind": "lineage",
-          "payload": [
-            "Source rows + names",
-            "CSV with row_id",
-            "Train/val/test ID lists",
-            "Per-file identity"
-          ]
-        },
-        {
-          "slide": 12,
-          "title": "Review the readable replay program",
-          "kind": "code",
-          "payload": [
-            "verify_required_file_hashes(root)",
-            "cohort = read_contract(root, config)",
-            "model.fit(train_inputs, train_targets)",
-            "prediction = model.predict(test_inputs)"
-          ]
-        },
-        {
-          "slide": 13,
-          "title": "Fit the median and three Ridge candidates",
-          "kind": "table",
-          "payload": [
-            [
-              "Candidate",
-              "Fit data"
-            ],
-            [
-              "Median",
-              "Training targets"
-            ],
-            [
-              "Ridge 1",
-              "Training features + targets"
-            ],
-            [
-              "Ridge 20",
-              "Training features + targets"
-            ],
-            [
-              "Ridge 100",
-              "Training features + targets"
-            ]
-          ]
-        },
-        {
-          "slide": 14,
-          "title": "Select from actual validation evidence",
+          "title": "Read the actual validation comparison",
           "kind": "image",
           "payload": "w10-validation-selection.png"
         },
         {
-          "slide": 15,
-          "title": "Read shrinkage separately from MAE",
+          "slide": 12,
+          "title": "Read shrinkage separately from validation MAE",
           "kind": "image",
           "payload": "w10-regularization-path.png"
         },
         {
-          "slide": 16,
-          "title": "Open the final test only after selection",
-          "kind": "image",
-          "payload": "w10-test-metrics.png"
-        },
-        {
-          "slide": 17,
-          "title": "Inspect observed versus predicted values",
-          "kind": "image",
-          "payload": "w10-test-parity.png"
-        },
-        {
-          "slide": 18,
-          "title": "Inspect the signed residuals",
-          "kind": "image",
-          "payload": "w10-test-residuals.png"
-        },
-        {
-          "slide": 19,
-          "title": "Read a finite-sample error distribution",
-          "kind": "image",
-          "payload": "w10-error-cdf.png"
-        },
-        {
-          "slide": 20,
-          "title": "Locate one real failure by its row ID",
-          "kind": "schema",
-          "payload": [
-            [
-              "From actual output",
-              "Keep in evidence"
-            ],
-            [
-              "Source row ID",
-              "Find the original row"
-            ],
-            [
-              "Observed / predicted",
-              "Recompute the residual"
-            ],
-            [
-              "Signed residual",
-              "Explain over/underprediction"
-            ]
-          ]
-        },
-        {
-          "slide": 21,
-          "title": "Interpret the fitted coordinate system",
-          "kind": "image",
-          "payload": "w10-coefficients.png"
-        },
-        {
-          "slide": 22,
-          "title": "Audit the preprocessing scope numerically",
-          "kind": "image",
-          "payload": "w10-preprocessing-scope.png"
-        },
-        {
-          "slide": 23,
-          "title": "Task 3: defend the selected candidate",
+          "slide": 13,
+          "title": "Keep the validation decision frozen",
           "kind": "demo",
           "payload": "selection"
         },
         {
-          "slide": 24,
-          "title": "Task 4: reject malformed copies",
+          "slide": 14,
+          "title": "Review the program another process will run",
+          "kind": "image",
+          "payload": "diagram-h2-s14.svg"
+        },
+        {
+          "slide": 15,
+          "title": "Task 4: reject malformed temporary copies",
+          "kind": "image",
+          "payload": "diagram-h2-s15.svg"
+        },
+        {
+          "slide": 16,
+          "title": "An ID must identify one row only",
+          "kind": "image",
+          "payload": "diagram-h2-s16.svg"
+        },
+        {
+          "slide": 17,
+          "title": "A finite rectangular matrix is required",
+          "kind": "image",
+          "payload": "diagram-h2-s17.svg"
+        },
+        {
+          "slide": 18,
+          "title": "Column order is part of a positional interface",
+          "kind": "image",
+          "payload": "diagram-h2-s18.svg"
+        },
+        {
+          "slide": 19,
+          "title": "Disjointness alone does not establish a partition",
+          "kind": "image",
+          "payload": "diagram-h2-s19.svg"
+        },
+        {
+          "slide": 20,
+          "title": "Read the actual rejection outcomes",
           "kind": "image",
           "payload": "w10-contract-tests.png"
         },
         {
+          "slide": 21,
+          "title": "Task 5: evaluate the frozen choice once",
+          "kind": "image",
+          "payload": "w10-test-metrics.png"
+        },
+        {
+          "slide": 22,
+          "title": "Locate one actual prediction failure",
+          "kind": "image",
+          "payload": "w10-test-residuals.png"
+        },
+        {
+          "slide": 23,
+          "title": "Do not confuse two kinds of error",
+          "kind": "image",
+          "payload": "diagram-h2-s23.svg"
+        },
+        {
+          "slide": 24,
+          "title": "Give the receiver six payload files and a manifest",
+          "kind": "image",
+          "payload": "diagram-h2-s24.svg"
+        },
+        {
           "slide": 25,
-          "title": "Build the required payload manifest",
-          "kind": "table",
-          "payload": [
-            [
-              "Payload",
-              "Purpose"
-            ],
-            [
-              "CSV + split JSON",
-              "Inputs + membership"
-            ],
-            [
-              "Config + source",
-              "Selected procedure"
-            ],
-            [
-              "Predictions + result",
-              "Reference evidence"
-            ],
-            [
-              "Manifest",
-              "Byte integrity checks"
-            ]
-          ]
+          "title": "Copy the bundle into a fresh working directory",
+          "kind": "image",
+          "payload": "diagram-h2-s25.svg"
         },
         {
           "slide": 26,
-          "title": "Task 5: start the independent interpreter",
-          "kind": "code",
-          "payload": [
-            "subprocess.run([sys.executable, runner,",
-            "  \"--root\", bundle_path,",
-            "  \"--out\", output_path],",
-            "  cwd=fresh_directory, check=True)"
-          ]
+          "title": "The runner must read its own reference predictions",
+          "kind": "image",
+          "payload": "diagram-h2-s26.svg"
         },
         {
           "slide": 27,
-          "title": "Compare aligned prediction differences",
+          "title": "Compare all 89 aligned prediction differences",
           "kind": "image",
           "payload": "w10-replay-differences.png"
         },
         {
           "slide": 28,
-          "title": "Save the guided evidence checkpoint",
-          "kind": "lineage",
-          "payload": [
-            "Reviewed runner",
-            "Verified required files",
-            "Aligned replay comparison",
-            "Portable handover ZIP"
-          ]
+          "title": "Try the receiver path after ZIP extraction",
+          "kind": "image",
+          "payload": "diagram-h2-s28.svg"
         },
         {
           "slide": 29,
-          "title": "Summary: reproducibility is a procedure",
-          "kind": "lineage",
-          "payload": [
-            "Fit only training",
-            "Select on validation",
-            "Replay from files",
-            "State the boundary"
-          ]
+          "title": "Summary: make the procedure travel",
+          "kind": "image",
+          "payload": "diagram-h2-s29.svg"
         },
         {
           "slide": 30,
-          "title": "Exit: what did the new process not test?",
-          "kind": "table",
-          "payload": [
-            [
-              "Shared dependency",
-              "Not independently tested"
-            ],
-            [
-              "Installed environment",
-              "Cross-version compatibility"
-            ],
-            [
-              "Same dataset",
-              "External population"
-            ],
-            [
-              "Same fit design",
-              "Scientific validity"
-            ]
-          ]
+          "title": "Exit: what is removed and what is still shared?",
+          "kind": "image",
+          "payload": "diagram-h2-s30.svg"
         }
       ]
     },
@@ -938,29 +569,8 @@
         {
           "slide": 2,
           "title": "Reserve time for the actual handover",
-          "kind": "table",
-          "payload": [
-            [
-              "Lab segment",
-              "Minutes"
-            ],
-            [
-              "Restore + core checks",
-              "10"
-            ],
-            [
-              "Controlled change + explanation",
-              "16"
-            ],
-            [
-              "Manifest + optional probes",
-              "14"
-            ],
-            [
-              "Peer replay + export",
-              "20"
-            ]
-          ]
+          "kind": "image",
+          "payload": "diagram-h3-s02.svg"
         },
         {
           "slide": 3,
@@ -1001,9 +611,9 @@
           "title": "Check Task 2: prove training-only scaling",
           "kind": "code",
           "payload": [
-            "assert_allclose(scaler.mean_,",
-            "                X_train.mean(axis=0))",
-            "# Review transforms and split code too."
+            "m = models['ridge-20']",
+            "mu = m.named_steps['standardscaler'].mean_",
+            "np.testing.assert_allclose(mu, Xtr.mean(0))"
           ]
         },
         {
@@ -1057,102 +667,47 @@
           "title": "Check Task 5: compare the process result",
           "kind": "code",
           "payload": [
-            "assert fresh[\"test_ids\"] == saved_test_ids",
-            "assert_allclose(fresh[\"predictions\"],",
-            "                reference_predictions,",
-            "                atol=1e-8, rtol=1e-10)"
+            "assert replay['test_ids'] == SPLITS['test']",
+            "np.testing.assert_allclose(",
+            "  replay['predictions'], pred,",
+            "  atol=1e-8, rtol=1e-10)"
           ]
         },
         {
           "slide": 9,
-          "title": "Task 6: predeclare one diagnostic change",
-          "kind": "table",
-          "payload": [
-            [
-              "Object",
-              "Extension rule"
-            ],
-            [
-              "Alpha",
-              "200"
-            ],
-            [
-              "Training membership",
-              "Unchanged"
-            ],
-            [
-              "Reported comparison",
-              "Validation only"
-            ],
-            [
-              "Original selected model",
-              "Unchanged"
-            ]
-          ]
+          "title": "Task 6: reorder data rows in a reviewed copy",
+          "kind": "image",
+          "payload": "diagram-h3-s09.svg"
         },
         {
           "slide": 10,
-          "title": "Task 6: predict the direction first",
-          "kind": "equations",
-          "payload": [
-            "Training objective includes alpha * ||beta||^2",
-            "Changing alpha changes the fitted function.",
-            "Validation loss still depends on the data."
-          ]
+          "title": "Task 6: different bytes can preserve the records",
+          "kind": "image",
+          "payload": "diagram-h3-s10.svg"
         },
         {
           "slide": 11,
-          "title": "Task 6: keep the extension separate",
-          "kind": "schema",
-          "payload": [
-            [
-              "Reference record",
-              "Extension record"
-            ],
-            [
-              "Selected from four candidates",
-              "Alpha 200 diagnostic"
-            ],
-            [
-              "Original held-out result",
-              "Validation result only"
-            ],
-            [
-              "Preserved handover ZIP",
-              "Separate exercise JSON"
-            ]
-          ]
+          "title": "Task 6: test alignment after the reorder",
+          "kind": "image",
+          "payload": "diagram-h3-s11.svg"
         },
         {
           "slide": 12,
-          "title": "Task 7: explain a local function change",
-          "kind": "equations",
-          "payload": [
-            "z_j = (x_j - train_mean_j) / train_SD_j",
-            "Increase x_j by 0.1 * train_SD_j",
-            "Expected delta prediction = 0.1 * beta_j"
-          ]
+          "title": "Task 7: predict a coordinate response",
+          "kind": "image",
+          "payload": "diagram-function-delta.png"
         },
         {
           "slide": 13,
-          "title": "Task 7: recover the raw equation too",
-          "kind": "equations",
-          "payload": [
-            "raw_beta_j = beta_j / scale_j",
-            "raw_b = b - sum_j(beta_j * mean_j / scale_j)",
-            "f(x) = raw_b + sum_j(raw_beta_j * x_j)"
-          ]
+          "title": "Recover the same function in raw coordinates",
+          "kind": "image",
+          "payload": "diagram-h3-s13.svg"
         },
         {
           "slide": 14,
-          "title": "Task 7: compare expected and actual delta",
-          "kind": "code",
-          "payload": [
-            "changed[:, j] += 0.1 * scale[j]",
-            "delta = f(changed) - f(original)",
-            "expected = 0.1 * standardized_beta[j]",
-            "assert_allclose(delta, expected)"
-          ]
+          "title": "Check the entire response-change vector",
+          "kind": "image",
+          "payload": "w10-function-check.png"
         },
         {
           "slide": 15,
@@ -1217,26 +772,9 @@
         },
         {
           "slide": 18,
-          "title": "Separate the two error questions",
-          "kind": "schema",
-          "payload": [
-            [
-              "Error quantity",
-              "Comparison"
-            ],
-            [
-              "Model residual",
-              "Prediction - observation"
-            ],
-            [
-              "Replay difference",
-              "Replay - reference prediction"
-            ],
-            [
-              "Different conclusions",
-              "Accuracy versus reproducibility"
-            ]
-          ]
+          "title": "Prediction error and replay difference answer different questions",
+          "kind": "image",
+          "payload": "diagram-h3-s18.svg"
         },
         {
           "slide": 19,
@@ -1331,41 +869,15 @@
         },
         {
           "slide": 24,
-          "title": "Fill the 19 core response fields",
-          "kind": "table",
-          "payload": [
-            [
-              "Required reflection",
-              "Count"
-            ],
-            [
-              "Before-running predictions",
-              "8"
-            ],
-            [
-              "Evidence-backed explanations",
-              "8"
-            ],
-            [
-              "Change / limitation / AI",
-              "3"
-            ],
-            [
-              "Total",
-              "19"
-            ]
-          ]
+          "title": "Nineteen fields preserve your reasoning",
+          "kind": "image",
+          "payload": "diagram-h3-s24.svg"
         },
         {
           "slide": 25,
-          "title": "Export once, then re-export after editing",
-          "kind": "lineage",
-          "payload": [
-            "Edit response assignments",
-            "Run final export cell",
-            "Inspect missing fields",
-            "Download exercise ZIP"
-          ]
+          "title": "Export the handover after updating responses",
+          "kind": "image",
+          "payload": "diagram-h3-s25.svg"
         },
         {
           "slide": 26,
@@ -1386,7 +898,7 @@
             ],
             [
               "Which failure?",
-              "result / exercise JSON"
+              "week10-evidence.json"
             ],
             [
               "How to rerun?",
@@ -1430,37 +942,15 @@
         },
         {
           "slide": 29,
-          "title": "Summary: make the workflow portable",
-          "kind": "lineage",
-          "payload": [
-            "Freeze",
-            "Validate",
-            "Replay",
-            "Explain + hand over"
-          ]
+          "title": "Summary: preserve, validate, replay, explain",
+          "kind": "image",
+          "payload": "diagram-h3-s29.svg"
         },
         {
           "slide": 30,
-          "title": "Exit: hand over a rerunnable result",
-          "kind": "table",
-          "payload": [
-            [
-              "Deliverable",
-              "Evidence"
-            ],
-            [
-              "Handover ZIP",
-              "Frozen inputs + runner"
-            ],
-            [
-              "Exercise ZIP",
-              "Observations + explanations"
-            ],
-            [
-              "Two-minute explanation",
-              "Claim + evidence + limit"
-            ]
-          ]
+          "title": "Exit: explain your result without hidden notebook state",
+          "kind": "image",
+          "payload": "diagram-h3-s30.svg"
         }
       ]
     }

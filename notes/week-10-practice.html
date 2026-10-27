@@ -1,14 +1,20 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week 10: Reproducible ML Workflow Studio</title><style>*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 100% 0%,#dfebe3,transparent 40%),#f8f4ef;color:#12233f;font:18px/1.7 "Avenir Next","Trebuchet MS",sans-serif}main{max-width:1050px;margin:auto;padding:35px 28px}h1,h2,h3{font-family:Georgia,serif;line-height:1.2;font-weight:400}h1{font-size:46px}h2{font-size:32px;margin-top:55px}h3{font-size:25px}a{color:#167b87;text-underline-offset:4px}.logos{display:flex;gap:25px;align-items:center}.logos img{width:140px;height:60px;object-fit:contain}.toolbar{display:flex;flex-wrap:wrap;gap:14px;padding:20px 0;border-bottom:1px solid #cbd4cb}pre{background:#142b3b;color:#e5f3e9;padding:24px;overflow:auto;font-size:15px;line-height:1.6;border-radius:8px}p code,li code{background:#e4ece6;padding:2px 5px;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #cbd4cb;padding:12px;text-align:left}.status{border-left:5px solid #167b87;padding:15px 25px;background:#e5eee7}.cell{margin:25px 0}details summary{cursor:pointer;font-weight:600}footer{padding:40px 0;border-top:1px solid #cbd4cb;margin-top:50px}@media(max-width:600px){main{padding:20px}h1{font-size:34px}h2{font-size:28px}pre{padding:14px;font-size:13px}.logos img{width:110px}}</style></head><body><main><header class="logos"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></header><nav class="toolbar"><a href="/courses/machine-learning/#week-10">Course / Week 10</a><a href="/lectures/week-10-hour-1/">H1 slides</a><a href="/lectures/week-10-hour-2/">H2 slides</a><a href="/lectures/week-10-hour-3/">H3 slides</a><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-10-practice.ipynb">Open in Colab</a><a href="/notebooks/week-10-practice.ipynb" download>Download Jupyter notebook</a><a href="/textbook/W10-workflow-studio.pdf">Week 10 reader PDF</a><a href="/assets/week10/reference-handover.zip" download>Reference handover ZIP</a></nav><h1>Week 10: Reproducible ML Workflow Studio</h1><aside class="status"><strong>60 minutes explanation + 120 minutes practice.</strong> Eight core exercises and two optional challenges. Free CPU tools; no new graded weekly homework.<p>Instructor execution: fresh local CPU kernels, independent replay processes, all core tasks, optional challenges and draft/completed export branches. This is not a claim of Colab-browser execution. The packaged dataset supports a statistical teaching exercise, not clinical use.</p></aside><section><h2>Optional supplementary videos</h2><p>Review the scikit-learn developers’ videos: <a href="https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/03_categorical_pipeline_visualization_video.html">Visualizing pipelines in Jupyter</a> and <a href="https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/02_numerical_pipeline_video_cross_validation.html">Validation of a model</a>. These are supplementary, not required extra class hours.</p></section><section class="cell"><h1>Week 10: Reproducible ML Workflow Studio</h1>
-<p>Machine Learning in Engineering Science / NCKU + LAiMM / Fall 2026</p>
-<p><strong>Monday, 9 November 2026, 14:00-17:00.</strong> H1: 45 min explanation + 15 min practice; H2: 15 + 45; H3: 60 min lab. Total: <strong>60 min explanation, 120 min practice</strong>. Eight core exercises and two optional challenges; no new graded weekly homework.</p>
-<p><strong>What you will demonstrate:</strong> turn an analysis into a portable evidence package that another process can load, validate, refit and compare by stable sample ID. Week 9 diagnosed reliability; this week tests the workflow used to support that diagnosis.</p>
-<p><strong>Tools:</strong> free Colab CPU or Python 3 Jupyter. No paid AI, GPU, API key or remote dataset download. scikit-learn's bundled diabetes regression dataset is retained from the original Week 10 material, using <strong>raw inputs (<code>scaled=False</code>)</strong> so all fitted preprocessing is training-only. This is a statistical teaching exercise, not clinical guidance, diagnosis, causal discovery or validation of a medical tool.</p>
-<p>Read each prediction prompt before running. Run cells in order. If using the exercise notebook, its opening walkthrough is already complete: do not also run a second copy of the practice notebook.</p>
-</section><section class="cell"><h2>1. Set up the environment and declare choices</h2>
-<p>We use the packaged 442-row, 10-feature regression dataset. We do not interpret individual features medically. Source IDs such as <code>diabetes-0000</code> identify rows in this frozen dataset version, not globally stable patient identities.</p>
-<p>Declare four candidates now: a training-target median baseline, and training-scaled Ridge with alpha 1, 20, or 100. Select by validation MAE; exact ties follow the listed candidate order. Do not choose a new winner after opening final-test results.</p>
-<p><strong>Predict:</strong> is a random seed sufficient if someone rearranges the source rows before calling the same split function?</p>
-</section><section class="cell"><details><summary>Code: step 3</summary><pre><code>import os,sys,subprocess,importlib.util,platform,json,csv,hashlib,zipfile,tempfile,shutil
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week10: reproducible workflow, step by step</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f4ef;color:#12233f;font:18px/1.7 Arial,sans-serif}main{max-width:1080px;margin:auto;padding:30px 24px 70px}h1,h2,h3{font-family:Georgia,serif;line-height:1.18}h1{font-size:clamp(32px,5vw,48px)}h2{font-size:30px;margin-top:45px}a{color:#147c80}nav{display:flex;flex-wrap:wrap;gap:16px;font-size:16px}.logos{display:flex;gap:25px;margin:25px 0}.logos img{width:140px;height:60px;object-fit:contain}pre{font:14px/1.6 monospace;overflow:auto;max-width:100%;padding:20px;background:#fff}code{overflow-wrap:anywhere}.cell{border-top:1px solid #ccd2c5;padding-top:20px;margin-top:25px}.notice{background:#e4eeea;border-left:4px solid #147c80;padding:18px}summary{cursor:pointer;font-weight:bold}table{table-layout:fixed;width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #ccd2c5;overflow-wrap:anywhere}img{max-width:100%}@media(max-width:600px){td,th{font-size:14px;padding:5px}.logos img{width:110px}}</style></head><body><main><div class="logos"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></div><nav><a href="/courses/machine-learning/#week-10">Course</a><a href="/lectures/week-10-hour-1/">H1 slides</a><a href="/lectures/week-10-hour-2/">H2 slides</a><a href="/lectures/week-10-hour-3/">H3 slides</a><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-10-practice.ipynb">Open in Colab</a><a href="/notebooks/week-10-practice.ipynb" download>Download .ipynb</a><a href="/textbook/W10-workflow-studio.pdf">Textbook PDF</a><a href="/textbook/Fall-2026-reader-source.zip">LaTeX project</a><a href="/assets/week10/reference-handover.zip" download>Worked reference ZIP</a></nav><h1>Week10: reproducible workflow, step by step</h1><p class="notice">Use one notebook from Tasks1–8. All response cells are provided. Instructor verification: fresh local CPU kernels, extracted-ZIP receivers, draft/complete exports and optional branches. The fresh process still shares installed packages.</p><h2>Optional supplementary videos</h2><p><a href="https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/03_categorical_pipeline_visualization_video.html">Visualizing pipelines</a> · <a href="https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/02_numerical_pipeline_video_cross_validation.html">Model validation</a>. Supplementary developer videos; no extra required class hours.</p><section class="cell"><h1>Week 10: Reproducible ML Workflow Studio</h1>
+<p><strong>Monday 9 November 2026, 14:00–17:00 · NCKU + LAiMM</strong></p>
+<p>The goal is a handover another Python process can validate and replay from saved files. Week 9 checked CSV readback in the same kernel; this week starts a new interpreter and working directory. The installed packages still remain shared. This is computational replay of frozen observations, not a new scientific experiment.</p>
+<h2>Use one complete notebook</h2>
+<ol>
+<li>Save your own copy (Colab: File → Save a copy in Drive). Choose a free CPU runtime. No GPU, API key, paid AI tool or remote dataset download is needed.</li>
+<li>Run Setup, then Tasks <strong>1 → 8</strong>. Every task has a prediction cell, runnable scaffold, explanation cell and stopping check. Keep the same notebook for the whole class. The worked alternative is available if you need sample responses; you do not need to run a second copy.</li>
+<li>H1: Tasks 1–2, 15 practice minutes. H2: Tasks 3–5, 45. H3: Tasks 6–8, 40, then 20 minutes for peer explanation/export/optional work. Total: 60 minutes explanation + 120 practice.</li>
+<li>A runtime reset removes variables. Restart from Setup and run in order. Setup recreates ONLY this notebook’s <code>artifacts/week10-reference/handover</code> output folder; save edited files elsewhere before restarting.</li>
+<li>Download <code>week10-workflow-handover.zip</code> from the Colab Files sidebar (folder icon → artifacts → week10-reference → ZIP menu → Download). In Jupyter use the final file link. Save your edited .ipynb separately.</li>
+</ol>
+<p><strong>Prerequisites:</strong> stable row IDs, train/validation/test, MAE/RMSE, basic Python arrays. The retained scikit-learn packaged diabetes fixture is used only as a statistical regression example: 442 source rows, ten raw numeric inputs. We do not infer medical, causal or deployment validity. Source-row IDs belong to this frozen dataset version and are not global patient identities.</p>
+<p>These are in-class formative exercises. Designated Homework and written/oral examinations are unchanged. The next meeting on 16 November is the written and oral midterm examination.</p>
+<p><strong>Worked alternative:</strong> replace the example responses with your own actual observations.</p>
+</section><section class="cell"><h2>Setup</h2>
+<p>Run once. Missing free libraries are installed only if absent; existing packages are not upgraded. The cell records actual versions and declares candidates, split sizes and tolerances before fitting.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>import os,sys,subprocess,importlib.util,platform,json,csv,hashlib,zipfile,tempfile,shutil
 from pathlib import Path
 for k in [&#x27;OMP_NUM_THREADS&#x27;,&#x27;OPENBLAS_NUM_THREADS&#x27;,&#x27;MKL_NUM_THREADS&#x27;]:os.environ.setdefault(k,&#x27;1&#x27;)
 required={&#x27;numpy&#x27;:&#x27;numpy&#x27;,&#x27;matplotlib&#x27;:&#x27;matplotlib&#x27;,&#x27;sklearn&#x27;:&#x27;scikit-learn&#x27;}
@@ -30,7 +36,9 @@ CONFIG={&#x27;seed&#x27;:2026,&#x27;dataset&#x27;:&#x27;sklearn diabetes raw; st
 ENV={&#x27;python&#x27;:platform.python_version(),&#x27;numpy&#x27;:np.__version__,&#x27;scikit_learn&#x27;:sklearn.__version__,&#x27;matplotlib&#x27;:matplotlib.__version__,&#x27;scipy&#x27;:scipy.__version__,&#x27;platform&#x27;:platform.platform()}
 RUN_LABEL=&#x27;reference&#x27;
 ARTIFACTS=Path(&#x27;artifacts&#x27;)/(&#x27;week10-&#x27;+RUN_LABEL);ARTIFACTS.mkdir(parents=True,exist_ok=True)
-BUNDLE_DIR=ARTIFACTS/&#x27;handover&#x27;;BUNDLE_DIR.mkdir(exist_ok=True)
+BUNDLE_DIR=ARTIFACTS/&#x27;handover&#x27;
+if BUNDLE_DIR.exists():shutil.rmtree(BUNDLE_DIR)
+BUNDLE_DIR.mkdir()
 plt.rcParams.update({&#x27;figure.figsize&#x27;:(10,6.9),&#x27;savefig.dpi&#x27;:160,&#x27;font.size&#x27;:22,
  &#x27;axes.labelsize&#x27;:22,&#x27;axes.titlesize&#x27;:24,&#x27;xtick.labelsize&#x27;:17,&#x27;ytick.labelsize&#x27;:18,
  &#x27;legend.fontsize&#x27;:17,&#x27;axes.spines.top&#x27;:False,&#x27;axes.spines.right&#x27;:False})
@@ -42,11 +50,28 @@ def metrics(y,p):return {&#x27;n&#x27;:int(len(y)),&#x27;MAE&#x27;:float(mean_ab
 def candidate(name):
  if name==&#x27;median&#x27;:return DummyRegressor(strategy=&#x27;median&#x27;)
  return make_pipeline(StandardScaler(),Ridge(alpha=float(name.split(&#x27;-&#x27;)[1]),solver=&#x27;svd&#x27;))
-print(&#x27;Actual environment:&#x27;,ENV);print(&#x27;Declared configuration:&#x27;,CONFIG)</code></pre></details></section><section class="cell"><h2>2. Freeze row identity, measurements and partition membership</h2>
-<p>Load raw features, not the dataset loader's globally pre-scaled defaults. Generate source IDs once. Draw the seeded permutation of these IDs and reserve 265 train, 88 validation and 89 test rows. The three sets are disjoint and exhaustive.</p>
-<p>We use a random-row split only as a fixed statistical teaching protocol. This does not establish external, chronological, grouped or clinical generalization. A row ID is not a feature.</p>
-<p><strong>Action:</strong> inspect column names and all counts before fitting. If any check fails, stop; do not delete the assertion to obtain a score.</p>
-</section><section class="cell"><details><summary>Code: step 5</summary><pre><code>data=load_diabetes(scaled=False)
+print(&#x27;Actual environment:&#x27;,ENV);print(&#x27;Declared configuration:&#x27;,CONFIG)
+responses={};observations={};challenge_observations={}
+from IPython.display import display,FileLink
+</code></pre></details></section><section class="cell"><h2>Task 1: Recover observations by ID (7 min)</h2>
+<p><strong>Purpose:</strong> Distinguish row membership, row order and a random seed.</p>
+<p><strong>Do:</strong> Use a 20-ID paper-sized example. A seeded permutation saves 15 training IDs. Reverse the source array and reuse positions: identify the changed membership. Recover rows using the SAVED ID sequence, not just a set filter. No model or 442-row dataset is needed yet.</p>
+<p><strong>Stopping check:</strong> Membership is recovered and the final ID sequence is identical. A seed alone does not bind positions to observations.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task1_prediction&quot;] = &#x27;Reversing rows can change which observations the same positions select.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>toy_ids=np.array([f&#x27;row-{i:02d}&#x27; for i in range(20)])
+positions=np.random.default_rng(2026).permutation(20)[:15]
+saved_ids=toy_ids[positions].tolist(); reversed_ids=toy_ids[::-1]
+wrong_ids=reversed_ids[positions].tolist(); lookup={row_id:row_id for row_id in reversed_ids}
+recovered=[lookup[row_id] for row_id in saved_ids]
+assert recovered==saved_ids
+observations[&#x27;task1&#x27;]={&#x27;saved&#x27;:saved_ids,&#x27;wrong&#x27;:wrong_ids,&#x27;recovered&#x27;:recovered,
+    &#x27;positional_membership_changed&#x27;:set(wrong_ids)!=set(saved_ids),&#x27;same_recovered_sequence&#x27;:recovered==saved_ids}
+print(json.dumps(observations[&#x27;task1&#x27;],indent=2))</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task1_explanation&quot;] = &#x27;A seed fixes the positional procedure under stated conditions. Saved IDs recover membership; iterating in the saved ID order also restores vector alignment.&#x27;</code></pre></details></section><section class="cell"><h2>Task 2: Freeze raw data and check preprocessing scope (8 min)</h2>
+<p><strong>Purpose:</strong> Make fitted preprocessing belong only to training rows.</p>
+<p><strong>Do:</strong> Load the retained 442-row packaged regression fixture with scaled=False. Create source IDs before splitting; freeze CSV and 265/88/89 membership. Check disjointness and the full union. Fit a diagnostic scaler on training rows ONLY, then compare its means with training means. The all-row mean gap is descriptive, not a second competing leaky model.</p>
+<p><strong>Stopping check:</strong> 442 unique IDs; 265/88/89 disjoint exhaustive membership; training means match the diagnostic scaler. No clinical interpretation is required.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task2_prediction&quot;] = &#x27;Training-only means can differ from all-row means because the fitted scope differs.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>data=load_diabetes(scaled=False)
 X=np.asarray(data.data,dtype=float);y=np.asarray(data.target,dtype=float)
 FEATURES=list(data.feature_names);IDS=np.array([f&#x27;diabetes-{i:04d}&#x27; for i in range(len(y))])
 assert X.shape==(442,10) and y.shape==(442,)
@@ -66,19 +91,25 @@ with DATA_PATH.open(&#x27;w&#x27;,newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27
 data_sha256=digest(DATA_PATH)
 print(&#x27;Rows / features:&#x27;,X.shape,&#x27;Columns:&#x27;,HEADER)
 print(&#x27;Partition sizes:&#x27;,{k:len(v) for k,v in SPLITS.items()});print(&#x27;CSV SHA-256:&#x27;,data_sha256)
-fig,ax=plt.subplots(layout=&#x27;constrained&#x27;)
-for name,idx,c in [(&#x27;train&#x27;,train_idx,TEAL),(&#x27;validation&#x27;,val_idx,GOLD),(&#x27;test&#x27;,test_idx,RED)]:
- ax.hist(y[idx],bins=np.linspace(y.min(),y.max(),15),density=True,histtype=&#x27;step&#x27;,lw=2,label=name+&#x27; n=&#x27;+str(len(idx)),color=c)
-ax.set(xlabel=&#x27;Packaged regression target&#x27;,ylabel=&#x27;Empirical density&#x27;);ax.legend();finish(fig,&#x27;w10-target-distributions.png&#x27;)</code></pre></details></section><section class="cell"><h2>3. Make the data contract executable</h2>
-<p>The contract checks exact column order, unique IDs, finite numeric values, the expected row count, split sizes and a disjoint exhaustive partition. It rejects a wrong interface instead of silently repairing it.</p>
-<p><strong>Predict:</strong> if you shuffle CSV rows but keep IDs and split lists, should selected training membership change? If you shuffle feature columns without a declared adapter, should the strict interface accept it?</p>
-<p>The readable runner below is the program another process will execute. It fits only the already selected candidate. It does not inspect validation scores to reselect and does not load a pickle. Only run source code that you trust and have reviewed; a checksum manifest does not authenticate an unknown author.</p>
-</section><section class="cell"><details><summary>Code: step 7</summary><pre><code>RUNNER = &quot;import argparse,csv,json,hashlib\nfrom pathlib import Path\nimport numpy as np\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import Ridge\nfrom sklearn.dummy import DummyRegressor\nfrom sklearn.metrics import mean_absolute_error,mean_squared_error\n\ndef digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\ndef read_contract(root,config):\n    with (root/&#x27;frozen.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:\n        reader=csv.DictReader(f)\n        if reader.fieldnames!=[&#x27;row_id&#x27;,*config[&#x27;features&#x27;],&#x27;target&#x27;]:raise ValueError(&#x27;schema: exact column order required&#x27;)\n        rows=list(reader)\n    if len(rows)!=config[&#x27;row_count&#x27;]:raise ValueError(&#x27;schema: row count&#x27;)\n    if any(None in r or any(v is None for v in r.values()) for r in rows):raise ValueError(&#x27;schema: row width&#x27;)\n    ids=[r[&#x27;row_id&#x27;] for r in rows]\n    if any(not i.strip() for i in ids):raise ValueError(&#x27;schema: empty row ID&#x27;)\n    if len(set(ids))!=len(ids):raise ValueError(&#x27;schema: duplicate row ID&#x27;)\n    values=np.array([[float(r[k]) for k in [*config[&#x27;features&#x27;],&#x27;target&#x27;]] for r in rows])\n    if not np.isfinite(values).all():raise ValueError(&#x27;schema: non-finite numeric value&#x27;)\n    splits=json.loads((root/&#x27;split.json&#x27;).read_text())\n    if set(splits)!={&#x27;train&#x27;,&#x27;validation&#x27;,&#x27;test&#x27;}:raise ValueError(&#x27;schema: split names&#x27;)\n    flat=sum(splits.values(),[])\n    if len(flat)!=len(set(flat)) or set(flat)!=set(ids):raise ValueError(&#x27;schema: split overlap or missing IDs&#x27;)\n    if {k:len(v) for k,v in splits.items()}!=config[&#x27;split_counts&#x27;]:raise ValueError(&#x27;schema: split counts&#x27;)\n    lookup={r[&#x27;row_id&#x27;]:r for r in rows}\n    def cohort(name):\n        subset=[lookup[i] for i in splits[name]]\n        return np.array([[float(r[k]) for k in config[&#x27;features&#x27;]] for r in subset]),np.array([float(r[&#x27;target&#x27;]) for r in subset])\n    return cohort,splits\n\ndef run(root,out):\n    root=Path(root).resolve()\n    manifest=json.loads((root/&#x27;manifest.json&#x27;).read_text())\n    expected={&#x27;frozen.csv&#x27;,&#x27;split.json&#x27;,&#x27;config.json&#x27;,&#x27;reference-predictions.csv&#x27;,&#x27;replay.py&#x27;,&#x27;result.json&#x27;}\n    if set(manifest[&#x27;sha256&#x27;])!=expected:raise ValueError(&#x27;manifest: required file list&#x27;)\n    for name,value in manifest[&#x27;sha256&#x27;].items():\n        if digest(root/name)!=value:raise ValueError(&#x27;checksum mismatch: &#x27;+name)\n    config=json.loads((root/&#x27;config.json&#x27;).read_text())\n    cohort,splits=read_contract(root,config)\n    Xtr,ytr=cohort(&#x27;train&#x27;);Xte,yte=cohort(&#x27;test&#x27;)\n    chosen=config[&#x27;selected&#x27;]\n    if chosen not in config[&#x27;candidate_order&#x27;]:raise ValueError(&#x27;config: undeclared selected candidate&#x27;)\n    model=DummyRegressor(strategy=&#x27;median&#x27;) if chosen==&#x27;median&#x27; else make_pipeline(StandardScaler(),Ridge(alpha=float(chosen.split(&#x27;-&#x27;)[1]),solver=&#x27;svd&#x27;))\n    model.fit(Xtr,ytr);pred=model.predict(Xte)\n    result={&#x27;selected&#x27;:chosen,&#x27;data_sha256&#x27;:digest(root/&#x27;frozen.csv&#x27;),&#x27;test_ids&#x27;:splits[&#x27;test&#x27;],&#x27;predictions&#x27;:pred.tolist(),\n       &#x27;metrics&#x27;:{&#x27;n&#x27;:len(yte),&#x27;MAE&#x27;:float(mean_absolute_error(yte,pred)),&#x27;RMSE&#x27;:float(np.sqrt(mean_squared_error(yte,pred)))}}\n    Path(out).write_text(json.dumps(result,indent=2,allow_nan=False),encoding=&#x27;utf-8&#x27;)\n    print(json.dumps({&#x27;selected&#x27;:chosen,&#x27;test_n&#x27;:len(yte),&#x27;output_written&#x27;:True}))\nif __name__==&#x27;__main__&#x27;:\n    p=argparse.ArgumentParser();p.add_argument(&#x27;--root&#x27;,required=True);p.add_argument(&#x27;--out&#x27;,required=True);a=p.parse_args();run(a.root,a.out)\n&quot;
-(BUNDLE_DIR/&#x27;replay.py&#x27;).write_text(RUNNER,encoding=&#x27;utf-8&#x27;)
-print(&#x27;Readable runner exported:&#x27;,BUNDLE_DIR/&#x27;replay.py&#x27;)</code></pre></details></section><section class="cell"><h2>4. Fit only on training data; choose on validation</h2>
-<p>The median of training targets is an interpretable constant baseline for absolute error. The Ridge candidates minimize a squared-error objective plus an L2 coefficient penalty, with an unpenalized intercept in scikit-learn. Selection still uses validation MAE; the training objective and evaluation metric need not be identical.</p>
-<p><strong>Predict:</strong> will stronger regularization always improve validation MAE? Why should target medians and feature means come only from training rows?</p>
-</section><section class="cell"><details><summary>Code: step 9</summary><pre><code>models={name:candidate(name).fit(Xtr,ytr) for name in CONFIG[&#x27;candidate_order&#x27;]}
+
+# Show training targets only; final-test outcomes are first displayed in Task 5.
+fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.hist(ytr,bins=14,color=TEAL)
+ax.set(xlabel=&#x27;Training target only&#x27;,ylabel=&#x27;Count&#x27;,title=&#x27;Training cohort; validation/test outcomes not displayed here&#x27;)
+finish(fig,&#x27;w10-target-distributions.png&#x27;)
+
+scope_scaler=StandardScaler().fit(Xtr)
+np.testing.assert_allclose(scope_scaler.mean_,Xtr.mean(axis=0),atol=1e-12)
+mean_gap=(X.mean(axis=0)-Xtr.mean(axis=0))/scope_scaler.scale_
+observations[&#x27;task2&#x27;]={&#x27;counts&#x27;:{k:len(v) for k,v in SPLITS.items()},&#x27;training_mean_matches&#x27;:True,
+ &#x27;mean_gap_train_sd&#x27;:mean_gap.tolist(),&#x27;row_id_is_feature&#x27;:False}
+fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.bar(FEATURES,mean_gap,color=RED);ax.axhline(0,color=&#x27;black&#x27;)
+ax.set(xlabel=&#x27;Input coordinate&#x27;,ylabel=&#x27;(All-row mean - train mean) / train SD&#x27;);finish(fig,&#x27;w10-preprocessing-scope.png&#x27;)
+print(observations[&#x27;task2&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task2_explanation&quot;] = &#x27;Raw loading avoids the loader’s global scaling. The scaler mean matches training rows, while a mean gap alone does not determine which score would improve.&#x27;</code></pre></details></section><section class="cell"><h2>Task 3: Fit candidates and freeze the validation choice (15 min)</h2>
+<p><strong>Purpose:</strong> Separate training loss, model selection and final evaluation.</p>
+<p><strong>Do:</strong> Fit the training-target median and Ridge alpha 1, 20, 100 pipelines using the SAME training rows. Ridge minimizes squared error plus an L2 penalty; selection uses validation MAE. The listed order breaks exact ties. Save the choice now; final-test outcomes appear only in Task 5. Inspect the actual coefficient-norm curve separately from validation MAE.</p>
+<p><strong>Stopping check:</strong> Four training-only candidates; one saved validation choice; scaler means agree with Task 2. The median baseline remains eligible to win.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task3_prediction&quot;] = &#x27;A stronger penalty will shrink coefficients, but validation MAE need not improve monotonically.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>models={name:candidate(name).fit(Xtr,ytr) for name in CONFIG[&#x27;candidate_order&#x27;]}
 validation={name:metrics(yva,m.predict(Xva)) for name,m in models.items()}
 selected=min(CONFIG[&#x27;candidate_order&#x27;],key=lambda name:(validation[name][&#x27;MAE&#x27;],CONFIG[&#x27;candidate_order&#x27;].index(name)))
 print(&#x27;Validation:&#x27;,json.dumps(validation,indent=2));print(&#x27;Selected before final test:&#x27;,selected)
@@ -87,10 +118,123 @@ ax.bar(range(4),[validation[n][&#x27;MAE&#x27;] for n in models],color=[TEAL if 
 ax.set_xticks(range(4),[&#x27;Median&#x27;,&#x27;Ridge 1&#x27;,&#x27;Ridge 20&#x27;,&#x27;Ridge 100&#x27;]);ax.set_ylabel(&#x27;Validation MAE (target units)&#x27;);finish(fig,&#x27;w10-validation-selection.png&#x27;)
 fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);alphas=CONFIG[&#x27;alphas&#x27;]
 norms=[float(np.linalg.norm(models[&#x27;ridge-&#x27;+f&#x27;{a:g}&#x27;].named_steps[&#x27;ridge&#x27;].coef_)) for a in alphas]
-ax.plot(alphas,norms,&#x27;o-&#x27;,color=TEAL,lw=2);ax.set_xscale(&#x27;log&#x27;);ax.set(xlabel=&#x27;Ridge alpha&#x27;,ylabel=&#x27;Standardized coefficient L2 norm&#x27;);finish(fig,&#x27;w10-regularization-path.png&#x27;)</code></pre></details></section><section class="cell"><h2>5. Open the final test once</h2>
-<p>Report the validation-selected candidate and the predeclared median baseline on the same 89 test observations. For diagnosis, inspect parity, residuals (<code>prediction - observation</code>) and the absolute-error CDF. A successful replay later does not make an inaccurate or externally invalid model useful.</p>
-<p><strong>Action:</strong> identify one actual large-residual sample ID. Do not tune alpha after seeing this test result.</p>
-</section><section class="cell"><details><summary>Code: step 11</summary><pre><code>test_prediction={n:models[n].predict(Xte) for n in dict.fromkeys([&#x27;median&#x27;,selected])}
+ax.plot(alphas,norms,&#x27;o-&#x27;,color=TEAL,lw=2);ax.set_xscale(&#x27;log&#x27;);ax.set(xlabel=&#x27;Ridge alpha&#x27;,ylabel=&#x27;Standardized coefficient L2 norm&#x27;);finish(fig,&#x27;w10-regularization-path.png&#x27;)
+for name,m in models.items():
+ if name!=&#x27;median&#x27;:np.testing.assert_allclose(m.named_steps[&#x27;standardscaler&#x27;].mean_,scope_scaler.mean_)
+selected_before_test=selected
+observations[&#x27;task3&#x27;]={&#x27;validation&#x27;:validation,&#x27;selected&#x27;:selected,&#x27;test_used_for_selection&#x27;:False}</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task3_explanation&quot;] = &#x27;Validation MAE selects among predeclared candidates. The training objective is different from the selection metric, and the frozen choice is not reopened after test inspection.&#x27;</code></pre></details></section><section class="cell"><h2>Review the portable replay program</h2>
+<p>Expand the code cell below and review its named steps: verify hashes → read the data contract → reconstruct saved ID cohorts → read reference predictions → refit the frozen candidate → compare aligned vectors. This cell writes the provided source and imports its functions; it does not train a model. Task 4 calls only the schema reader. Task 5 executes a copied file in a separate process. Only run reviewed, trusted code; a checksum is not a signature.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>RUNNER = r&#x27;&#x27;&#x27;
+&quot;&quot;&quot;Reviewed Week10 replay program. Frozen files in, aligned comparison out.&quot;&quot;&quot;
+import argparse,csv,json,hashlib,os,platform
+from pathlib import Path
+import numpy as np
+import sklearn
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Ridge
+from sklearn.dummy import DummyRegressor
+PAYLOAD={&#x27;frozen.csv&#x27;,&#x27;split.json&#x27;,&#x27;config.json&#x27;,&#x27;reference-predictions.csv&#x27;,&#x27;replay.py&#x27;,&#x27;result.json&#x27;}
+def digest(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def read_contract(root,config):
+    root=Path(root)
+    with (root/&#x27;frozen.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:
+        reader=csv.DictReader(f)
+        if reader.fieldnames!=[&#x27;row_id&#x27;,*config[&#x27;features&#x27;],&#x27;target&#x27;]:raise ValueError(&#x27;schema: exact column order required&#x27;)
+        rows=list(reader)
+    if len(rows)!=config[&#x27;row_count&#x27;]:raise ValueError(&#x27;schema: row count&#x27;)
+    if any(None in r or any(v is None for v in r.values()) for r in rows):raise ValueError(&#x27;schema: row width&#x27;)
+    ids=[r[&#x27;row_id&#x27;] for r in rows]
+    if any(not i.strip() for i in ids):raise ValueError(&#x27;schema: empty row ID&#x27;)
+    if len(set(ids))!=len(ids):raise ValueError(&#x27;schema: duplicate row ID&#x27;)
+    values=np.array([[float(r[k]) for k in [*config[&#x27;features&#x27;],&#x27;target&#x27;]] for r in rows])
+    if not np.isfinite(values).all():raise ValueError(&#x27;schema: non-finite numeric value&#x27;)
+    splits=json.loads((root/&#x27;split.json&#x27;).read_text())
+    if set(splits)!={&#x27;train&#x27;,&#x27;validation&#x27;,&#x27;test&#x27;}:raise ValueError(&#x27;schema: split names&#x27;)
+    if not all(isinstance(v,list) and all(isinstance(i,str) for i in v) for v in splits.values()):raise ValueError(&#x27;schema: ID lists required&#x27;)
+    flat=sum(splits.values(),[])
+    if len(flat)!=len(set(flat)) or set(flat)!=set(ids):raise ValueError(&#x27;schema: split overlap or missing IDs&#x27;)
+    if {k:len(v) for k,v in splits.items()}!=config[&#x27;split_counts&#x27;]:raise ValueError(&#x27;schema: split counts&#x27;)
+    lookup={r[&#x27;row_id&#x27;]:r for r in rows}
+    def cohort(name):
+        subset=[lookup[i] for i in splits[name]]
+        return np.array([[float(r[k]) for k in config[&#x27;features&#x27;]] for r in subset]),np.array([float(r[&#x27;target&#x27;]) for r in subset])
+    return cohort,splits
+
+def run(root,out):
+    root=Path(root).resolve();manifest=json.loads((root/&#x27;manifest.json&#x27;).read_text())
+    if manifest.get(&#x27;format&#x27;)!=&#x27;MLES-W10-v2&#x27; or set(manifest[&#x27;sha256&#x27;])!=PAYLOAD:raise ValueError(&#x27;manifest: exact required file list and format&#x27;)
+    for name,value in manifest[&#x27;sha256&#x27;].items():
+        if digest(root/name)!=value:raise ValueError(&#x27;checksum mismatch: &#x27;+name)
+    config=json.loads((root/&#x27;config.json&#x27;).read_text());cohort,splits=read_contract(root,config)
+    Xtr,ytr=cohort(&#x27;train&#x27;);Xte,yte=cohort(&#x27;test&#x27;)
+    chosen=config[&#x27;selected&#x27;];allowed=[&#x27;median&#x27;,&#x27;ridge-1&#x27;,&#x27;ridge-20&#x27;,&#x27;ridge-100&#x27;]
+    if config[&#x27;candidate_order&#x27;]!=allowed or chosen not in allowed:raise ValueError(&#x27;config: undeclared candidate&#x27;)
+    # The runner itself reads and validates reference predictions; no notebook globals are needed.
+    with (root/&#x27;reference-predictions.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:
+        reader=csv.DictReader(f)
+        if reader.fieldnames!=[&#x27;row_id&#x27;,&#x27;observed&#x27;,&#x27;predicted&#x27;]:raise ValueError(&#x27;reference: exact header required&#x27;)
+        reference=list(reader)
+    if any(None in r or any(v is None for v in r.values()) for r in reference):raise ValueError(&#x27;reference: row width&#x27;)
+    if [r[&#x27;row_id&#x27;] for r in reference]!=splits[&#x27;test&#x27;]:raise ValueError(&#x27;reference: test ID sequence mismatch&#x27;)
+    ref_y=np.array([float(r[&#x27;observed&#x27;]) for r in reference]);ref_p=np.array([float(r[&#x27;predicted&#x27;]) for r in reference])
+    if not np.isfinite(ref_y).all() or not np.isfinite(ref_p).all():raise ValueError(&#x27;reference: non-finite value&#x27;)
+    np.testing.assert_array_equal(ref_y,yte)
+    model=DummyRegressor(strategy=&#x27;median&#x27;) if chosen==&#x27;median&#x27; else make_pipeline(StandardScaler(),Ridge(alpha=float(chosen.split(&#x27;-&#x27;)[1]),solver=&#x27;svd&#x27;))
+    model.fit(Xtr,ytr);pred=model.predict(Xte)
+    np.testing.assert_allclose(pred,ref_p,atol=config[&#x27;atol&#x27;],rtol=config[&#x27;rtol&#x27;])
+    error=pred-yte;delta=pred-ref_p
+    result={&#x27;selected&#x27;:chosen,&#x27;data_sha256&#x27;:digest(root/&#x27;frozen.csv&#x27;),&#x27;test_ids&#x27;:splits[&#x27;test&#x27;],&#x27;predictions&#x27;:pred.tolist(),
+        &#x27;metrics&#x27;:{&#x27;n&#x27;:len(yte),&#x27;MAE&#x27;:float(np.abs(error).mean()),&#x27;RMSE&#x27;:float(np.sqrt((error**2).mean()))},
+        &#x27;reference_comparison_passed&#x27;:True,&#x27;max_reference_difference&#x27;:float(np.max(np.abs(delta))),
+        &#x27;process_id&#x27;:os.getpid(),&#x27;working_directory_name&#x27;:Path.cwd().name,
+        &#x27;environment&#x27;:{&#x27;python&#x27;:platform.python_version(),&#x27;numpy&#x27;:np.__version__,&#x27;scikit_learn&#x27;:sklearn.__version__},
+        &#x27;scope&#x27;:&#x27;Fresh interpreter and working directory, same installed environment; not independent scientific replication&#x27;}
+    Path(out).write_text(json.dumps(result,indent=2,allow_nan=False),encoding=&#x27;utf-8&#x27;)
+    print(json.dumps({&#x27;selected&#x27;:chosen,&#x27;test_n&#x27;:len(yte),&#x27;reference_comparison_passed&#x27;:True}))
+    return result
+if __name__==&#x27;__main__&#x27;:
+    p=argparse.ArgumentParser();p.add_argument(&#x27;--root&#x27;,required=True);p.add_argument(&#x27;--out&#x27;,required=True);a=p.parse_args();run(a.root,a.out)
+
+&#x27;&#x27;&#x27;
+(BUNDLE_DIR/&#x27;replay.py&#x27;).write_text(RUNNER,encoding=&#x27;utf-8&#x27;)
+import importlib.util
+spec=importlib.util.spec_from_file_location(&#x27;reviewed_w10_runner&#x27;,BUNDLE_DIR/&#x27;replay.py&#x27;)
+runner_module=importlib.util.module_from_spec(spec);spec.loader.exec_module(runner_module)
+print(&#x27;Reviewed replay source written; no fitting performed by this cell.&#x27;)</code></pre></details></section><section class="cell"><h2>Task 4: Reject malformed copies before fitting (12 min)</h2>
+<p><strong>Purpose:</strong> Give the data interface executable stopping conditions.</p>
+<p><strong>Do:</strong> Expand and review the provided replay program before this task. Work on temporary copies. Predict the expected rejection for duplicate IDs, NaN, wrong headers, row width, empty IDs and an invalid partition. Call the schema reader directly, so this test checks input contracts without training. Keep the original CSV hash unchanged.</p>
+<p><strong>Stopping check:</strong> Every declared bad copy is rejected with a recorded reason. The original reference bytes remain unchanged.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task4_prediction&quot;] = &#x27;The strict reader should refuse malformed copies rather than silently guess a repair.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>FROZEN_CONFIG={**CONFIG,&#x27;features&#x27;:FEATURES,&#x27;row_count&#x27;:442,&#x27;split_counts&#x27;:{&#x27;train&#x27;:265,&#x27;validation&#x27;:88,&#x27;test&#x27;:89},&#x27;selected&#x27;:selected,&#x27;environment&#x27;:ENV}
+def contract_probe(kind):
+ with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-probe-&#x27;) as work:
+  target=Path(work);shutil.copy2(DATA_PATH,target/&#x27;frozen.csv&#x27;);shutil.copy2(BUNDLE_DIR/&#x27;split.json&#x27;,target/&#x27;split.json&#x27;)
+  with (target/&#x27;frozen.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:rows=list(csv.reader(f))
+  if kind==&#x27;duplicate ID&#x27;:rows[2][0]=rows[1][0]
+  elif kind==&#x27;non-finite&#x27;:rows[1][1]=&#x27;nan&#x27;
+  elif kind==&#x27;column order&#x27;:rows=[[r[1],r[0],*r[2:]] for r in rows]
+  elif kind==&#x27;extra value&#x27;:rows[1].append(&#x27;unexpected&#x27;)
+  elif kind==&#x27;missing value&#x27;:rows[1].pop()
+  elif kind==&#x27;empty ID&#x27;:rows[1][0]=&#x27;&#x27;
+  elif kind==&#x27;invalid partition&#x27;:
+   bad=json.loads((target/&#x27;split.json&#x27;).read_text());bad[&#x27;test&#x27;][0]=bad[&#x27;train&#x27;][0];(target/&#x27;split.json&#x27;).write_text(json.dumps(bad))
+  else:raise ValueError(kind)
+  with (target/&#x27;frozen.csv&#x27;).open(&#x27;w&#x27;,newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:csv.writer(f).writerows(rows)
+  try:runner_module.read_contract(target,FROZEN_CONFIG)
+  except ValueError as error:return {&#x27;case&#x27;:kind,&#x27;rejected&#x27;:True,&#x27;reason&#x27;:str(error)}
+  raise AssertionError(&#x27;Malformed copy unexpectedly accepted: &#x27;+kind)
+contract_checks=[contract_probe(k) for k in [&#x27;duplicate ID&#x27;,&#x27;non-finite&#x27;,&#x27;column order&#x27;,&#x27;extra value&#x27;,&#x27;missing value&#x27;,&#x27;empty ID&#x27;,&#x27;invalid partition&#x27;]]
+assert digest(DATA_PATH)==data_sha256
+observations[&#x27;task4&#x27;]=contract_checks
+print(json.dumps(contract_checks,indent=2))
+fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.barh([r[&#x27;case&#x27;] for r in contract_checks],[1]*len(contract_checks),color=TEAL)
+ax.set(xlim=(0,1.2),xlabel=&#x27;Actual rejection outcome&#x27;);ax.set_xticks([0,1],[&#x27;Accepted&#x27;,&#x27;Rejected&#x27;]);finish(fig,&#x27;w10-contract-tests.png&#x27;)</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task4_explanation&quot;] = &#x27;Expected caught ValueErrors count as successful rejection tests. A passed schema only establishes well-formed inputs relative to this contract.&#x27;</code></pre></details></section><section class="cell"><h2>Task 5: Evaluate once and replay from copied files (18 min)</h2>
+<p><strong>Purpose:</strong> Build a handover that can check its own predictions without notebook variables.</p>
+<p><strong>Do:</strong> Open final-test outcomes after the validation choice is frozen. Compare the selected model with the declared median baseline; inspect one actual failure ID. Build six payload files and a manifest. Copy the bundle into a new temporary directory and invoke its replay.py in a NEW Python interpreter. The runner must read the reference-predictions CSV itself and compare all 89 aligned values. Record a different process ID; do not call the runner function in this notebook and call that a fresh process.</p>
+<p><strong>Stopping check:</strong> All file hashes, schema and exact test-ID sequence pass. The child independently compares predictions within atol=1e-8 and rtol=1e-10. This still shares installed dependencies.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task5_prediction&quot;] = &#x27;The new interpreter needs the saved files and reviewed code; notebook globals cannot supply them.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>test_prediction={n:models[n].predict(Xte) for n in dict.fromkeys([&#x27;median&#x27;,selected])}
 test_metrics={n:metrics(yte,p) for n,p in test_prediction.items()}
 pred=test_prediction[selected];residual=pred-yte
 print(&#x27;Final test:&#x27;,json.dumps(test_metrics,indent=2))
@@ -108,11 +252,62 @@ for n,p in test_prediction.items():
 ax.set(xlabel=&#x27;Absolute error (target units)&#x27;,ylabel=&#x27;Empirical cumulative fraction&#x27;);ax.legend();finish(fig,&#x27;w10-error-cdf.png&#x27;)
 worst=np.argsort(np.abs(residual))[-5:][::-1]
 worst_rows=[{&#x27;row_id&#x27;:IDS[test_idx[j]],&#x27;observed&#x27;:float(yte[j]),&#x27;predicted&#x27;:float(pred[j]),&#x27;residual&#x27;:float(residual[j])} for j in worst]
-print(&#x27;Five largest absolute residuals:&#x27;,json.dumps(worst_rows,indent=2))</code></pre></details></section><section class="cell"><h2>6. Interpret coordinates, not clinical causes</h2>
-<p>For a Ridge pipeline, the coefficient on standardized feature j is the model's response change for +1 <strong>training</strong> standard deviation of that feature, all other inputs fixed. This is not causal importance; correlated features can trade coefficients.</p>
-<p>Recover the raw equation with <code>raw_coef = coef / scale</code> and <code>raw_intercept = intercept - dot(raw_coef, mean)</code>. Verify predictions. If the selected candidate is the median, its response is constant and this feature interpretation is not applicable; we then inspect the predeclared Ridge-20 candidate separately.</p>
-<p><strong>Predict:</strong> should shuffling feature order without matching names preserve the model's meaning?</p>
-</section><section class="cell"><details><summary>Code: step 13</summary><pre><code>explain_name=selected if selected!=&#x27;median&#x27; else &#x27;ridge-20&#x27;
+print(&#x27;Five largest absolute residuals:&#x27;,json.dumps(worst_rows,indent=2))
+assert selected==selected_before_test
+FROZEN_CONFIG={**CONFIG,&#x27;features&#x27;:FEATURES,&#x27;row_count&#x27;:442,&#x27;split_counts&#x27;:{&#x27;train&#x27;:265,&#x27;validation&#x27;:88,&#x27;test&#x27;:89},&#x27;selected&#x27;:selected,&#x27;environment&#x27;:ENV}
+(BUNDLE_DIR/&#x27;config.json&#x27;).write_text(json.dumps(FROZEN_CONFIG,indent=2),encoding=&#x27;utf-8&#x27;)
+with (BUNDLE_DIR/&#x27;reference-predictions.csv&#x27;).open(&#x27;w&#x27;,newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:
+ w=csv.writer(f);w.writerow([&#x27;row_id&#x27;,&#x27;observed&#x27;,&#x27;predicted&#x27;])
+ for i,actual,p in zip(IDS[test_idx],yte,pred):w.writerow([i,repr(float(actual)),repr(float(p))])
+record={&#x27;week&#x27;:10,&#x27;data_scope&#x27;:&#x27;Packaged regression dataset; statistical teaching only, not clinical validation&#x27;,
+ &#x27;config&#x27;:CONFIG,&#x27;environment&#x27;:ENV,&#x27;data_sha256&#x27;:data_sha256,&#x27;selected_on_validation&#x27;:selected,
+ &#x27;validation&#x27;:validation,&#x27;test&#x27;:test_metrics,&#x27;worst_test_rows&#x27;:worst_rows,
+ &#x27;claim_limit&#x27;:&#x27;Frozen random-row teaching split; no external clinical, causal or deployment claim.&#x27;}
+(BUNDLE_DIR/&#x27;result.json&#x27;).write_text(json.dumps(record,indent=2,allow_nan=False),encoding=&#x27;utf-8&#x27;)
+BUNDLE_FILES=[&#x27;frozen.csv&#x27;,&#x27;split.json&#x27;,&#x27;config.json&#x27;,&#x27;reference-predictions.csv&#x27;,&#x27;replay.py&#x27;,&#x27;result.json&#x27;]
+manifest={&#x27;format&#x27;:&#x27;MLES-W10-v2&#x27;,&#x27;sha256&#x27;:{name:digest(BUNDLE_DIR/name) for name in BUNDLE_FILES}}
+(BUNDLE_DIR/&#x27;manifest.json&#x27;).write_text(json.dumps(manifest,indent=2),encoding=&#x27;utf-8&#x27;)
+print(&#x27;Handover files:&#x27;,BUNDLE_FILES+[&#x27;manifest.json&#x27;])
+def fresh_process(root,label):
+ output=(ARTIFACTS/(label+&#x27;-process-result.json&#x27;)).resolve()
+ with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-fresh-&#x27;) as work:
+  copied=Path(work)/&#x27;handover&#x27;;shutil.copytree(root,copied)
+  proc=subprocess.run([sys.executable,&#x27;-I&#x27;,str(copied/&#x27;replay.py&#x27;),&#x27;--root&#x27;,str(copied),&#x27;--out&#x27;,str(output)],cwd=work,capture_output=True,text=True,timeout=120)
+  if proc.returncode:raise RuntimeError(proc.stderr)
+  result=json.loads(output.read_text());assert result[&#x27;process_id&#x27;]!=os.getpid()
+  assert result[&#x27;working_directory_name&#x27;]==Path(work).name
+  return result
+replay=fresh_process(BUNDLE_DIR,&#x27;reference&#x27;)
+assert replay[&#x27;test_ids&#x27;]==SPLITS[&#x27;test&#x27;] and replay[&#x27;reference_comparison_passed&#x27;]
+np.testing.assert_allclose(replay[&#x27;predictions&#x27;],pred,atol=CONFIG[&#x27;atol&#x27;],rtol=CONFIG[&#x27;rtol&#x27;])
+replay_diff=np.asarray(replay[&#x27;predictions&#x27;])-pred;max_replay_difference=float(np.max(np.abs(replay_diff)))
+observations[&#x27;task5&#x27;]={&#x27;different_process&#x27;:True,&#x27;same_installed_environment&#x27;:True,&#x27;runner_compares_its_own_reference&#x27;:True,&#x27;max_difference&#x27;:max_replay_difference,&#x27;worst_case&#x27;:worst_rows[0]}
+fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.scatter(np.arange(len(pred)),replay_diff,color=TEAL);ax.axhline(0,color=&#x27;black&#x27;);ax.set(ylim=(-1e-7,1e-7),xlabel=&#x27;Saved test-ID position&#x27;,ylabel=&#x27;Fresh process - reference prediction&#x27;);finish(fig,&#x27;w10-replay-differences.png&#x27;)
+print(observations[&#x27;task5&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task5_explanation&quot;] = &#x27;The copied bundle and separate interpreter reconstruct the frozen selected candidate and compare its own reference file. This removes notebook state, not shared packages or dataset limitations.&#x27;</code></pre></details></section><section class="cell"><h2>Task 6: Reorder CSV rows, preserve the records (15 min)</h2>
+<p><strong>Purpose:</strong> Distinguish changed bytes from changed records, then test row-order independence.</p>
+<p><strong>Do:</strong> Reverse data rows in a temporary COPY, keep the header and saved split-ID lists. Confirm that the exact CSV hash changes while the entire ID-keyed record mapping stays equal. Record this reviewed transformation and update ONLY that copy’s CSV digest in its manifest. Run a fresh process and compare aligned predictions. The reference bundle stays unchanged. Updating a manifest alone never proves a transformation is legitimate.</p>
+<p><strong>Stopping check:</strong> Different CSV hashes, equal ID-keyed values, equal test-ID order and predictions within tolerance. No new winner is selected.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task6_prediction&quot;] = &#x27;Reordering valid records should change bytes but preserve an ID-based replay.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-reorder-&#x27;) as work:
+ copied=Path(work)/&#x27;handover&#x27;;shutil.copytree(BUNDLE_DIR,copied)
+ with (copied/&#x27;frozen.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:rows=list(csv.reader(f))
+ original_records={row[0]:row[1:] for row in rows[1:]}
+ reordered=[rows[0],*rows[:0:-1]]
+ assert {row[0]:row[1:] for row in reordered[1:]}==original_records
+ with (copied/&#x27;frozen.csv&#x27;).open(&#x27;w&#x27;,newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:csv.writer(f).writerows(reordered)
+ new_hash=digest(copied/&#x27;frozen.csv&#x27;);assert new_hash!=data_sha256
+ changed_manifest=json.loads((copied/&#x27;manifest.json&#x27;).read_text());changed_manifest[&#x27;sha256&#x27;][&#x27;frozen.csv&#x27;]=new_hash
+ (copied/&#x27;manifest.json&#x27;).write_text(json.dumps(changed_manifest,indent=2))
+ reordered_replay=fresh_process(copied,&#x27;reordered&#x27;)
+ assert reordered_replay[&#x27;test_ids&#x27;]==SPLITS[&#x27;test&#x27;]
+ np.testing.assert_allclose(reordered_replay[&#x27;predictions&#x27;],pred,atol=CONFIG[&#x27;atol&#x27;],rtol=CONFIG[&#x27;rtol&#x27;])
+observations[&#x27;task6&#x27;]={&#x27;reference_sha256&#x27;:data_sha256,&#x27;reviewed_copy_sha256&#x27;:new_hash,&#x27;ID_keyed_records_equal&#x27;:True,&#x27;saved_ID_sequence_equal&#x27;:True,&#x27;max_prediction_difference&#x27;:reordered_replay[&#x27;max_reference_difference&#x27;],&#x27;reference_unchanged&#x27;:digest(DATA_PATH)==data_sha256}
+assert observations[&#x27;task6&#x27;][&#x27;reference_unchanged&#x27;];print(observations[&#x27;task6&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task6_explanation&quot;] = &#x27;The reader reconstructs cohorts by saved ID sequence. We checked the record mapping before updating the copied manifest, then checked the resulting predictions; a rehashed file alone is not evidence of equivalence.&#x27;</code></pre></details></section><section class="cell"><h2>Task 7: Check a coordinate explanation (12 min)</h2>
+<p><strong>Purpose:</strong> Explain the fitted function in its declared coordinate system.</p>
+<p><strong>Do:</strong> If the selected candidate is Ridge, inspect it; if the median won, explicitly use the separately declared Ridge-20 interpretation candidate. Recover raw coefficients and intercept, then check all predictions. Increase coordinate bmi by 0.1 TRAINING SD, holding others fixed; compare every prediction delta with 0.1 times its standardized coefficient. This tests a function, not a feasible medical intervention.</p>
+<p><strong>Stopping check:</strong> The raw equation and the entire perturbation vector match within tolerance; the interpretation candidate is recorded.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task7_prediction&quot;] = &#x27;For this additive Ridge function, every row should change by 0.1 times the chosen standardized coefficient.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>explain_name=selected if selected!=&#x27;median&#x27; else &#x27;ridge-20&#x27;
 explain_model=models[explain_name];scaler=explain_model.named_steps[&#x27;standardscaler&#x27;];reg=explain_model.named_steps[&#x27;ridge&#x27;]
 raw_coef=reg.coef_/scaler.scale_;raw_intercept=float(reg.intercept_-np.dot(raw_coef,scaler.mean_))
 np.testing.assert_allclose(raw_intercept+Xte@raw_coef,explain_model.predict(Xte),atol=1e-8,rtol=1e-10)
@@ -122,84 +317,70 @@ fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.barh(FEATURES,reg.coef_,c
 ax.set(xlabel=&#x27;Response change per +1 training SD&#x27;,ylabel=&#x27;Input coordinate&#x27;,title=explain_name+&#x27; / function, not causation&#x27;);finish(fig,&#x27;w10-coefficients.png&#x27;)
 mean_gap=(X.mean(axis=0)-Xtr.mean(axis=0))/Xtr.std(axis=0)
 fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.bar(FEATURES,mean_gap,color=RED);ax.axhline(0,color=&#x27;black&#x27;,lw=1)
-ax.set(xlabel=&#x27;Feature&#x27;,ylabel=&#x27;(All-row mean - train mean) / train SD&#x27;);finish(fig,&#x27;w10-preprocessing-scope.png&#x27;)</code></pre></details></section><section class="cell"><h2>7. Publish a small, readable handover contract</h2>
-<p>The handover contains exact measurements, split IDs, feature order, selected configuration, training procedure, reference test predictions and the result record. Store actual runtime versions. The manifest detects file changes relative to its recorded digests; anyone able to replace both files and digests can defeat it. It is not a signature or a scientific validity test.</p>
-<p>No model pickle is needed: we refit from readable source and frozen inputs. Do not execute unfamiliar code or load an untrusted pickle simply because it has a checksum.</p>
-</section><section class="cell"><details><summary>Code: step 15</summary><pre><code>FROZEN_CONFIG={**CONFIG,&#x27;features&#x27;:FEATURES,&#x27;row_count&#x27;:442,&#x27;split_counts&#x27;:{&#x27;train&#x27;:265,&#x27;validation&#x27;:88,&#x27;test&#x27;:89},&#x27;selected&#x27;:selected,&#x27;environment&#x27;:ENV}
-(BUNDLE_DIR/&#x27;config.json&#x27;).write_text(json.dumps(FROZEN_CONFIG,indent=2),encoding=&#x27;utf-8&#x27;)
-with (BUNDLE_DIR/&#x27;reference-predictions.csv&#x27;).open(&#x27;w&#x27;,newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:
- w=csv.writer(f);w.writerow([&#x27;row_id&#x27;,&#x27;observed&#x27;,&#x27;predicted&#x27;])
- for i,actual,p in zip(IDS[test_idx],yte,pred):w.writerow([i,repr(float(actual)),repr(float(p))])
-record={&#x27;week&#x27;:10,&#x27;data_scope&#x27;:&#x27;Packaged regression dataset; statistical teaching only, not clinical validation&#x27;,
- &#x27;config&#x27;:CONFIG,&#x27;environment&#x27;:ENV,&#x27;data_sha256&#x27;:data_sha256,&#x27;selected_on_validation&#x27;:selected,
- &#x27;validation&#x27;:validation,&#x27;test&#x27;:test_metrics,&#x27;coefficients&#x27;:coefficient_record,&#x27;worst_test_rows&#x27;:worst_rows,
- &#x27;claim_limit&#x27;:&#x27;Frozen random-row teaching split; no external clinical, causal or deployment claim.&#x27;}
-(BUNDLE_DIR/&#x27;result.json&#x27;).write_text(json.dumps(record,indent=2,allow_nan=False),encoding=&#x27;utf-8&#x27;)
-BUNDLE_FILES=[&#x27;frozen.csv&#x27;,&#x27;split.json&#x27;,&#x27;config.json&#x27;,&#x27;reference-predictions.csv&#x27;,&#x27;replay.py&#x27;,&#x27;result.json&#x27;]
-manifest={&#x27;format&#x27;:&#x27;MLES-W10-v1&#x27;,&#x27;sha256&#x27;:{name:digest(BUNDLE_DIR/name) for name in BUNDLE_FILES}}
-(BUNDLE_DIR/&#x27;manifest.json&#x27;).write_text(json.dumps(manifest,indent=2),encoding=&#x27;utf-8&#x27;)
-print(&#x27;Handover files:&#x27;,BUNDLE_FILES+[&#x27;manifest.json&#x27;])</code></pre></details></section><section class="cell"><h2>8. Replay in a genuinely separate process</h2>
-<p>The next cell starts a new Python interpreter in a new working directory. It receives only the handover path and an output path. Notebook variables and fitted model objects are not shared. This is stronger than refitting in a new variable, but it still uses the same installed software environment and dataset; it is not independent scientific replication.</p>
-<p><strong>Action:</strong> inspect <code>handover/replay.py</code> before running it. The file was generated above in this notebook; do not substitute downloaded untrusted code.</p>
-<p><strong>Stopping check:</strong> exact test-ID sequence plus prediction agreement under <code>atol=1e-8</code>, <code>rtol=1e-10</code>. Investigate discrepancies before relaxing tolerances.</p>
-</section><section class="cell"><details><summary>Code: step 17</summary><pre><code>REPLAY_PATH=(ARTIFACTS/&#x27;fresh-process-result.json&#x27;).resolve()
-with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-replay-&#x27;) as work:
- completed=subprocess.run([sys.executable,str((BUNDLE_DIR/&#x27;replay.py&#x27;).resolve()),&#x27;--root&#x27;,str(BUNDLE_DIR.resolve()),&#x27;--out&#x27;,str(REPLAY_PATH)],cwd=work,capture_output=True,text=True,timeout=120)
- if completed.returncode:raise RuntimeError(completed.stderr)
- print(&#x27;Fresh process:&#x27;,completed.stdout.strip())
-replay=json.loads(REPLAY_PATH.read_text())
-assert replay[&#x27;test_ids&#x27;]==SPLITS[&#x27;test&#x27;] and replay[&#x27;data_sha256&#x27;]==data_sha256
-replay_diff=np.asarray(replay[&#x27;predictions&#x27;])-pred
-np.testing.assert_allclose(replay[&#x27;predictions&#x27;],pred,atol=CONFIG[&#x27;atol&#x27;],rtol=CONFIG[&#x27;rtol&#x27;])
-max_replay_difference=float(np.max(np.abs(replay_diff)))
-print(&#x27;Maximum prediction difference:&#x27;,max_replay_difference)
-fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.scatter(np.arange(len(pred)),replay_diff,color=TEAL,s=30);ax.axhline(0,color=&#x27;black&#x27;,lw=1)
-ax.set_ylim(-1e-7,1e-7);ax.set(xlabel=&#x27;Test observation in saved ID order&#x27;,ylabel=&#x27;Fresh process - notebook prediction&#x27;);finish(fig,&#x27;w10-replay-differences.png&#x27;)
-# Import the reviewed runner functions without running its CLI main block.
-import importlib.util
-spec=importlib.util.spec_from_file_location(&#x27;week10_reviewed_runner&#x27;,BUNDLE_DIR/&#x27;replay.py&#x27;)
-runner_module=importlib.util.module_from_spec(spec);spec.loader.exec_module(runner_module)</code></pre></details></section><section class="cell"><h2>9. Test the contract's rejection behavior</h2>
-<p>A good handover also says what it will refuse. We deliberately corrupt temporary copies, never the reference folder. Duplicated IDs, a non-finite numeric value and reordered columns should be rejected by the strict data contract. These are interface tests, not new performance evaluations.</p>
-<p><strong>Predict:</strong> if a failure is correctly caught, should the notebook itself crash? No: the cell catches the expected error and records the rejection. An unexpected acceptance is a failed check.</p>
-</section><section class="cell"><details><summary>Code: step 19</summary><pre><code>def contract_probe(kind):
- with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-probe-&#x27;) as work:
-  target=Path(work);shutil.copy2(DATA_PATH,target/&#x27;frozen.csv&#x27;);shutil.copy2(BUNDLE_DIR/&#x27;split.json&#x27;,target/&#x27;split.json&#x27;)
-  with (target/&#x27;frozen.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:rows=list(csv.reader(f))
-  if kind==&#x27;duplicate ID&#x27;:rows[2][0]=rows[1][0]
-  elif kind==&#x27;extra value&#x27;:rows[1].append(&#x27;unexpected&#x27;)
-  elif kind==&#x27;missing value&#x27;:rows[1].pop()
-  elif kind==&#x27;empty ID&#x27;:rows[1][0]=&#x27;&#x27;
-  elif kind==&#x27;non-finite&#x27;:rows[1][1]=&#x27;nan&#x27;
-  elif kind==&#x27;column order&#x27;:rows=[[r[1],r[0],*r[2:]] for r in rows]
-  else:raise ValueError(kind)
-  with (target/&#x27;frozen.csv&#x27;).open(&#x27;w&#x27;,newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:csv.writer(f).writerows(rows)
-  try:runner_module.read_contract(target,FROZEN_CONFIG)
-  except ValueError as e:return {&#x27;case&#x27;:kind,&#x27;rejected&#x27;:True,&#x27;message&#x27;:str(e)}
-  return {&#x27;case&#x27;:kind,&#x27;rejected&#x27;:False,&#x27;message&#x27;:&#x27;Unexpected acceptance&#x27;}
-contract_checks=[contract_probe(k) for k in [&#x27;duplicate ID&#x27;,&#x27;non-finite&#x27;,&#x27;column order&#x27;]]
-assert all(r[&#x27;rejected&#x27;] for r in contract_checks)
-fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.barh([r[&#x27;case&#x27;] for r in contract_checks],[int(r[&#x27;rejected&#x27;]) for r in contract_checks],color=TEAL)
-ax.set_xlim(0,1.2);ax.set_xticks([0,1],[&#x27;Accepted&#x27;,&#x27;Rejected&#x27;]);ax.set_xlabel(&#x27;Actual contract-test outcome&#x27;);finish(fig,&#x27;w10-contract-tests.png&#x27;)
-print(json.dumps(contract_checks,indent=2));assert digest(DATA_PATH)==data_sha256</code></pre></details></section><section class="cell"><h2>10. Save the bundle, limitation and explain-back</h2>
-<p>Download the ZIP from Colab's Files panel before ending the runtime. The handover can be extracted and replayed in another compatible Python environment using its readable runner. Review code before execution. Never treat a passing rerun as a guarantee of external validity.</p>
-<p>Your two-minute explanation should identify: the prediction task, actual baseline comparison, one failure ID, exact data/configuration identity, what the fresh process established, and what it did not establish. Written and oral midterm examinations remain unchanged; this lab is preparation, not a new graded assignment.</p>
-</section><section class="cell"><details><summary>Code: step 21</summary><pre><code>record.update({&#x27;replay_max_prediction_difference&#x27;:max_replay_difference,&#x27;contract_tests&#x27;:contract_checks,
- &#x27;replay_scope&#x27;:&#x27;Fresh interpreter and working directory; same installed environment, not independent replication&#x27;})
-(ARTIFACTS/&#x27;week10-evidence.json&#x27;).write_text(json.dumps(record,indent=2,allow_nan=False),encoding=&#x27;utf-8&#x27;)
+ax.set(xlabel=&#x27;Feature&#x27;,ylabel=&#x27;(All-row mean - train mean) / train SD&#x27;);finish(fig,&#x27;w10-preprocessing-scope.png&#x27;)
+j=FEATURES.index(&#x27;bmi&#x27;);changed=Xte.copy();changed[:,j]+=.1*scaler.scale_[j]
+observed_delta=explain_model.predict(changed)-explain_model.predict(Xte);expected_delta=.1*reg.coef_[j]
+np.testing.assert_allclose(observed_delta,np.full(len(yte),expected_delta),atol=CONFIG[&#x27;atol&#x27;],rtol=CONFIG[&#x27;rtol&#x27;])
+observations[&#x27;task7&#x27;]={&#x27;candidate&#x27;:explain_name,&#x27;coordinate&#x27;:FEATURES[j],&#x27;step_training_SD&#x27;:.1,&#x27;expected_delta&#x27;:float(expected_delta),&#x27;max_disagreement&#x27;:float(np.max(np.abs(observed_delta-expected_delta)))}
+print(observations[&#x27;task7&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task7_explanation&quot;] = &#x27;Undoing standardization reconstructs the same function. A coordinate change checks the algebra and units, not causal importance, medical guidance or new accuracy.&#x27;</code></pre></details></section><section class="cell"><h2>Task 8: Audit, explain and hand over (13 min)</h2>
+<p><strong>Purpose:</strong> Connect a portable artifact with an actual result and a bounded claim.</p>
+<p><strong>Do:</strong> Verify all six payload hashes again. Show a partner the validation winner, one actual failure row, test MAE and the separate replay difference. Locate the CSV, split, config, reviewed source, reference predictions and result record. Complete the three reflection fields and export below. Keep the eight predictions and explanations tied to your own observed outputs.</p>
+<p><strong>Stopping check:</strong> A partner can locate the evidence without your hidden variables. All 19 fields are checked for completeness; blank fields remain an honest draft.</p>
+<p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task8_prediction&quot;] = &#x27;A classmate should be able to verify the declared files and reference comparison from the extracted bundle.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>checks={name:digest(BUNDLE_DIR/name)==sha for name,sha in manifest[&#x27;sha256&#x27;].items()}
+assert all(checks.values()) and digest(DATA_PATH)==data_sha256
+observations[&#x27;task8&#x27;]={&#x27;payload_hashes&#x27;:checks,&#x27;selected&#x27;:selected,&#x27;test_metric&#x27;:test_metrics[selected],&#x27;one_failure_ID&#x27;:worst_rows[0][&#x27;row_id&#x27;],&#x27;fresh_process_difference&#x27;:max_replay_difference}
+print(json.dumps(observations[&#x27;task8&#x27;],indent=2))</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task8_explanation&quot;] = &#x27;The handover links a result to saved inputs and procedure. Replay agreement does not remove prediction error or establish scientific, clinical or deployment validity.&#x27;</code></pre></details></section><section class="cell"><h2>Optional A: tamper detection; Optional B: explicit name adapter</h2>
+<p>Complete all eight core tasks first. Set <code>RUN_CHALLENGES=True</code> below only if time remains. A changes a copied CSV without updating its manifest and expects rejection before an output is written. B restores the canonical feature order by name and verifies exact values. Both leave the reference unchanged. Neither checksum matching nor a working adapter establishes scientific validity.</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>
+RUN_CHALLENGES=False
+challenge_observations={}
+if RUN_CHALLENGES:
+ # A: unchanged manifest must reject a changed file, even a blank-line-only byte change.
+ with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-tamper-&#x27;) as work:
+  copied=Path(work)/&#x27;handover&#x27;;shutil.copytree(BUNDLE_DIR,copied)
+  (copied/&#x27;frozen.csv&#x27;).write_bytes((copied/&#x27;frozen.csv&#x27;).read_bytes()+b&#x27;\n&#x27;)
+  output=Path(work)/&#x27;must-not-exist.json&#x27;
+  proc=subprocess.run([sys.executable,&#x27;-I&#x27;,str(copied/&#x27;replay.py&#x27;),&#x27;--root&#x27;,str(copied),&#x27;--out&#x27;,str(output)],cwd=work,capture_output=True,text=True,timeout=120)
+  assert proc.returncode!=0 and &#x27;checksum mismatch&#x27; in proc.stderr and not output.exists()
+  challenge_observations[&#x27;tamper&#x27;]={&#x27;changed_bytes_rejected&#x27;:True,&#x27;no_result_written&#x27;:True}
+ # B: explicit name adapter; do not silently accept a positional mismatch.
+ order=list(reversed(FEATURES));wrong=X[:,[FEATURES.index(name) for name in order]]
+ restored=np.column_stack([wrong[:,order.index(name)] for name in FEATURES])
+ np.testing.assert_array_equal(restored,X)
+ challenge_observations[&#x27;name_adapter&#x27;]={&#x27;strict_rejection&#x27;:contract_probe(&#x27;column order&#x27;)[&#x27;rejected&#x27;],&#x27;canonical_values_restored&#x27;:True}
+ assert digest(DATA_PATH)==data_sha256
+ print(challenge_observations)
+else:print(&#x27;Optional branches skipped. Eight core tasks are sufficient.&#x27;)
+</code></pre></details></section><section class="cell"><h2>Reflect, peer-review and download</h2>
+<p>Use the remaining 20 studio minutes to show the saved winner, one actual failure ID, the prediction error against outcomes, and the separate replay difference. Fill the three fields below. Eight predictions + eight explanations + three reflections = <strong>19 fields</strong>. Blanks produce a draft; filled fields only indicate readiness for discussion. Write an accurate AI-use disclosure (<code>none</code> if appropriate).</p>
+</section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&#x27;controlled_change&#x27;] = &#x27;Task 6 reversed CSV data rows in a reviewed copy, preserved ID-keyed records and saved membership, and updated only that copy’s CSV digest.&#x27;
+responses[&#x27;limitation&#x27;] = &#x27;A new process shares the installed environment and the same observations. Numerical agreement does not establish external scientific or clinical validity.&#x27;
+responses[&#x27;ai_disclosure&#x27;] = &#x27;Worked course example. Replace this with an accurate disclosure of your own assistance.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>
+keys=[f&#x27;task{i}_{kind}&#x27; for i in range(1,9) for kind in [&#x27;prediction&#x27;,&#x27;explanation&#x27;]]+[&#x27;controlled_change&#x27;,&#x27;limitation&#x27;,&#x27;ai_disclosure&#x27;]
+blank=[k for k in keys if not isinstance(responses.get(k),str) or not responses[k].strip()]
+status=&#x27;draft&#x27; if blank else &#x27;ready for peer discussion; completeness only, not correctness&#x27;
+record.update({&#x27;replay_max_prediction_difference&#x27;:max_replay_difference,&#x27;contract_tests&#x27;:contract_checks,&#x27;replay_scope&#x27;:replay[&#x27;scope&#x27;],&#x27;observations&#x27;:observations,&#x27;responses&#x27;:responses,&#x27;blank_fields&#x27;:blank,&#x27;response_status&#x27;:status,&#x27;optional&#x27;:challenge_observations,&#x27;coefficients&#x27;:coefficient_record})
+(ARTIFACTS/&#x27;week10-evidence.json&#x27;).write_text(json.dumps(record,indent=2,allow_nan=False))
 HANDOVER_ZIP=ARTIFACTS/&#x27;week10-workflow-handover.zip&#x27;
 with zipfile.ZipFile(HANDOVER_ZIP,&#x27;w&#x27;,zipfile.ZIP_DEFLATED) as z:
- for n in BUNDLE_FILES+[&#x27;manifest.json&#x27;]:z.write(BUNDLE_DIR/n,arcname=&#x27;handover/&#x27;+n)
+ for name in sorted([*BUNDLE_FILES,&#x27;manifest.json&#x27;]):z.write(BUNDLE_DIR/name,arcname=&#x27;handover/&#x27;+name)
  for p in sorted(ARTIFACTS.glob(&#x27;w10-*.png&#x27;)):z.write(p,arcname=&#x27;figures/&#x27;+p.name)
  z.write(ARTIFACTS/&#x27;week10-evidence.json&#x27;,arcname=&#x27;week10-evidence.json&#x27;)
- z.write(REPLAY_PATH,arcname=&#x27;fresh-process-result.json&#x27;)
 with zipfile.ZipFile(HANDOVER_ZIP) as z:assert z.testzip() is None
-print(&#x27;Download:&#x27;,HANDOVER_ZIP,&#x27;Bytes:&#x27;,HANDOVER_ZIP.stat().st_size)
-print(&#x27;After extraction and code review: python handover/replay.py --root handover --out replay-result.json&#x27;)</code></pre></details></section><section class="cell"><h3>References</h3>
+print(status,&#x27;Completed fields:&#x27;,19-len(blank),&#x27;/19&#x27;,&#x27;Missing:&#x27;,blank)
+print(&#x27;Download ZIP:&#x27;,HANDOVER_ZIP,&#x27;Save your edited notebook too.&#x27;)
+print(&#x27;After extraction and source review: python handover/replay.py --root handover --out replay-result.json&#x27;)
+display(FileLink(str(HANDOVER_ZIP)))
+</code></pre></details></section><section class="cell"><h2>Summary and examination bridge</h2>
+<p>Preserve observation identity and declared choices. Make schema rejection explicit. Give the replay program enough files to compare its own reference predictions. Distinguish exact bytes from records, and distinguish replay difference from prediction error. Hand over evidence with a bounded conclusion.</p>
+<p><strong>Written-exam practice:</strong> explain why a seed alone is insufficient and compute the tolerance for a reference value of 10. <strong>Oral-exam practice:</strong> use a real row from your run to explain the selected model, one failure and one limitation. This practice does not replace either examination.</p>
+<h2>Primary references</h2>
 <ul>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html">Dataset API and raw/scaled input contract</a></li>
-<li><a href="https://scikit-learn.org/stable/common_pitfalls.html">Training-only preprocessing and leakage</a></li>
-<li><a href="https://scikit-learn.org/stable/model_persistence.html">Model persistence and unsafe pickle loading</a></li>
-<li><a href="https://numpy.org/doc/stable/reference/random/compatibility.html">NumPy random-stream compatibility conditions</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html">Raw packaged regression data</a></li>
+<li><a href="https://scikit-learn.org/stable/common_pitfalls.html">Training-only pipelines</a></li>
+<li><a href="https://numpy.org/doc/stable/reference/random/compatibility.html">Random stream compatibility</a></li>
+<li><a href="https://scikit-learn.org/stable/model_persistence.html">Model persistence and trusted code</a></li>
 </ul>
-<p><strong>Boundary:</strong> this packaged regression exercise must not be used for patient decisions. We make no medical feature, treatment, clinical efficacy or causal claims. Reproducibility here concerns the frozen computation, not real-world validity.</p>
-</section><footer>NCKU + LAiMM / Machine Learning in Engineering Science / Fall 2026</footer></main></body></html>
+<p>Documentation checked 27 October 2026. No new weekly graded Homework is introduced.</p>
+</section></main></body></html>

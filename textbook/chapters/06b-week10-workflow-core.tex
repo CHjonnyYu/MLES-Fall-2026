@@ -68,7 +68,7 @@ The payload has six required files:
 \texttt{replay.py} & Readable validation and fitting procedure\\
 \texttt{reference-predictions.csv} & ID-aligned reference outcomes/predictions\\
 \texttt{result.json} & Validation/test evidence and limitations\\\bottomrule\end{tabular}\end{center}
-A separate \texttt{manifest.json} records the SHA-256 of each payload. It does not hash itself, which would be circular. The exported ZIP also retains actual plots and the fresh-process result.
+A separate \texttt{manifest.json} records the SHA-256 of each payload. It does not hash itself, which would be circular. The exported ZIP also retains actual plots, student responses and the current outer evidence record. The inner reference payload remains frozen.
 
 \subsection{Integrity is not authentication}
 SHA-256 detects changed bytes relative to a known reference digest. Parsing records checks a different identity. Appending a blank CSV line can preserve parsed rows while changing its hash. An unsigned manifest does not authenticate an unknown sender: someone able to replace both payload and digest can create another internally consistent package. Neither hashes nor schemas validate scientific labels or a performance claim.
@@ -76,7 +76,7 @@ SHA-256 detects changed bytes relative to a known reference digest. Parsing reco
 The lab avoids loading a model pickle by reconstructing from CSV, JSON and readable source. Pickle-based loaders may execute arbitrary code. Executing Python source is also consequential: review and trust the generated runner before running it. A checksum does not make arbitrary downloaded code safe.
 
 \section{Replay outside notebook memory}
-The notebook launches a new Python interpreter in a new temporary working directory, passing only an explicit handover path and output path. The runner first verifies the required-file set and hashes, then validates schema and split membership, then refits the frozen candidate and predicts the saved test IDs. Notebook globals cannot rescue missing files.
+The notebook launches a new Python interpreter in a new temporary working directory, passing only an explicit handover path and output path. The notebook copies the complete bundle into a new temporary directory and launches its reviewed runner with a separate interpreter. The runner verifies the required-file set and hashes, validates schema and split membership, reads the saved reference-prediction CSV and requires the exact test-ID sequence and observed targets. It then refits the frozen candidate and compares its own predictions against the saved vector. This comparison is inside the standalone program, so it does not depend on the notebook parent to supply reference arrays. The process ID differs from the notebook and the working directory is recorded. Installed dependencies are still shared. Notebook globals cannot rescue missing files.
 
 Check exact test-ID sequence before numerical comparison. For each value, the comparison uses
 \[
@@ -90,31 +90,56 @@ The actual local reference maximum prediction difference is 0.0. That establishe
 \begin{figure}[htbp]\centering\includegraphics[width=.78\textwidth]{figures/week10/w10-replay-differences.png}\caption{Actual fresh-process prediction differences after exact ID alignment. The vertical scale is explicit. Replay difference and residual against observed target answer different questions.}\end{figure}
 
 \section{Test deliberate failures on copies}
-Corrupt only temporary copies of the data. Inject a duplicate ID, a non-finite value, or a reordered header. Catch the expected \texttt{ValueError} and record its message. An accepted malformed copy must trigger a failed assertion. Recheck the original data hash afterward.
+Corrupt only temporary copies of the data. The seven cases are a duplicate ID, non-finite value, reordered header, extra field, missing field, empty ID and invalid partition. Call the schema reader directly so no model is fitted during these contract tests. Catch the expected \texttt{ValueError} and record its message. An accepted malformed copy must trigger a failed assertion. Recheck the original data hash afterward.
 
-\begin{figure}[htbp]\centering\includegraphics[width=.72\textwidth]{figures/week10/w10-contract-tests.png}\caption{Actual three-case contract rejection test. These outcomes test an interface, not clinical safety or predictive accuracy.}\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=.72\textwidth]{figures/week10/w10-contract-tests.png}\caption{Actual seven-case contract rejection test. These outcomes test an interface, not clinical safety or predictive accuracy.}\end{figure}
+
+
+\section{Task 6 worked comparison: a legitimate row reorder}
+A CSV's bytes encode row order; a model cohort is defined here by saved IDs. Reversing rows therefore changes the exact byte digest, while a complete ID-keyed record mapping can remain equal. The two claims need different checks:
+\begin{enumerate}
+\item Copy the frozen bundle and reverse only CSV data rows, retaining the header.
+\item Compare the complete dictionary from source ID to every raw feature and target string. All keys and values must agree with the reference.
+\item Record the reviewed transformation. Only then update the copied manifest's CSV digest; preserve the original manifest and file.
+\item Run a new interpreter from a fresh working directory. The reader rebuilds training and test cohorts in the original saved ID sequence.
+\item Compare the entire prediction vector. In the reference run the maximum difference is zero; record your own result.
+\end{enumerate}
+Updating a digest alone establishes no semantic equality. This exercise adds independent record and prediction checks. Optional A tests the opposite protocol: changed bytes with an unchanged manifest must be rejected. The selected model and its original evaluation are never reopened.
+
+\subsection{Two numerical questions}
+Model error compares predictions with observed targets: the selected model's test MAE remains approximately 48.326 response units in this reference run. Replay difference compares two computations of the same frozen prediction vector and is zero here. Neither quantity implies the other. An exact replay can faithfully reproduce a large error against an outcome.
+
+\subsection{The receiver can test the extracted artifact}
+After extracting the supplied ZIP and reviewing its source, run:
+\begin{quote}\ttfamily\small
+python handover/replay.py --root handover --out replay-result.json
+\end{quote}
+The JSON explicitly reports whether the saved reference comparison passed. No notebook variables are required. A missing required file, wrong reference ID order or incorrect numeric reference causes failure instead of a misleading success record. Instructor QA exercises these negative receiver cases as well as normal extraction.
+
+\subsection{Practice timing and stopping conditions}
+H1 uses Tasks1--2 (7 and8minutes); H2 uses Tasks3--5 (15,12 and18); H3 uses Tasks6--8 (15,12 and13), leaving20minutes for peer explanation, optional challenges and export. Read the Markdown purpose, instructions and stopping check before each cell. Save a prediction before executing; explain an actual output afterward. Missing variables after a runtime reset mean running from Setup again, not inserting a copied reference score.
 
 \section{Eight core exercises and two optional challenges}
 Each task requires a prediction before running, an actual observation, an explanation and a stopping check. Alternate driver and reviewer in pairs. Use H1 for Tasks 1--2, guided H2 for Tasks 3--5, and H3 for remaining work, review and export. These tasks share the 120 minutes of practice; they are not extra hours after the walkthrough.
 \begin{enumerate}
-\item \textbf{Row-order trap:} reverse a 20-ID toy dataset, reuse seeded positional indices, then recover frozen membership by ID. Explain set equality versus sequence equality.
+\item \textbf{Row-order trap:} reverse a 20-ID toy dataset, reuse seeded positional indices, then recover the exact saved ID sequence. Explain why set equality alone is insufficient.
 \item \textbf{Preprocessing scope:} assert the fitted scaler mean equals training means. Contrast all-row means descriptively without fitting a leaky competing model or claiming a particular score change.
 \item \textbf{Selection rule:} recompute the validation-MAE winner and declared tie order. Never use final-test results to choose it.
-\item \textbf{Contract failures:} reject duplicate IDs, NaN and reordered columns on temporary copies. Confirm the original CSV unchanged.
-\item \textbf{Fresh process:} execute the reviewed runner in another temporary working directory. Compare saved ID sequences and predictions under the explicit tolerance.
-\item \textbf{Controlled extension:} fit alpha 200 on the same training rows and report validation only. Because final-test results have been seen, label this exploratory; a new selection claim needs a fresh evaluation protocol. Preserve the original winner.
+\item \textbf{Contract failures:} reject all seven declared malformed cases on temporary copies. Confirm the original CSV unchanged.
+\item \textbf{Fresh process:} copy the full bundle, execute its reviewed runner in another temporary working directory and inspect its standalone reference comparison. Check exact IDs and all89 predictions under the explicit tolerance.
+\item \textbf{Reviewed row reorder:} reverse only the data rows of a temporary copied CSV. Verify equal ID-keyed records before updating that copy's CSV digest. Re-execute a fresh process, require the saved ID sequence and compare predictions. Preserve the reference bundle and selected candidate.
 \item \textbf{Local explanation:} add $0.1$ training SD to one declared feature and verify the fitted-function prediction change. Record the candidate and exclude causal or clinical claims.
 \item \textbf{Handover audit:} verify every payload digest and identify one actual failure row. Write claim, evidence, limitation and next evaluation so a partner can locate the supporting files.
 \end{enumerate}
 Optional A changes a copied CSV and confirms manifest rejection before training. Optional B explicitly restores reordered numeric columns by unique names and verifies exact recovery of the canonical matrix. Both preserve the reference package and neither is required for core completion.
 
 \subsection{Student responses and evidence export}
-The 19 core fields comprise eight predictions, eight explanations, controlled change, limitation and AI-use/checking disclosure (or ``none''). Published responses and outputs start blank. Missing fields produce status \texttt{draft}; nonempty fields mean \texttt{ready for peer discussion}, not a correctness grade. Rerun only the final export after editing responses; initialization resets them.
+The 19 core fields comprise eight predictions, eight explanations, controlled change, limitation and AI-use/checking disclosure (or ``none''). Student Exercise responses and published execution outputs start blank; the worked alternative contains example reasoning. Missing fields produce status \texttt{draft}; nonempty fields mean \texttt{ready for peer discussion}, not a correctness grade. Rerun only the final export after editing responses; initialization resets them. Every response cell is already supplied, so students do not need to insert new cells. Complete Tasks1--8 in order in one notebook, rather than performing a walkthrough and repeating the tasks afterward.
 
-Download both the handover ZIP and exercise ZIP before the free runtime ends. After code review, the extracted runner can be executed in a compatible environment using the explicit root and output paths shown in the notebook. No paid AI, GPU, API key or external dataset download is needed. AI may help explain code or suggest hypotheses, but it must not fabricate execution evidence or measured values.
+Download the single handover ZIP and save your edited notebook separately before the free runtime ends. The ZIP contains the frozen inner handover, actual plots and the outer response/evidence JSON. After code review, the extracted runner can be executed in a compatible environment using the explicit root and output paths shown in the notebook. No paid AI, GPU, API key or external dataset download is needed. AI may help explain code or suggest hypotheses, but it must not fabricate execution evidence or measured values.
 
 \section{Instructor execution and limits}
-On 19 October 2026 both notebooks were fully executed in fresh local CPU Jupyter kernels. Each invoked independent replay interpreters. All eight core tasks, both optional challenges, draft/completed export branches, 11 plot exports, numerical checks and ZIP integrity were checked. This is not a claim that the Google Colab browser itself was used for execution. Actual versions are recorded in the evidence JSON; a local software check does not establish clinical, causal or external deployment validity.
+On 27 October 2026 both notebooks were fully executed in fresh local CPU Jupyter kernels. Each invoked independent replay interpreters. All eight core tasks, both optional challenges, draft/completed export branches, all plot exports, numerical checks and ZIP integrity were checked. These are fresh local CPU kernels and separate interpreter checks; the Colab browser itself was not the execution environment. Actual versions are recorded in the evidence JSON; a local software check does not establish clinical, causal or external deployment validity.
 
 \textbf{Reference CSV SHA-256:}\par\noindent{\small\texttt{a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4}}\par
 
