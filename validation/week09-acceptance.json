@@ -37,7 +37,8 @@
     "automated_geometry_images_logos_timing": "passed",
     "native_svg_text_bounds": "passed",
     "interactive_mixture_and_reveals": "passed",
-    "visual_review": "All 90 rendered in overview sheets; selected technical, diagram and interaction pages inspected full-size. Not an independent human full-size review of every page."
+    "visual_review": "All 90 rendered in overview sheets; selected technical, diagram and interaction pages inspected full-size. Not an independent human full-size review of every page.",
+    "native_svg_node_text_bounds": "passed"
   },
   "notebooks": {
     "scope": "Fresh local CPU Jupyter kernels, not Google Colab browser execution",
@@ -45,8 +46,8 @@
       {
         "kind": "practice",
         "notebook": "notebooks/week-09-practice.ipynb",
-        "sha256": "b01788a34b08fa923c3647b3de3b54bdfec5a48feaf01d0171f8aa804bb9a1a3",
-        "code_cells": 28,
+        "sha256": "c112dfe5e63c7b9f672e85ea6719f2bd52520e0900fbff9030f96ce576805a85",
+        "code_cells": 29,
         "status": "passed",
         "response_fields": 19,
         "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
@@ -61,8 +62,8 @@
       {
         "kind": "exercise",
         "notebook": "notebooks/exercises/week-09-exercise.ipynb",
-        "sha256": "fa93df1802183f75bacd1ab48b01828cd4dabc6cfbc49a1ec43450e5d354659b",
-        "code_cells": 28,
+        "sha256": "08ab89e76e92c953346b9269ee7f64662ec9f4d565763a4a142e6aae8bbdbf61",
+        "code_cells": 29,
         "status": "passed",
         "response_fields": 0,
         "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
@@ -77,8 +78,8 @@
       {
         "kind": "exercise-completed-optional",
         "notebook": "notebooks/exercises/week-09-exercise.ipynb",
-        "sha256": "fa93df1802183f75bacd1ab48b01828cd4dabc6cfbc49a1ec43450e5d354659b",
-        "code_cells": 28,
+        "sha256": "08ab89e76e92c953346b9269ee7f64662ec9f4d565763a4a142e6aae8bbdbf61",
+        "code_cells": 29,
         "status": "passed",
         "response_fields": 19,
         "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
