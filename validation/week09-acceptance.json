@@ -1,110 +1,119 @@
 {
   "week": 9,
-  "date": "2026-10-19",
-  "hourly_modules": [
+  "revision": "2026-10-27",
+  "meeting": "2026-11-02 14:00\u201317:00 Asia/Taipei",
+  "modules": [
     {
       "hour": 1,
+      "title": "When a good score hides a bad model",
       "slides": 30,
       "minutes": 60,
-      "explanation": 45,
-      "practice": 15
+      "explanation_minutes": 45,
+      "practice_minutes": 15,
+      "url": "/lectures/week-09-hour-1/"
     },
     {
       "hour": 2,
+      "title": "Find the missing relationship",
       "slides": 30,
       "minutes": 60,
-      "explanation": 15,
-      "practice": 45
+      "explanation_minutes": 15,
+      "practice_minutes": 45,
+      "url": "/lectures/week-09-hour-2/"
     },
     {
       "hour": 3,
+      "title": "Change conditions and explain the evidence",
       "slides": 30,
       "minutes": 60,
-      "explanation": 0,
-      "practice": 60
+      "explanation_minutes": 0,
+      "practice_minutes": 60,
+      "url": "/lectures/week-09-hour-3/"
+    }
+  ],
+  "slides": {
+    "count": 90,
+    "rendered_all": true,
+    "automated_geometry_images_logos_timing": "passed",
+    "native_svg_text_bounds": "passed",
+    "interactive_mixture_and_reveals": "passed",
+    "visual_review": "All 90 rendered in overview sheets; selected technical, diagram and interaction pages inspected full-size. Not an independent human full-size review of every page."
+  },
+  "notebooks": {
+    "scope": "Fresh local CPU Jupyter kernels, not Google Colab browser execution",
+    "runs": [
+      {
+        "kind": "practice",
+        "notebook": "notebooks/week-09-practice.ipynb",
+        "sha256": "b01788a34b08fa923c3647b3de3b54bdfec5a48feaf01d0171f8aa804bb9a1a3",
+        "code_cells": 28,
+        "status": "passed",
+        "response_fields": 19,
+        "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
+        "max_readback_difference": 0.0,
+        "versions": {
+          "python": "3.12.14",
+          "numpy": "2.5.4",
+          "scikit-learn": "1.9.1"
+        },
+        "zip_files": 17
+      },
+      {
+        "kind": "exercise",
+        "notebook": "notebooks/exercises/week-09-exercise.ipynb",
+        "sha256": "fa93df1802183f75bacd1ab48b01828cd4dabc6cfbc49a1ec43450e5d354659b",
+        "code_cells": 28,
+        "status": "passed",
+        "response_fields": 0,
+        "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
+        "max_readback_difference": 0.0,
+        "versions": {
+          "python": "3.12.14",
+          "numpy": "2.5.4",
+          "scikit-learn": "1.9.1"
+        },
+        "zip_files": 17
+      },
+      {
+        "kind": "exercise-completed-optional",
+        "notebook": "notebooks/exercises/week-09-exercise.ipynb",
+        "sha256": "fa93df1802183f75bacd1ab48b01828cd4dabc6cfbc49a1ec43450e5d354659b",
+        "code_cells": 28,
+        "status": "passed",
+        "response_fields": 19,
+        "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
+        "max_readback_difference": 0.0,
+        "versions": {
+          "python": "3.12.14",
+          "numpy": "2.5.4",
+          "scikit-learn": "1.9.1"
+        },
+        "zip_files": 18
+      }
+    ]
+  },
+  "pdf": [
+    {
+      "file": "W09-reliability-and-shift.pdf",
+      "pages": 12,
+      "text_out_of_page": [],
+      "overfull": false,
+      "undefined_references": false
+    },
+    {
+      "file": "main.pdf",
+      "pages": 118,
+      "text_out_of_page": [],
+      "overfull": false,
+      "undefined_references": false
     }
   ],
   "core_exercises": 8,
   "optional_challenges": 2,
-  "scope": "Synthetic teaching experiment; not real-world deployment validation",
-  "slide_checks": {
-    "all_90": "Rendered and checked for geometry, text bounding boxes, image loading, dual logos, notes, sources, timing, JavaScript errors",
-    "failures": 0,
-    "manual_visual_review": "All90 in full-deck overview, with individual full-size review of the cover, corrected conditional-probability pages, actual residual/stress/coefficient charts, raw-coefficient formula and export page. Not claimed as an independent human review of every full-size slide."
-  },
-  "interactive_demos": [
-    {
-      "name": "mixture",
-      "input": 0.25,
-      "actual": [
-        1,
-        3.25
-      ],
-      "status": "passed"
-    },
-    {
-      "name": "outlier",
-      "input": 3,
-      "actual": [
-        0.72,
-        1.349073756323204
-      ],
-      "status": "passed"
-    },
-    {
-      "name": "shift",
-      "input": 3,
-      "actual": [
-        1,
-        9
-      ],
-      "status": "passed"
-    }
-  ],
-  "notebooks": [
-    {
-      "kind": "practice",
-      "executed_code_matches_published": true,
-      "published_outputs_blank": true,
-      "sha256": "9e24be7e1487101676264f768f32a6abfc7553dedb49bb119125da1e29886a5a",
-      "code_cells": 12,
-      "figures": 14,
-      "status": "passed"
-    },
-    {
-      "kind": "exercise",
-      "executed_code_matches_published": true,
-      "published_outputs_blank": true,
-      "sha256": "12c0e33f82f042976ee3a1ff30758fad1680a42c5a546b7bc66404e32e3e166c",
-      "code_cells": 23,
-      "figures": 14,
-      "status": "passed"
-    }
-  ],
-  "execution_environment": {
-    "python": "3.12.14",
-    "numpy": "2.5.4",
-    "scikit_learn": "1.9.1",
-    "matplotlib": "3.11.2"
-  },
-  "execution_scope": "Fresh isolated local CPU Jupyter kernels. Does not claim a Google Colab-browser execution.",
-  "exercise_checks": [
-    "All8 core tasks",
-    "Both optional branches",
-    "19-field draft and completed export branches",
-    "Replay from exact CSV",
-    "Prediction and coefficient consistency",
-    "Fixed-model parameter snapshots",
-    "ZIP integrity"
-  ],
-  "latex": {
-    "standalone_reader": "Compiled; zero overfull boxes and no undefined references",
-    "full_book": "Compiled; zero overfull boxes and no undefined references"
-  },
-  "student_materials": "Outputs and responses blank; private instructor test responses not published",
-  "sources": [
-    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
-    "https://scikit-learn.org/stable/common_pitfalls.html",
-    "https://proceedings.mlr.press/v139/koh21a.html"
-  ]
+  "practice_minutes": 120,
+  "explanation_minutes": 60,
+  "replay_scope": "same-kernel CSV readback consistency; no independent environment reproduction claim",
+  "scientific_scope": "Independent synthetic teaching rows, not physical, causal, financial or deployment validation",
+  "source_references_checked": "2026-10-27",
+  "provenance": "/assets/week09/visual-provenance.json"
 }

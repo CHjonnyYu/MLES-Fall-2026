@@ -1,0 +1,632 @@
+[
+  {
+    "hour": 1,
+    "beat": 1,
+    "variant": 1,
+    "file": "h1-b01-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 1,
+    "beat": 1,
+    "variant": 2,
+    "file": "h1-b01-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 1,
+    "beat": 1,
+    "variant": 3,
+    "file": "h1-b01-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 1,
+    "beat": 2,
+    "variant": 1,
+    "file": "h1-b02-v1.png",
+    "scope": "Paper illustration: fixed group losses; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 2,
+    "variant": 2,
+    "file": "h1-b02-v2.png",
+    "scope": "Paper illustration: fixed group losses; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 2,
+    "variant": 3,
+    "file": "h1-b02-v3.png",
+    "scope": "Paper illustration: fixed group losses; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 3,
+    "variant": 1,
+    "file": "h1-b03-v1.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 3,
+    "variant": 2,
+    "file": "h1-b03-v2.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 3,
+    "variant": 3,
+    "file": "h1-b03-v3.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 4,
+    "variant": 1,
+    "file": "h1-b04-v1.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 4,
+    "variant": 2,
+    "file": "h1-b04-v2.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 4,
+    "variant": 3,
+    "file": "h1-b04-v3.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 5,
+    "variant": 1,
+    "file": "h1-b05-v1.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 5,
+    "variant": 2,
+    "file": "h1-b05-v2.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 5,
+    "variant": 3,
+    "file": "h1-b05-v3.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 6,
+    "variant": 1,
+    "file": "h1-b06-v1.png",
+    "scope": "Known synthetic generator; illustration; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 6,
+    "variant": 2,
+    "file": "h1-b06-v2.png",
+    "scope": "Known synthetic generator; illustration; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 6,
+    "variant": 3,
+    "file": "h1-b06-v3.png",
+    "scope": "Known synthetic generator; illustration; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 7,
+    "variant": 1,
+    "file": "h1-b07-v1.png",
+    "scope": "Known synthetic generator; illustration; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 7,
+    "variant": 2,
+    "file": "h1-b07-v2.png",
+    "scope": "Known synthetic generator; illustration; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 7,
+    "variant": 3,
+    "file": "h1-b07-v3.png",
+    "scope": "Known synthetic generator; illustration; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 8,
+    "variant": 1,
+    "file": "h1-b08-v1.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 8,
+    "variant": 2,
+    "file": "h1-b08-v2.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 8,
+    "variant": 3,
+    "file": "h1-b08-v3.png",
+    "scope": "Declared five-point teaching slice; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 9,
+    "variant": 1,
+    "file": "h1-b09-v1.png",
+    "scope": "Paper illustration: fixed group losses; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 9,
+    "variant": 2,
+    "file": "h1-b09-v2.png",
+    "scope": "Paper illustration: fixed group losses; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 9,
+    "variant": 3,
+    "file": "h1-b09-v3.png",
+    "scope": "Paper illustration: fixed group losses; see notebook protocol and execution record."
+  },
+  {
+    "hour": 1,
+    "beat": 10,
+    "variant": 1,
+    "file": "h1-b10-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 1,
+    "beat": 10,
+    "variant": 2,
+    "file": "h1-b10-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 1,
+    "beat": 10,
+    "variant": 3,
+    "file": "h1-b10-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 1,
+    "variant": 1,
+    "file": "h2-b01-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 1,
+    "variant": 2,
+    "file": "h2-b01-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 1,
+    "variant": 3,
+    "file": "h2-b01-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 2,
+    "variant": 1,
+    "file": "h2-b02-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 2,
+    "variant": 2,
+    "file": "h2-b02-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 2,
+    "variant": 3,
+    "file": "h2-b02-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 3,
+    "variant": 1,
+    "file": "h2-b03-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 3,
+    "variant": 2,
+    "file": "h2-b03-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 3,
+    "variant": 3,
+    "file": "h2-b03-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 4,
+    "variant": 1,
+    "file": "h2-b04-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 4,
+    "variant": 2,
+    "file": "h2-b04-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 4,
+    "variant": 3,
+    "file": "h2-b04-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 5,
+    "variant": 1,
+    "file": "h2-b05-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 5,
+    "variant": 2,
+    "file": "h2-b05-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 5,
+    "variant": 3,
+    "file": "h2-b05-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 6,
+    "variant": 1,
+    "file": "h2-b06-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 6,
+    "variant": 2,
+    "file": "h2-b06-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 6,
+    "variant": 3,
+    "file": "h2-b06-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 7,
+    "variant": 1,
+    "file": "h2-b07-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 7,
+    "variant": 2,
+    "file": "h2-b07-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 7,
+    "variant": 3,
+    "file": "h2-b07-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 8,
+    "variant": 1,
+    "file": "h2-b08-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 8,
+    "variant": 2,
+    "file": "h2-b08-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 8,
+    "variant": 3,
+    "file": "h2-b08-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 2,
+    "beat": 9,
+    "variant": 1,
+    "file": "h2-b09-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 9,
+    "variant": 2,
+    "file": "h2-b09-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 9,
+    "variant": 3,
+    "file": "h2-b09-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 10,
+    "variant": 1,
+    "file": "h2-b10-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 10,
+    "variant": 2,
+    "file": "h2-b10-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 2,
+    "beat": 10,
+    "variant": 3,
+    "file": "h2-b10-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 1,
+    "variant": 1,
+    "file": "h3-b01-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 1,
+    "variant": 2,
+    "file": "h3-b01-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 1,
+    "variant": 3,
+    "file": "h3-b01-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 2,
+    "variant": 1,
+    "file": "h3-b02-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 2,
+    "variant": 2,
+    "file": "h3-b02-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 2,
+    "variant": 3,
+    "file": "h3-b02-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 3,
+    "variant": 1,
+    "file": "h3-b03-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 3,
+    "variant": 2,
+    "file": "h3-b03-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 3,
+    "variant": 3,
+    "file": "h3-b03-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 4,
+    "variant": 1,
+    "file": "h3-b04-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 4,
+    "variant": 2,
+    "file": "h3-b04-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 4,
+    "variant": 3,
+    "file": "h3-b04-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 5,
+    "variant": 1,
+    "file": "h3-b05-v1.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 5,
+    "variant": 2,
+    "file": "h3-b05-v2.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 5,
+    "variant": 3,
+    "file": "h3-b05-v3.png",
+    "scope": "Actual local CPU execution; synthetic data; see notebook protocol and execution record."
+  },
+  {
+    "hour": 3,
+    "beat": 6,
+    "variant": 1,
+    "file": "h3-b06-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 6,
+    "variant": 2,
+    "file": "h3-b06-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 6,
+    "variant": 3,
+    "file": "h3-b06-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 7,
+    "variant": 1,
+    "file": "h3-b07-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 7,
+    "variant": 2,
+    "file": "h3-b07-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 7,
+    "variant": 3,
+    "file": "h3-b07-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 8,
+    "variant": 1,
+    "file": "h3-b08-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 8,
+    "variant": 2,
+    "file": "h3-b08-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 8,
+    "variant": 3,
+    "file": "h3-b08-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 9,
+    "variant": 1,
+    "file": "h3-b09-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 9,
+    "variant": 2,
+    "file": "h3-b09-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 9,
+    "variant": 3,
+    "file": "h3-b09-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 10,
+    "variant": 1,
+    "file": "h3-b10-v1.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 10,
+    "variant": 2,
+    "file": "h3-b10-v2.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  },
+  {
+    "hour": 3,
+    "beat": 10,
+    "variant": 3,
+    "file": "h3-b10-v3.svg",
+    "scope": "Teaching diagram: inspect the stated comparison and its limits."
+  }
+]

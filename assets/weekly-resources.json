@@ -257,28 +257,28 @@
     "type": "teaching",
     "slides": [
       {
-        "title": "H1: Reliability: beyond one score",
+        "title": "H1: When a good score hides a bad model (30 slides)",
         "url": "/lectures/week-09-hour-1/"
       },
       {
-        "title": "H2: Diagnose a frozen model",
+        "title": "H2: Find the missing relationship (30 slides)",
         "url": "/lectures/week-09-hour-2/"
       },
       {
-        "title": "H3: Reliability lab: test, replay, explain",
+        "title": "H3: Change conditions and explain the evidence (30 slides)",
         "url": "/lectures/week-09-hour-3/"
       }
     ],
     "slide_status": "available",
     "notebooks": [
       {
-        "title": "Open Week 09 in Colab",
+        "title": "Worked alternative with example responses",
         "file": "week-09-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-09-practice.ipynb",
         "download": "/notebooks/week-09-practice.ipynb"
       },
       {
-        "title": "Eight core exercises + two optional challenges",
+        "title": "Complete Exercise notebook: Tasks 1\u20138 in order",
         "file": "exercises/week-09-exercise.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-09-exercise.ipynb",
         "download": "/notebooks/exercises/week-09-exercise.ipynb"
@@ -292,7 +292,8 @@
     ],
     "practice_minutes": 120,
     "core_exercises": 8,
-    "optional_challenges": 2
+    "optional_challenges": 2,
+    "revision": "2026-10-27"
   },
   {
     "week": 10,

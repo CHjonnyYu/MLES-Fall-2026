@@ -1,613 +1,452 @@
-{
-  "title": "Reliability: beyond one score",
-  "slides": [
-    {
-      "title": "A score needs an operating envelope",
-      "body": [
-        "Week 09 / H1 / 2 November 2026",
-        "Explain error before trusting a prediction."
-      ],
-      "kind": "cover",
-      "payload": "w09-cover.jpg",
-      "teach": "Open with the calibration rig: evaluation inside one region does not establish performance outside it. The image is conceptual AI artwork, not measured evidence. Ask students to name a new load, sensor or population that could invalidate a score.",
-      "minutes": 1,
-      "mode": "explanation"
-    },
-    {
-      "title": "Today: explain 60, practise 120",
-      "body": [
-        "H1: 45 min explanation + 15 min hand calculation.",
-        "H2: 15 + 45; H3: 60 min lab."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Hour",
-          "Explain",
-          "Practise"
-        ],
-        [
-          "H1",
-          "45 min",
-          "15 min"
-        ],
-        [
-          "H2",
-          "15 min",
-          "45 min"
-        ],
-        [
-          "H3",
-          "0 min",
-          "60 min"
-        ]
-      ],
-      "teach": "State prerequisites: regression, splitting and MAE from earlier weeks. By the end students must diagnose slices, run fixed-model stress tests and replay a CSV. No new weekly graded homework. H1 analytic tasks are revisited briefly in the notebook, not additional assignments.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Which model would you deploy?",
-      "body": [
-        "Model A has lower average error.",
-        "Is that enough if rare cases are costly?"
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Model",
-          "Overall MAE",
-          "Rare group"
-        ],
-        [
-          "A",
-          "1.9",
-          "10"
-        ],
-        [
-          "B",
-          "2.2",
-          "2.2"
-        ]
-      ],
-      "teach": "Illustrative absolute errors, not notebook measurements. Assume common response units and the same population. A is not automatically preferable: the deployment loss and tolerable tail error matter. Ask for missing group sizes and error costs; do not imply B is universally best.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Reliability is conditional evidence",
-      "body": [
-        "Specify population, task and metric.",
-        "A reliability claim needs boundaries."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Population",
-        "Frozen model",
-        "Loss + slices",
-        "Bounded decision"
-      ],
-      "teach": "Trace a prediction claim from population to decision. Reliability here means evidence about behavior under stated conditions, not a single universal numerical property. A safety assurance would need a stronger domain-specific process.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "The evaluated population matters",
-      "body": [
-        "Test risk averages over the test population.",
-        "Deployment risk averages over deployment."
-      ],
-      "kind": "equations",
-      "payload": [
-        "R_test(f) = E_test[L(Y, f(X))]",
-        "R_deploy(f) = E_deploy[L(Y, f(X))]",
-        "Different distributions can change risk."
-      ],
-      "teach": "Define f as the fixed predictor and L as a specified loss. Finite test MAE estimates a population expectation under sampling assumptions; it is not the population expectation itself. Distribution changes can change the integral even with the same f.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Mixtures can hide a weak subgroup",
-      "body": [
-        "Overall MAE is a count-weighted average.",
-        "Always retain subgroup sizes."
-      ],
-      "kind": "equations",
-      "payload": [
-        "MAE = sum_g (n_g / n) MAE_g",
-        "90/100 x 1 + 10/100 x 10 = 1.9",
-        "Rare group MAE remains 10."
-      ],
-      "teach": "Derive by partitioning the sum of absolute errors over disjoint exhaustive groups. The identity holds exactly for empirical MAE. It does not hold by averaging subgroup RMSE directly. Group definitions must not silently overlap.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Move the mixture, not the errors",
-      "body": [
-        "Keep group MAEs at 1 and 10.",
-        "Drag the rare-group fraction."
-      ],
-      "kind": "demo",
-      "payload": "mixture",
-      "teach": "Ask for the value at 10%, then 25%, before revealing through the slider. Expected answers 1.9 and 3.25. This changes the composition only; no refitting or improvement occurs. This is an analytic example, not an observed model score.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Counts constrain interpretation",
-      "body": [
-        "Two errors are not two hundred errors.",
-        "Report empty groups as unavailable."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Group",
-          "n",
-          "MAE"
-        ],
-        [
-          "A",
-          "200",
-          "0.8"
-        ],
-        [
-          "B",
-          "2",
-          "0.8"
-        ],
-        [
-          "C",
-          "0",
-          "Not defined"
-        ]
-      ],
-      "teach": "These are illustrative summaries. Same mean does not imply equal uncertainty. With zero rows the mean is undefined, not zero. With two rows report evidence cautiously; a normal-looking point estimate cannot justify a broad population claim.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Residual sign changes the story",
-      "body": [
-        "This week: residual = prediction - observation.",
-        "Positive means overprediction."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Observed",
-          "Predicted",
-          "Residual"
-        ],
-        [
-          "8",
-          "10",
-          "+2"
-        ],
-        [
-          "10",
-          "8",
-          "-2"
-        ],
-        [
-          "9",
-          "9",
-          "0"
-        ]
-      ],
-      "teach": "Have students point to the overprediction row. Many texts use observation minus prediction; neither convention is inherently wrong. All plots and code must agree. Absolute-error metrics are unchanged by sign reversal, interpretation is not.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "MAE preserves response units",
-      "body": [
-        "MAE averages absolute residuals.",
-        "It treats each unit of error linearly."
-      ],
-      "kind": "equations",
-      "payload": [
-        "e_i = predicted_i - observed_i",
-        "MAE = (1/n) sum_i |e_i|",
-        "Units: synthetic response units"
-      ],
-      "teach": "Derive from the residual definition. The metric weights rows equally unless weights are explicitly introduced. Absolute error is appropriate only if its linear penalty matches the evaluation question; do not claim universal superiority.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "RMSE emphasizes large residuals",
-      "body": [
-        "Square, average, then take a square root.",
-        "Keep the order of operations."
-      ],
-      "kind": "equations",
-      "payload": [
-        "MSE = (1/n) sum_i e_i squared",
-        "RMSE = sqrt(MSE)",
-        "RMSE >= MAE on the same rows"
-      ],
-      "teach": "Use Jensen or Cauchy-Schwarz intuition for the inequality. RMSE is in response units; MSE is in squared units. One must not square the mean residual or take the mean of signed square roots.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "One large residual changes the metric",
-      "body": [
-        "Predict the response as the fifth error grows.",
-        "Compare MAE with RMSE interactively."
-      ],
-      "kind": "demo",
-      "payload": "outlier",
-      "teach": "The first four residuals are 0.1,-0.1,0.2,-0.2. A fifth residual t is appended, not substituted. At t=3, n=5, MAE=.72 and RMSE=sqrt(1.82). Even at t=0 the denominator is five; flag this common confusion.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "A pattern can reveal misspecification",
-      "body": [
-        "True term: x1 squared. Linear approximation: 1.",
-        "Residual shape: 1 - x1 squared."
-      ],
-      "kind": "curve",
-      "payload": "residual",
-      "teach": "This is a noise-free analytic slice with the other true term canceled, not the actual fitted model. Negative tails indicate underprediction. The curved residual provides a mechanism to look for; observational residuals alone do not prove a physical cause.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Covariate shift changes the inputs",
-      "body": [
-        "P(X) changes while P(Y given X) stays fixed.",
-        "Error can change even without refitting."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Property",
-          "Reference",
-          "Stress"
-        ],
-        [
-          "Input x1 scale",
-          "1",
-          "2.5"
-        ],
-        [
-          "Target rule",
-          "2*x0+x1^2",
-          "Same rule"
-        ],
-        [
-          "Fitted model",
-          "Frozen",
-          "Frozen"
-        ]
-      ],
-      "teach": "Define covariate shift with the conditional mechanism fixed. The notebook adds the same Gaussian noise law and uses paired base observations. A good model may remain accurate; distribution shift does not necessarily force a specific error increase.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Concept shift changes the target rule",
-      "body": [
-        "P(Y given X) changes, even if X does not.",
-        "Input-only monitoring can miss it."
-      ],
-      "kind": "equations",
-      "payload": [
-        "Before: y = 2*x0 + x1^2 + noise",
-        "After: y = -2*x0 + x1^2 + noise",
-        "Same X; different conditional target."
-      ],
-      "teach": "This is the synthetic intervention in Task8. It is not a causal discovery. Input histograms remain identical by construction. Actual error assessment needs new outcomes or another justified evaluation procedure.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "A wider domain exposes a missing term",
-      "body": [
-        "Toy predictor: zero; target: x squared.",
-        "For X ~ N(0, sigma squared), MAE = sigma squared."
-      ],
-      "kind": "demo",
-      "payload": "shift",
-      "teach": "The expectation follows because absolute residual equals X squared. This population identity is different from the finite uniform-grid exercise and different from the fitted Ridge comparison. Move sigma from1 to3: population MAE1 to9.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "A range flag is not an error label",
-      "body": [
-        "Observed min/max describe a finite sample.",
-        "Gaussian support remains unbounded."
-      ],
-      "kind": "curve",
-      "payload": "range",
-      "teach": "Show a Gaussian shape, observed-range markers and tails. Values beyond the observed training range warrant investigation but are not proof of impossible or incorrect data. A range flag cannot directly measure prediction error.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Do not average subgroup RMSEs",
-      "body": [
-        "Pool sums of squares, then take the root.",
-        "MAE and RMSE aggregate differently."
-      ],
-      "kind": "equations",
-      "payload": [
-        "MAE = sum_g w_g MAE_g",
-        "RMSE = sqrt(sum_g w_g RMSE_g^2)",
-        "w_g = n_g / n"
-      ],
-      "teach": "Derive by grouping squared errors. With equal groups of RMSE1 and3, pooled RMSEsqrt5, not2. Assumes same response scale and disjoint exhaustive groups. This provides a useful hand-calculation counterexample.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Use labels to confirm performance drift",
-      "body": [
-        "Input checks can raise an alert.",
-        "Outcome errors answer a different question."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Input drift alert",
-        "Collect outcomes",
-        "Evaluate error",
-        "Investigate mechanism"
-      ],
-      "teach": "Distinguish operational monitoring signal from measured task performance. Outcomes can arrive with delay or selectively; mention that missing labels can bias conclusions. Do not retrain automatically on an unverified alert.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "A metric is not a decision rule",
-      "body": [
-        "Choose loss before looking at winners.",
-        "Restrict a model when evidence is insufficient."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Observation",
-          "Possible action"
-        ],
-        [
-          "Small rare slice",
-          "Collect outcomes"
-        ],
-        [
-          "High tail error",
-          "Restrict scope"
-        ],
-        [
-          "Encoding mismatch",
-          "Fix input contract"
-        ]
-      ],
-      "teach": "These are possible actions, not universal engineering safety rules. Ask students what decision costs and tolerance would make an action justified. Fixing a data interface and changing the model are distinct interventions.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Intervals need an assumption label",
-      "body": [
-        "Our bootstrap fixes the fitted model.",
-        "It resamples IID residuals within a slice."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Fixed predictions",
-        "Resample errors",
-        "Compute means",
-        "Percentile interval"
-      ],
-      "teach": "This descriptive interval conditions on the chosen model and sampling assumptions. It omits training variability and arbitrary future shift. Fewer than two residuals produce no interval in the notebook. Narrowness is not proof of deployment safety.",
-      "minutes": 3,
-      "mode": "explanation"
-    },
-    {
-      "title": "Separate diagnosis from selection",
-      "body": [
-        "Test slices reveal failure patterns.",
-        "They must not silently tune the winner."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Stage",
-          "Allowed question"
-        ],
-        [
-          "Validation",
-          "Choose candidate?"
-        ],
-        [
-          "Final test",
-          "Frozen-model errors?"
-        ],
-        [
-          "Exploration",
-          "Next hypothesis?"
-        ]
-      ],
-      "teach": "Protect final evaluation from repeated test-driven adaptation. Predeclared comparisons can be reported without changing the validation-selected winner. Exploratory test patterns motivate a fresh protocol, not a newly unbiased final claim.",
-      "minutes": 3,
-      "mode": "explanation"
-    },
-    {
-      "title": "Task 1: compute before coding",
-      "body": [
-        "90 errors of 1; 10 errors of 10.",
-        "Write total absolute error and overall MAE."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Group",
-          "n",
-          "Sum |error|"
-        ],
-        [
-          "Ordinary",
-          "90",
-          "90"
-        ],
-        [
-          "Rare",
-          "10",
-          "100"
-        ],
-        [
-          "Total",
-          "100",
-          "Predict MAE"
-        ]
-      ],
-      "teach": "Hand calculation, about two minutes. Expected total190 and MAE1.9. Do not reveal until pairs explain denominators. Stop when each pair has the weighted-sum equation and separate subgroup MAEs.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Task 1: change the composition",
-      "body": [
-        "Now use 75 ordinary and 25 rare cases.",
-        "Which component changed: model or population?"
-      ],
-      "kind": "equations",
-      "payload": [
-        "Total absolute error = 75*1 + 25*10",
-        "MAE = 325/100 = 3.25",
-        "Neither subgroup MAE changed."
-      ],
-      "teach": "Peer check for two minutes. Ask why an unchanged model could have a worse dashboard metric. Expected population mixture; do not claim this proves no other change in a real system. Record Task1 prediction/explanation later in the exercise notebook.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Task 3: scale a fixed grid",
-      "body": [
-        "Predict the MAE ratio for [-1,1] vs [-3,3].",
-        "Use the same 101 normalized grid locations."
-      ],
-      "kind": "curve",
-      "payload": "square",
-      "teach": "Each location is multiplied by3, target magnitude by9. For the zero predictor the absolute residual equals x squared. Hand derive the ratio before using the notebook. Distinguish finite-grid mean.34 from continuous uniform expectation1/3.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Task 3: the exact finite-grid check",
-      "body": [
-        "At L=1, grid MAE = 0.34.",
-        "At L=3, grid MAE = 3.06."
-      ],
-      "kind": "equations",
-      "payload": [
-        "x_j = L * (-1 + 2*j/100)",
-        "MAE(L) = L^2 * mean(x_j at L=1 squared)",
-        "3.06 / 0.34 = 9"
-      ],
-      "teach": "About two minutes. Endpoints included explain why .34 differs from1/3. The formula uses101points with j0 through100. Stop when students explain why exact9 follows from shared normalized grid, not a universal robustness law.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Task 4: calculate the outlier effect",
-      "body": [
-        "Four errors: +0.1, -0.1, +0.2, -0.2.",
-        "Append a fifth error of 3."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Set",
-          "Sum |e|",
-          "Sum e^2"
-        ],
-        [
-          "Four",
-          "0.6",
-          "0.1"
-        ],
-        [
-          "Five",
-          "3.6",
-          "9.1"
-        ],
-        [
-          "Divide by",
-          "4 or 5",
-          "4 or 5"
-        ]
-      ],
-      "teach": "Students must choose the correct n. Initial MAE.15,RMSEsqrt(.025). After appending: MAE.72,RMSEsqrt(1.82). Have a partner verify intermediate sums before using a calculator.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Task 4: choose a defensible statement",
-      "body": [
-        "RMSE increases more than MAE here.",
-        "That does not make either metric universally better."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Metric",
-          "Before",
-          "After"
-        ],
-        [
-          "MAE",
-          "0.150",
-          "0.720"
-        ],
-        [
-          "RMSE",
-          "0.158",
-          "1.349"
-        ]
-      ],
-      "teach": "Two-minute comparison. Ask which loss aligns with high penalty for rare large errors. A chosen metric must fit a stated task, costs and units. Rounded values are display only; calculations use full precision.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Summary: qualify every average",
-      "body": [
-        "Report metric, population and group counts.",
-        "Use residual patterns to choose the next test."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Mean + slices",
-        "Mechanism clue",
-        "Shift hypothesis",
-        "Next evaluation"
-      ],
-      "teach": "Use two-minute retrieval: one student explains mixture effects, another explains RMSE, another distinguishes covariate and concept shift. Correct the misconception that any input drift proves a model failed.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Exit: make one prediction for H2",
-      "body": [
-        "Which candidate can represent x1 squared?",
-        "State a reason before fitting either model."
-      ],
-      "kind": "equations",
-      "payload": [
-        "Linear basis: x0, x1, x2",
-        "Expanded basis: x0, x1, x2, x1^2",
-        "Choose on validation, not final test."
-      ],
-      "teach": "One-minute exit. The expanded basis can express the known generator while the linear basis cannot exactly do so. This is representational capability, not a promised test score. H2 begins by freezing the full evaluation protocol.",
-      "minutes": 1,
-      "mode": "practice"
-    }
-  ]
-}
+[
+  {
+    "slide": 1,
+    "title": "When a good score hides a bad model",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: A good average can hide bad predictions. Define: Ask which cases fail before trusting one score. Walk through: Find the weak cases; explain the error pattern; change one condition; check and preserve the result. Ask: Does a good test average establish future reliability? Expected answer and boundary: No. It describes the checked observations and metric. The same questions apply to LSTM and Transformer predictions, but this lesson uses transparent synthetic regression, not real stock data. Visual purpose: show Average score > Individual errors > Error groups > Bounded conclusion. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Average score > Individual errors > Error groups > Bounded conclusion",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "cover.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 2,
+    "title": "Today: mechanism, practice, evidence",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A good average can hide bad predictions. Define: Ask which cases fail before trusting one score. Walk through: Find the weak cases; explain the error pattern; change one condition; check and preserve the result. Ask: Does a good test average establish future reliability? Expected answer and boundary: No. It describes the checked observations and metric. The same questions apply to LSTM and Transformer predictions, but this lesson uses transparent synthetic regression, not real stock data. Visual purpose: show Average score > Individual errors > Error groups > Bounded conclusion. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Average score > Individual errors > Error groups > Bounded conclusion",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "inline hour agenda",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 3,
+    "title": "Check: A good average can hide bad predictions",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A good average can hide bad predictions. Define: Ask which cases fail before trusting one score. Walk through: Find the weak cases; explain the error pattern; change one condition; check and preserve the result. Ask: Does a good test average establish future reliability? Expected answer and boundary: No. It describes the checked observations and metric. The same questions apply to LSTM and Transformer predictions, but this lesson uses transparent synthetic regression, not real stock data. Visual purpose: show Average score > Individual errors > Error groups > Bounded conclusion. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Average score > Individual errors > Error groups > Bounded conclusion",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b01-v3.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 4,
+    "title": "Count the weak cases, not just the average",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Count the weak cases, not just the average. Define: A small difficult group can be hidden by many easy cases. Walk through: Ninety absolute errors of 1 and ten of 10 give total absolute error 190 across 100 cases. These are illustrative errors, not fitted-model measurements. Ask: What information is missing from an average of 1.9? Expected answer and boundary: The group sizes, within-group errors, units and consequences of failure. No deployment decision follows from this number alone. Visual purpose: show 90 easy cases | 10 difficult cases | Same 100-case total. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "90 easy cases | 10 difficult cases | Same 100-case total",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b02-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 5,
+    "title": "A transparent paper illustration",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Count the weak cases, not just the average. Define: A small difficult group can be hidden by many easy cases. Walk through: Ninety absolute errors of 1 and ten of 10 give total absolute error 190 across 100 cases. These are illustrative errors, not fitted-model measurements. Ask: What information is missing from an average of 1.9? Expected answer and boundary: The group sizes, within-group errors, units and consequences of failure. No deployment decision follows from this number alone. Visual purpose: show 90 easy cases | 10 difficult cases | Same 100-case total. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "90 easy cases | 10 difficult cases | Same 100-case total",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b02-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 6,
+    "title": "Check: Count the weak cases, not just the average",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Count the weak cases, not just the average. Define: A small difficult group can be hidden by many easy cases. Walk through: Ninety absolute errors of 1 and ten of 10 give total absolute error 190 across 100 cases. These are illustrative errors, not fitted-model measurements. Ask: What information is missing from an average of 1.9? Expected answer and boundary: The group sizes, within-group errors, units and consequences of failure. No deployment decision follows from this number alone. Visual purpose: show 90 easy cases | 10 difficult cases | Same 100-case total. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "90 easy cases | 10 difficult cases | Same 100-case total",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b02-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 7,
+    "title": "Residual means prediction minus observation",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Residual means prediction minus observation. Define: Positive means too high; negative means too low. Walk through: At x1=-2,-1,0,1,2, the noise-free square is 4,1,0,1,4. A deliberately fixed prediction of 1 gives residuals -3,0,1,0,-3. Ask: Which rows are underpredicted, and why? Expected answer and boundary: The two end rows: prediction 1 is below observed 4. This horizontal prediction is a declared teaching approximation, not a model fitted to those five points. Visual purpose: show Observed value > Predicted value > Subtract > Explain the sign. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Observed value > Predicted value > Subtract > Explain the sign",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b03-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 8,
+    "title": "Read five residuals before plotting",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Residual means prediction minus observation. Define: Positive means too high; negative means too low. Walk through: At x1=-2,-1,0,1,2, the noise-free square is 4,1,0,1,4. A deliberately fixed prediction of 1 gives residuals -3,0,1,0,-3. Ask: Which rows are underpredicted, and why? Expected answer and boundary: The two end rows: prediction 1 is below observed 4. This horizontal prediction is a declared teaching approximation, not a model fitted to those five points. Visual purpose: show Observed value > Predicted value > Subtract > Explain the sign. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Observed value > Predicted value > Subtract > Explain the sign",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b03-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 9,
+    "title": "Check: Residual means prediction minus observation",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Residual means prediction minus observation. Define: Positive means too high; negative means too low. Walk through: At x1=-2,-1,0,1,2, the noise-free square is 4,1,0,1,4. A deliberately fixed prediction of 1 gives residuals -3,0,1,0,-3. Ask: Which rows are underpredicted, and why? Expected answer and boundary: The two end rows: prediction 1 is below observed 4. This horizontal prediction is a declared teaching approximation, not a model fitted to those five points. Visual purpose: show Observed value > Predicted value > Subtract > Explain the sign. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Observed value > Predicted value > Subtract > Explain the sign",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b03-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 10,
+    "title": "MAE and RMSE summarize different penalties",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: MAE and RMSE summarize different penalties. Define: Keep the same five residuals while changing the summary. Walk through: For residuals -3,0,1,0,-3, the absolute sum is 7 and squared sum is 19. MAE=7/5=1.4; RMSE=sqrt(19/5), about 1.949. Ask: Why does the larger error receive more weight in RMSE? Expected answer and boundary: Its contribution is squared before averaging. Neither metric is universally better: the loss should match the stated task and error costs. Visual purpose: show Absolute errors | Squared errors | Average | Response units. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Absolute errors | Squared errors | Average | Response units",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b04-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 11,
+    "title": "Compute the summaries from intermediate sums",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: MAE and RMSE summarize different penalties. Define: Keep the same five residuals while changing the summary. Walk through: For residuals -3,0,1,0,-3, the absolute sum is 7 and squared sum is 19. MAE=7/5=1.4; RMSE=sqrt(19/5), about 1.949. Ask: Why does the larger error receive more weight in RMSE? Expected answer and boundary: Its contribution is squared before averaging. Neither metric is universally better: the loss should match the stated task and error costs. Visual purpose: show Absolute errors | Squared errors | Average | Response units. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Absolute errors | Squared errors | Average | Response units",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b04-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 12,
+    "title": "Check: MAE and RMSE summarize different penalties",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: MAE and RMSE summarize different penalties. Define: Keep the same five residuals while changing the summary. Walk through: For residuals -3,0,1,0,-3, the absolute sum is 7 and squared sum is 19. MAE=7/5=1.4; RMSE=sqrt(19/5), about 1.949. Ask: Why does the larger error receive more weight in RMSE? Expected answer and boundary: Its contribution is squared before averaging. Neither metric is universally better: the loss should match the stated task and error costs. Visual purpose: show Absolute errors | Squared errors | Average | Response units. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Absolute errors | Squared errors | Average | Response units",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b04-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 13,
+    "title": "A residual plot should explain a pattern",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A residual plot should explain a pattern. Define: Read the zero line and error sign before naming a mechanism. Walk through: Plot -3,0,1,0,-3 against -2,-1,0,1,2. Label positive center as overprediction and negative tails as underprediction. Ask: Does a curved residual prove a physical cause? Expected answer and boundary: No. It suggests a missing relationship. Here the square is known because we constructed the synthetic generator; an observational pattern alone is not causal proof. Visual purpose: show Five x1 positions > Five residuals > Zero line > Over or underprediction. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Five x1 positions > Five residuals > Zero line > Over or underprediction",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b05-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 14,
+    "title": "Build the curve one point at a time",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A residual plot should explain a pattern. Define: Read the zero line and error sign before naming a mechanism. Walk through: Plot -3,0,1,0,-3 against -2,-1,0,1,2. Label positive center as overprediction and negative tails as underprediction. Ask: Does a curved residual prove a physical cause? Expected answer and boundary: No. It suggests a missing relationship. Here the square is known because we constructed the synthetic generator; an observational pattern alone is not causal proof. Visual purpose: show Five x1 positions > Five residuals > Zero line > Over or underprediction. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Five x1 positions > Five residuals > Zero line > Over or underprediction",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b05-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 15,
+    "title": "Check: A residual plot should explain a pattern",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A residual plot should explain a pattern. Define: Read the zero line and error sign before naming a mechanism. Walk through: Plot -3,0,1,0,-3 against -2,-1,0,1,2. Label positive center as overprediction and negative tails as underprediction. Ask: Does a curved residual prove a physical cause? Expected answer and boundary: No. It suggests a missing relationship. Here the square is known because we constructed the synthetic generator; an observational pattern alone is not causal proof. Visual purpose: show Five x1 positions > Five residuals > Zero line > Over or underprediction. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Five x1 positions > Five residuals > Zero line > Over or underprediction",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b05-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 16,
+    "title": "A straight model cannot draw a square",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A straight model cannot draw a square. Define: Scaling an input does not create a missing nonlinear feature. Walk through: Hold x0=0 and noise=0 for the visual slice. The fixed line predicts 1; the true curve is x1 squared. Explain their difference before fitting anything. Ask: Why not fix this only by standardizing x1? Expected answer and boundary: Centering and scaling are affine operations. They cannot create x1 squared. The five-point approximation is separate from the two pipelines we will actually train. Visual purpose: show Raw x1 > Center and scale > Still a line | Add x1 squared > Curved response. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Raw x1 > Center and scale > Still a line | Add x1 squared > Curved response",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b06-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 17,
+    "title": "Compare a flat approximation with the known curve",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A straight model cannot draw a square. Define: Scaling an input does not create a missing nonlinear feature. Walk through: Hold x0=0 and noise=0 for the visual slice. The fixed line predicts 1; the true curve is x1 squared. Explain their difference before fitting anything. Ask: Why not fix this only by standardizing x1? Expected answer and boundary: Centering and scaling are affine operations. They cannot create x1 squared. The five-point approximation is separate from the two pipelines we will actually train. Visual purpose: show Raw x1 > Center and scale > Still a line | Add x1 squared > Curved response. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Raw x1 > Center and scale > Still a line | Add x1 squared > Curved response",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b06-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 18,
+    "title": "Check: A straight model cannot draw a square",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: A straight model cannot draw a square. Define: Scaling an input does not create a missing nonlinear feature. Walk through: Hold x0=0 and noise=0 for the visual slice. The fixed line predicts 1; the true curve is x1 squared. Explain their difference before fitting anything. Ask: Why not fix this only by standardizing x1? Expected answer and boundary: Centering and scaling are affine operations. They cannot create x1 squared. The five-point approximation is separate from the two pipelines we will actually train. Visual purpose: show Raw x1 > Center and scale > Still a line | Add x1 squared > Curved response. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Raw x1 > Center and scale > Still a line | Add x1 squared > Curved response",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b06-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 19,
+    "title": "Keep one main experiment for the lesson",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Keep one main experiment for the lesson. Define: Use one synthetic generator and the same two candidate definitions. Walk through: The main experiment uses y=2*x0+x1 squared+noise. Inputs are dimensionless; noise SD is 0.2; x2 is an unused negative-control feature. Ask: Are these measurements from equipment or financial markets? Expected answer and boundary: No. They are synthetic teaching data. A known generator makes the model comparison explainable without claiming physical discovery or stock-market validity. Visual purpose: show Synthetic rows > Linear candidate | Square-feature candidate > Frozen comparison. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Synthetic rows > Linear candidate | Square-feature candidate > Frozen comparison",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b07-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 20,
+    "title": "State the transparent target rule",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Keep one main experiment for the lesson. Define: Use one synthetic generator and the same two candidate definitions. Walk through: The main experiment uses y=2*x0+x1 squared+noise. Inputs are dimensionless; noise SD is 0.2; x2 is an unused negative-control feature. Ask: Are these measurements from equipment or financial markets? Expected answer and boundary: No. They are synthetic teaching data. A known generator makes the model comparison explainable without claiming physical discovery or stock-market validity. Visual purpose: show Synthetic rows > Linear candidate | Square-feature candidate > Frozen comparison. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Synthetic rows > Linear candidate | Square-feature candidate > Frozen comparison",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b07-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 21,
+    "title": "Check: Keep one main experiment for the lesson",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Keep one main experiment for the lesson. Define: Use one synthetic generator and the same two candidate definitions. Walk through: The main experiment uses y=2*x0+x1 squared+noise. Inputs are dimensionless; noise SD is 0.2; x2 is an unused negative-control feature. Ask: Are these measurements from equipment or financial markets? Expected answer and boundary: No. They are synthetic teaching data. A known generator makes the model comparison explainable without claiming physical discovery or stock-market validity. Visual purpose: show Synthetic rows > Linear candidate | Square-feature candidate > Frozen comparison. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Synthetic rows > Linear candidate | Square-feature candidate > Frozen comparison",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b07-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 22,
+    "title": "Task 1: predict, calculate, explain",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Task 1: predict, calculate, explain. Define: Use the five-point visual slice to check signs and metrics. Walk through: Fill the prediction cell, run Task 1, then fill its explanation cell. Show one underprediction and the denominator used for MAE and RMSE. Ask: What evidence ends this task? Expected answer and boundary: Five correctly aligned residuals, the two intermediate sums, and an explanation of one signed error. The notebook has ready-made response cells; no new cells are required. Visual purpose: show Write prediction > Compute residuals > Inspect sums > Explain one row. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Write prediction > Compute residuals > Inspect sums > Explain one row",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b08-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 23,
+    "title": "Check the arithmetic without a model library",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: predict, calculate, explain. Define: Use the five-point visual slice to check signs and metrics. Walk through: Fill the prediction cell, run Task 1, then fill its explanation cell. Show one underprediction and the denominator used for MAE and RMSE. Ask: What evidence ends this task? Expected answer and boundary: Five correctly aligned residuals, the two intermediate sums, and an explanation of one signed error. The notebook has ready-made response cells; no new cells are required. Visual purpose: show Write prediction > Compute residuals > Inspect sums > Explain one row. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Write prediction > Compute residuals > Inspect sums > Explain one row",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b08-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 24,
+    "title": "Check: Task 1: predict, calculate, explain",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 1: predict, calculate, explain. Define: Use the five-point visual slice to check signs and metrics. Walk through: Fill the prediction cell, run Task 1, then fill its explanation cell. Show one underprediction and the denominator used for MAE and RMSE. Ask: What evidence ends this task? Expected answer and boundary: Five correctly aligned residuals, the two intermediate sums, and an explanation of one signed error. The notebook has ready-made response cells; no new cells are required. Visual purpose: show Write prediction > Compute residuals > Inspect sums > Explain one row. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Write prediction > Compute residuals > Inspect sums > Explain one row",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b08-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 25,
+    "title": "Task 2: change only the group mixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: change only the group mixture. Define: A different overall score need not mean a different model. Walk through: The two group losses remain 1 and 10. Total error becomes 75+250=325; the same 100-case total gives MAE 3.25. Do not confuse this illustration with the real test-group counts in H2. Ask: Which part changed, and which part did not? Expected answer and boundary: The mixture changed; the two group errors did not. In a real system, investigate other possible changes too instead of inferring a cause from the aggregate alone. Visual purpose: show Fixed group errors > Change group counts > Recompute weighted MAE > Explain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Fixed group errors > Change group counts > Recompute weighted MAE > Explain",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b09-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 26,
+    "title": "Change the paper illustration from 90/10 to 75/25",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: change only the group mixture. Define: A different overall score need not mean a different model. Walk through: The two group losses remain 1 and 10. Total error becomes 75+250=325; the same 100-case total gives MAE 3.25. Do not confuse this illustration with the real test-group counts in H2. Ask: Which part changed, and which part did not? Expected answer and boundary: The mixture changed; the two group errors did not. In a real system, investigate other possible changes too instead of inferring a cause from the aggregate alone. Visual purpose: show Fixed group errors > Change group counts > Recompute weighted MAE > Explain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Fixed group errors > Change group counts > Recompute weighted MAE > Explain",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "interactive weighted-mixture diagram",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 27,
+    "title": "Check: Task 2: change only the group mixture",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 2: change only the group mixture. Define: A different overall score need not mean a different model. Walk through: The two group losses remain 1 and 10. Total error becomes 75+250=325; the same 100-case total gives MAE 3.25. Do not confuse this illustration with the real test-group counts in H2. Ask: Which part changed, and which part did not? Expected answer and boundary: The mixture changed; the two group errors did not. In a real system, investigate other possible changes too instead of inferring a cause from the aggregate alone. Visual purpose: show Fixed group errors > Change group counts > Recompute weighted MAE > Explain. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Fixed group errors > Change group counts > Recompute weighted MAE > Explain",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b09-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 28,
+    "title": "Summary: ask where and why errors occur",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: ask where and why errors occur. Define: An average is the beginning of diagnosis, not its conclusion. Walk through: Show your Task 1 residuals and Task 2 weighted calculation. Predict which predeclared candidate can express the square before opening H2. Ask: What should stay fixed during the next comparison? Expected answer and boundary: The data split, candidate definitions and selection rule. H2 trains on training rows, chooses by validation, then compares the frozen candidates on held-out observations. Visual purpose: show Average + counts > Signed errors > Visible pattern > Testable hypothesis. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Average + counts > Signed errors > Visible pattern > Testable hypothesis",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b10-v1.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 29,
+    "title": "Exit: explain the missing shape in plain language",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: ask where and why errors occur. Define: An average is the beginning of diagnosis, not its conclusion. Walk through: Show your Task 1 residuals and Task 2 weighted calculation. Predict which predeclared candidate can express the square before opening H2. Ask: What should stay fixed during the next comparison? Expected answer and boundary: The data split, candidate definitions and selection rule. H2 trains on training rows, chooses by validation, then compares the frozen candidates on held-out observations. Visual purpose: show Average + counts > Signed errors > Visible pattern > Testable hypothesis. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Average + counts > Signed errors > Visible pattern > Testable hypothesis",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b10-v2.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 30,
+    "title": "Summary and exit: H1",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: ask where and why errors occur. Define: An average is the beginning of diagnosis, not its conclusion. Walk through: Show your Task 1 residuals and Task 2 weighted calculation. Predict which predeclared candidate can express the square before opening H2. Ask: What should stay fixed during the next comparison? Expected answer and boundary: The data split, candidate definitions and selection rule. H2 trains on training rows, chooses by validation, then compares the frozen candidates on held-out observations. Visual purpose: show Average + counts > Signed errors > Visible pattern > Testable hypothesis. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Average + counts > Signed errors > Visible pattern > Testable hypothesis",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h1-b10-v3.svg",
+    "revision": "2026-10-27"
+  }
+]

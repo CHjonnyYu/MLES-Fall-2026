@@ -1,534 +1,452 @@
-{
-  "title": "Diagnose a frozen model",
-  "slides": [
-    {
-      "title": "From explanation to executable evidence",
-      "body": [
-        "Week 09 / H2 / guided notebook",
-        "Freeze choices before inspecting final errors."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Contract",
-        "Fit",
-        "Select",
-        "Evaluate"
-      ],
-      "teach": "H2 is15minutes explanation then45guided practice. Retrieve H1 distinction between mixture and mechanism change. No API or GPU is required. Students need the practice notebook or the walkthrough at the top of the exercise notebook, not both executions.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "One row is an independent observation",
-      "body": [
-        "500 synthetic rows; three dimensionless inputs.",
-        "The response has synthetic response units."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Column",
-          "Meaning"
-        ],
-        [
-          "sample_id",
-          "Stable row identity"
-        ],
-        [
-          "x0, x1, x2",
-          "Synthetic inputs"
-        ],
-        [
-          "y",
-          "Synthetic response"
-        ]
-      ],
-      "teach": "Explain this IID synthetic setting before using a random split. Real rows repeated by machine, patient or time require group or chronological rules. x2 is a negative control; do not invent physical units for these variables.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Write the generator explicitly",
-      "body": [
-        "y = 2*x0 + x1 squared + noise.",
-        "Noise SD is 0.2; x2 is unused."
-      ],
-      "kind": "equations",
-      "payload": [
-        "x0, x1, x2 ~ independent N(0,1)",
-        "noise ~ N(0, 0.2^2)",
-        "y = 2*x0 + x1^2 + noise"
-      ],
-      "teach": "Use known synthetic mechanism to make representation errors interpretable. No claim of discovering a physical law is made. The relation is stipulated, not inferred from held-out labels.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "The linear model lacks a basis term",
-      "body": [
-        "Scaling does not create x1 squared.",
-        "Add the basis term before standardization."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Candidate",
-          "Feature basis"
-        ],
-        [
-          "Linear",
-          "x0, x1, x2"
-        ],
-        [
-          "Quadratic",
-          "x0, x1, x2, x1^2"
-        ],
-        [
-          "Both",
-          "Train scaler + Ridge"
-        ]
-      ],
-      "teach": "Explain standardization as affine transformation, incapable of creating a square. The fixed feature mapping uses no labels. Ridgealpha1 and solverSVD are shared. The expanded model is predeclared because the synthetic generator is known.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Reserve the final test once",
-      "body": [
-        "350 train; 75 validation; 75 test.",
-        "Keep row identities disjoint and exhaustive."
-      ],
-      "kind": "bars",
-      "payload": [
-        [
-          "Train",
-          350
-        ],
-        [
-          "Validation",
-          75
-        ],
-        [
-          "Test",
-          75
-        ]
-      ],
-      "teach": "Training fits parameters and scaler. Validation selects candidate by MAE. Final test estimates performance after decisions. Reusing test outcomes to change a candidate invalidates its role as untouched final evidence.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Select by a predeclared rule",
-      "body": [
-        "Lowest validation MAE wins.",
-        "Exact ties favour the simpler linear model."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Fit on train",
-        "Score validation",
-        "Freeze winner",
-        "Open final test"
-      ],
-      "teach": "The tie rule must be fixed before inspection. We report both candidates as a predeclared comparison, without reselecting on final test. Do not refit on train+validation in this particular replay protocol, which reproduces training-only fits.",
-      "minutes": 2,
-      "mode": "explanation"
-    },
-    {
-      "title": "Stress one input distribution",
-      "body": [
-        "Keep fitted parameters, base rows and noise.",
-        "Scale only x1 and recompute the target."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Component",
-          "Across severity"
-        ],
-        [
-          "x0 and x2",
-          "Same observations"
-        ],
-        [
-          "Noise",
-          "Same realization"
-        ],
-        [
-          "x1",
-          "Multiply by scale"
-        ],
-        [
-          "Parameters",
-          "Unchanged"
-        ]
-      ],
-      "teach": "Use three minutes to distinguish paired conditions from independently regenerated datasets. Pairing reduces irrelevant comparison variation but does not eliminate uncertainty or establish deployment robustness. The target mechanism stays fixed while its inputs change.",
-      "minutes": 3,
-      "mode": "explanation"
-    },
-    {
-      "title": "Open a free CPU notebook",
-      "body": [
-        "Use Colab or local Jupyter.",
-        "Run the walkthrough once from the top."
-      ],
-      "kind": "code",
-      "payload": [
-        "# No API key, no GPU, no external data",
-        "# In Colab: Runtime > Run all",
-        "# Read each prediction prompt first",
-        "print(ENV)"
-      ],
-      "teach": "Practice begins. Link to the complete notebook in the toolbar. Pairs alternate driver and reviewer. If using the exercise notebook, its first26cells already contain the full walkthrough; do not double-run both notebooks.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Record actual environment versions",
-      "body": [
-        "A seed alone is not an experiment identity.",
-        "Keep configuration, data hash and versions."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Record",
-          "Why"
-        ],
-        [
-          "Seed + config",
-          "Generation and choices"
-        ],
-        [
-          "Exact CSV",
-          "Input identity"
-        ],
-        [
-          "Versions",
-          "Numerical environment"
-        ],
-        [
-          "Split IDs",
-          "Evaluation identity"
-        ]
-      ],
-      "teach": "Ask students to copy or retain the printed ENV and CONFIG automatically exported later. Package versions are recorded, not silently claimed pinned across all platforms. Minor cross-environment numerical differences must be evaluated with a stated tolerance.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Verify the split assertions",
-      "body": [
-        "No overlap; all 500 rows accounted for.",
-        "Random splitting is justified only by this IID setup."
-      ],
-      "kind": "code",
-      "payload": [
-        "assert sizes == (350, 75, 75)",
-        "assert not (train_ids & test_ids)",
-        "assert all_ids == train_ids | held_ids"
-      ],
-      "teach": "Teaching fragment, the runnable notebook checks all three pairwise overlaps and exact sizes. Students inspect actual shapes. If assertion fails, stop before fitting; do not bypass checks to obtain a score.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Freeze the CSV before selecting",
-      "body": [
-        "Store row ID, split, features and target.",
-        "Keep SHA-256 alongside the result."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Generate rows",
-        "Assign splits",
-        "Write CSV",
-        "Hash exact bytes"
-      ],
-      "teach": "Open the file panel and inspect the schema. Do not edit to improve scores. A checksum authenticates bytes relative to a recorded value, not correctness of labels or permission to make a scientific claim.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Fit transformations on training only",
-      "body": [
-        "The pipeline owns the scaler and Ridge fit.",
-        "Validation and test only call predict."
-      ],
-      "kind": "code",
-      "payload": [
-        "model.fit(Xtr, ytr)",
-        "val_prediction = model.predict(Xva)",
-        "# Never fit a scaler on all 500 rows."
-      ],
-      "teach": "Have the reviewer locate the training-only fit in the notebook. The label-free quadratic map is fixed but the scaler parameters are learned. This separates a predetermined basis from a data-fitted preprocessing step.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Inspect the validation comparison",
-      "body": [
-        "Read actual MAE, not a promised score.",
-        "Record the selected candidate before continuing."
-      ],
-      "kind": "image",
-      "payload": "w09-validation-selection.png",
-      "teach": "Actual CPU reference output for this frozen dataset. The quadratic candidate wins validation in this reference execution; students must report their own actual run. Check validation n75 and tie rule rather than selecting by final-test results.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Now open final test evidence",
-      "body": [
-        "Compare MAE and RMSE on the same 75 rows.",
-        "The selected candidate remains frozen."
-      ],
-      "kind": "image",
-      "payload": "w09-test-metrics.png",
-      "teach": "Actual predeclared two-candidate reference comparison. Explain why RMSE is at least MAE. Reference values are approximately linearMAE1.032 and quadraticMAE.164, but use full JSON precision for replication. Do not call these deployment results.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Reconcile subgroup counts and totals",
-      "body": [
-        "Predeclared extreme slice: abs(x1) > 1.",
-        "The two slice counts must add to 75."
-      ],
-      "kind": "image",
-      "payload": "w09-test-slices.png",
-      "teach": "Students recompute weighted MAE from both slice means and counts and compare to total. Counts are visible on plot labels. The predeclared boundary is1; later threshold sweeps are exploratory only.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Inspect the linear residual pattern",
-      "body": [
-        "Negative tails suggest a missing curved term.",
-        "Check the residual sign before interpretation."
-      ],
-      "kind": "image",
-      "payload": "w09-linear-residuals.png",
-      "teach": "Use the actual held-out scatter. Compare its curvature to H1 analytic1-x1^2; the fitted model has noise and fitted coefficients, so it is not identical to that curve. Ask for one observed tail case rather than a vague description.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Inspect the expanded-model residuals",
-      "body": [
-        "Adding the known square removes much structure.",
-        "A smaller pattern is not proof of correctness."
-      ],
-      "kind": "image",
-      "payload": "w09-quadratic-residuals.png",
-      "teach": "Compare residual structure while attending to axis scales. The two automatically scaled plots do not share y limits; students should compare numerical errors, not just vertical occupied space. Remaining noise and finite fitting effects are expected.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Use parity to locate large errors",
-      "body": [
-        "The diagonal means prediction equals observation.",
-        "Distance from it is the signed residual vertically."
-      ],
-      "kind": "image",
-      "payload": "w09-test-parity.png",
-      "teach": "The same75test observations appear for both candidates. Ask students which response region the linear model underpredicts. The diagonal is a reference, not a fitted trend line. Metric evidence should accompany visual impressions.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Relate a pattern to a known mechanism",
-      "body": [
-        "Subtract the known 2*x0 contribution.",
-        "The remaining training response follows a square."
-      ],
-      "kind": "image",
-      "payload": "w09-known-mechanism.png",
-      "teach": "This diagnostic uses a known generating coefficient in a synthetic teaching problem. It is not an observational discovery method or validation-driven feature search. Distinguish training dots from the analytic known-term curve.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Run paired stress scales 1, 1.5, 2.5",
-      "body": [
-        "Keep all candidate fits frozen.",
-        "Compare actual errors across the new populations."
-      ],
-      "kind": "image",
-      "payload": "w09-stress-mae.png",
-      "teach": "The stress curves are actual fixed-model outputs on the same paired 150-row base cohort. Input scaling exposes the omitted square in the linear candidate. Read the actual reference values and do not generalize an exact error ratio to arbitrary models or deployment shifts.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Input drift is visible without labels",
-      "body": [
-        "The stress x1 distribution is broader.",
-        "This plot alone does not measure model error."
-      ],
-      "kind": "image",
-      "payload": "w09-input-shift.png",
-      "teach": "These empirical histograms show changed input distributions with sample-dependent bins. The figure is not a formal detection test and does not directly measure prediction error. Pair an input alert with new outcomes to evaluate consequences.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Read the high-response stress failures",
-      "body": [
-        "Compare both candidates with the parity line.",
-        "Identify one large underprediction."
-      ],
-      "kind": "image",
-      "payload": "w09-stress-parity.png",
-      "teach": "Use the actual scale-2.5 population. Identify one underpredicted high-response point and find its row in the predictions CSV. Correct representation of the synthetic square helps here, but does not prove robustness against all real shifts.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "A mean does not show the error tail",
-      "body": [
-        "The CDF shows fractions below each error.",
-        "Read a percentile only within observed evidence."
-      ],
-      "kind": "image",
-      "payload": "w09-stress-error-cdf.png",
-      "teach": "Define the empirical CDF as the fraction of 150 absolute residuals at or below a horizontal error value. Each candidate uses the same outcomes. A finite-sample percentile is not a guaranteed deployment tolerance or an external confidence bound.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Inspect training-range flags",
-      "body": [
-        "Dashed lines mark observed min and max.",
-        "An outside point may deserve investigation."
-      ],
-      "kind": "image",
-      "payload": "w09-observed-range.png",
-      "teach": "Colors indicate input range flags, not correct/incorrect classes. Gaussian support is not bounded by observed min/max. This plot shows the linear model only; do not assign its error magnitudes to the expanded candidate.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Read uncertainty with its conditioning",
-      "body": [
-        "Intervals resample fixed-model slice errors.",
-        "Counts and IID assumptions remain essential."
-      ],
-      "kind": "image",
-      "payload": "w09-slice-intervals.png",
-      "teach": "These descriptive intervals resample fixed-model residuals 300 times within each slice. They condition on the fitted model and omit training and arbitrary future-shift uncertainty. Small counts and sampling assumptions remain important.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Turn coefficients back into input units",
-      "body": [
-        "Undo standardization before interpretation.",
-        "Verify the explicit equation against predict."
-      ],
-      "kind": "image",
-      "payload": "w09-coefficients.png",
-      "teach": "Compare known synthetic coefficients with the expanded candidate in original feature coordinates. The true linear coefficients on x1 and x2 are zero, but finite fitted coefficients need not be exactly zero. This explains a fitted function, not real causal effects.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Task 2: run the boundary sweep",
-      "body": [
-        "Use abs(x1) thresholds 0.5, 1 and 1.5.",
-        "Record each group count with its actual MAE."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Threshold",
-          "Inside n",
-          "Outside n"
-        ],
-        [
-          "0.5",
-          "Record",
-          "Record"
-        ],
-        [
-          "1.0",
-          "Record",
-          "Record"
-        ],
-        [
-          "1.5",
-          "Record",
-          "Record"
-        ]
-      ],
-      "teach": "Execute Task 2 in the exercise notebook. Verify that each pair of slice counts adds to 75. Label the sweep exploratory. A favourable boundary found after examining final-test labels cannot support a newly unbiased performance claim.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Save the guided checkpoint",
-      "body": [
-        "Keep metrics JSON, predictions CSV and ZIP.",
-        "H3 reuses frozen data and models."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Metrics + counts",
-        "Predictions + IDs",
-        "Hash + versions",
-        "Evidence ZIP"
-      ],
-      "teach": "Locate week09-reliability-evidence.zip in the Files panel. It contains the actual reference outputs, not completed student answers. Identify the correct run by configuration ID and data hash. Download it before the runtime ends.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Summary: choices and evidence differ",
-      "body": [
-        "Validation selects; final test evaluates.",
-        "Stress diagnosis keeps the fitted model fixed."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Action",
-          "Evidence role"
-        ],
-        [
-          "Choose candidate",
-          "Validation MAE"
-        ],
-        [
-          "Report performance",
-          "Held-out test"
-        ],
-        [
-          "Probe weakness",
-          "Frozen-model stress"
-        ]
-      ],
-      "teach": "Pairs explain the distinction between validation selection, final evaluation and frozen-model stress diagnosis. Correct the misconception that choosing the best final-test score leaves the test unbiased. The synthetic reference is not deployment validation.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Exit: name a reproducible checkpoint",
-      "body": [
-        "Show your data hash and selected candidate.",
-        "State one observed failure and one limitation."
-      ],
-      "kind": "steps",
-      "payload": [
-        "Exact input",
-        "Frozen selection",
-        "Observed result",
-        "Bounded claim"
-      ],
-      "teach": "Show the actual data hash, selected candidate, one observed failure and one limitation in a one-minute explanation. If the evidence ZIP is missing, recover that checkpoint before proceeding to H3.",
-      "minutes": 1,
-      "mode": "practice"
-    }
-  ]
-}
+[
+  {
+    "slide": 1,
+    "title": "Find the missing relationship",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "3 minutes / explanation. Teaching intent: Turn the visual story into one checked experiment. Define: Train two declared candidates on the same saved rows. Walk through: Fit and freeze; inspect errors on shared axes; widen one input distribution without retraining. Open the complete Exercise notebook only, or the worked alternative, not both. Ask: Why use a simple model after learning LSTM and attention? Expected answer and boundary: Its mechanism is inspectable, so students can learn the diagnostic checks before applying them to more complex models. Complexity does not remove the need for these checks. Visual purpose: show 500 synthetic rows > 350 train | 75 validation | 75 test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "500 synthetic rows > 350 train | 75 validation | 75 test",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b01-v1.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 2,
+    "title": "This hour completes Tasks 3, 4 and 5",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Turn the visual story into one checked experiment. Define: Train two declared candidates on the same saved rows. Walk through: Fit and freeze; inspect errors on shared axes; widen one input distribution without retraining. Open the complete Exercise notebook only, or the worked alternative, not both. Ask: Why use a simple model after learning LSTM and attention? Expected answer and boundary: Its mechanism is inspectable, so students can learn the diagnostic checks before applying them to more complex models. Complexity does not remove the need for these checks. Visual purpose: show 500 synthetic rows > 350 train | 75 validation | 75 test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "500 synthetic rows > 350 train | 75 validation | 75 test",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b01-v2.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 3,
+    "title": "Check: Turn the visual story into one checked experiment",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Turn the visual story into one checked experiment. Define: Train two declared candidates on the same saved rows. Walk through: Fit and freeze; inspect errors on shared axes; widen one input distribution without retraining. Open the complete Exercise notebook only, or the worked alternative, not both. Ask: Why use a simple model after learning LSTM and attention? Expected answer and boundary: Its mechanism is inspectable, so students can learn the diagnostic checks before applying them to more complex models. Complexity does not remove the need for these checks. Visual purpose: show 500 synthetic rows > 350 train | 75 validation | 75 test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "500 synthetic rows > 350 train | 75 validation | 75 test",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b01-v3.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 4,
+    "title": "Know what each input means",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Know what each input means. Define: The square belongs to the generator, not a discovery from test labels. Walk through: The fixed rule is y=2*x0+x1 squared+noise. Each independent row has an ID and a saved split. No physical input units are invented. Ask: Does knowing the generator justify choosing on the test score? Expected answer and boundary: No. It justifies predeclaring this teaching comparison. The winner is still chosen by the declared validation MAE rule. Visual purpose: show x0: linear signal | x1: squared signal | x2: negative control. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "x0: linear signal | x1: squared signal | x2: negative control",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b02-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 5,
+    "title": "Inspect one row and its synthetic construction",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Know what each input means. Define: The square belongs to the generator, not a discovery from test labels. Walk through: The fixed rule is y=2*x0+x1 squared+noise. Each independent row has an ID and a saved split. No physical input units are invented. Ask: Does knowing the generator justify choosing on the test score? Expected answer and boundary: No. It justifies predeclaring this teaching comparison. The winner is still chosen by the declared validation MAE rule. Visual purpose: show x0: linear signal | x1: squared signal | x2: negative control. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "x0: linear signal | x1: squared signal | x2: negative control",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b02-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 6,
+    "title": "Check: Know what each input means",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Know what each input means. Define: The square belongs to the generator, not a discovery from test labels. Walk through: The fixed rule is y=2*x0+x1 squared+noise. Each independent row has an ID and a saved split. No physical input units are invented. Ask: Does knowing the generator justify choosing on the test score? Expected answer and boundary: No. It justifies predeclaring this teaching comparison. The winner is still chosen by the declared validation MAE rule. Visual purpose: show x0: linear signal | x1: squared signal | x2: negative control. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "x0: linear signal | x1: squared signal | x2: negative control",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b02-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 7,
+    "title": "Separate fitting, choosing and evaluating",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "2 minutes / explanation. Teaching intent: Separate fitting, choosing and evaluating. Define: Only training rows fit scaler and model parameters. Walk through: Check 350/75/75 rows, disjoint IDs and the frozen CSV hash. Then fit both training-only pipelines; exact validation ties favor the linear candidate. Ask: What would fitting the scaler on all rows change? Expected answer and boundary: It would let held-out inputs influence a fitted preprocessing step. Keep the full fitting operation inside the training pipeline and apply predict to validation and test only. Visual purpose: show Train: fit > Validation: choose > Freeze decision > Test: evaluate. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Train: fit > Validation: choose > Freeze decision > Test: evaluate",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b03-v1.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 8,
+    "title": "Task 3 begins with the data contract",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Separate fitting, choosing and evaluating. Define: Only training rows fit scaler and model parameters. Walk through: Check 350/75/75 rows, disjoint IDs and the frozen CSV hash. Then fit both training-only pipelines; exact validation ties favor the linear candidate. Ask: What would fitting the scaler on all rows change? Expected answer and boundary: It would let held-out inputs influence a fitted preprocessing step. Keep the full fitting operation inside the training pipeline and apply predict to validation and test only. Visual purpose: show Train: fit > Validation: choose > Freeze decision > Test: evaluate. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Train: fit > Validation: choose > Freeze decision > Test: evaluate",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b03-v2.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 9,
+    "title": "Check: Separate fitting, choosing and evaluating",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Separate fitting, choosing and evaluating. Define: Only training rows fit scaler and model parameters. Walk through: Check 350/75/75 rows, disjoint IDs and the frozen CSV hash. Then fit both training-only pipelines; exact validation ties favor the linear candidate. Ask: What would fitting the scaler on all rows change? Expected answer and boundary: It would let held-out inputs influence a fitted preprocessing step. Keep the full fitting operation inside the training pipeline and apply predict to validation and test only. Visual purpose: show Train: fit > Validation: choose > Freeze decision > Test: evaluate. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Train: fit > Validation: choose > Freeze decision > Test: evaluate",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b03-v3.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 10,
+    "title": "Task 3: choose before inspecting test outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: choose before inspecting test outcomes. Define: The square-feature candidate adds x1 squared before scaling. Walk through: Compare linear and square-feature validation MAE. Save selected_on_validation before the notebook opens test metrics. A plot title must never substitute for your actual run. Ask: Can the final test choose a different winner? Expected answer and boundary: Not in this protocol. The two-candidate test comparison is predeclared for diagnosis, but the saved validation winner does not change after inspection. Visual purpose: show Same train rows > Two declared bases > Validation MAE > Saved winner. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same train rows > Two declared bases > Validation MAE > Saved winner",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b04-v1.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 11,
+    "title": "Read the actual validation table",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: choose before inspecting test outcomes. Define: The square-feature candidate adds x1 squared before scaling. Walk through: Compare linear and square-feature validation MAE. Save selected_on_validation before the notebook opens test metrics. A plot title must never substitute for your actual run. Ask: Can the final test choose a different winner? Expected answer and boundary: Not in this protocol. The two-candidate test comparison is predeclared for diagnosis, but the saved validation winner does not change after inspection. Visual purpose: show Same train rows > Two declared bases > Validation MAE > Saved winner. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same train rows > Two declared bases > Validation MAE > Saved winner",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b04-v2.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 12,
+    "title": "Check: Task 3: choose before inspecting test outcomes",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 3: choose before inspecting test outcomes. Define: The square-feature candidate adds x1 squared before scaling. Walk through: Compare linear and square-feature validation MAE. Save selected_on_validation before the notebook opens test metrics. A plot title must never substitute for your actual run. Ask: Can the final test choose a different winner? Expected answer and boundary: Not in this protocol. The two-candidate test comparison is predeclared for diagnosis, but the saved validation winner does not change after inspection. Visual purpose: show Same train rows > Two declared bases > Validation MAE > Saved winner. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same train rows > Two declared bases > Validation MAE > Saved winner",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b04-v3.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 13,
+    "title": "Task 4: compare residuals on the same scale",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: compare residuals on the same scale. Define: Use shared axes to compare size; use a labeled zoom to inspect detail. Walk through: The paired full-scale plot uses one x range and one y range. A separate explicitly labeled zoom shows the smaller residuals of the square-feature candidate. Ask: Why is automatic scaling risky for a visual comparison? Expected answer and boundary: Two panels can fill the page equally while representing very different numeric errors. Shared scales reveal magnitude; a zoom answers a different question and must be labeled. Visual purpose: show Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b05-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 14,
+    "title": "Look for a removed pattern, not a prettier panel",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: compare residuals on the same scale. Define: Use shared axes to compare size; use a labeled zoom to inspect detail. Walk through: The paired full-scale plot uses one x range and one y range. A separate explicitly labeled zoom shows the smaller residuals of the square-feature candidate. Ask: Why is automatic scaling risky for a visual comparison? Expected answer and boundary: Two panels can fill the page equally while representing very different numeric errors. Shared scales reveal magnitude; a zoom answers a different question and must be labeled. Visual purpose: show Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b05-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 15,
+    "title": "Check: Task 4: compare residuals on the same scale",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: compare residuals on the same scale. Define: Use shared axes to compare size; use a labeled zoom to inspect detail. Walk through: The paired full-scale plot uses one x range and one y range. A separate explicitly labeled zoom shows the smaller residuals of the square-feature candidate. Ask: Why is automatic scaling risky for a visual comparison? Expected answer and boundary: Two panels can fill the page equally while representing very different numeric errors. Shared scales reveal magnitude; a zoom answers a different question and must be labeled. Visual purpose: show Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b05-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 16,
+    "title": "Task 4: locate the weak group in both models",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: locate the weak group in both models. Define: Start with the linear model, then inspect the same slices in the other candidate. Walk through: The inside and outside counts must add to 75 for each model. Report actual counts and errors for both candidates; do not search for a favorable final-test threshold. Ask: Why not diagnose only the validation winner? Expected answer and boundary: The intentionally limited linear model exposes the missing square clearly. Comparing both fixed candidates connects the failure pattern to representation without changing the selection rule. Visual purpose: show Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b06-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 17,
+    "title": "Keep the diagnostic boundary at abs(x1)=1",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: locate the weak group in both models. Define: Start with the linear model, then inspect the same slices in the other candidate. Walk through: The inside and outside counts must add to 75 for each model. Report actual counts and errors for both candidates; do not search for a favorable final-test threshold. Ask: Why not diagnose only the validation winner? Expected answer and boundary: The intentionally limited linear model exposes the missing square clearly. Comparing both fixed candidates connects the failure pattern to representation without changing the selection rule. Visual purpose: show Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b06-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 18,
+    "title": "Check: Task 4: locate the weak group in both models",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 4: locate the weak group in both models. Define: Start with the linear model, then inspect the same slices in the other candidate. Walk through: The inside and outside counts must add to 75 for each model. Report actual counts and errors for both candidates; do not search for a favorable final-test threshold. Ask: Why not diagnose only the validation winner? Expected answer and boundary: The intentionally limited linear model exposes the missing square clearly. Comparing both fixed candidates connects the failure pattern to representation without changing the selection rule. Visual purpose: show Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b06-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 19,
+    "title": "Task 5: change the input, not the relationship",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: change the input, not the relationship. Define: Multiply only x1 while keeping the known target rule fixed. Walk through: Use paired 150-row synthetic cases, the same x0 and x2, the same noise and the same fitted parameters. Scales 1, 1.5 and 2.5 were declared in advance. Ask: Why recompute the target after changing x1? Expected answer and boundary: To keep the same synthetic conditional relationship y=2*x0+x1 squared+noise. Holding old targets while changing the feature representation would be a different experiment. Visual purpose: show Same base rows > Wider x1 > Same target rule > Frozen predictions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same base rows > Wider x1 > Same target rule > Frozen predictions",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b07-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 20,
+    "title": "Name everything that stays fixed",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: change the input, not the relationship. Define: Multiply only x1 while keeping the known target rule fixed. Walk through: Use paired 150-row synthetic cases, the same x0 and x2, the same noise and the same fitted parameters. Scales 1, 1.5 and 2.5 were declared in advance. Ask: Why recompute the target after changing x1? Expected answer and boundary: To keep the same synthetic conditional relationship y=2*x0+x1 squared+noise. Holding old targets while changing the feature representation would be a different experiment. Visual purpose: show Same base rows > Wider x1 > Same target rule > Frozen predictions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same base rows > Wider x1 > Same target rule > Frozen predictions",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b07-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 21,
+    "title": "Check: Task 5: change the input, not the relationship",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Task 5: change the input, not the relationship. Define: Multiply only x1 while keeping the known target rule fixed. Walk through: Use paired 150-row synthetic cases, the same x0 and x2, the same noise and the same fitted parameters. Scales 1, 1.5 and 2.5 were declared in advance. Ask: Why recompute the target after changing x1? Expected answer and boundary: To keep the same synthetic conditional relationship y=2*x0+x1 squared+noise. Holding old targets while changing the feature representation would be a different experiment. Visual purpose: show Same base rows > Wider x1 > Same target rule > Frozen predictions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Same base rows > Wider x1 > Same target rule > Frozen predictions",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b07-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 22,
+    "title": "Read input shift and performance separately",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Read input shift and performance separately. Define: A broader input histogram is not itself a prediction-error score. Walk through: Use the new outcomes to compute MAE for both frozen candidates at every declared scale. Inspect the histogram separately from the performance plot. Ask: Must every input shift worsen every model? Expected answer and boundary: No. The consequence depends on the task and model. Report the measured synthetic comparison rather than a universal robustness law or a guaranteed error multiplier. Visual purpose: show Input distribution > Drift signal | Labeled outcomes > Error measurement. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Input distribution > Drift signal | Labeled outcomes > Error measurement",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b08-v1.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 23,
+    "title": "Compare the two actual stress curves",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Read input shift and performance separately. Define: A broader input histogram is not itself a prediction-error score. Walk through: Use the new outcomes to compute MAE for both frozen candidates at every declared scale. Inspect the histogram separately from the performance plot. Ask: Must every input shift worsen every model? Expected answer and boundary: No. The consequence depends on the task and model. Report the measured synthetic comparison rather than a universal robustness law or a guaranteed error multiplier. Visual purpose: show Input distribution > Drift signal | Labeled outcomes > Error measurement. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Input distribution > Drift signal | Labeled outcomes > Error measurement",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b08-v2.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 24,
+    "title": "Check: Read input shift and performance separately",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Read input shift and performance separately. Define: A broader input histogram is not itself a prediction-error score. Walk through: Use the new outcomes to compute MAE for both frozen candidates at every declared scale. Inspect the histogram separately from the performance plot. Ask: Must every input shift worsen every model? Expected answer and boundary: No. The consequence depends on the task and model. Report the measured synthetic comparison rather than a universal robustness law or a guaranteed error multiplier. Visual purpose: show Input distribution > Drift signal | Labeled outcomes > Error measurement. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Input distribution > Drift signal | Labeled outcomes > Error measurement",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b08-v3.png",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 25,
+    "title": "Keep the change log beside the result",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Keep the change log beside the result. Define: One changed factor is easier to explain than a bundle of edits. Walk through: The notebook takes parameter snapshots before prediction and checks exact equality afterward. Input changes and model changes must not be mixed silently. Ask: What can a parameter check establish? Expected answer and boundary: It verifies these recorded parameters did not change during prediction. It does not establish that the data are physically valid or that every possible implementation state was checked. Visual purpose: show Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b09-v1.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 26,
+    "title": "Check that no training happened during the sweep",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Keep the change log beside the result. Define: One changed factor is easier to explain than a bundle of edits. Walk through: The notebook takes parameter snapshots before prediction and checks exact equality afterward. Input changes and model changes must not be mixed silently. Ask: What can a parameter check establish? Expected answer and boundary: It verifies these recorded parameters did not change during prediction. It does not establish that the data are physically valid or that every possible implementation state was checked. Visual purpose: show Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b09-v2.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 27,
+    "title": "Check: Keep the change log beside the result",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Keep the change log beside the result. Define: One changed factor is easier to explain than a bundle of edits. Walk through: The notebook takes parameter snapshots before prediction and checks exact equality afterward. Input changes and model changes must not be mixed silently. Ask: What can a parameter check establish? Expected answer and boundary: It verifies these recorded parameters did not change during prediction. It does not establish that the data are physically valid or that every possible implementation state was checked. Visual purpose: show Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b09-v3.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 28,
+    "title": "Summary: a diagnostic comparison keeps its promises",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: a diagnostic comparison keeps its promises. Define: Report both candidates without reopening the selection decision. Walk through: Keep the notebook open for H3. If restarting, run the same complete notebook from the top; do not open and repeat a second walkthrough unnecessarily. Ask: What evidence should survive this hour? Expected answer and boundary: The exact data identity, validation winner, two-model residuals and group counts, stress results, and what changed versus stayed fixed. H3 changes the target rule and checks replay scope. Visual purpose: show Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b10-v1.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 29,
+    "title": "Exit: show one actual weak group and one controlled change",
+    "minutes": 2,
+    "mode": "practice",
+    "notes": "2 minutes / practice. Teaching intent: Summary: a diagnostic comparison keeps its promises. Define: Report both candidates without reopening the selection decision. Walk through: Keep the notebook open for H3. If restarting, run the same complete notebook from the top; do not open and repeat a second walkthrough unnecessarily. Ask: What evidence should survive this hour? Expected answer and boundary: The exact data identity, validation winner, two-model residuals and group counts, stress results, and what changed versus stayed fixed. H3 changes the target rule and checks replay scope. Visual purpose: show Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b10-v2.svg",
+    "revision": "2026-10-27"
+  },
+  {
+    "slide": 30,
+    "title": "Summary and exit: H2",
+    "minutes": 1,
+    "mode": "practice",
+    "notes": "1 minutes / practice. Teaching intent: Summary: a diagnostic comparison keeps its promises. Define: Report both candidates without reopening the selection decision. Walk through: Keep the notebook open for H3. If restarting, run the same complete notebook from the top; do not open and repeat a second walkthrough unnecessarily. Ask: What evidence should survive this hour? Expected answer and boundary: The exact data identity, validation winner, two-model residuals and group counts, stress results, and what changed versus stayed fixed. H3 changes the target rule and checks replay scope. Visual purpose: show Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
+    "visual_purpose": "Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint",
+    "source_urls": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/common_pitfalls.html",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+    ],
+    "visual_file": "h2-b10-v3.svg",
+    "revision": "2026-10-27"
+  }
+]
