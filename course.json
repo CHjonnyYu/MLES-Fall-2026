@@ -215,5 +215,20 @@
       ],
       "peer_verification": true
     }
-  ]
+  ],
+  "midterm_mock": {
+    "page": "/notes/exams/midterm-mock.html",
+    "published": "2026-11-02",
+    "written_minutes": 75,
+    "raw_points": 100,
+    "oral_minutes": 2,
+    "scope": "Weeks 1\u201310 core; Week 10 workflow practice follows actual instruction.",
+    "graded": false,
+    "downloads": [
+      "/assessments/midterm-mock/MLES-Midterm-Mock-Exam.pdf",
+      "/assessments/midterm-mock/MLES-Midterm-Mock-Exam.docx",
+      "/assessments/midterm-mock/MLES-Midterm-Mock-Worked-Solutions.pdf",
+      "/assessments/midterm-mock/MLES-Midterm-Mock-Worked-Solutions.docx"
+    ]
+  }
 }

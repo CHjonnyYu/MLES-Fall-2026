@@ -428,6 +428,20 @@
         "title": "Optional exam-readiness exercise",
         "url": "/notes/exercises/week-11-exercise.html"
       }
+    ],
+    "assessment_resources": [
+      {
+        "title": "Midterm Mock exam and oral practice",
+        "url": "/notes/exams/midterm-mock.html"
+      },
+      {
+        "title": "Mock exam PDF",
+        "url": "/assessments/midterm-mock/MLES-Midterm-Mock-Exam.pdf"
+      },
+      {
+        "title": "Mock worked solutions PDF",
+        "url": "/assessments/midterm-mock/MLES-Midterm-Mock-Worked-Solutions.pdf"
+      }
     ]
   },
   {
