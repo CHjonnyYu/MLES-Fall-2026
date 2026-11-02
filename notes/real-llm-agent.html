@@ -1,0 +1,113 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>A real LLM Agent: decisions, observations and replay | NCKU LAiMM</title><style>body{margin:0;color:#12233f;background:#f8f4ef;font:19px/1.65 Georgia,serif}main{max-width:1080px;margin:auto;padding:35px 22px 80px}h1{font-size:clamp(34px,5vw,55px);line-height:1.1;font-weight:400}h2{font-size:29px;margin-top:45px}h3{font-size:23px}a{color:#167b87}nav,.links{display:flex;gap:18px;flex-wrap:wrap;font:16px/1.5 "Avenir Next",sans-serif}section{border-top:1px solid #cdd5c8;padding:20px 0}pre{font-size:15px;line-height:1.55;overflow:auto;padding:20px;background:#fffdf8;border-left:3px solid #167b87}p,li{overflow-wrap:anywhere}.brand{display:flex;gap:25px;align-items:center;margin:25px 0}.brand img{width:130px;height:55px;object-fit:contain}.tag{color:#7f2635;font:14px "Avenir Next",sans-serif;letter-spacing:.08em}.notice{padding:18px;border-left:4px solid #b88a29;background:#f1e8d9}table{border-collapse:collapse;width:100%;font-size:17px}td,th{padding:12px;text-align:left;border-bottom:1px solid #ccd2c5}img{max-width:100%}</style></head><body><main><nav><a href="/courses/machine-learning/">Course schedule</a><a href="/lectures/foundations/">Lecture collection</a><a href="https://github.com/CHjonnyYu/MLES-Fall-2026">GitHub</a></nav><div class="brand"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></div><h1>A real LLM Agent: decisions, observations and replay</h1><div class="links"><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-12-llm-agent.ipynb">Colab: real LLM Agent</a><a href="/notebooks/week-12-llm-agent.ipynb" download>Notebook</a><a href="/assets/llm-agent/live-trace.json">Actual live trace</a></div><h1>Week 12 supplement · A genuine, bounded LLM-driven Agent</h1>
+<p><strong>Machine Learning in Engineering Science — NCKU + LAiMM</strong></p>
+<p>A pretrained causal language model selects an action, a controller validates it, a local tool returns an observation, and that observation enters the next model prompt. This completes a bounded task with an evidence-backed numeric answer. The action sequence is not scripted. This is a constrained next-token policy, not an open-ended planner or benchmark of broad agent competence.</p>
+<h2>1. Two honestly different modes</h2>
+<ul>
+<li><strong>Replay (default):</strong> no model, key, GPU, network or API credit. Recompute local tool outputs using an authentic saved live decision trace; reject changed inputs or prompts. No new LLM inference occurs.</li>
+<li><strong>Live:</strong> load the pinned 135M-parameter instruction-tuned checkpoint on CPU. The first run downloads approximately 270 MB of weights plus tokenizer files and, if necessary, Python packages. No paid API or API credit is used; allow time and bandwidth for installation/download.</li>
+</ul>
+<p>The classroom fixture contains six <strong>synthetic</strong> temperatures in degrees Celsius. The threshold is a declared exercise value, not an engineering safety standard. Numeric results come from tools, not invented prose. Budget: at most four decisions; no repeated evidence tools. Completion requires the two requested observations. A terminal choice may have only one allowed action; that is a controller constraint, not a reasoning achievement.</p>
+<p>Primary source: <a href="https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct">SmolLM2-135M-Instruct model card</a>. The small model does not advertise the larger model’s native function-calling capability. We implement a transparent constrained-action interface ourselves.</p>
+<h2>2. Install only for live inference</h2>
+<p>Run this before importing Transformers. Replay skips installation entirely. A standard Colab CPU runtime already includes PyTorch; local users need a compatible PyTorch installation. If a runtime already imported conflicting package versions, restart and rerun from the top. Package versions below are the versions exercised locally, not a promise that every future Colab image is identical.</p>
+<h2>3. Inspect the full Agent before running</h2>
+<p>Read <code>run</code>: the model scores allowed action-letter tokens from the current prompt. Scores choose among the menu; they are <strong>raw logits, not confidence probabilities or calibrated correctness</strong>. The dispatcher accepts only exact predefined tools/arguments. Each observation changes the next prompt. The controller prevents premature completion and enforces the budget.</p>
+<p>The final numeric object is assembled from checked observations. We do not claim the LLM generated those numbers or a free-form final explanation. All data and tool calls remain local. No email, external write or financial action is performed.</p>
+<h2>4. Predict the route, then run the whole loop</h2>
+<p>Before execution, write which tool you expect first and why. Inspect the actual menu and selected action after each step. In replay, the recorded decisions are reused but tools execute again and their observations must match. Live inference overwrites the trace file with the new authentic run; the bundled source trace remains available above.</p>
+<h2>5. Test failure boundaries</h2>
+<p>These are controller tests, not model-reliability evidence. A changed input must invalidate the saved replay. An unknown tool must never dispatch. A unit mismatch must be rejected. After these checks, explain why a successful four-step trace does not prove robustness to a new task or malicious text.</p>
+<h2>6. Change, compare, preserve</h2>
+<p>For practice, alter one temperature and run <strong>live</strong> to obtain new decisions and observations; do not reuse a saved trace under a new input identity. Compare tool order and final values, keeping model revision, task and budget fixed. The constrained menu can limit what changes; do not infer semantic competence merely from a different route. Add another permissible read-only tool only after specifying its contract and adapting termination requirements.</p>
+<p>Export the actual trace, exact input, model revision, source and environment versions. <code>agent-evidence.zip</code> supports replay of this case; it does not reproduce downloaded model weights or every possible live decision across hardware. Save the notebook separately. No new graded Homework is created.</p>
+<h2>Summary</h2>
+<p>Model policy → validated action → real local tool → observation → next model decision → evidence-backed completion.</p>
+<p>Defend: which decisions came from model weights, which were controller constraints, which numbers came from tools, and which evidence would be needed for a broader claim. Explain the live/replay difference without calling replay fresh reasoning.</p>
+<h2>Observed live run</h2><p>The local CPU run used model revision 12fd25f77366fa6b3b4b768ec3050bf629380bac. It chose inspect_schema, then count_at_or_above, then max_temperature, then finish. The numeric result was maximum85°C and three readings≥80°C. A single run is not a general reliability evaluation. Live inference and replay were both checked locally; Google Colab runtime execution has not been independently verified for this new supplement.</p><pre>[
+  {
+    &quot;turn&quot;: 0,
+    &quot;candidates&quot;: [
+      &quot;max_temperature&quot;,
+      &quot;count_at_or_above&quot;,
+      &quot;inspect_schema&quot;
+    ],
+    &quot;choice&quot;: 2,
+    &quot;action&quot;: {
+      &quot;tool&quot;: &quot;inspect_schema&quot;,
+      &quot;args&quot;: {}
+    },
+    &quot;observation&quot;: {
+      &quot;case&quot;: &quot;synthetic packaging temperature inspection&quot;,
+      &quot;unit&quot;: &quot;degC&quot;,
+      &quot;rows&quot;: 6
+    },
+    &quot;prompt_sha256&quot;: &quot;e5acabe1aa8bee25aa3efb29eb8b3685b9e29ed239e98b348a3a31dfc104936e&quot;,
+    &quot;allowed_token_logits&quot;: [
+      32.56756591796875,
+      32.11750793457031,
+      32.57199478149414
+    ]
+  },
+  {
+    &quot;turn&quot;: 1,
+    &quot;candidates&quot;: [
+      &quot;max_temperature&quot;,
+      &quot;count_at_or_above&quot;
+    ],
+    &quot;choice&quot;: 1,
+    &quot;action&quot;: {
+      &quot;tool&quot;: &quot;count_at_or_above&quot;,
+      &quot;args&quot;: {
+        &quot;threshold&quot;: 80.0
+      }
+    },
+    &quot;observation&quot;: {
+      &quot;count&quot;: 3,
+      &quot;threshold&quot;: 80.0,
+      &quot;rows&quot;: 6
+    },
+    &quot;prompt_sha256&quot;: &quot;1a908b08119abc52bbd7effaf3d04db290d04ffe136b728cc099f03600003aca&quot;,
+    &quot;allowed_token_logits&quot;: [
+      32.31690979003906,
+      32.32471466064453
+    ]
+  },
+  {
+    &quot;turn&quot;: 2,
+    &quot;candidates&quot;: [
+      &quot;max_temperature&quot;
+    ],
+    &quot;choice&quot;: 0,
+    &quot;action&quot;: {
+      &quot;tool&quot;: &quot;max_temperature&quot;,
+      &quot;args&quot;: {}
+    },
+    &quot;observation&quot;: {
+      &quot;maximum&quot;: 85.0,
+      &quot;unit&quot;: &quot;degC&quot;
+    },
+    &quot;prompt_sha256&quot;: &quot;e8ed24bbf1b78acca07459d4429600ad1eb5d91dd31f5336a84458c354b0773d&quot;,
+    &quot;allowed_token_logits&quot;: [
+      32.450008392333984
+    ]
+  },
+  {
+    &quot;turn&quot;: 3,
+    &quot;candidates&quot;: [
+      &quot;finish&quot;
+    ],
+    &quot;choice&quot;: 0,
+    &quot;action&quot;: {
+      &quot;tool&quot;: &quot;finish&quot;,
+      &quot;args&quot;: {}
+    },
+    &quot;observation&quot;: {
+      &quot;maximum&quot;: 85.0,
+      &quot;count_at_or_above_80&quot;: 3
+    },
+    &quot;prompt_sha256&quot;: &quot;b6bd4a1fd029de71d79d7401ed38b61862c6ddd67aac0005a0971deaf54c3ae5&quot;,
+    &quot;allowed_token_logits&quot;: [
+      31.83931541442871
+    ]
+  }
+]</pre></main></body></html>

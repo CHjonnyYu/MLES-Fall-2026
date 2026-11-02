@@ -1,188 +1,109 @@
-\section{Week 9: find, explain, change, preserve}
-\textbf{Monday, 2 November 2026, 14:00--17:00.} Use one complete Exercise notebook throughout the three one-hour modules. H1 has 45 minutes of explanation and 15 of practice; H2 has 15 and 45; H3 has 60 minutes of practice. Eight core tasks take 100 minutes, leaving 20 practice minutes for peer discussion, export and optional work. This is in-class formative practice; designated Homework and written/oral examinations are unchanged.
+\section{Week 9: mechanisms before remedies}
+\textbf{Monday, 2 November 2026, 14:00--17:00.} This week assumes students can independently explain train/validation/test and MAE/RMSE. Basic metric review takes at most five minutes. Three experiments occupy 100 minutes of practice and discussion; mechanisms and summary take 60 minutes, with ten minutes of break and ten of operating buffer. Three 30-page slide modules distinguish live core pages from untimed reference pages. These exercises are formative classwork. The midterm consists of \textbf{written and oral examinations only; there is no midterm project}. The stock forecasting Homework remains a separate designated Homework.
 
-The goal is to explain where a predictor fails, connect a visible error pattern to a missing relationship, separate two kinds of change and preserve evidence with an honest replay scope. Prerequisites are held-out evaluation, a line and a square, and Python arrays. The core lesson requires no calculus, GPU, paid AI tool, API key or external dataset.
+\subsection{Five judgments}
+For an unfamiliar small engineering problem, independently state and defend the target, data split, baseline, evaluation and limitations. Running an AI-written notebook is insufficient: the student must explain which assumption a code modification changes, what remains fixed and which observation supports the conclusion.
 
-\subsection{The four questions}
-\begin{enumerate}
-\item Which cases are weak, and how many are there?
-\item Which missing relationship explains the diagnostic pattern in this constructed example?
-\item Did the input cases change, or did the target relationship change?
-\item Which parts of the saved result can another person actually check?
-\end{enumerate}
-A successful execution is evidence about this code and these observations. It does not establish validity for a physical system or deployment. Although these checks also matter for LSTM and Transformer predictions, we use transparent synthetic regression to make the mechanism visible.
-
-\subsection{Use the notebook independently}
-Save a copy, run Setup once and complete Tasks 1--8 in order. Each task provides Markdown instructions, a prediction cell, executable scaffold, stopping condition and explanation cell. The worked notebook is an alternative with example responses, not another prerequisite. If the runtime resets, run the same file from the top. Save the edited notebook and download the ZIP before the temporary runtime ends.
-
-\newpage
-\section{Task 1: five errors before a model library}
-We declare the residual sign $e_i=\widehat y_i-y_i$: positive means too high and negative means too low. Hold $x_0=0$ and noise at zero. The known synthetic response is $x_1^2$. A deliberately fixed horizontal prediction of 1 gives:
-\begin{center}\begin{tabular}{rrrrr}\toprule
-$x_1$&Observation&Prediction&Residual&Absolute error\\\midrule
-$-2$&4&1&$-3$&3\\
-$-1$&1&1&0&0\\
-0&0&1&1&1\\
-1&1&1&0&0\\
-2&4&1&$-3$&3\\\bottomrule
-\end{tabular}\end{center}
-This horizontal prediction was not fitted to these five points and is not claimed optimal for them. It is an explicit teaching approximation, separate from the pipelines trained in Task 3.
+\subsection{One transparent comparison}
+Let $X_0,X_1,X_2$ be independent standard-normal inputs and let
 \[
- \sum_i|e_i|=7,\quad \sum_i e_i^2=19,\quad
- \mathrm{MAE}=7/5=1.4,\quad \mathrm{RMSE}=\sqrt{19/5}\approx1.949.
+Y=f(X)+\epsilon,\quad f(X)=2X_0+X_1^2,\quad
+\epsilon\sim\mathcal N(0,0.2^2),\quad \epsilon\perp X.
 \]
-Both MAE and RMSE have response units; MSE has squared response units. Squaring makes a large error contribute disproportionately before the final square root. Neither metric is universally best: state the task and error costs. For the same equally weighted rows, RMSE is at least MAE.
-\begin{center}
-\includegraphics[width=.94\linewidth]{figures/week09/h1-b03-v1.png}
+All inputs are dimensionless; the response has synthetic response units. These are neither measured equipment data nor stock observations. $X_2$ is a negative control. Knowing the generator makes the mechanism identifiable in this constructed experiment, without establishing physical causation.
 
-{\small Noise-free five-point teaching slice. Vertical segments connect the declared prediction with the observed square.}
-\end{center}
-\textbf{Predict and explain.} Which rows are underpredicted? At $x_1=-2$, explain why $1-4=-3$ is a low prediction. Show the intermediate sums rather than calling a metric function only.
+Generate 500 rows with seed 2026. Split 350 train and 150 held rows using seed 2026; split held rows into 75 validation and 75 test using seed 2027. Sort IDs within splits and assert disjointness. Candidates are declared before test inspection: an affine Ridge pipeline and a pipeline that appends $X_1^2$ before the same train-fitted standardization and Ridge ($\alpha=1$, SVD solver). Choose by validation MAE, ties favoring affine. Freeze the choice before the predeclared two-model test diagnosis. Test diagnosis does not reopen selection.
 
-\newpage
-\section{Task 2: the mixture can change the score}
-This paper illustration is separate from the 75-row test set used later. Suppose 90 easy cases each have absolute error 1 and 10 difficult cases each have error 10. Then
+\section{Experiment A: model form, noise and repeated fitting}
+\subsection{Derive the population affine projection}
+The population, unregularized least-squares affine approximation is
 \[
- \mathrm{MAE}=\frac{90\times1+10\times10}{100}=0.9+1.0=1.9.
+g_*(X)=1+2X_0.
 \]
-Change only the counts to 75 easy and 25 difficult cases, keeping 100 total and both group losses fixed:
+To see why, $E[X_1^2]=1$, $E[X_1^3]=0$ by symmetry, and independence eliminates cross-covariances. The intercept absorbs the mean square; a linear coefficient on $X_1$ cannot represent its even curvature. This is not an assertion that finite, regularized Ridge equals the population projection exactly.
+
+Declare residual sign $e=\widehat y-y$. For this population predictor,
 \[
- \mathrm{MAE}=\frac{75\times1+25\times10}{100}=0.75+2.5=3.25.
+e=1-X_1^2-\epsilon,\qquad E[e\mid X_1]=1-X_1^2.
 \]
-The changed aggregate does not require changed within-group errors. More generally, for group fraction $q$ and these two fixed losses, $\mathrm{MAE}(q)=(1-q)1+q10=1+9q$. In real observations, a changed aggregate alone does not identify which mechanism changed.
-\begin{center}
-\includegraphics[width=.94\linewidth]{figures/week09/h1-b09-v1.png}
+At $X_1=0$ the conditional mean is $+1$; at $X_1=\pm2$ it is $-3$. Positive means overprediction, negative underprediction. Finite fitted residuals also contain coefficient-estimation error and observation noise. Compare candidates on identical test rows and shared axes before opening a zoom.
 
-{\small Stacked contributions separate each group loss from its prevalence. The interactive slide changes the difficult-case count only.}
-\end{center}
-\textbf{Stopping condition.} Explain which two quantities stayed fixed and which changed. Do not report 90/10 or 75/25 as the actual fitted-model test counts.
-
-\newpage
-\section{Task 3: one transparent main experiment}
-The notebook generates $n=500$ independent synthetic rows. Each row contains dimensionless inputs $x_0,x_1,x_2$ drawn independently from a standard normal distribution. Noise is independent with standard deviation 0.2:
+\subsection{Observation noise is not missing shape}
+For a standard normal variable, $E[X_1^4]=3$, hence $\operatorname{Var}(X_1^2)=3-1=2$. The independent components give
 \[
- y=2x_0+x_1^2+\epsilon,\qquad \epsilon\sim\mathcal N(0,0.2^2).
+E[e^2]=\operatorname{Var}(X_1^2)+\operatorname{Var}(\epsilon)=2+0.04=2.04.
 \]
-$x_0$ contributes linearly, $x_1$ contributes through its square and $x_2$ is a negative control unused by the generator. The response has synthetic response units. These are neither measured equipment data nor financial forecasts. Knowing the constructed generator permits a representation explanation without claiming physical discovery.
+The exact quadratic oracle has expected MSE $0.04$. These population expectations are not exact finite fitted test scores. More observations can stabilize an affine fit; they cannot add a missing square to its feature family.
 
-Before fitting, seed 2026 fixes the generated sample and first split. A 70/30 split yields 350 training IDs and 150 held IDs; seed 2027 divides held IDs equally into 75 validation and 75 test IDs. Sort IDs within splits, assert disjointness and save exact CSV bytes with row ID and membership.
+\begin{center}\includegraphics[width=.94\linewidth]{figures/week09/mechanisms-residual-shared.png}
 
-\subsection{Declare the candidates before inspecting test outcomes}
-\begin{enumerate}
-\item Linear: raw three inputs, training-fitted standardization, Ridge with $\alpha=1$ and SVD solver.
-\item Quadratic: append the deterministic feature $x_1^2$, then the same training-fitted standardization and Ridge configuration.
-\end{enumerate}
-Centering/scaling is affine and cannot create a missing square. Adding the square is a change of feature basis. Both scalers and regression coefficients fit only the 350 training rows. Choose the candidate with smallest validation MAE; exact ties favor linear. Save that choice before displaying test metrics. The predeclared two-model test comparison diagnoses errors but does not reopen selection.
+{\small Actual notebook diagnosis on the same 75 test rows and shared scales. Residual sign is prediction minus observation.}\end{center}
 
-\subsection{A measured reference, not a score to copy}
-The fresh local CPU run on 27 October 2026 produced the following rounded values. Package versions are exported; tiny differences across environments are possible.
-\begin{center}\begin{tabular}{lrrr}\toprule
-Candidate&Validation MAE&Test MAE&Test RMSE\\\midrule
-linear&1.017086&1.031530&1.319474\\
-quadratic&0.158188&0.164319&0.205100\\
-\bottomrule\end{tabular}\end{center}
-The quadratic candidate was selected on validation. Do not copy these values into an unexecuted response. State the split, loss, data identity and selection rule alongside any claim.
+\subsection{Measure training-sample variation by retraining}
+For each $n\in\{40,160,640\}$, fit each family on 20 independent training draws. Within a repetition, pair the model families and use prefix training rows across sample sizes. Predict the same 240-point, noise-free probe. A residual scatter from one fitted model cannot identify variation across training samples. Training noise still affects each fitted model; noise-free probe targets remove fresh label noise from this particular comparison.
 
-\newpage
-\section{Task 4: make a fair visual comparison}
-Plot prediction minus observation against $x_1$ for both candidates on the exact same 75 test rows. Use a shared horizontal range and a shared vertical range. Compare magnitude before opening the separately labeled quadratic zoom. Automatic axis scaling can make unequal errors fill two panels equally; a zoom answers a different question.
-\begin{center}
-\includegraphics[width=.94\linewidth]{figures/week09/h2-b05-v1.png}
-
-{\small Both candidates occupy a single shared coordinate system. The linear residual leaves a visible curved pattern; the square-feature candidate has much smaller residuals.}
-\end{center}
-The residual curve suggests a missing relationship. Here the square is known by construction. A curved observational residual alone does not prove physical causation.
-
-Keep the predeclared groups $|x_1|\leq1$ and $|x_1|>1$ fixed. Diagnose the linear candidate first, then the quadratic candidate on the same slices. Each candidate has 50 inside and 25 outside test rows. In this run, inside/outside MAE is approximately 0.775/1.545 for linear and 0.174/0.144 for quadratic. The quadratic outside group is not worse in this sample: do not force a universal claim about extreme cases.
-
-\textbf{Stopping condition.} Show actual counts and group losses for both models; counts sum to 75. Do not optimize a new boundary on final test labels. Exploratory findings need a new confirmation set before renewed performance claims.
-
-\newpage
-\section{Task 5: input change with an unchanged rule}
-Use a separate seed 2126 to generate 150 paired base rows and one noise realization. Predeclare $x_1$ scale factors 1, 1.5 and 2.5. At each scale, change only $x_1$, hold $x_0,x_2$, row pairing and noise fixed, and recompute outcomes with the original rule $y=2x_0+x_1^2+\epsilon$. Predict with both frozen candidates without refitting.
-
-Why recompute labels? The original relationship must remain fixed. Changing a feature encoding while keeping old labels would test a different problem. Why pair rows? It makes the controlled factor explicit; it does not establish physical realism.
-\begin{center}
-\includegraphics[width=.94\linewidth]{figures/week09/h2-b07-v2.png}
-
-{\small Actual labeled MAE at the three declared input scales. The two candidates are frozen; no training occurs during the sweep.}
-\end{center}
-An input histogram establishes a changed input distribution in this construction; it is not an accuracy metric. Accuracy needs outcomes and a declared loss. The effect of input shift depends on the task and fitted function, so do not claim all shifts must harm all models. Snapshot recorded scaler and regression parameters before the sweep and assert exact equality afterward. This establishes unchanged recorded parameters, not arbitrary implementation state.
-
-\newpage
-\section{Task 6: unchanged inputs, changed target relationship}
-Keep the exact test inputs, row order, noise realization and existing predictions. Replace only the target rule:
+Write predictions as $\widehat f_r(x)$, $r=1,\ldots,R$, with $\bar f(x)=R^{-1}\sum_r\widehat f_r(x)$. At each probe point, subtract and add $\bar f(x)$; the cross term sums to zero:
 \[
- y_{\mathrm{new}}=-2x_0+x_1^2+\epsilon.
+\frac1R\sum_r(\widehat f_r-f)^2=(\bar f-f)^2+
+\frac1R\sum_r(\widehat f_r-\bar f)^2.
 \]
-The input bytes and input histogram are identical by construction. The predictor also stays fixed. Only the outcomes against which it is evaluated change. Hash the input array before/after, assert identical predictions and recompute labeled errors.
-\begin{center}
-\includegraphics[width=.94\linewidth]{figures/week09/h3-b02-v3.png}
+Average over the fixed probe points. This is an exact finite-array identity when variance uses denominator $R$ (\texttt{ddof=0}). The empirical mean is not the exact infinite-training-population mean. Adding the known $0.04$ gives the noise-averaged expected label-error component for this ensemble, not an equality to one noisy held-out test score. Twenty repetitions support a classroom estimate, not a universal monotonic learning curve. Shaded $\pm1$ refit standard deviations are not predictive intervals.
 
-{\small The original and changed-rule errors use the same inputs and frozen predictions. Only target outcomes differ.}
-\end{center}
-This constructed conditional change cannot be detected by monitoring inputs alone. Outcomes reveal its effect. It does not prove every possible relationship change must worsen every metric. In real systems, outcomes may arrive late or selectively; recording input drift and recording labeled performance are separate obligations.
+\begin{center}\includegraphics[width=.94\linewidth]{figures/week09/mechanisms-refit-bands.png}
 
-\textbf{Explain the distinction.} Task 5 changes cases while preserving the rule; Task 6 preserves cases while changing the rule. Both keep model parameters fixed. Identify the matching evidence rather than naming both situations only as ``drift.''
+{\small Actual independently refitted models, 40 training rows per fit. The mean curve and spread answer different questions.}\end{center}
 
-\newpage
-\section{Task 7: check an explanation of the fitted function}
-Increase original-coordinate $x_0$ by 0.5 while holding all other inputs fixed. Standardization uses $z_j=(x_j-\mu_j)/s_j$. If the standardized Ridge coefficient is $\theta_0$, the raw-coordinate slope is $\beta_0=\theta_0/s_0$. In these additive models, no square or interaction contains $x_0$, so every row has
+\begin{center}\includegraphics[width=.94\linewidth]{figures/week09/mechanisms-bias-variance.png}
+
+{\small Actual finite empirical decomposition on a fixed noise-free probe. Both panels share the vertical scale.}\end{center}
+
+\textbf{Practice, 35 minutes.} Predict which component should change with more rows, run the paired refits, inspect shared-scale residuals and bands, then cite an observed result and defend a mechanism. State one limitation. Do not copy a worked response before predicting.
+
+\section{Experiment B: inputs versus target relationships}
+\subsection{A paired input-scale stress test}
+Draw 150 base rows with seed 2126. Multiply only $X_1$ by $1$, $1.5$, or $2.5$. Keep other inputs, base row identity, noise and the target rule fixed; recompute labels from the same rule. Keep model parameters frozen. Plot MAE against scale without refitting or reselection. Gaussian support remains unbounded: probability mass and finite observed coverage change, not mathematical support. An input shift need not worsen every model; risk depends on which cases become more common and their conditional errors.
+
+\begin{center}\includegraphics[width=.94\linewidth]{figures/week09/mechanisms-input-shift.png}
+
+{\small Actual notebook results on paired synthetic stress rows. These outcomes are diagnostics, not a model-selection round.}\end{center}
+
+\subsection{A changed target relationship with identical inputs}
+On the exact original test inputs and noise, replace the coefficient $+2$ on $X_0$ with $-2$. Frozen predictions stay unchanged. Since $y_{\rm new}=y_{\rm old}-4X_0$,
 \[
- f(x+0.5e_0)-f(x)=0.5\beta_0.
+e_{\rm new}=e_{\rm old}+4X_0.
 \]
-Predict this difference before calling the model. Compare the entire 75-row difference vector against the formula, not just its mean. The numerical check uses $|a-b|\leq10^{-10}+10^{-10}|b|$.
-\begin{center}
-\includegraphics[width=.94\linewidth]{figures/week09/h3-b04-v2.png}
+Input monitoring alone cannot reveal this label change. Timestamped labels, residuals, schema/unit checks and domain context are needed. Several changes may coexist in practice; these two synthetic interventions are controlled examples, not exhaustive causal diagnosis.
 
-{\small Observed prediction changes for every test row when only x0 increases by 0.5. Each model has its own fitted raw-coordinate slope.}
-\end{center}
-No new target labels enter this check. It verifies a property of the fitted mathematical function and the coordinate convention. It is neither a physical intervention nor a new accuracy estimate. A standardized coefficient refers to one standardized feature step; do not apply it directly to a raw-input step.
+\begin{center}\includegraphics[width=.94\linewidth]{figures/week09/mechanisms-target-shift.png}
 
-\newpage
-\section{Task 8: CSV readback and an honest handover}
-Read the exact frozen CSV bytes and compare their SHA256 with the saved reference. Parse and sort by stable row ID; assert 500 unique IDs and the original split membership. Clone the already-selected candidate, fit only CSV training rows and compare the full, aligned 75-row test prediction vector with the reference. This run produced maximum absolute difference zero, under the declared tolerance.
+{\small Identical test inputs, paired noise, frozen models; only the target relationship changes.}\end{center}
 
-\textbf{Scope: same-kernel CSV readback consistency.} Model definitions, configuration, selected candidate and installed dependencies still come from the current kernel. This is not independent-process or fresh-environment reproduction. Week 10 extends the execution contract. A checksum means matching bytes against a reference; it does not authenticate the sender or establish scientific correctness.
+\subsection{Why a single average is insufficient}
+For a paper illustration with group losses 1 and 10 and difficult-group fraction $q$, aggregate MAE is $(1-q)1+q10=1+9q$. It changes from 1.9 at $q=.10$ to 3.25 at $q=.25$ without changing either group loss. These illustrative counts are not the fitted-model test counts. Report group definitions, counts and conditional losses together.
 
-\subsection{Export and explain-back}
-Complete 19 response fields: eight predictions, eight explanations, controlled change, limitation and AI-use disclosure. Empty fields produce a draft. Nonempty fields mean ready for peer discussion, not automatically correct. The ZIP contains frozen CSV, row-aligned predictions, metrics, configuration, versions, figures, responses, supplied source snapshot and hash manifest. Save the edited notebook separately if you changed code.
+\textbf{Practice, 25 minutes.} Predict both interventions before execution. For each, identify the changed factor, controlled quantities, measured outcome and claim boundary. Then take the ten-minute break; five minutes of operating buffer are reserved in this hour.
 
-A partner should select one actual result and ask: what changed, what stayed fixed, what supports your explanation and what remains untested? Locate the matching exported record. A ZIP that opens successfully does not itself establish a correct model or conclusion.
+\section{Experiment C: independently modify and defend}
+\subsection{A real code change}
+Edit the provided X-only feature function. Preserve original columns first; append a deterministic transformation. Never pass labels, row IDs or split membership. Validate shape, finiteness, determinism and absence of input mutation. The starter identity intentionally remains a runnable draft. Filling response fields without changing code does not implement an experiment.
 
-\subsection{Troubleshooting}
-A missing variable usually means a skipped cell or runtime reset: run from Setup in numeric order. Keep assertion failures rather than copying a reference metric. Compare data identity, row alignment, configuration and package versions before attributing a difference to the algorithm. Download the ZIP through the Colab Files sidebar or Jupyter file link before leaving the temporary runtime.
+State the hypothesis, expected outcome and held-fixed conditions before fitting. Use the original training rows, scaler protocol and Ridge settings. Inspect validation, then record the source and plan digest before materializing a new 240-row independent synthetic audit sample. Preserve the selected baseline. Evaluate both on identical audit rows. Repeated tuning against audit outcomes is exploratory and must be disclosed; a digest records bytes, not honesty or correctness.
 
-\subsection{Summary}
-Find weak cases before trusting an average. Explain the missing shape using a checked mechanism. Separate input changes from target-rule changes. Test an explanation against the fitted function. Preserve evidence and name the replay boundary.
+A negative result is acceptable. For example, a different symmetry in a proposed basis may not repair the missing even relationship. The student's task is to connect an actual code change to a measured observation and a bounded explanation, not to guarantee a lower score.
 
-\newpage
-\section{Supplementary reasoning: optional, not extra core tasks}
-\subsection{Conditional risk and weighted groups}
-For a fixed fitted function $f$, declared loss $L$ and joint distribution $P$, population risk is $R_P(f)=\mathbb E_P[L(Y,f(X))]$. A finite test mean estimates this quantity only under sampling assumptions. A result on $P$ does not automatically transfer to $Q$. For exhaustive groups, population risk is a prevalence-weighted sum of conditional risks; finite group MAE uses the same identity exactly. Group RMSE must be pooled through squared errors:
-\[
- \mathrm{RMSE}_{\mathrm{all}}=\sqrt{\frac{\sum_g n_g\mathrm{RMSE}_g^2}{\sum_g n_g}},
-\]
-not a simple mean of group RMSE values.
+\subsection{Evidence and replay scope}
+Export exact CSV, IDs, saved feature source, frozen declaration, baseline prediction vectors, metrics, figures, responses and environment versions. The edited notebook must be saved separately. The CSV readback refits the already selected reference in the same installed environment and checks aligned predictions. This is same-environment consistency, not independent environment reproduction or scientific validation. Week 10 extends portability.
 
-\subsection{Why the population linear approximation misses the square}
-For independent standard-normal coordinates and mean-zero noise, the least-squares projection of $2x_0+x_1^2+\epsilon$ onto an intercept and linear inputs is $1+2x_0$: $\mathbb E[x_1^2]=1$, $\mathbb E[x_1^3]=0$ and independent cross-covariances vanish. Its residual is $1-x_1^2-\epsilon$. This explains the curved pattern. The finite, regularized Ridge fit is not exactly this population projection; measured coefficients and residuals need not equal the ideal formula. The Task 1 fixed line is a noise-free visual slice of this motivation, not a fit to its five points.
+The notebook's \emph{ready for peer review} status only checks that code differs from the identity and required fields are present. It is not an automated grade, correctness claim or certificate of independent competence.
 
-Normal distributions have unbounded support. Scaling $x_1$ changes its distribution and the frequency of tail cases, not its theoretical support from finite to infinite. A finite training sample still leaves sparsely observed regions. Describe coverage honestly rather than claiming every wider case is outside normal support.
+\textbf{Practice, 40 minutes.} Predict, edit, check, freeze, audit once, inspect the export and explain to a partner. A final five-minute operating buffer supports recovery. Defend target, split, baseline, evaluation and limitations without reading generated prose.
 
-\subsection{Recovering original-coordinate coefficients}
-For feature vector $\phi(x)$, standardized predictor $b_s+\sum_j\theta_j(\phi_j-\mu_j)/s_j$ has raw coefficients $\beta_j=\theta_j/s_j$ and intercept $b=b_s-\sum_j\theta_j\mu_j/s_j$. This coordinate conversion explains Task 7; it does not turn association into causality.
-
-\subsection{Optional A: encoding check}
-Multiply the dimensionless $x_0$ encoding by 100 while retaining original targets and frozen models; measure the error, then decode by dividing by 100 and compare aligned predictions. This tests a representation mismatch. It is not a physical unit conversion and differs from Task 5, which deliberately recomputes outcomes to preserve the target rule.
-
-\subsection{Optional B: fixed-model bootstrap}
-Within each fixed slice, sample absolute errors with replacement 300 times and report percentile bounds for their mean. This assumes IID cases within the slice and conditions on the already fitted function. It excludes training-set variation, arbitrary future distribution change and many measurement errors. A narrow interval does not remove those limits. Optional results remain separate from the eight-task completion count.
+\section{Summary and transfer}
+Missing representation differs from refit variability and observation noise. Input shift differs from a changed target relationship. Preserve a baseline and choose evidence that matches the question. For a new engineering problem with stable input histograms but worse labeled error, propose competing explanations and the observations needed to distinguish them. Written and oral examination questions may test these independent judgments; no midterm project is required.
 
 \section{Primary references}
 \begin{itemize}
-\item Monitoring ML pipelines: \url{https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring}.
-\item Leakage-safe pipelines: \url{https://scikit-learn.org/stable/common_pitfalls.html}.
-\item Regression metrics: \url{https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics}.
+\item scikit-learn, bias--variance example: \url{https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html}.
+\item scikit-learn, common pitfalls and leakage: \url{https://scikit-learn.org/stable/common_pitfalls.html}.
+\item Google, monitoring ML systems: \url{https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring}.
 \end{itemize}
-References checked 27 October 2026. All examples and data are synthetic teaching fixtures.

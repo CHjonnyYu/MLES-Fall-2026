@@ -1,120 +1,157 @@
 {
   "week": 9,
-  "revision": "2026-10-27",
+  "revision": "2026-11-02",
   "meeting": "2026-11-02 14:00\u201317:00 Asia/Taipei",
   "modules": [
     {
       "hour": 1,
-      "title": "When a good score hides a bad model",
+      "title": "Model form, noise, and refit variation",
       "slides": 30,
       "minutes": 60,
-      "explanation_minutes": 45,
-      "practice_minutes": 15,
+      "explanation_minutes": 25,
+      "practice_minutes": 35,
       "url": "/lectures/week-09-hour-1/"
     },
     {
       "hour": 2,
-      "title": "Find the missing relationship",
+      "title": "Input shift versus a changed relationship",
       "slides": 30,
       "minutes": 60,
-      "explanation_minutes": 15,
-      "practice_minutes": 45,
+      "explanation_minutes": 20,
+      "practice_minutes": 25,
       "url": "/lectures/week-09-hour-2/"
     },
     {
       "hour": 3,
-      "title": "Change conditions and explain the evidence",
+      "title": "Make, freeze, test, and defend a change",
       "slides": 30,
       "minutes": 60,
-      "explanation_minutes": 0,
-      "practice_minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 40,
       "url": "/lectures/week-09-hour-3/"
     }
   ],
+  "minutes": {
+    "explanation": 60,
+    "practice_discussion": 100,
+    "break": 10,
+    "buffer": 10
+  },
+  "class_experiments": 3,
   "slides": {
     "count": 90,
-    "rendered_all": true,
-    "automated_geometry_images_logos_timing": "passed",
-    "native_svg_text_bounds": "passed",
-    "interactive_mixture_and_reveals": "passed",
-    "visual_review": "All 90 rendered in overview sheets; selected technical, diagram and interaction pages inspected full-size. Not an independent human full-size review of every page.",
-    "native_svg_node_text_bounds": "passed"
+    "geometry_images_logos_notes_timing": "passed",
+    "interactions": "passed",
+    "visual_scope": "All90 in overview sheets, selected full-size mechanism and interaction pages; not independent human full-size inspection of every page"
   },
   "notebooks": {
     "scope": "Fresh local CPU Jupyter kernels, not Google Colab browser execution",
     "runs": [
       {
-        "kind": "practice",
+        "kind": "worked",
         "notebook": "notebooks/week-09-practice.ipynb",
-        "sha256": "c112dfe5e63c7b9f672e85ea6719f2bd52520e0900fbff9030f96ce576805a85",
-        "code_cells": 29,
+        "sha256": "7d66d99825ca179ef9c3985f8ccef8d0eec7cfd2adea977cd5e5f87fd15e3b14",
         "status": "passed",
-        "response_fields": 19,
-        "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
-        "max_readback_difference": 0.0,
-        "versions": {
-          "python": "3.12.14",
-          "numpy": "2.5.4",
-          "scikit-learn": "1.9.1"
-        },
-        "zip_files": 17
+        "artifact_status": "ready for peer review",
+        "audit": {
+          "baseline": {
+            "MAE": 0.16050847450008032,
+            "RMSE": 0.19610673585845853
+          },
+          "student": {
+            "MAE": 0.16050847450008032,
+            "RMSE": 0.19610673585845853
+          }
+        }
       },
       {
-        "kind": "exercise",
+        "kind": "draft",
         "notebook": "notebooks/exercises/week-09-exercise.ipynb",
-        "sha256": "08ab89e76e92c953346b9269ee7f64662ec9f4d565763a4a142e6aae8bbdbf61",
-        "code_cells": 29,
+        "sha256": "fc655a907dcb8fb950095d1b0accd3487d2f491d74fa2d9f893521cc2f2323a5",
         "status": "passed",
-        "response_fields": 0,
-        "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
-        "max_readback_difference": 0.0,
-        "versions": {
-          "python": "3.12.14",
-          "numpy": "2.5.4",
-          "scikit-learn": "1.9.1"
-        },
-        "zip_files": 17
+        "artifact_status": "draft",
+        "audit": {
+          "baseline": {
+            "MAE": 0.16050847450008032,
+            "RMSE": 0.19610673585845853
+          }
+        }
       },
       {
-        "kind": "exercise-completed-optional",
+        "kind": "student-positive",
         "notebook": "notebooks/exercises/week-09-exercise.ipynb",
-        "sha256": "08ab89e76e92c953346b9269ee7f64662ec9f4d565763a4a142e6aae8bbdbf61",
-        "code_cells": 29,
+        "sha256": "fc655a907dcb8fb950095d1b0accd3487d2f491d74fa2d9f893521cc2f2323a5",
         "status": "passed",
-        "response_fields": 19,
-        "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
-        "max_readback_difference": 0.0,
-        "versions": {
-          "python": "3.12.14",
-          "numpy": "2.5.4",
-          "scikit-learn": "1.9.1"
-        },
-        "zip_files": 18
+        "artifact_status": "ready for peer review",
+        "audit": {
+          "baseline": {
+            "MAE": 0.16050847450008032,
+            "RMSE": 0.19610673585845853
+          },
+          "student": {
+            "MAE": 0.16050847450008032,
+            "RMSE": 0.19610673585845853
+          }
+        }
+      },
+      {
+        "kind": "student-negative",
+        "notebook": "notebooks/exercises/week-09-exercise.ipynb",
+        "sha256": "fc655a907dcb8fb950095d1b0accd3487d2f491d74fa2d9f893521cc2f2323a5",
+        "status": "passed",
+        "artifact_status": "ready for peer review",
+        "audit": {
+          "baseline": {
+            "MAE": 0.16050847450008032,
+            "RMSE": 0.19610673585845853
+          },
+          "student": {
+            "MAE": 1.001273400732223,
+            "RMSE": 1.4097952125944304
+          }
+        }
       }
     ]
   },
+  "feature_guard_tests": [
+    {
+      "case": "input mutation",
+      "rejected": true
+    },
+    {
+      "case": "nonfinite feature",
+      "rejected": true
+    },
+    {
+      "case": "row count",
+      "rejected": true
+    },
+    {
+      "case": "nondeterministic feature",
+      "rejected": true
+    },
+    {
+      "case": "changed frozen plan",
+      "rejected": true
+    }
+  ],
   "pdf": [
     {
       "file": "W09-reliability-and-shift.pdf",
-      "pages": 12,
+      "pages": 7,
       "text_out_of_page": [],
       "overfull": false,
       "undefined_references": false
     },
     {
       "file": "main.pdf",
-      "pages": 118,
+      "pages": 114,
       "text_out_of_page": [],
       "overfull": false,
       "undefined_references": false
     }
   ],
-  "core_exercises": 8,
-  "optional_challenges": 2,
-  "practice_minutes": 120,
-  "explanation_minutes": 60,
-  "replay_scope": "same-kernel CSV readback consistency; no independent environment reproduction claim",
-  "scientific_scope": "Independent synthetic teaching rows, not physical, causal, financial or deployment validation",
-  "source_references_checked": "2026-10-27",
-  "provenance": "/assets/week09/visual-provenance.json"
+  "assessment": "Midterm written and oral examinations only; no midterm project. Existing stock Homework remains separate.",
+  "validation_scope": "Fresh local CPU Jupyter kernels; Colab availability checked separately; no claim of Google Colab runtime execution.",
+  "references_checked": "2026-11-02"
 }

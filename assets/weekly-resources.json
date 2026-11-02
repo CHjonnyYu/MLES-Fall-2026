@@ -257,28 +257,28 @@
     "type": "teaching",
     "slides": [
       {
-        "title": "H1: When a good score hides a bad model (30 slides)",
+        "title": "H1: Model form, noise, and refit variation (30 slides)",
         "url": "/lectures/week-09-hour-1/"
       },
       {
-        "title": "H2: Find the missing relationship (30 slides)",
+        "title": "H2: Input shift versus a changed relationship (30 slides)",
         "url": "/lectures/week-09-hour-2/"
       },
       {
-        "title": "H3: Change conditions and explain the evidence (30 slides)",
+        "title": "H3: Make, freeze, test, and defend a change (30 slides)",
         "url": "/lectures/week-09-hour-3/"
       }
     ],
     "slide_status": "available",
     "notebooks": [
       {
-        "title": "Worked alternative with example responses",
+        "title": "Worked alternative: mechanisms and controlled experiments",
         "file": "week-09-practice.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-09-practice.ipynb",
         "download": "/notebooks/week-09-practice.ipynb"
       },
       {
-        "title": "Complete Exercise notebook: Tasks 1\u20138 in order",
+        "title": "Student notebook: three experiments and a real code edit",
         "file": "exercises/week-09-exercise.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-09-exercise.ipynb",
         "download": "/notebooks/exercises/week-09-exercise.ipynb"
@@ -290,10 +290,13 @@
         "url": "/notes/exercises/week-09-exercise.html"
       }
     ],
-    "practice_minutes": 120,
-    "core_exercises": 8,
-    "optional_challenges": 2,
-    "revision": "2026-10-27"
+    "practice_minutes": 100,
+    "core_exercises": 3,
+    "optional_challenges": 0,
+    "revision": "2026-11-02",
+    "explanation_minutes": 60,
+    "break_minutes": 10,
+    "buffer_minutes": 10
   },
   {
     "week": 10,
@@ -407,6 +410,12 @@
         "file": "exercises/week-12-exercise.ipynb",
         "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/exercises/week-12-exercise.ipynb",
         "download": "/notebooks/exercises/week-12-exercise.ipynb"
+      },
+      {
+        "title": "Real pretrained LLM Agent: live CPU + authentic replay",
+        "file": "week-12-llm-agent.ipynb",
+        "url": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-12-llm-agent.ipynb",
+        "download": "/notebooks/week-12-llm-agent.ipynb"
       }
     ],
     "exercises": [
@@ -429,7 +438,13 @@
         "title": "Building effective agents",
         "url": "https://www.anthropic.com/engineering/building-effective-agents"
       }
-    ]
+    ],
+    "llm_case": {
+      "notes": "/notes/real-llm-agent.html",
+      "live_model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "paid_api_required": false,
+      "replay": "Saved decisions; tools recomputed; no new inference"
+    }
   },
   {
     "week": 13,

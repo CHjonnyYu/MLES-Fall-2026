@@ -1,5 +1,5 @@
 {
-  "revision": "2026-10-27",
+  "revision": "2026-11-02",
   "cover": {
     "file": "cover.png",
     "tool": "built-in Image 2.0 generation",
@@ -9,5 +9,7 @@
   },
   "quantitative": "Matplotlib figures from the same executable protocol, checked against fresh local CPU notebook results",
   "diagrams": "Native SVG, declared procedural dependencies",
-  "logos": "Existing NCKU and LAiMM source assets"
+  "logos": "Existing NCKU and LAiMM source assets",
+  "current_slide_visuals": "New native scientific plots from actual notebook refits, declared analytic population diagrams, and protocol SVGs. The archived AI cover is not used in the current Week09 decks.",
+  "quantitative_scope": "Synthetic data only; analytic formulas are labeled separately from finite measured notebook results."
 }

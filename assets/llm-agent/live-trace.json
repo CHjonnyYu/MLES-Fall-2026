@@ -1,0 +1,101 @@
+{
+  "mode": "live",
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "model_revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+  "goal": "Report the maximum temperature and the count of measurements at or above 80 degC. Use tools, then finish.",
+  "input_sha256": "5e2cec390c6cc9240aec2ef4c0f0e5c25677838a365b98ffb95f9fc13b7e756b",
+  "steps": [
+    {
+      "turn": 0,
+      "candidates": [
+        "max_temperature",
+        "count_at_or_above",
+        "inspect_schema"
+      ],
+      "choice": 2,
+      "action": {
+        "tool": "inspect_schema",
+        "args": {}
+      },
+      "observation": {
+        "case": "synthetic packaging temperature inspection",
+        "unit": "degC",
+        "rows": 6
+      },
+      "prompt_sha256": "e5acabe1aa8bee25aa3efb29eb8b3685b9e29ed239e98b348a3a31dfc104936e",
+      "allowed_token_logits": [
+        32.56756591796875,
+        32.11750793457031,
+        32.57199478149414
+      ]
+    },
+    {
+      "turn": 1,
+      "candidates": [
+        "max_temperature",
+        "count_at_or_above"
+      ],
+      "choice": 1,
+      "action": {
+        "tool": "count_at_or_above",
+        "args": {
+          "threshold": 80.0
+        }
+      },
+      "observation": {
+        "count": 3,
+        "threshold": 80.0,
+        "rows": 6
+      },
+      "prompt_sha256": "1a908b08119abc52bbd7effaf3d04db290d04ffe136b728cc099f03600003aca",
+      "allowed_token_logits": [
+        32.31690979003906,
+        32.32471466064453
+      ]
+    },
+    {
+      "turn": 2,
+      "candidates": [
+        "max_temperature"
+      ],
+      "choice": 0,
+      "action": {
+        "tool": "max_temperature",
+        "args": {}
+      },
+      "observation": {
+        "maximum": 85.0,
+        "unit": "degC"
+      },
+      "prompt_sha256": "e8ed24bbf1b78acca07459d4429600ad1eb5d91dd31f5336a84458c354b0773d",
+      "allowed_token_logits": [
+        32.450008392333984
+      ]
+    },
+    {
+      "turn": 3,
+      "candidates": [
+        "finish"
+      ],
+      "choice": 0,
+      "action": {
+        "tool": "finish",
+        "args": {}
+      },
+      "observation": {
+        "maximum": 85.0,
+        "count_at_or_above_80": 3
+      },
+      "prompt_sha256": "b6bd4a1fd029de71d79d7401ed38b61862c6ddd67aac0005a0971deaf54c3ae5",
+      "allowed_token_logits": [
+        31.83931541442871
+      ]
+    }
+  ],
+  "final": {
+    "maximum": 85.0,
+    "count_at_or_above_80": 3
+  },
+  "elapsed_seconds": 0.336,
+  "method": "Pretrained causal-LM next-token logits select a constrained action letter; no hand-authored action sequence or paid API. Tools, not generated prose, supply final numeric fields."
+}

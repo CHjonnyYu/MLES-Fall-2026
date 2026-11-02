@@ -1,28 +1,4 @@
 {
-  "warmup": {
-    "MAE": 1.4,
-    "RMSE": 1.9493588689617927
-  },
-  "mixture": [
-    {
-      "easy": 90,
-      "hard": 10,
-      "parts": [
-        0.9,
-        1.0
-      ],
-      "MAE": 1.9
-    },
-    {
-      "easy": 75,
-      "hard": 25,
-      "parts": [
-        0.75,
-        2.5
-      ],
-      "MAE": 3.25
-    }
-  ],
   "validation": {
     "linear": {
       "MAE": 1.0170859002257084,
@@ -33,7 +9,6 @@
       "RMSE": 0.19048028096443675
     }
   },
-  "selected_on_validation": "quadratic",
   "test": {
     "linear": {
       "MAE": 1.0315301812615103,
@@ -44,66 +19,93 @@
       "RMSE": 0.20510029776739597
     }
   },
-  "groups": {
-    "linear": {
-      "inside": {
-        "n": 50,
-        "MAE": 0.7748926536180798,
-        "RMSE": 0.837720290833846
-      },
-      "outside": {
-        "n": 25,
-        "MAE": 1.544805236548371,
-        "RMSE": 1.9543505077711034
-      }
+  "selected": "quadratic",
+  "seed": 2026,
+  "noise_variance": 0.04,
+  "decomposition": [
+    {
+      "kind": "linear",
+      "n": 40,
+      "empirical_bias2": 1.9453010393272,
+      "refit_variance": 0.23403003634622763,
+      "signal_mse": 2.1793310756734274,
+      "noise_averaged_mse": 2.2193310756734275
     },
-    "quadratic": {
-      "inside": {
-        "n": 50,
-        "MAE": 0.17441038390303787,
-        "RMSE": 0.2120695077949555
-      },
-      "outside": {
-        "n": 25,
-        "MAE": 0.1441357025427932,
-        "RMSE": 0.19039812015887678
-      }
+    {
+      "kind": "quadratic",
+      "n": 40,
+      "empirical_bias2": 0.0033477107668268835,
+      "refit_variance": 0.0058011033623015336,
+      "signal_mse": 0.009148814129128414,
+      "noise_averaged_mse": 0.049148814129128415
+    },
+    {
+      "kind": "linear",
+      "n": 160,
+      "empirical_bias2": 1.9828343626733897,
+      "refit_variance": 0.10618000961908995,
+      "signal_mse": 2.0890143722924797,
+      "noise_averaged_mse": 2.1290143722924797
+    },
+    {
+      "kind": "quadratic",
+      "n": 160,
+      "empirical_bias2": 0.0003910468454538117,
+      "refit_variance": 0.0013376205228778915,
+      "signal_mse": 0.0017286673683317,
+      "noise_averaged_mse": 0.0417286673683317
+    },
+    {
+      "kind": "linear",
+      "n": 640,
+      "empirical_bias2": 1.9734217228256488,
+      "refit_variance": 0.023117208936860343,
+      "signal_mse": 1.9965389317625095,
+      "noise_averaged_mse": 2.0365389317625096
+    },
+    {
+      "kind": "quadratic",
+      "n": 640,
+      "empirical_bias2": 2.497859825485162e-05,
+      "refit_variance": 0.00027032613864480786,
+      "signal_mse": 0.00029530473689965976,
+      "noise_averaged_mse": 0.04029530473689966
     }
-  },
+  ],
   "stress": [
     {
+      "kind": "linear",
       "scale": 1.0,
-      "model": "linear",
       "MAE": 1.0880695696462241,
       "RMSE": 1.6214300894887343
     },
     {
+      "kind": "quadratic",
       "scale": 1.0,
-      "model": "quadratic",
       "MAE": 0.16825262220006634,
       "RMSE": 0.21471421013754555
     },
     {
+      "kind": "linear",
       "scale": 1.5,
-      "model": "linear",
       "MAE": 2.2860665591685887,
       "RMSE": 4.005232505833984
     },
     {
+      "kind": "quadratic",
       "scale": 1.5,
-      "model": "quadratic",
       "MAE": 0.17022280116706434,
       "RMSE": 0.21672942805369208
     },
     {
+      "kind": "linear",
       "scale": 2.5,
-      "model": "linear",
       "MAE": 6.891164842815339,
       "RMSE": 12.11997978384702
     },
     {
+      "kind": "quadratic",
       "scale": 2.5,
-      "model": "quadratic",
       "MAE": 0.17639884261578628,
       "RMSE": 0.22388047131606237
     }
@@ -118,26 +120,29 @@
       "RMSE": 3.731906270649202
     }
   },
-  "perturb": {
-    "linear": {
-      "raw_x0_slope": 2.0437971905571946,
-      "expected_delta": 1.0218985952785973,
-      "max_disagreement": 1.7763568394002505e-15,
-      "rows_checked": 75
+  "audit_seed": 92026,
+  "student": {
+    "implemented": true,
+    "freeze_sha256": "dc6c75bbabf7bd3edecde0b1910e84e53e5ef262a7af20ca306ae790b555a420",
+    "audit": {
+      "baseline": {
+        "MAE": 0.16050847450008032,
+        "RMSE": 0.19610673585845853
+      },
+      "student": {
+        "MAE": 0.16050847450008032,
+        "RMSE": 0.19610673585845853
+      }
     },
-    "quadratic": {
-      "raw_x0_slope": 2.004090611463834,
-      "expected_delta": 1.002045305731917,
-      "max_disagreement": 1.7763568394002505e-15,
-      "rows_checked": 75
-    }
+    "status": "draft until code and explanations are reviewed"
   },
-  "readback": {
-    "scope": "same-kernel CSV readback consistency; not independent-process reproduction",
-    "data_sha256": "7e0e366cf1e07d022bda1b142f52ec66688f453ecbe7b9fcb0378a9852479877",
-    "rows": 500,
-    "test_rows": 75,
-    "max_abs_prediction_difference": 0.0,
-    "selected_on_validation": "quadratic"
-  }
+  "responses": {
+    "A_prediction": "Variance can shrink while a missing shape persists.",
+    "A_explanation": "Compare the curved linear mean with the quadratic mean and refit bands. More rows cannot add the missing square. Noise affects training fits and future observations separately.",
+    "B_prediction": "A frozen model can react differently to a changed input mix and a changed target rule.",
+    "B_explanation": "The stress sweep preserves the rule and paired noise; the reversed coefficient changes the conditional relationship. Neither mechanism is established by input monitoring alone.",
+    "C_prediction": "I predict that my proposed basis change will affect representation error; other conditions stay fixed.",
+    "C_explanation": "The worked square feature matches the predeclared quadratic pipeline. This is a positive control, not a novel discovery; an honest unsuccessful change can also be defensible."
+  },
+  "status": "ready for peer review"
 }

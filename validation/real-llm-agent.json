@@ -1,0 +1,45 @@
+{
+  "case": "Week12 supplementary pretrained LLM action policy",
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "mode_boundary": "Live uses model weights; replay recomputes tools from saved decisions without inference",
+  "execution": {
+    "scope": "Fresh local CPU Jupyter kernels, no Google Colab browser runtime verification",
+    "runs": [
+      {
+        "mode": "replay",
+        "status": "passed",
+        "sha256": "a8e6b510e77f4b211d5b57bf1fca1ff70bd30df36a6898353c9c78c4c0b8d8f4",
+        "steps": 4,
+        "final": {
+          "maximum": 85.0,
+          "count_at_or_above_80": 3
+        },
+        "versions": {
+          "python": "3.12.14",
+          "torch": "not required for replay",
+          "transformers": "not required for replay",
+          "tokenizers": "not required for replay",
+          "huggingface-hub": "not required for replay"
+        }
+      },
+      {
+        "mode": "live",
+        "status": "passed",
+        "sha256": "a8e6b510e77f4b211d5b57bf1fca1ff70bd30df36a6898353c9c78c4c0b8d8f4",
+        "steps": 4,
+        "final": {
+          "maximum": 85.0,
+          "count_at_or_above_80": 3
+        },
+        "versions": {
+          "python": "3.11.5",
+          "torch": "2.2.1",
+          "transformers": "4.46.3",
+          "tokenizers": "0.20.3",
+          "huggingface-hub": "0.26.5"
+        }
+      }
+    ]
+  },
+  "claim_boundary": "One bounded synthetic inspection task; not open-ended planning, native function-calling evaluation or general reliability evidence"
+}

@@ -1,452 +1,422 @@
 [
   {
     "slide": 1,
-    "title": "Find the missing relationship",
-    "minutes": 3,
+    "title": "Input shift versus a changed relationship",
+    "minutes": 2,
     "mode": "explanation",
-    "notes": "3 minutes / explanation. Teaching intent: Turn the visual story into one checked experiment. Define: Train two declared candidates on the same saved rows. Walk through: Fit and freeze; inspect errors on shared axes; widen one input distribution without retraining. Open the complete Exercise notebook only, or the worked alternative, not both. Ask: Why use a simple model after learning LSTM and attention? Expected answer and boundary: Its mechanism is inspectable, so students can learn the diagnostic checks before applying them to more complex models. Complexity does not remove the need for these checks. Visual purpose: show 500 synthetic rows > 350 train | 75 validation | 75 test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "500 synthetic rows > 350 train | 75 validation | 75 test",
+    "notes": "CORE \u00b7 2 min explanation. Teaching purpose: First specify whether inputs changed or the target relationship changed. Mechanism and worked reasoning: Experiment B has an input-scale stress sweep and a separate coefficient reversal. Model parameters, evaluation procedure and the relevant paired rows stay fixed. These are synthetic sensitivity checks, not future forecasts. Ask: Why separate the experiments? Expected explanation: Changing inputs and labels together without controls makes the mechanism ambiguous. Separate interventions let us explain what each comparison can and cannot establish. Visual interpretation: Instructional protocol: highlighted dependency 1. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b01-v1.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-01-1.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 1. No empirical performance claim."
   },
   {
     "slide": 2,
-    "title": "This hour completes Tasks 3, 4 and 5",
-    "minutes": 2,
-    "mode": "explanation",
-    "notes": "2 minutes / explanation. Teaching intent: Turn the visual story into one checked experiment. Define: Train two declared candidates on the same saved rows. Walk through: Fit and freeze; inspect errors on shared axes; widen one input distribution without retraining. Open the complete Exercise notebook only, or the worked alternative, not both. Ask: Why use a simple model after learning LSTM and attention? Expected answer and boundary: Its mechanism is inspectable, so students can learn the diagnostic checks before applying them to more complex models. Complexity does not remove the need for these checks. Visual purpose: show 500 synthetic rows > 350 train | 75 validation | 75 test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "500 synthetic rows > 350 train | 75 validation | 75 test",
+    "title": "Two distinct controlled experiments",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: First specify whether inputs changed or the target relationship changed. Mechanism and worked reasoning: Experiment B has an input-scale stress sweep and a separate coefficient reversal. Model parameters, evaluation procedure and the relevant paired rows stay fixed. These are synthetic sensitivity checks, not future forecasts. Ask: Why separate the experiments? Expected explanation: Changing inputs and labels together without controls makes the mechanism ambiguous. Separate interventions let us explain what each comparison can and cannot establish. Visual interpretation: Instructional protocol: highlighted dependency 2. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b01-v2.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-01-2.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 2. No empirical performance claim."
   },
   {
     "slide": 3,
-    "title": "Check: Turn the visual story into one checked experiment",
-    "minutes": 2,
-    "mode": "explanation",
-    "notes": "2 minutes / explanation. Teaching intent: Turn the visual story into one checked experiment. Define: Train two declared candidates on the same saved rows. Walk through: Fit and freeze; inspect errors on shared axes; widen one input distribution without retraining. Open the complete Exercise notebook only, or the worked alternative, not both. Ask: Why use a simple model after learning LSTM and attention? Expected answer and boundary: Its mechanism is inspectable, so students can learn the diagnostic checks before applying them to more complex models. Complexity does not remove the need for these checks. Visual purpose: show 500 synthetic rows > 350 train | 75 validation | 75 test. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "500 synthetic rows > 350 train | 75 validation | 75 test",
+    "title": "Discuss: The model is frozen; the world may change",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: First specify whether inputs changed or the target relationship changed. Mechanism and worked reasoning: Experiment B has an input-scale stress sweep and a separate coefficient reversal. Model parameters, evaluation procedure and the relevant paired rows stay fixed. These are synthetic sensitivity checks, not future forecasts. Ask: Why separate the experiments? Expected explanation: Changing inputs and labels together without controls makes the mechanism ambiguous. Separate interventions let us explain what each comparison can and cannot establish. Visual interpretation: Instructional protocol: highlighted dependency 3. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b01-v3.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-01-3.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 3. No empirical performance claim."
   },
   {
     "slide": 4,
-    "title": "Know what each input means",
-    "minutes": 2,
+    "title": "Input shift changes which cases appear",
+    "minutes": 3,
     "mode": "explanation",
-    "notes": "2 minutes / explanation. Teaching intent: Know what each input means. Define: The square belongs to the generator, not a discovery from test labels. Walk through: The fixed rule is y=2*x0+x1 squared+noise. Each independent row has an ID and a saved split. No physical input units are invented. Ask: Does knowing the generator justify choosing on the test score? Expected answer and boundary: No. It justifies predeclaring this teaching comparison. The winner is still chosen by the declared validation MAE rule. Visual purpose: show x0: linear signal | x1: squared signal | x2: negative control. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "x0: linear signal | x1: squared signal | x2: negative control",
+    "notes": "CORE \u00b7 3 min explanation. Teaching purpose: Change p(X) while retaining the same y=2x0+x1\u00b2+epsilon rule. Mechanism and worked reasoning: Generate 150 base rows once, keep x0,x2 and noise fixed, multiply x1 by 1, 1.5, 2.5 and recompute labels from the same rule. Do not refit or reselect either model. Ask: Does a wider Gaussian create new mathematical support? Expected explanation: No. Both normal distributions have unbounded support. The probability mass and observed range change; the training sample may sparsely cover the newly common regions. Visual interpretation: Analytic input distributions; only x1 scale changes in the paired stress test. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b02-v1.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-02-1.png",
+    "visual_purpose": "Analytic input distributions; only x1 scale changes in the paired stress test."
   },
   {
     "slide": 5,
-    "title": "Inspect one row and its synthetic construction",
-    "minutes": 2,
-    "mode": "explanation",
-    "notes": "2 minutes / explanation. Teaching intent: Know what each input means. Define: The square belongs to the generator, not a discovery from test labels. Walk through: The fixed rule is y=2*x0+x1 squared+noise. Each independent row has an ID and a saved split. No physical input units are invented. Ask: Does knowing the generator justify choosing on the test score? Expected answer and boundary: No. It justifies predeclaring this teaching comparison. The winner is still chosen by the declared validation MAE rule. Visual purpose: show x0: linear signal | x1: squared signal | x2: negative control. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "x0: linear signal | x1: squared signal | x2: negative control",
+    "title": "Widen x1 without changing the rule",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Change p(X) while retaining the same y=2x0+x1\u00b2+epsilon rule. Mechanism and worked reasoning: Generate 150 base rows once, keep x0,x2 and noise fixed, multiply x1 by 1, 1.5, 2.5 and recompute labels from the same rule. Do not refit or reselect either model. Ask: Does a wider Gaussian create new mathematical support? Expected explanation: No. Both normal distributions have unbounded support. The probability mass and observed range change; the training sample may sparsely cover the newly common regions. Visual interpretation: Analytic input distributions; only x1 scale changes in the paired stress test. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b02-v2.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-02-2.png",
+    "visual_purpose": "Analytic input distributions; only x1 scale changes in the paired stress test."
   },
   {
     "slide": 6,
-    "title": "Check: Know what each input means",
-    "minutes": 2,
-    "mode": "explanation",
-    "notes": "2 minutes / explanation. Teaching intent: Know what each input means. Define: The square belongs to the generator, not a discovery from test labels. Walk through: The fixed rule is y=2*x0+x1 squared+noise. Each independent row has an ID and a saved split. No physical input units are invented. Ask: Does knowing the generator justify choosing on the test score? Expected answer and boundary: No. It justifies predeclaring this teaching comparison. The winner is still chosen by the declared validation MAE rule. Visual purpose: show x0: linear signal | x1: squared signal | x2: negative control. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "x0: linear signal | x1: squared signal | x2: negative control",
+    "title": "Discuss: Input shift changes which cases appear",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Change p(X) while retaining the same y=2x0+x1\u00b2+epsilon rule. Mechanism and worked reasoning: Generate 150 base rows once, keep x0,x2 and noise fixed, multiply x1 by 1, 1.5, 2.5 and recompute labels from the same rule. Do not refit or reselect either model. Ask: Does a wider Gaussian create new mathematical support? Expected explanation: No. Both normal distributions have unbounded support. The probability mass and observed range change; the training sample may sparsely cover the newly common regions. Visual interpretation: Analytic input distributions; only x1 scale changes in the paired stress test. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b02-v3.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-02-3.png",
+    "visual_purpose": "Analytic input distributions; only x1 scale changes in the paired stress test."
   },
   {
     "slide": 7,
-    "title": "Separate fitting, choosing and evaluating",
-    "minutes": 2,
+    "title": "Pairing removes an avoidable comparison noise",
+    "minutes": 3,
     "mode": "explanation",
-    "notes": "2 minutes / explanation. Teaching intent: Separate fitting, choosing and evaluating. Define: Only training rows fit scaler and model parameters. Walk through: Check 350/75/75 rows, disjoint IDs and the frozen CSV hash. Then fit both training-only pipelines; exact validation ties favor the linear candidate. Ask: What would fitting the scaler on all rows change? Expected answer and boundary: It would let held-out inputs influence a fitted preprocessing step. Keep the full fitting operation inside the training pipeline and apply predict to validation and test only. Visual purpose: show Train: fit > Validation: choose > Freeze decision > Test: evaluate. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Train: fit > Validation: choose > Freeze decision > Test: evaluate",
+    "notes": "CORE \u00b7 3 min explanation. Teaching purpose: Use the same base observations and noise draws across stress conditions. Mechanism and worked reasoning: The intervention is x1 scale only. Row identity, other inputs, noise, target function and frozen models are controlled. Pairing helps interpretation; it does not turn these synthetic outcomes into deployment validation. Ask: Why not redraw every condition independently? Expected explanation: An independent redraw changes both the stress condition and the random sample. A paired design makes the declared intervention easier to isolate in a small classroom experiment. Visual interpretation: Instructional protocol: highlighted dependency 1. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b03-v1.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-03-1.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 1. No empirical performance claim."
   },
   {
     "slide": 8,
-    "title": "Task 3 begins with the data contract",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Separate fitting, choosing and evaluating. Define: Only training rows fit scaler and model parameters. Walk through: Check 350/75/75 rows, disjoint IDs and the frozen CSV hash. Then fit both training-only pipelines; exact validation ties favor the linear candidate. Ask: What would fitting the scaler on all rows change? Expected answer and boundary: It would let held-out inputs influence a fitted preprocessing step. Keep the full fitting operation inside the training pipeline and apply predict to validation and test only. Visual purpose: show Train: fit > Validation: choose > Freeze decision > Test: evaluate. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Train: fit > Validation: choose > Freeze decision > Test: evaluate",
+    "title": "Read the experiment ledger",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Use the same base observations and noise draws across stress conditions. Mechanism and worked reasoning: The intervention is x1 scale only. Row identity, other inputs, noise, target function and frozen models are controlled. Pairing helps interpretation; it does not turn these synthetic outcomes into deployment validation. Ask: Why not redraw every condition independently? Expected explanation: An independent redraw changes both the stress condition and the random sample. A paired design makes the declared intervention easier to isolate in a small classroom experiment. Visual interpretation: Instructional protocol: highlighted dependency 2. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b03-v2.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-03-2.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 2. No empirical performance claim."
   },
   {
     "slide": 9,
-    "title": "Check: Separate fitting, choosing and evaluating",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Separate fitting, choosing and evaluating. Define: Only training rows fit scaler and model parameters. Walk through: Check 350/75/75 rows, disjoint IDs and the frozen CSV hash. Then fit both training-only pipelines; exact validation ties favor the linear candidate. Ask: What would fitting the scaler on all rows change? Expected answer and boundary: It would let held-out inputs influence a fitted preprocessing step. Keep the full fitting operation inside the training pipeline and apply predict to validation and test only. Visual purpose: show Train: fit > Validation: choose > Freeze decision > Test: evaluate. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Train: fit > Validation: choose > Freeze decision > Test: evaluate",
+    "title": "Discuss: Pairing removes an avoidable comparison noise",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Use the same base observations and noise draws across stress conditions. Mechanism and worked reasoning: The intervention is x1 scale only. Row identity, other inputs, noise, target function and frozen models are controlled. Pairing helps interpretation; it does not turn these synthetic outcomes into deployment validation. Ask: Why not redraw every condition independently? Expected explanation: An independent redraw changes both the stress condition and the random sample. A paired design makes the declared intervention easier to isolate in a small classroom experiment. Visual interpretation: Instructional protocol: highlighted dependency 3. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b03-v3.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-03-3.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 3. No empirical performance claim."
   },
   {
     "slide": 10,
-    "title": "Task 3: choose before inspecting test outcomes",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 3: choose before inspecting test outcomes. Define: The square-feature candidate adds x1 squared before scaling. Walk through: Compare linear and square-feature validation MAE. Save selected_on_validation before the notebook opens test metrics. A plot title must never substitute for your actual run. Ask: Can the final test choose a different winner? Expected answer and boundary: Not in this protocol. The two-candidate test comparison is predeclared for diagnosis, but the saved validation winner does not change after inspection. Visual purpose: show Same train rows > Two declared bases > Validation MAE > Saved winner. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same train rows > Two declared bases > Validation MAE > Saved winner",
+    "title": "Stress results depend on the fitted function",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "CORE \u00b7 3 min explanation. Teaching purpose: A correct mean shape can respond differently from an affine approximation. Mechanism and worked reasoning: Plot frozen-model MAE against the three predeclared input scales. Compare the observed direction and magnitude with your prior prediction. The missing square becomes relevant where x1\u00b2 is large. Ask: Must all models worsen under every input shift? Expected explanation: No. Risk depends on which regions gain probability, the conditional error there and finite sampling. Input change alone does not determine whether average performance improves or worsens. Visual interpretation: Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b04-v1.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-04-1.png",
+    "visual_purpose": "Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection."
   },
   {
     "slide": 11,
-    "title": "Read the actual validation table",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 3: choose before inspecting test outcomes. Define: The square-feature candidate adds x1 squared before scaling. Walk through: Compare linear and square-feature validation MAE. Save selected_on_validation before the notebook opens test metrics. A plot title must never substitute for your actual run. Ask: Can the final test choose a different winner? Expected answer and boundary: Not in this protocol. The two-candidate test comparison is predeclared for diagnosis, but the saved validation winner does not change after inspection. Visual purpose: show Same train rows > Two declared bases > Validation MAE > Saved winner. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same train rows > Two declared bases > Validation MAE > Saved winner",
+    "title": "Read the actual stress curves",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: A correct mean shape can respond differently from an affine approximation. Mechanism and worked reasoning: Plot frozen-model MAE against the three predeclared input scales. Compare the observed direction and magnitude with your prior prediction. The missing square becomes relevant where x1\u00b2 is large. Ask: Must all models worsen under every input shift? Expected explanation: No. Risk depends on which regions gain probability, the conditional error there and finite sampling. Input change alone does not determine whether average performance improves or worsens. Visual interpretation: Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b04-v2.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-04-2.png",
+    "visual_purpose": "Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection."
   },
   {
     "slide": 12,
-    "title": "Check: Task 3: choose before inspecting test outcomes",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 3: choose before inspecting test outcomes. Define: The square-feature candidate adds x1 squared before scaling. Walk through: Compare linear and square-feature validation MAE. Save selected_on_validation before the notebook opens test metrics. A plot title must never substitute for your actual run. Ask: Can the final test choose a different winner? Expected answer and boundary: Not in this protocol. The two-candidate test comparison is predeclared for diagnosis, but the saved validation winner does not change after inspection. Visual purpose: show Same train rows > Two declared bases > Validation MAE > Saved winner. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same train rows > Two declared bases > Validation MAE > Saved winner",
+    "title": "Discuss: Stress results depend on the fitted function",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: A correct mean shape can respond differently from an affine approximation. Mechanism and worked reasoning: Plot frozen-model MAE against the three predeclared input scales. Compare the observed direction and magnitude with your prior prediction. The missing square becomes relevant where x1\u00b2 is large. Ask: Must all models worsen under every input shift? Expected explanation: No. Risk depends on which regions gain probability, the conditional error there and finite sampling. Input change alone does not determine whether average performance improves or worsens. Visual interpretation: Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b04-v3.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-04-3.png",
+    "visual_purpose": "Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection."
   },
   {
     "slide": 13,
-    "title": "Task 4: compare residuals on the same scale",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 4: compare residuals on the same scale. Define: Use shared axes to compare size; use a labeled zoom to inspect detail. Walk through: The paired full-scale plot uses one x range and one y range. A separate explicitly labeled zoom shows the smaller residuals of the square-feature candidate. Ask: Why is automatic scaling risky for a visual comparison? Expected answer and boundary: Two panels can fill the page equally while representing very different numeric errors. Shared scales reveal magnitude; a zoom answers a different question and must be labeled. Visual purpose: show Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale",
+    "title": "Concept change can hide behind stable inputs",
+    "minutes": 4,
+    "mode": "explanation",
+    "notes": "CORE \u00b7 4 min explanation. Teaching purpose: Keep the exact same X and noise; reverse the x0 coefficient from+2 to\u22122. Mechanism and worked reasoning: Frozen predictions do not change. New labels differ by\u22124x0, so the new residual equals the old residual+4x0. A stable input histogram therefore cannot certify stable predictive accuracy. Ask: Which monitoring signal is missing without labels? Expected explanation: Input monitoring alone cannot directly measure current prediction error or confirm the changed relationship. Delayed labels, residual patterns and domain evidence are needed. Visual interpretation: Declared coefficient reversal, paired noise and frozen models. Final panel uses actual notebook scores. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b05-v1.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-05-1.png",
+    "visual_purpose": "Declared coefficient reversal, paired noise and frozen models. Final panel uses actual notebook scores."
   },
   {
     "slide": 14,
-    "title": "Look for a removed pattern, not a prettier panel",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 4: compare residuals on the same scale. Define: Use shared axes to compare size; use a labeled zoom to inspect detail. Walk through: The paired full-scale plot uses one x range and one y range. A separate explicitly labeled zoom shows the smaller residuals of the square-feature candidate. Ask: Why is automatic scaling risky for a visual comparison? Expected answer and boundary: Two panels can fill the page equally while representing very different numeric errors. Shared scales reveal magnitude; a zoom answers a different question and must be labeled. Visual purpose: show Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale",
+    "title": "The model cannot see the changed labels",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Keep the exact same X and noise; reverse the x0 coefficient from+2 to\u22122. Mechanism and worked reasoning: Frozen predictions do not change. New labels differ by\u22124x0, so the new residual equals the old residual+4x0. A stable input histogram therefore cannot certify stable predictive accuracy. Ask: Which monitoring signal is missing without labels? Expected explanation: Input monitoring alone cannot directly measure current prediction error or confirm the changed relationship. Delayed labels, residual patterns and domain evidence are needed. Visual interpretation: Declared coefficient reversal, paired noise and frozen models. Final panel uses actual notebook scores. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b05-v2.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-05-2.png",
+    "visual_purpose": "Declared coefficient reversal, paired noise and frozen models. Final panel uses actual notebook scores."
   },
   {
     "slide": 15,
-    "title": "Check: Task 4: compare residuals on the same scale",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 4: compare residuals on the same scale. Define: Use shared axes to compare size; use a labeled zoom to inspect detail. Walk through: The paired full-scale plot uses one x range and one y range. A separate explicitly labeled zoom shows the smaller residuals of the square-feature candidate. Ask: Why is automatic scaling risky for a visual comparison? Expected answer and boundary: Two panels can fill the page equally while representing very different numeric errors. Shared scales reveal magnitude; a zoom answers a different question and must be labeled. Visual purpose: show Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same 75 test IDs > Linear residuals | Square-feature residuals > Shared y scale",
+    "title": "Discuss: Concept change can hide behind stable inputs",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Keep the exact same X and noise; reverse the x0 coefficient from+2 to\u22122. Mechanism and worked reasoning: Frozen predictions do not change. New labels differ by\u22124x0, so the new residual equals the old residual+4x0. A stable input histogram therefore cannot certify stable predictive accuracy. Ask: Which monitoring signal is missing without labels? Expected explanation: Input monitoring alone cannot directly measure current prediction error or confirm the changed relationship. Delayed labels, residual patterns and domain evidence are needed. Visual interpretation: Declared coefficient reversal, paired noise and frozen models. Final panel uses actual notebook scores. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b05-v3.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-05-3.png",
+    "visual_purpose": "Declared coefficient reversal, paired noise and frozen models. Final panel uses actual notebook scores."
   },
   {
     "slide": 16,
-    "title": "Task 4: locate the weak group in both models",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 4: locate the weak group in both models. Define: Start with the linear model, then inspect the same slices in the other candidate. Walk through: The inside and outside counts must add to 75 for each model. Report actual counts and errors for both candidates; do not search for a favorable final-test threshold. Ask: Why not diagnose only the validation winner? Expected answer and boundary: The intentionally limited linear model exposes the missing square clearly. Comparing both fixed candidates connects the failure pattern to representation without changing the selection rule. Visual purpose: show Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE",
+    "title": "Monitoring is a diagnosis pipeline",
+    "minutes": 3,
+    "mode": "explanation",
+    "notes": "CORE \u00b7 3 min explanation. Teaching purpose: Detecting a change is different from knowing its cause or choosing a remedy. Mechanism and worked reasoning: Check input schema and units, input distributions, label timing and error slices. Inspect whether changes exceed expected variability, then investigate causes. Refit only with an explicit, reevaluated protocol. Ask: Is automatic retraining always an adequate response? Expected explanation: No. A unit bug, missing label or changed objective needs a different response. Retraining on corrupted or unrepresentative data can preserve the problem. Visual interpretation: Instructional protocol: highlighted dependency 1. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b06-v1.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-06-1.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 1. No empirical performance claim."
   },
   {
     "slide": 17,
-    "title": "Keep the diagnostic boundary at abs(x1)=1",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 4: locate the weak group in both models. Define: Start with the linear model, then inspect the same slices in the other candidate. Walk through: The inside and outside counts must add to 75 for each model. Report actual counts and errors for both candidates; do not search for a favorable final-test threshold. Ask: Why not diagnose only the validation winner? Expected answer and boundary: The intentionally limited linear model exposes the missing square clearly. Comparing both fixed candidates connects the failure pattern to representation without changing the selection rule. Visual purpose: show Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE",
+    "title": "From alarm to evidence",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Detecting a change is different from knowing its cause or choosing a remedy. Mechanism and worked reasoning: Check input schema and units, input distributions, label timing and error slices. Inspect whether changes exceed expected variability, then investigate causes. Refit only with an explicit, reevaluated protocol. Ask: Is automatic retraining always an adequate response? Expected explanation: No. A unit bug, missing label or changed objective needs a different response. Retraining on corrupted or unrepresentative data can preserve the problem. Visual interpretation: Instructional protocol: highlighted dependency 2. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b06-v2.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-06-2.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 2. No empirical performance claim."
   },
   {
     "slide": 18,
-    "title": "Check: Task 4: locate the weak group in both models",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 4: locate the weak group in both models. Define: Start with the linear model, then inspect the same slices in the other candidate. Walk through: The inside and outside counts must add to 75 for each model. Report actual counts and errors for both candidates; do not search for a favorable final-test threshold. Ask: Why not diagnose only the validation winner? Expected answer and boundary: The intentionally limited linear model exposes the missing square clearly. Comparing both fixed candidates connects the failure pattern to representation without changing the selection rule. Visual purpose: show Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Fixed abs(x1) boundary > Inside group | Outside group > Counts and MAE",
+    "title": "Discuss: Monitoring is a diagnosis pipeline",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Detecting a change is different from knowing its cause or choosing a remedy. Mechanism and worked reasoning: Check input schema and units, input distributions, label timing and error slices. Inspect whether changes exceed expected variability, then investigate causes. Refit only with an explicit, reevaluated protocol. Ask: Is automatic retraining always an adequate response? Expected explanation: No. A unit bug, missing label or changed objective needs a different response. Retraining on corrupted or unrepresentative data can preserve the problem. Visual interpretation: Instructional protocol: highlighted dependency 3. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b06-v3.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-06-3.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 3. No empirical performance claim."
   },
   {
     "slide": 19,
-    "title": "Task 5: change the input, not the relationship",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 5: change the input, not the relationship. Define: Multiply only x1 while keeping the known target rule fixed. Walk through: Use paired 150-row synthetic cases, the same x0 and x2, the same noise and the same fitted parameters. Scales 1, 1.5 and 2.5 were declared in advance. Ask: Why recompute the target after changing x1? Expected answer and boundary: To keep the same synthetic conditional relationship y=2*x0+x1 squared+noise. Holding old targets while changing the feature representation would be a different experiment. Visual purpose: show Same base rows > Wider x1 > Same target rule > Frozen predictions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same base rows > Wider x1 > Same target rule > Frozen predictions",
+    "title": "An average changes with the case mixture",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Overall MAE is the weighted sum of group MAEs. Mechanism and worked reasoning: With losses 1 and 10, MAE=(1\u2212q)\u00d71+q\u00d710. At q=.10 it is 1.9; at q=.25 it is 3.25. Both within-group losses can stay fixed while the aggregate changes. Ask: What should accompany an overall score? Expected explanation: Group definitions, counts and within-group losses, together with units and evaluation conditions. Do not substitute the illustrative90/10 mixture for the actual test group counts. Visual interpretation: Paper illustration: fixed group losses 1 and 10. These are not fitted-model test scores. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b07-v1.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-07-1.png",
+    "visual_purpose": "Paper illustration: fixed group losses 1 and 10. These are not fitted-model test scores."
   },
   {
     "slide": 20,
-    "title": "Name everything that stays fixed",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 5: change the input, not the relationship. Define: Multiply only x1 while keeping the known target rule fixed. Walk through: Use paired 150-row synthetic cases, the same x0 and x2, the same noise and the same fitted parameters. Scales 1, 1.5 and 2.5 were declared in advance. Ask: Why recompute the target after changing x1? Expected answer and boundary: To keep the same synthetic conditional relationship y=2*x0+x1 squared+noise. Holding old targets while changing the feature representation would be a different experiment. Visual purpose: show Same base rows > Wider x1 > Same target rule > Frozen predictions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same base rows > Wider x1 > Same target rule > Frozen predictions",
+    "title": "A paper illustration, not measured model scores",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Overall MAE is the weighted sum of group MAEs. Mechanism and worked reasoning: With losses 1 and 10, MAE=(1\u2212q)\u00d71+q\u00d710. At q=.10 it is 1.9; at q=.25 it is 3.25. Both within-group losses can stay fixed while the aggregate changes. Ask: What should accompany an overall score? Expected explanation: Group definitions, counts and within-group losses, together with units and evaluation conditions. Do not substitute the illustrative90/10 mixture for the actual test group counts. Visual interpretation: Paper illustration: fixed group losses 1 and 10. These are not fitted-model test scores. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b07-v2.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-07-2.png",
+    "visual_purpose": "Paper illustration: fixed group losses 1 and 10. These are not fitted-model test scores."
   },
   {
     "slide": 21,
-    "title": "Check: Task 5: change the input, not the relationship",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Task 5: change the input, not the relationship. Define: Multiply only x1 while keeping the known target rule fixed. Walk through: Use paired 150-row synthetic cases, the same x0 and x2, the same noise and the same fitted parameters. Scales 1, 1.5 and 2.5 were declared in advance. Ask: Why recompute the target after changing x1? Expected answer and boundary: To keep the same synthetic conditional relationship y=2*x0+x1 squared+noise. Holding old targets while changing the feature representation would be a different experiment. Visual purpose: show Same base rows > Wider x1 > Same target rule > Frozen predictions. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Same base rows > Wider x1 > Same target rule > Frozen predictions",
+    "title": "Discuss: An average changes with the case mixture",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Overall MAE is the weighted sum of group MAEs. Mechanism and worked reasoning: With losses 1 and 10, MAE=(1\u2212q)\u00d71+q\u00d710. At q=.10 it is 1.9; at q=.25 it is 3.25. Both within-group losses can stay fixed while the aggregate changes. Ask: What should accompany an overall score? Expected explanation: Group definitions, counts and within-group losses, together with units and evaluation conditions. Do not substitute the illustrative90/10 mixture for the actual test group counts. Visual interpretation: Paper illustration: fixed group losses 1 and 10. These are not fitted-model test scores. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b07-v3.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-07-3.png",
+    "visual_purpose": "Paper illustration: fixed group losses 1 and 10. These are not fitted-model test scores."
   },
   {
     "slide": 22,
-    "title": "Read input shift and performance separately",
-    "minutes": 2,
+    "title": "Experiment B: diagnose two changes",
+    "minutes": 25,
     "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Read input shift and performance separately. Define: A broader input histogram is not itself a prediction-error score. Walk through: Use the new outcomes to compute MAE for both frozen candidates at every declared scale. Inspect the histogram separately from the performance plot. Ask: Must every input shift worsen every model? Expected answer and boundary: No. The consequence depends on the task and model. Report the measured synthetic comparison rather than a universal robustness law or a guaranteed error multiplier. Visual purpose: show Input distribution > Drift signal | Labeled outcomes > Error measurement. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Input distribution > Drift signal | Labeled outcomes > Error measurement",
+    "notes": "CORE \u00b7 25 min practice. Teaching purpose: State what changed, what stayed fixed and which evidence supports the claim. Mechanism and worked reasoning: Predict both interventions before running. Read the stress plot and coefficient-reversal comparison. Explain why stable input monitoring can miss target change. Compare mechanisms even when both MAEs increase. Ask: What is the stopping condition? Expected explanation: One paired input-shift explanation and one target-change explanation, each grounded in an actual output and its controlled variables. Do not use these stress outcomes to reopen model selection. Visual interpretation: Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b08-v1.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-08-1.png",
+    "visual_purpose": "Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection."
   },
   {
     "slide": 23,
-    "title": "Compare the two actual stress curves",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Read input shift and performance separately. Define: A broader input histogram is not itself a prediction-error score. Walk through: Use the new outcomes to compute MAE for both frozen candidates at every declared scale. Inspect the histogram separately from the performance plot. Ask: Must every input shift worsen every model? Expected answer and boundary: No. The consequence depends on the task and model. Report the measured synthetic comparison rather than a universal robustness law or a guaranteed error multiplier. Visual purpose: show Input distribution > Drift signal | Labeled outcomes > Error measurement. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Input distribution > Drift signal | Labeled outcomes > Error measurement",
+    "title": "25 minutes: paired input and rule changes",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: State what changed, what stayed fixed and which evidence supports the claim. Mechanism and worked reasoning: Predict both interventions before running. Read the stress plot and coefficient-reversal comparison. Explain why stable input monitoring can miss target change. Compare mechanisms even when both MAEs increase. Ask: What is the stopping condition? Expected explanation: One paired input-shift explanation and one target-change explanation, each grounded in an actual output and its controlled variables. Do not use these stress outcomes to reopen model selection. Visual interpretation: Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b08-v2.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-08-2.png",
+    "visual_purpose": "Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection."
   },
   {
     "slide": 24,
-    "title": "Check: Read input shift and performance separately",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Read input shift and performance separately. Define: A broader input histogram is not itself a prediction-error score. Walk through: Use the new outcomes to compute MAE for both frozen candidates at every declared scale. Inspect the histogram separately from the performance plot. Ask: Must every input shift worsen every model? Expected answer and boundary: No. The consequence depends on the task and model. Report the measured synthetic comparison rather than a universal robustness law or a guaranteed error multiplier. Visual purpose: show Input distribution > Drift signal | Labeled outcomes > Error measurement. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Input distribution > Drift signal | Labeled outcomes > Error measurement",
+    "title": "Discuss: Experiment B: diagnose two changes",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: State what changed, what stayed fixed and which evidence supports the claim. Mechanism and worked reasoning: Predict both interventions before running. Read the stress plot and coefficient-reversal comparison. Explain why stable input monitoring can miss target change. Compare mechanisms even when both MAEs increase. Ask: What is the stopping condition? Expected explanation: One paired input-shift explanation and one target-change explanation, each grounded in an actual output and its controlled variables. Do not use these stress outcomes to reopen model selection. Visual interpretation: Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b08-v3.png",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-08-3.png",
+    "visual_purpose": "Actual notebook stress results on 150 paired synthetic rows. No refitting or reselection."
   },
   {
     "slide": 25,
-    "title": "Keep the change log beside the result",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Keep the change log beside the result. Define: One changed factor is easier to explain than a bundle of edits. Walk through: The notebook takes parameter snapshots before prediction and checks exact equality afterward. Input changes and model changes must not be mixed silently. Ask: What can a parameter check establish? Expected answer and boundary: It verifies these recorded parameters did not change during prediction. It does not establish that the data are physically valid or that every possible implementation state was checked. Visual purpose: show Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error",
+    "title": "Pause and preserve your state",
+    "minutes": 10,
+    "mode": "break",
+    "notes": "CORE \u00b7 10 min break. Teaching purpose: Save your notebook before taking the ten-minute break. Mechanism and worked reasoning: Ten minutes break plus five minutes operating buffer. If the kernel reset, rerun Setup and Experiments A\u2013B in order. Reference pages carry zero additional presentation minutes. Ask: Which files should remain recoverable? Expected explanation: The edited notebook and exported evidence. A remote runtime is temporary; a displayed chart is not a saved record. Resume with the same declared seeds and procedure. Visual interpretation: Instructional protocol: highlighted dependency 1. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b09-v1.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-09-1.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 1. No empirical performance claim."
   },
   {
     "slide": 26,
-    "title": "Check that no training happened during the sweep",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Keep the change log beside the result. Define: One changed factor is easier to explain than a bundle of edits. Walk through: The notebook takes parameter snapshots before prediction and checks exact equality afterward. Input changes and model changes must not be mixed silently. Ask: What can a parameter check establish? Expected answer and boundary: It verifies these recorded parameters did not change during prediction. It does not establish that the data are physically valid or that every possible implementation state was checked. Visual purpose: show Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error",
+    "title": "Break and recovery buffer",
+    "minutes": 5,
+    "mode": "buffer",
+    "notes": "CORE \u00b7 5 min buffer. Teaching purpose: Save your notebook before taking the ten-minute break. Mechanism and worked reasoning: Ten minutes break plus five minutes operating buffer. If the kernel reset, rerun Setup and Experiments A\u2013B in order. Reference pages carry zero additional presentation minutes. Ask: Which files should remain recoverable? Expected explanation: The edited notebook and exported evidence. A remote runtime is temporary; a displayed chart is not a saved record. Resume with the same declared seeds and procedure. Visual interpretation: Instructional protocol: highlighted dependency 2. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b09-v2.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-09-2.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 2. No empirical performance claim."
   },
   {
     "slide": 27,
-    "title": "Check: Keep the change log beside the result",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Keep the change log beside the result. Define: One changed factor is easier to explain than a bundle of edits. Walk through: The notebook takes parameter snapshots before prediction and checks exact equality afterward. Input changes and model changes must not be mixed silently. Ask: What can a parameter check establish? Expected answer and boundary: It verifies these recorded parameters did not change during prediction. It does not establish that the data are physically valid or that every possible implementation state was checked. Visual purpose: show Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Changed: x1 scale | Fixed: rows, noise, rule, parameters > Measured error",
+    "title": "Discuss: Pause and preserve your state",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Save your notebook before taking the ten-minute break. Mechanism and worked reasoning: Ten minutes break plus five minutes operating buffer. If the kernel reset, rerun Setup and Experiments A\u2013B in order. Reference pages carry zero additional presentation minutes. Ask: Which files should remain recoverable? Expected explanation: The edited notebook and exported evidence. A remote runtime is temporary; a displayed chart is not a saved record. Resume with the same declared seeds and procedure. Visual interpretation: Instructional protocol: highlighted dependency 3. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b09-v3.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-09-3.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 3. No empirical performance claim."
   },
   {
     "slide": 28,
-    "title": "Summary: a diagnostic comparison keeps its promises",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Summary: a diagnostic comparison keeps its promises. Define: Report both candidates without reopening the selection decision. Walk through: Keep the notebook open for H3. If restarting, run the same complete notebook from the top; do not open and repeat a second walkthrough unnecessarily. Ask: What evidence should survive this hour? Expected answer and boundary: The exact data identity, validation winner, two-model residuals and group counts, stress results, and what changed versus stayed fixed. H3 changes the target rule and checks replay scope. Visual purpose: show Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint",
+    "title": "H2 summary: name the changed mechanism",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Input shift and changed target relationships require different evidence. Mechanism and worked reasoning: Keep models frozen, preserve pairing and distinguish an input alarm from measured labeled error. A single aggregate can hide group composition and conditional failures. Ask: What evidence would distinguish the two in an unfamiliar system? Expected explanation: Input distributions, measurement/schema checks, timestamped labels, conditional residuals and domain context. Several mechanisms can coexist; these two synthetic controls are not exhaustive diagnoses. Visual interpretation: Instructional protocol: highlighted dependency 1. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b10-v1.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-10-1.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 1. No empirical performance claim."
   },
   {
     "slide": 29,
-    "title": "Exit: show one actual weak group and one controlled change",
-    "minutes": 2,
-    "mode": "practice",
-    "notes": "2 minutes / practice. Teaching intent: Summary: a diagnostic comparison keeps its promises. Define: Report both candidates without reopening the selection decision. Walk through: Keep the notebook open for H3. If restarting, run the same complete notebook from the top; do not open and repeat a second walkthrough unnecessarily. Ask: What evidence should survive this hour? Expected answer and boundary: The exact data identity, validation winner, two-model residuals and group counts, stress results, and what changed versus stayed fixed. H3 changes the target rule and checks replay scope. Visual purpose: show Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint",
+    "title": "Exit before independent modification",
+    "minutes": 0,
+    "mode": "reference",
+    "notes": "REFERENCE \u00b7 use during practice / no extra lecture time. Teaching purpose: Input shift and changed target relationships require different evidence. Mechanism and worked reasoning: Keep models frozen, preserve pairing and distinguish an input alarm from measured labeled error. A single aggregate can hide group composition and conditional failures. Ask: What evidence would distinguish the two in an unfamiliar system? Expected explanation: Input distributions, measurement/schema checks, timestamped labels, conditional residuals and domain context. Several mechanisms can coexist; these two synthetic controls are not exhaustive diagnoses. Visual interpretation: Instructional protocol: highlighted dependency 2. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b10-v2.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-10-2.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 2. No empirical performance claim."
   },
   {
     "slide": 30,
-    "title": "Summary and exit: H2",
-    "minutes": 1,
-    "mode": "practice",
-    "notes": "1 minutes / practice. Teaching intent: Summary: a diagnostic comparison keeps its promises. Define: Report both candidates without reopening the selection decision. Walk through: Keep the notebook open for H3. If restarting, run the same complete notebook from the top; do not open and repeat a second walkthrough unnecessarily. Ask: What evidence should survive this hour? Expected answer and boundary: The exact data identity, validation winner, two-model residuals and group counts, stress results, and what changed versus stayed fixed. H3 changes the target rule and checks replay scope. Visual purpose: show Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint. Facilitation: ask students for a prediction before execution, locate the actual intermediate values, and distinguish observation from interpretation. Transition: connect this checked mechanism to the next beat; preserve the lab artifact where requested. [Sources] https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring ; https://scikit-learn.org/stable/common_pitfalls.html ; https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics. Original teaching example, not an empirical deployment claim. Cover artwork: /assets/week09/visual-provenance.json. Quantitative images: current week notebook execution record. Revision clarification: complete Tasks 1 to 8 in a single notebook. The fixed horizontal five-point illustration is not fitted. Compare real residuals on shared scales. CSV readback is same-kernel only.",
-    "visual_purpose": "Frozen selection > Shared-scale residuals > Paired stress results > Saved checkpoint",
+    "title": "Discuss: H2 summary: name the changed mechanism",
+    "minutes": 2,
+    "mode": "explanation",
+    "notes": "CORE \u00b7 2 min explanation. Teaching purpose: Input shift and changed target relationships require different evidence. Mechanism and worked reasoning: Keep models frozen, preserve pairing and distinguish an input alarm from measured labeled error. A single aggregate can hide group composition and conditional failures. Ask: What evidence would distinguish the two in an unfamiliar system? Expected explanation: Input distributions, measurement/schema checks, timestamped labels, conditional residuals and domain context. Several mechanisms can coexist; these two synthetic controls are not exhaustive diagnoses. Visual interpretation: Instructional protocol: highlighted dependency 3. No empirical performance claim. Facilitation: get a prediction first, inspect matching notebook outputs, and distinguish finite empirical observations from population formulas. Live laboratory blocks include discussion and navigation through reference pages; do not time every page again. [Sources] https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html; https://scikit-learn.org/stable/common_pitfalls.html; https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
     "source_urls": [
-      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://scikit-learn.org/stable/auto_examples/ensemble/plot_bias_variance.html",
       "https://scikit-learn.org/stable/common_pitfalls.html",
-      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics"
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ],
-    "visual_file": "h2-b10-v3.svg",
-    "revision": "2026-10-27"
+    "visual_file": "mechanisms-h2-10-3.svg",
+    "visual_purpose": "Instructional protocol: highlighted dependency 3. No empirical performance claim."
   }
 ]

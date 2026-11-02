@@ -4,36 +4,35 @@
   "modules": [
     {
       "hour": 1,
-      "title": "When a good score hides a bad model",
+      "title": "Model form, noise, and refit variation",
       "slides": 30,
       "minutes": 60,
-      "explanation_minutes": 45,
-      "practice_minutes": 15,
+      "explanation_minutes": 25,
+      "practice_minutes": 35,
       "url": "/lectures/week-09-hour-1/"
     },
     {
       "hour": 2,
-      "title": "Find the missing relationship",
+      "title": "Input shift versus a changed relationship",
       "slides": 30,
       "minutes": 60,
-      "explanation_minutes": 15,
-      "practice_minutes": 45,
+      "explanation_minutes": 20,
+      "practice_minutes": 25,
       "url": "/lectures/week-09-hour-2/"
     },
     {
       "hour": 3,
-      "title": "Change conditions and explain the evidence",
+      "title": "Make, freeze, test, and defend a change",
       "slides": 30,
       "minutes": 60,
-      "explanation_minutes": 0,
-      "practice_minutes": 60,
+      "explanation_minutes": 15,
+      "practice_minutes": 40,
       "url": "/lectures/week-09-hour-3/"
     }
   ],
-  "core_exercises": 8,
-  "optional_challenges": 2,
   "explanation_minutes": 60,
-  "practice_minutes": 120,
-  "revision": "2026-10-27",
-  "visual_scope": "Native scientific plots and protocol diagrams; conceptual cover is labeled AI artwork."
+  "practice_minutes": 100,
+  "break_minutes": 10,
+  "buffer_minutes": 10,
+  "revision": "2026-11-02"
 }

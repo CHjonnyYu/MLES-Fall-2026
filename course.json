@@ -66,7 +66,7 @@
       "date": "2026-11-02",
       "title": "ML reliability, shift, and error analysis",
       "phase": "Foundation",
-      "focus": "Stress-test model assumptions and report subgroup failures."
+      "focus": "Separate model form, noise and refit variability; diagnose input and target shifts; implement and defend one controlled code change."
     },
     {
       "number": "10",
@@ -80,14 +80,14 @@
       "date": "2026-11-16",
       "title": "Midterm written and oral examinations",
       "phase": "Assessment",
-      "focus": "Explain project data, baseline, evaluation, limitations, and reproduction."
+      "focus": "Written and oral examinations only; no midterm project. Independently defend target, split, baseline, evaluation and limitations."
     },
     {
       "number": "12",
       "date": "2026-11-23",
       "title": "LLMs, bounded agents, and vibe coding",
       "phase": "Agents",
-      "focus": "Separate next-token generation from validated action execution."
+      "focus": "Separate next-token generation from validated action execution. Run a genuine small pretrained LLM tool-selection loop; distinguish live inference from saved replay."
     },
     {
       "number": "13",
@@ -165,5 +165,10 @@
       "purpose": "Choose seminars after completing the core notebooks; these research talks are not assumed prerequisites.",
       "reading": "https://web.stanford.edu/class/cs25/"
     }
-  ]
+  ],
+  "assessment_policy": {
+    "midterm": "Written and oral examinations only; no midterm project.",
+    "class_practice": "Formative practice; no new weekly graded Homework.",
+    "stock_forecasting": "Existing separate designated Homework."
+  }
 }
