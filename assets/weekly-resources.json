@@ -436,11 +436,11 @@
       },
       {
         "title": "Mock exam PDF",
-        "url": "/assessments/midterm-mock/MLES-Midterm-Mock-Exam.pdf"
+        "url": "/assets/exams/midterm-mock/MLES-Midterm-Mock-Exam.pdf"
       },
       {
         "title": "Mock worked solutions PDF",
-        "url": "/assessments/midterm-mock/MLES-Midterm-Mock-Worked-Solutions.pdf"
+        "url": "/assets/exams/midterm-mock/MLES-Midterm-Mock-Worked-Solutions.pdf"
       }
     ]
   },
