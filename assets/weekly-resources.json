@@ -296,7 +296,14 @@
     "revision": "2026-11-02",
     "explanation_minutes": 60,
     "break_minutes": 10,
-    "buffer_minutes": 10
+    "buffer_minutes": 10,
+    "cloud_validation": {
+      "checked": "2026-11-02",
+      "code_cells_per_notebook": 14,
+      "charts_per_completed_run": 7,
+      "report": "/validation/week09-colab.json",
+      "offline_report": "Included as report.html inside the exported ZIP"
+    }
   },
   {
     "week": 10,
