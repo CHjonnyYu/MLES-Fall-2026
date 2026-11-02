@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HW10 · Handover and reproducibility | NCKU LAiMM</title><style>body{margin:0;color:#12233f;background:#f8f4ef;font:19px/1.65 Georgia,serif}main{max-width:1080px;margin:auto;padding:35px 22px 80px}h1{font-size:clamp(34px,5vw,55px);line-height:1.1;font-weight:400}h2{font-size:29px;margin-top:45px}h3{font-size:23px}a{color:#167b87}nav,.links{display:flex;gap:18px;flex-wrap:wrap;font:16px/1.5 "Avenir Next",sans-serif}section{border-top:1px solid #cdd5c8;padding:20px 0}pre{font-size:15px;line-height:1.55;overflow:auto;padding:20px;background:#fffdf8;border-left:3px solid #167b87}p,li{overflow-wrap:anywhere}.brand{display:flex;gap:25px;align-items:center;margin:25px 0}.brand img{width:130px;height:55px;object-fit:contain}.tag{color:#7f2635;font:14px "Avenir Next",sans-serif;letter-spacing:.08em}.notice{padding:18px;border-left:4px solid #b88a29;background:#f1e8d9}table{border-collapse:collapse;width:100%;font-size:17px}td,th{padding:12px;text-align:left;border-bottom:1px solid #ccd2c5}img{max-width:100%}</style></head><body><main><nav><a href="/courses/machine-learning/">Course schedule</a><a href="/lectures/foundations/">Lecture collection</a><a href="https://github.com/CHjonnyYu/MLES-Fall-2026">GitHub</a></nav><div class="brand"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></div><h1>HW10 · Handover and reproducibility</h1><div class="links"><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/hw10-thermal-workflow-starter.ipynb">Open HW10 starter in Colab</a><a href="/notebooks/homework/hw10-thermal-workflow-starter.ipynb" download>Download Jupyter .ipynb</a><a href="/notes/homework/hw09-thermal-diagnosis.html">Previous: HW9 diagnosis</a></div><p><strong>Individual Homework · approximately two hours · 100 points</strong></p>
+<p><strong>Due: Friday, 13 November 2026, 23:59 Asia/Taipei (UTC+8).</strong> This fulfills the existing <strong>ML Workflow Homework</strong> milestone.</p>
+<p>Use your completed HW9 work as an author, then act as a receiver for a classmate’s package. Demonstrate what another person can actually reproduce, and one invalid input that the workflow correctly refuses. Keep the HW9 data, model choice and test protocol frozen.</p>
+<h2>Two roles, one individual submission</h2>
+<p><strong>Author:</strong> send your reviewed HW9 package to a classmate and record the feedback on your own package. <strong>Receiver:</strong> independently run a classmate’s package in a clean Colab CPU session and document what you actually observed. Each student submits their own notebook, receipt and explanation; this is not a shared grade. Use a course alias instead of private contact details.</p>
+<h2>Work through the starter in this order</h2>
+<ol>
+<li><strong>Inspect the handover.</strong> Check that the HW9 package is completed and contains README, requirements, source, exact data and contract, frozen plan, reference predictions and manifest. Read the submitted Python before running it. This is ordinary reviewed course Python, not a sandbox for hostile code.</li>
+<li><strong>Use a clean receiver session.</strong> Upload the received ZIP via the Colab Files sidebar. The starter checks file integrity, extracts into a new directory and launches a new Python process. Do not mount Drive or provide credentials. In Jupyter, place the ZIP next to your notebook.</li>
+<li><strong>Compare by ID.</strong> Refit using train only and the already frozen selection. Compare <strong>all 120 test predictions for both baseline and candidate</strong>, aligned by run_id. The declared tolerance is atol=1e-8, rtol=1e-10. A matching rounded MAE alone does not establish successful replay.</li>
+<li><strong>Keep failures and repairs.</strong> Inspect sender/receiver versions and the first error. Retain each attempt in replay history with package identity. Correct the actual contract/source/environment when justified, and rerun. Request a corrected package from the author when the author’s artifact is wrong. Do not edit reference predictions or widen tolerance to force a pass.</li>
+<li><strong>Implement one negative test.</strong> Change exactly one item in a copied input contract—for example, one declared unit or a missing required unit. Keep original data and contract unchanged. Show that the input loader rejects it with the expected clear message before fitting; explain the rejecting check. An arbitrary crash or unchanged test function does not establish a successful rejection test.</li>
+<li><strong>Label the result and export.</strong> Record whether the received package came from a real other person. Describe receiver actions and feedback on your own package. Complete your one-page explanation and AI disclosure, then inspect and download the receiver evidence ZIP. Save the edited notebook separately.</li>
+</ol>
+<h2>If a partner is unavailable</h2>
+<p>If you cannot pair or receive no response, run your own package in another clean Colab session and label it <strong>self-replay; instructor/TA verification pending</strong>. Submit the actual logs and pairing/nonresponse status. This is not independent peer verification. Nonresponse by another student does not itself lose marks when clearly documented.</p>
+<p>If a real peer replay fails, keep the failure, repair and actual retest outcome. Never invent success. Technical incompleteness is evaluated from the demonstrated evidence and diagnosis; honest failure analysis can earn partial credit. Teacher/TA follow-up supplies the independent verification for the fallback.</p>
+<h2>Budget your two hours</h2>
+<p>Prepare/inspect 20 minutes; exchange and source review 15; fresh-process replay 25; negative test 20; diagnosis and explanation 25; export 15.</p>
+<h2>Submit three files</h2>
+<ul>
+<li>Your <strong>edited and executed HW10 .ipynb</strong>, with the actual received-package path, mode, logs and implemented invalid-input test.</li>
+<li><strong>hw10-evidence.zip</strong>: replay receipt and attempt history, received-package identity, negative-test result, receiver environment, verification mode/status, and integrity manifest. Retain the received original package for inspection.</li>
+<li>Your <strong>one-page English explanation</strong> (HW10-explanation.html or a checked one-page PDF), 300–450 words including AI disclosure. Address Change, Prediction, Result, Evidence, and Limitations; record feedback on your own author package as well as your receiver result.</li>
+</ul>
+<h2>Rubric ·100 points</h2>
+<table>
+<thead>
+<tr>
+  <th>Criterion</th>
+  <th style="text-align:right">Points</th>
+  <th>Evidence for full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Reproduction and row alignment</td>
+  <td style="text-align:right">40</td>
+  <td>Inspectable package, actual fresh-process execution, and all 120 aligned predictions for each model within declared tolerance, or clearly documented diagnosis/repair for partial credit.</td>
+</tr>
+<tr>
+  <td>Input checks and rejection test</td>
+  <td style="text-align:right">25</td>
+  <td>One implemented invalid-input case, the expected rejection, and the mechanism explained without changing the original.</td>
+</tr>
+<tr>
+  <td>Handover explanation and limitations</td>
+  <td style="text-align:right">25</td>
+  <td>Clear author/receiver roles, usable instructions, one-page reasoning, and an honest process/environment claim boundary.</td>
+</tr>
+<tr>
+  <td>Verification record and AI disclosure</td>
+  <td style="text-align:right">10</td>
+  <td>Actual attempt history, peer or self status, feedback record, and AI assistance/checks.</td>
+</tr>
+</tbody>
+</table>
+<p>A fresh process is not automatically a different person or an independently rebuilt software environment. Hashes check bytes relative to a reference; they do not authenticate authorship or prove scientific validity.</p>
+<p>These are two connected, individual Homework assignments. Each is designed for approximately <strong>two hours</strong> using a standard Colab CPU runtime. Submit your own executed notebook, evidence ZIP, and <strong>one-page English explanation</strong>. The generated explanation HTML is print-friendly; you may submit it directly or save a checked one-page PDF.</p>
+<p><strong>Submission platform: to be announced by the instructor. Course-grade percentage: to be announced.</strong> Each Homework has its own 100-point rubric. Class exercises remain formative and ungraded. The midterm consists of <strong>written and oral examinations only; there is no midterm project</strong>. Stock forecasting remains a separate designated Homework with its own requirements.</p>
+<p>AI can assist with code and prose. You remain responsible for the experiment, checks and explanation. State the actual assistance or “none.” Do not submit an unchanged starter, a copied worked result, or a fluent explanation without matching code and evidence.</p>
+<h2>The shared case: equipment temperature rise</h2>
+<p>The fixed CSV contains <strong>600 independent synthetic equipment experiments</strong>, with a supplied 360/120/120 train/validation/test split. The rows are constructed for teaching; they are not measurements or validation of a real thermal system.</p>
+<table>
+<thead>
+<tr>
+  <th>Column</th>
+  <th>Meaning</th>
+  <th>Unit and rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>run_id</td>
+  <td>Stable experiment identity</td>
+  <td>Unique string; not an ML feature</td>
+</tr>
+<tr>
+  <td>power_W</td>
+  <td>Applied power</td>
+  <td>W</td>
+</tr>
+<tr>
+  <td>airflow_m_s</td>
+  <td>Airflow condition</td>
+  <td>m/s</td>
+</tr>
+<tr>
+  <td>ambient_C</td>
+  <td>Ambient condition</td>
+  <td>°C</td>
+</tr>
+<tr>
+  <td>temp_rise_C</td>
+  <td>Target: temperature rise above ambient</td>
+  <td>°C difference; not absolute device temperature</td>
+</tr>
+<tr>
+  <td>split</td>
+  <td>Frozen membership</td>
+  <td>train, validation, or test; not an ML feature</td>
+</tr>
+</tbody>
+</table>
+<p>The declared bounds check input encoding; they are <strong>not equipment safety limits</strong>. The contract records units, split counts and a digest of ID-keyed records. Random splitting is justified by this constructed independent-row assumption. It does not justify random splitting of a real time series. Scaling fits train only; validation selects; test provides a predeclared diagnosis after the proposal is frozen.</p>
+<p><a href="/assets/homework/thermal-workflow/thermal-sensor.csv">Download fixed CSV</a> · <a href="/assets/homework/thermal-workflow/contract.json">Data contract</a> · <a href="/assets/homework/thermal-workflow/hw_workflow.py">Inspect support code</a>. Both starters embed their required support code; HW9 also embeds the exact CSV, so initial execution needs no dataset download or API key.</p>
+<div class="links"><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/hw10-thermal-workflow-starter.ipynb">Open HW10 starter in Colab</a><a href="/notebooks/homework/hw10-thermal-workflow-starter.ipynb" download>Download Jupyter .ipynb</a><a href="/notes/homework/hw09-thermal-diagnosis.html">Previous: HW9 diagnosis</a></div><section><h2>Downloads and display help</h2><p>Save the notebook using File → Download → .ipynb. For generated files, use the Colab Files sidebar, expand the latest run directory, right-click, and Download. If rich-output JavaScript does not load, save and reload; the exported PNGs and self-contained HTML reports provide a tested chart-viewing path. A browser rendering problem is not evidence of Python failure.</p></section></main></body></html>

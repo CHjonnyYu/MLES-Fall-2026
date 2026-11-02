@@ -303,7 +303,30 @@
       "charts_per_completed_run": 7,
       "report": "/validation/week09-colab.json",
       "offline_report": "Included as report.html inside the exported ZIP"
-    }
+    },
+    "homework": [
+      {
+        "id": "HW9",
+        "week": 9,
+        "title": "Diagnose and defend a model change",
+        "due": "2026-11-08T23:59:00+08:00",
+        "timezone": "Asia/Taipei",
+        "expected_hours": 2,
+        "individual": true,
+        "brief": "/notes/homework/hw09-thermal-diagnosis.html",
+        "notebook": "/notebooks/homework/hw09-thermal-workflow-starter.ipynb",
+        "colab": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/hw09-thermal-workflow-starter.ipynb",
+        "points": 100,
+        "submission_platform": "To be announced",
+        "course_grade_weight": "To be announced",
+        "deliverables": [
+          "edited executed .ipynb",
+          "evidence ZIP",
+          "one-page English explanation"
+        ],
+        "peer_verification": false
+      }
+    ]
   },
   {
     "week": 10,
@@ -359,7 +382,30 @@
         "url": "https://inria.github.io/scikit-learn-mooc/predictive_modeling_pipeline/02_numerical_pipeline_video_cross_validation.html"
       }
     ],
-    "revision": "2026-10-27"
+    "revision": "2026-10-27",
+    "homework": [
+      {
+        "id": "HW10",
+        "week": 10,
+        "title": "Handover and reproduce HW9",
+        "due": "2026-11-13T23:59:00+08:00",
+        "timezone": "Asia/Taipei",
+        "expected_hours": 2,
+        "individual": true,
+        "brief": "/notes/homework/hw10-thermal-handover.html",
+        "notebook": "/notebooks/homework/hw10-thermal-workflow-starter.ipynb",
+        "colab": "https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/hw10-thermal-workflow-starter.ipynb",
+        "points": 100,
+        "submission_platform": "To be announced",
+        "course_grade_weight": "To be announced",
+        "deliverables": [
+          "edited executed .ipynb",
+          "evidence ZIP",
+          "one-page English explanation"
+        ],
+        "peer_verification": true
+      }
+    ]
   },
   {
     "week": 11,

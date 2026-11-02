@@ -1,0 +1,57 @@
+{
+  "homework": [
+    "HW9",
+    "HW10"
+  ],
+  "checked": "2026-11-02",
+  "local_notebook_paths": 6,
+  "guard_tests": 10,
+  "cloud": {
+    "runs": [
+      {
+        "homework": 9,
+        "passed": true,
+        "executed_cells": 9,
+        "python_errors": 0,
+        "environment": {
+          "python": "3.13.18",
+          "numpy": "2.1.3",
+          "scipy": "1.16.3",
+          "scikit-learn": "1.6.1"
+        },
+        "student_source_sha256": "d24d2b046184943ef8e37b4e0547e0dc70bf54b1e2c8903a65a0c65e0b697948",
+        "details": {
+          "test_rows": 120,
+          "exported_charts": 2,
+          "status": "ready for review"
+        }
+      },
+      {
+        "homework": 10,
+        "passed": true,
+        "executed_cells": 6,
+        "python_errors": 0,
+        "environment": {
+          "python": "3.13.18",
+          "numpy": "2.1.3",
+          "scipy": "1.16.3",
+          "scikit-learn": "1.6.1"
+        },
+        "student_source_sha256": "cd30ad3e54c878880953a1d84619e73946938512d26befa79e03805f118d5375",
+        "details": {
+          "test_rows_compared": 120,
+          "max_abs_difference": {
+            "baseline": 0.0,
+            "candidate": 0.0
+          },
+          "invalid_units_rejected": true,
+          "status": "self-replay; instructor/TA verification pending"
+        }
+      }
+    ],
+    "scope": "Two actual private Google Colab CPU notebooks. HW9 completed instructor reference, then its exported ZIP uploaded to a separate clean HW10 runtime. Self-replay, not independent human peer verification. Student submissions retain blank tasks."
+  },
+  "scope": "Actual Colab CPU instructor reference runs. HW10 uses honest self-replay, not independent human peer verification. Public notebooks keep student blanks.",
+  "latex": "114 pages; no overfull or undefined references",
+  "midterm": "Written and oral examinations only; no project"
+}

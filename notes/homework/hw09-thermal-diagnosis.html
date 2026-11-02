@@ -1,0 +1,105 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HW9 · Diagnose and defend a change | NCKU LAiMM</title><style>body{margin:0;color:#12233f;background:#f8f4ef;font:19px/1.65 Georgia,serif}main{max-width:1080px;margin:auto;padding:35px 22px 80px}h1{font-size:clamp(34px,5vw,55px);line-height:1.1;font-weight:400}h2{font-size:29px;margin-top:45px}h3{font-size:23px}a{color:#167b87}nav,.links{display:flex;gap:18px;flex-wrap:wrap;font:16px/1.5 "Avenir Next",sans-serif}section{border-top:1px solid #cdd5c8;padding:20px 0}pre{font-size:15px;line-height:1.55;overflow:auto;padding:20px;background:#fffdf8;border-left:3px solid #167b87}p,li{overflow-wrap:anywhere}.brand{display:flex;gap:25px;align-items:center;margin:25px 0}.brand img{width:130px;height:55px;object-fit:contain}.tag{color:#7f2635;font:14px "Avenir Next",sans-serif;letter-spacing:.08em}.notice{padding:18px;border-left:4px solid #b88a29;background:#f1e8d9}table{border-collapse:collapse;width:100%;font-size:17px}td,th{padding:12px;text-align:left;border-bottom:1px solid #ccd2c5}img{max-width:100%}</style></head><body><main><nav><a href="/courses/machine-learning/">Course schedule</a><a href="/lectures/foundations/">Lecture collection</a><a href="https://github.com/CHjonnyYu/MLES-Fall-2026">GitHub</a></nav><div class="brand"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></div><h1>HW9 · Diagnose and defend a change</h1><div class="links"><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/hw09-thermal-workflow-starter.ipynb">Open HW9 starter in Colab</a><a href="/notebooks/homework/hw09-thermal-workflow-starter.ipynb" download>Download Jupyter .ipynb</a><a href="/notes/homework/hw10-thermal-handover.html">Next: HW10 handover</a></div><p><strong>Individual Homework · approximately two hours · 100 points</strong></p>
+<p><strong>Due: Sunday, 8 November 2026, 23:59 Asia/Taipei (UTC+8).</strong></p>
+<p>Your task is to transfer the Week09 diagnostic method to a new engineering-data case. Identify one validation failure condition, propose and implement one controlled modeling change, then explain the actual result. A failed improvement is acceptable when the experiment and reasoning are sound.</p>
+<h2>What you must independently decide</h2>
+<p>Defend the target, split, baseline, evaluation and limitations. In particular, explain why the response is a temperature difference, which observations support your chosen failure condition, what your code change expresses, and which evidence would be needed for a broader claim.</p>
+<h2>Work through the starter in this order</h2>
+<ol>
+<li><strong>Read the contract.</strong> Save your own notebook copy. Keep the 600 rows and supplied split IDs fixed. Confirm units and the 360/120/120 counts.</li>
+<li><strong>Diagnose on validation.</strong> Preserve StandardScaler → Ridge(alpha=1, SVD) as baseline. Inspect residuals against power and airflow. Choose one declared group: low airflow≤1 m/s, high power≥75 W, or hot ambient≥28°C. Report its count and metric; do not invent a failure from an average alone.</li>
+<li><strong>Predict before changing code.</strong> Write your hypothesis, expected result, held-fixed conditions and failure group. Make one X-only feature-basis change <strong>or</strong> one active model-setting change. A feature function preserves original columns, uses no labels or IDs, and must be finite, deterministic and non-mutating. An unchanged identity, comment or random-seed edit does not complete the task.</li>
+<li><strong>Compare fairly on validation.</strong> Use identical training rows and training-only preprocessing. Keep the baseline. The declared choice uses validation MAE; ties preserve baseline. The candidate may use a derived feature, a different Ridge alpha, or a small declared decision tree. Do not change both basis and model settings at once.</li>
+<li><strong>Freeze, then inspect test.</strong> Save the code/configuration/plan identity before exposing the predeclared baseline/candidate test comparison. Explain overall MAE/RMSE and the selected group with its count. Do not reselect on test. Disclose any repeated test use as exploratory.</li>
+<li><strong>Explain and export.</strong> Complete the five explanation fields and AI disclosure. Export to a fresh run directory, inspect the two charts and source in the ZIP, and save all three submission files. Retain this completed HW9 package for HW10.</li>
+</ol>
+<h2>Budget your two hours</h2>
+<p>Read/formulate 10 minutes; validation diagnosis 25; hypothesis and implementation 30; freeze and test 20; explanation and export 25.</p>
+<h2>Submit three files</h2>
+<ul>
+<li>Your <strong>edited and executed .ipynb</strong>, including your actual code change and outputs.</li>
+<li>The generated <strong>hw09-evidence.zip</strong>: frozen data, contract, proposal, feature source, results, 120-row reference prediction vectors for both models, versions, requirements, receiver script, charts, offline report, and integrity manifest.</li>
+<li>Your <strong>one-page English explanation</strong> (generated HW9-explanation.html or a checked one-page PDF). Aim for300–450 words including AI disclosure.</li>
+</ul>
+<p>The five explanation headings are <strong>Change, Prediction, Result, Evidence, Limitations</strong>. Include all five independent judgments across them. A“ready for review”flag checks the presence of work; it does not award a grade or establish correctness.</p>
+<h2>Rubric ·100 points</h2>
+<table>
+<thead>
+<tr>
+  <th>Criterion</th>
+  <th style="text-align:right">Points</th>
+  <th>Evidence for full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Problem and evaluation design</td>
+  <td style="text-align:right">20</td>
+  <td>Target and units, split rationale, baseline, and an appropriate evaluation design are explicit.</td>
+</tr>
+<tr>
+  <td>Controlled code modification</td>
+  <td style="text-align:right">30</td>
+  <td>A real justified change, prediction before execution, held-fixed conditions, and a preserved baseline.</td>
+</tr>
+<tr>
+  <td>Error analysis and limitations</td>
+  <td style="text-align:right">30</td>
+  <td>Actual overall/group outcomes with counts, a mechanism-based explanation, and a bounded claim.</td>
+</tr>
+<tr>
+  <td>Reproducible evidence and AI disclosure</td>
+  <td style="text-align:right">20</td>
+  <td>Executed source, frozen data/IDs/configuration, complete export, readable one-page explanation, and honest AI disclosure.</td>
+</tr>
+</tbody>
+</table>
+<p>No guaranteed score improvement is required. A high score without a defensible procedure is insufficient; an unsuccessful candidate can earn high marks with a sound comparison and explanation.</p>
+<p>These are two connected, individual Homework assignments. Each is designed for approximately <strong>two hours</strong> using a standard Colab CPU runtime. Submit your own executed notebook, evidence ZIP, and <strong>one-page English explanation</strong>. The generated explanation HTML is print-friendly; you may submit it directly or save a checked one-page PDF.</p>
+<p><strong>Submission platform: to be announced by the instructor. Course-grade percentage: to be announced.</strong> Each Homework has its own 100-point rubric. Class exercises remain formative and ungraded. The midterm consists of <strong>written and oral examinations only; there is no midterm project</strong>. Stock forecasting remains a separate designated Homework with its own requirements.</p>
+<p>AI can assist with code and prose. You remain responsible for the experiment, checks and explanation. State the actual assistance or “none.” Do not submit an unchanged starter, a copied worked result, or a fluent explanation without matching code and evidence.</p>
+<h2>The shared case: equipment temperature rise</h2>
+<p>The fixed CSV contains <strong>600 independent synthetic equipment experiments</strong>, with a supplied 360/120/120 train/validation/test split. The rows are constructed for teaching; they are not measurements or validation of a real thermal system.</p>
+<table>
+<thead>
+<tr>
+  <th>Column</th>
+  <th>Meaning</th>
+  <th>Unit and rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>run_id</td>
+  <td>Stable experiment identity</td>
+  <td>Unique string; not an ML feature</td>
+</tr>
+<tr>
+  <td>power_W</td>
+  <td>Applied power</td>
+  <td>W</td>
+</tr>
+<tr>
+  <td>airflow_m_s</td>
+  <td>Airflow condition</td>
+  <td>m/s</td>
+</tr>
+<tr>
+  <td>ambient_C</td>
+  <td>Ambient condition</td>
+  <td>°C</td>
+</tr>
+<tr>
+  <td>temp_rise_C</td>
+  <td>Target: temperature rise above ambient</td>
+  <td>°C difference; not absolute device temperature</td>
+</tr>
+<tr>
+  <td>split</td>
+  <td>Frozen membership</td>
+  <td>train, validation, or test; not an ML feature</td>
+</tr>
+</tbody>
+</table>
+<p>The declared bounds check input encoding; they are <strong>not equipment safety limits</strong>. The contract records units, split counts and a digest of ID-keyed records. Random splitting is justified by this constructed independent-row assumption. It does not justify random splitting of a real time series. Scaling fits train only; validation selects; test provides a predeclared diagnosis after the proposal is frozen.</p>
+<p><a href="/assets/homework/thermal-workflow/thermal-sensor.csv">Download fixed CSV</a> · <a href="/assets/homework/thermal-workflow/contract.json">Data contract</a> · <a href="/assets/homework/thermal-workflow/hw_workflow.py">Inspect support code</a>. Both starters embed their required support code; HW9 also embeds the exact CSV, so initial execution needs no dataset download or API key.</p>
+<div class="links"><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/homework/hw09-thermal-workflow-starter.ipynb">Open HW9 starter in Colab</a><a href="/notebooks/homework/hw09-thermal-workflow-starter.ipynb" download>Download Jupyter .ipynb</a><a href="/notes/homework/hw10-thermal-handover.html">Next: HW10 handover</a></div><section><h2>Downloads and display help</h2><p>Save the notebook using File → Download → .ipynb. For generated files, use the Colab Files sidebar, expand the latest run directory, right-click, and Download. If rich-output JavaScript does not load, save and reload; the exported PNGs and self-contained HTML reports provide a tested chart-viewing path. A browser rendering problem is not evidence of Python failure.</p></section></main></body></html>

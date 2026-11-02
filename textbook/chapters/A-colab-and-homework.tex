@@ -2,7 +2,7 @@
 \section{Colab conventions}
 Every student notebook should begin with a short environment cell, use a declared random seed where relevant, and provide a CPU-compatible path. Optional accelerator cells must not be required for assessment. Notebooks should obtain public data from a documented source or a course repository path; they must not include credentials, personal data, or hidden instructor solutions.
 
-The course website opens each notebook through a public GitHub repository using the Colab URL pattern defined by \verb|\CourseRepo| in \texttt{main.tex}. Replace that one configuration value when the repository is created. The notebook source remains the canonical student artifact; the rendered website is an access layer.
+The course website opens each notebook through a public GitHub repository using the Colab URL pattern defined by \verb|\CourseRepo| in \texttt{main.tex}. The configured public repository provides the student-facing notebooks. The notebook source remains the canonical student artifact; the rendered website is an access layer.
 
 \section{Homework milestones}
 \begin{tabularx}{\textwidth}{@{}p{.16\textwidth} p{.22\textwidth} X@{}}
@@ -10,7 +10,8 @@ The course website opens each notebook through a public GitHub repository using 
 \textbf{Homework} & \textbf{Timing} & \textbf{Evidence required} \\
 \midrule
 ML Problem Brief & Week 5 & Decision context, target, features, split proposal, metric, and one risk. \\
-ML Workflow & Week 10 & Executable notebook, baseline, evaluation, error analysis, and bounded conclusion. \\
+HW9: Diagnostic experiment & Week 9 / due 8 Nov, 23:59 Taiwan & Individual executed notebook, controlled model change, error analysis, evidence ZIP and one-page English explanation. \\
+HW10: ML Workflow & Week 10 / due 13 Nov, 23:59 Taiwan & Handover of HW9, fresh-process ID-aligned replay, one invalid-input rejection test, actual peer or self-replay record, evidence ZIP and one-page English explanation. \\
 Final Agent Plan & Week 14 & Goal, tools, stop condition, approval point, failure cases, and test plan. \\
 Demo Readiness & Week 16 & Reproducible run, evaluation cases, trace, limitation, and rollback or safe fallback. \\
 \bottomrule
@@ -23,3 +24,12 @@ An AI tool can assist with code, prose, or debugging, but the student remains re
 Colab can load notebooks from GitHub, but its free resource limits, hardware availability, and runtime lifetime change over time. Runtimes are ephemeral, so a notebook must install or check any required package, fetch only documented public data, and write important outputs to a student-controlled location only when the student explicitly chooses to do so \citep{googlecolab2026}. Core Labs in this course are CPU-first; any GPU cell is optional and cannot be necessary for a graded result.
 
 The current reference implementation uses scikit-learn for core ML workflows and PyTorch only after neural-network foundations. Rather than pinning the course to a fragile hosted-runtime version, each notebook records the actual package versions at execution time. This makes a future result diagnosable when managed environments change \citep{sklearn2026,pytorch2026}.
+
+\section{Connected HW9 and HW10}
+Both tasks use a fixed 600-row synthetic equipment temperature-rise dataset, with 360 training, 120 validation and 120 test rows. Each row is an independent simulated experiment. The inputs are power, airflow and ambient temperature; the target is a temperature difference. These data do not validate a physical device. Both tasks require about two hours, ordinary CPU libraries and no paid API. The public starters embed the fixed data or support code needed for their route.
+
+HW9 requires one validation-identified failure condition, one independently proposed and implemented feature or model-setting change, a preserved baseline and a frozen plan before the predeclared test diagnosis. Its rubric awards 20 points for problem/evaluation design, 30 for a controlled modification, 30 for error analysis/limitations, and 20 for reproducible evidence and AI disclosure. A candidate need not improve the score to support a strong explanation.
+
+HW10 fulfills the existing ML Workflow milestone. Students act as authors and receivers, inspect source, replay in a new process and working directory, and compare all 120 ID-aligned test predictions for both models at \texttt{atol=1e-8} and \texttt{rtol=1e-10}. One copied invalid input must be rejected before fitting. Preserve the first failure, corrections and true retest result. Its rubric awards 40 points for reproduction/row alignment, 25 for checks/rejection, 25 for handover/limitations, and 10 for verification records and AI disclosure.
+
+Students unable to pair or receive a response may submit explicitly labeled self-replay evidence, pending teacher/TA verification. This does not establish independent peer verification. Nonresponse by another student does not itself lose marks; technical incompleteness is assessed from demonstrated evidence and diagnosis. Each student submits an edited executed notebook, evidence ZIP and one-page English explanation. Platform and course-grade percentages remain to be announced. Class exercises remain formative, and the midterm remains written and oral only, with no project.

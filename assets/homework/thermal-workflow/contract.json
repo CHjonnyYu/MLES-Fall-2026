@@ -1,0 +1,33 @@
+{
+  "case": "Independent synthetic equipment temperature-rise experiments",
+  "rows": 600,
+  "split_counts": {
+    "train": 360,
+    "validation": 120,
+    "test": 120
+  },
+  "units": {
+    "power_W": "W",
+    "airflow_m_s": "m/s",
+    "ambient_C": "degC",
+    "temp_rise_C": "degC difference"
+  },
+  "records_sha256": "3d197032b92337a88dc630e5313d2be65eef776a35118adec61130b495daaecf",
+  "source": "Original course-generated synthetic fixture; no measured plant data or physical validation.",
+  "split_rationale": "Independent simulated runs,not a time series. Fixed disjoint row IDs; random IID split is a teaching assumption.",
+  "encoding_bounds": {
+    "power_W": [
+      0,
+      200
+    ],
+    "airflow_m_s": [
+      0.1,
+      10
+    ],
+    "ambient_C": [
+      0,
+      60
+    ]
+  },
+  "target": "Temperature rise above the ambient condition,not absolute temperature."
+}
