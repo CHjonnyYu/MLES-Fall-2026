@@ -1,13 +1,49 @@
 {
   "assessment": "Midterm Mock",
-  "published": "2026-11-02",
+  "revised": "2026-11-09",
   "written_minutes": 75,
   "raw_points": 100,
-  "oral_minutes": 2,
   "written_questions": 6,
-  "oral_practice_cases": 2,
-  "worked_solutions_available": true,
-  "formal_exam_included": false,
+  "question_minutes": [
+    12,
+    10,
+    7,
+    19,
+    13,
+    7
+  ],
+  "initial_reading_minutes": 3,
+  "final_check_minutes": 4,
+  "oral_seconds": 120,
+  "oral_cases": [
+    {
+      "case": "M1",
+      "card_words": 34,
+      "main_example_words": 43,
+      "followup_words": 10,
+      "followup_example_words": 17,
+      "card_read_seconds": 13.6,
+      "main_answer_seconds": 28.67,
+      "followup_with_examiner_seconds": 16.33,
+      "slot_seconds": 120,
+      "pacing_assumptions": "card150wpm; examiner120wpm; student90wpm; timing design only"
+    },
+    {
+      "case": "M2",
+      "card_words": 34,
+      "main_example_words": 45,
+      "followup_words": 12,
+      "followup_example_words": 16,
+      "card_read_seconds": 13.6,
+      "main_answer_seconds": 30.0,
+      "followup_with_examiner_seconds": 16.67,
+      "slot_seconds": 120,
+      "pacing_assumptions": "card150wpm; examiner120wpm; student90wpm; timing design only"
+    }
+  ],
+  "numeric_checks_passed": 31,
   "document_pages": 22,
-  "scope": "Weeks1-10 core;Week10 practice follows actual instruction. Ungraded practice."
+  "public_solutions": true,
+  "formal_exam_included": false,
+  "timing_basis": "Analytic reading/writing/calculation/speaking workload estimate. No human timed pilot or cohort guarantee claimed."
 }
