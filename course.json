@@ -71,9 +71,85 @@
     {
       "number": "10",
       "date": "2026-11-09",
-      "title": "Reproducible ML workflow studio",
+      "title": "Mock exam and reproducible ML workflow",
       "phase": "Studio",
-      "focus": "Rebuild a baseline from frozen data and split IDs. Homework milestone: ML Workflow."
+      "focus": "Mock90 minutes, then Lecture/Lab90 minutes. All eight exercises retained; Tasks4,5,8 and bridge required, Tasks6\u20137 analysis extension.",
+      "session_plan": {
+        "date": "2026-11-09",
+        "timezone": "Asia/Taipei",
+        "mock_minutes": 90,
+        "lecture_lab_block_minutes": 90,
+        "lecture_minutes": 20,
+        "practice_minutes": 60,
+        "break_minutes": 10,
+        "bridge_minutes": 20,
+        "blocks": [
+          {
+            "start": "14:00",
+            "end": "15:15",
+            "minutes": 75,
+            "activity": "Mock written practice"
+          },
+          {
+            "start": "15:15",
+            "end": "15:30",
+            "minutes": 15,
+            "activity": "Mock review and two-minute oral examples"
+          },
+          {
+            "start": "15:30",
+            "end": "15:40",
+            "minutes": 10,
+            "activity": "Break"
+          },
+          {
+            "start": "15:40",
+            "end": "16:00",
+            "minutes": 20,
+            "activity": "Lecture: identity, frozen choices and replay evidence"
+          },
+          {
+            "start": "16:00",
+            "end": "16:40",
+            "minutes": 40,
+            "activity": "Core Lab: Tasks 4, 5 and 8 with supplied prerequisites"
+          },
+          {
+            "start": "16:40",
+            "end": "17:00",
+            "minutes": 20,
+            "activity": "HW9 \u2192 HW10 bridge and summary"
+          }
+        ],
+        "preserved_exercises": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "required_setup_tasks": [
+          1,
+          2,
+          3
+        ],
+        "in_class_required_tasks": [
+          4,
+          5,
+          8
+        ],
+        "extension_analysis_tasks": [
+          6,
+          7
+        ],
+        "execution_order": "Run all supplied code in order; Tasks6\u20137 scaffold runs for consistent artifacts, while their independent analyses are extensions.",
+        "mock_written_minutes": 75,
+        "mock_review_minutes": 15,
+        "url": "/notes/week-10-session-plan.html"
+      }
     },
     {
       "number": "11",

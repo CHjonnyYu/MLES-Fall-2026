@@ -1,17 +1,85 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week 10 · Eight exercises and the HW9 → HW10 bridge</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f4ef;color:#12233f;font:18px/1.7 Arial,sans-serif}main{max-width:1080px;margin:auto;padding:30px 24px 70px}h1,h2,h3{font-family:Georgia,serif;line-height:1.18}h1{font-size:clamp(32px,5vw,48px)}h2{font-size:30px;margin-top:45px}a{color:#147c80}nav{display:flex;flex-wrap:wrap;gap:16px;font-size:16px}.logos{display:flex;gap:25px;margin:25px 0}.logos img{width:140px;height:60px;object-fit:contain}pre{font:14px/1.6 monospace;overflow:auto;max-width:100%;padding:20px;background:#fff}code{overflow-wrap:anywhere}.cell{border-top:1px solid #ccd2c5;padding-top:20px;margin-top:25px}.notice{background:#e4eeea;border-left:4px solid #147c80;padding:18px}summary{cursor:pointer;font-weight:bold}table{table-layout:fixed;width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #ccd2c5;overflow-wrap:anywhere}img{max-width:100%}@media(max-width:600px){td,th{font-size:14px;padding:5px}.logos img{width:110px}} .bridge-link{padding:15px;background:#e4eeea;border-left:4px solid #147c80} .flow{padding:20px;background:white} </style></head><body><main><div class="logos"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></div><nav><a href="/courses/machine-learning/#week-10">Course</a><a href="/lectures/week-10-hour-1/">H1 slides</a><a href="/lectures/week-10-hour-2/">H2 slides</a><a href="/lectures/week-10-hour-3/">H3 slides</a><a href="/notes/week-10-hw9-hw10-bridge.html">HW9 → HW10 bridge</a><a href="/notes/homework/hw10-thermal-handover.html">HW10 requirements</a></nav><h1>Week 10 · Eight exercises and the HW9 → HW10 bridge</h1><p class="notice">Eight ordered tasks, then a 20-minute HW9 → HW10 bridge. Use one complete notebook. Classroom practice is ungraded; designated HW10 is separate and graded. Read actual receipts and export status before claiming completion.</p><p><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-10-practice.ipynb">Open in Colab</a> · <a href="/notebooks/week-10-practice.ipynb" download>Download Jupyter notebook</a> · <a href="/textbook/W10-workflow-studio.pdf">Reader PDF</a> · <a href="/textbook/Fall-2026-reader-source.zip">LaTeX project</a></p><section class="cell"><h1>Week 10: Reproducible ML Workflow Studio</h1>
-<p><strong>Monday 9 November 2026, 14:00–17:00 · NCKU + LAiMM</strong></p>
-<p>The goal is a handover another Python process can validate and replay from saved files. Week 9 diagnosed error mechanisms and froze a controlled comparison; this week starts a new interpreter and working directory. The installed packages still remain shared. This is computational replay of frozen observations, not a new scientific experiment.</p>
-<h2>Use one complete notebook</h2>
-<ol>
-<li>Save your own copy (Colab: File → Save a copy in Drive). Choose a free CPU runtime. No GPU, API key, paid AI tool or remote dataset download is needed.</li>
-<li>Run Setup, then Tasks <strong>1 → 8</strong>. Every task has a prediction cell, runnable scaffold, explanation cell and stopping check. Keep the same notebook for the whole class. The worked alternative is available if you need sample responses; you do not need to run a second copy.</li>
-<li>H1: Tasks 1–2, 15 practice minutes. H2: Tasks 3–5, 45. H3: Tasks 6–8, 40 (including reflection/export and final summary), plus a 20-minute HW9 → HW10 bridge. Total: 60 minutes explanation + 120 practice.</li>
-<li>A runtime reset removes variables. Restart from Setup and run in order. Setup recreates ONLY this notebook’s <code>artifacts/week10-reference/handover</code> output folder; save edited files elsewhere before restarting.</li>
-<li>Download <code>week10-workflow-handover.zip</code> from the Colab Files sidebar (folder icon → artifacts → week10-reference → ZIP menu → Download). In Jupyter use the final file link. Save your edited .ipynb separately.</li>
-</ol>
-<p><strong>Prerequisites:</strong> stable row IDs, train/validation/test, MAE/RMSE, basic Python arrays. The retained scikit-learn packaged diabetes fixture is used only as a statistical regression example: 442 source rows, ten raw numeric inputs. We do not infer medical, causal or deployment validity. Source-row IDs belong to this frozen dataset version and are not global patient identities.</p>
-<p>Tasks 1–8 and the bridge are formative in-class practice. The designated HW10 is a separate individual, graded Homework due 13 November at 23:59 Asia/Taipei. It uses your completed HW9 package, not the classroom ZIP. Written/oral examinations are unchanged. The next meeting on 16 November is the written and oral midterm examination.</p>
-<p><strong>Worked alternative:</strong> replace the example responses with your own actual observations.</p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Week10 · Mock90 + Lecture/Lab90</title><style>*{box-sizing:border-box}body{margin:0;background:#f8f4ef;color:#12233f;font:18px/1.7 Arial,sans-serif}main{max-width:1080px;margin:auto;padding:30px 24px 70px}h1,h2,h3{font-family:Georgia,serif;line-height:1.18}h1{font-size:clamp(32px,5vw,48px)}h2{font-size:30px;margin-top:45px}a{color:#147c80}nav{display:flex;flex-wrap:wrap;gap:16px;font-size:16px}.logos{display:flex;gap:25px;margin:25px 0}.logos img{width:140px;height:60px;object-fit:contain}pre{font:14px/1.6 monospace;overflow:auto;max-width:100%;padding:20px;background:#fff}code{overflow-wrap:anywhere}.cell{border-top:1px solid #ccd2c5;padding-top:20px;margin-top:25px}.notice{background:#e4eeea;border-left:4px solid #147c80;padding:18px}summary{cursor:pointer;font-weight:bold}table{table-layout:fixed;width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #ccd2c5;overflow-wrap:anywhere}img{max-width:100%}@media(max-width:600px){td,th{font-size:14px;padding:5px}.logos img{width:110px}} .bridge-link{padding:15px;background:#e4eeea;border-left:4px solid #147c80} .flow{padding:20px;background:white} </style></head><body><main><div class="logos"><img src="/assets/ncku-graphic-signature.png" alt="NCKU"><img src="/assets/laimm-horizontal-logo.png" alt="LAiMM"></div><nav><a href="/courses/machine-learning/#week-10">Course</a><a href="/notes/exams/midterm-mock.html">Mock exam</a><a href="/notes/week-10-session-plan.html">Today’s route</a><a href="/notes/week-10-hw9-hw10-bridge.html">HW9 → HW10</a></nav><h1>Week10 · Mock90 + Lecture/Lab90</h1><p><a href="https://colab.research.google.com/github/CHjonnyYu/MLES-Fall-2026/blob/main/notebooks/week-10-practice.ipynb">Open in Colab</a> · <a href="/notebooks/week-10-practice.ipynb" download>Download notebook</a> · <a href="/textbook/W10-workflow-studio.pdf">Reader PDF</a></p><section class="cell"><h1>Week 10: Mock Exam, Lecture and Lab</h1>
+<p><strong>Monday9 November 2026, 14:00–17:00 · NCKU + LAiMM · Asia/Taipei</strong></p>
+<p>Use one complete student or worked notebook. All eight exercises are retained. The three 30-slide decks are modular reference materials with selected pages for today’s20-minute lecture and60-minute practical work; they are not three additional required lecture hours after the Mock.</p>
+<p>Open the <a href="https://mles-course-vgqg4abvka-de.a.run.app/notes/exams/midterm-mock.html">Mock exam</a> for the first block. Save a new notebook copy for the second block; old Drive copies do not automatically update. Use a free CPU runtime. No paid API, key, GPU or remote dataset download is needed. If the runtime resets, start from Setup and execute the supplied cells in order. Setup recreates only this notebook’s own handover output folder; save edited files elsewhere.</p>
+<h2>Today’s 90 + 90 minute plan</h2>
+<p>The first 90 minutes are Mock exam practice, not the workflow lecture. The published written Mock remains75 minutes; the next 15 minutes are review and two-minute oral examples. This does not schedule a whole-class individual oral examination.</p>
+<table>
+<thead>
+<tr>
+  <th>Taiwan time</th>
+  <th>Minutes</th>
+  <th>Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>14:00–15:15</td>
+  <td>75</td>
+  <td>Mock written practice</td>
+</tr>
+<tr>
+  <td>15:15–15:30</td>
+  <td>15</td>
+  <td>Mock review and two-minute oral examples</td>
+</tr>
+<tr>
+  <td>15:30–15:40</td>
+  <td>10</td>
+  <td>Break</td>
+</tr>
+<tr>
+  <td>15:40–16:00</td>
+  <td>20</td>
+  <td>Lecture: identity, frozen choices and replay evidence</td>
+</tr>
+<tr>
+  <td>16:00–16:40</td>
+  <td>40</td>
+  <td>Core Lab: Tasks 4, 5 and 8 with supplied prerequisites</td>
+</tr>
+<tr>
+  <td>16:40–17:00</td>
+  <td>20</td>
+  <td>HW9 → HW10 bridge and summary</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+  <th>Tasks</th>
+  <th>Today’s requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Setup + Tasks 1–3</td>
+  <td>Required supplied prerequisites: run the code in order; check IDs, train-only fitting and the saved validation winner. Detailed response prompts are reference practice.</td>
+</tr>
+<tr>
+  <td>Tasks 4, 5 and 8</td>
+  <td>In-class required: reject malformed copies, replay all 89 test predictions in a fresh process, and inspect/export the supporting evidence.</td>
+</tr>
+<tr>
+  <td>Tasks 6–7</td>
+  <td>Extension analysis: the supplied code still runs in sequence to keep later artifacts valid. Independent row-reorder reasoning, coordinate experiments and detailed responses are extensions.</td>
+</tr>
+<tr>
+  <td>HW9 → HW10 bridge</td>
+  <td>In-class required: inspect the correct package, replay both 120-ID vectors, change one wrong unit, explain the specific refusal, and export the labeled example.</td>
+</tr>
+<tr>
+  <td>Optional A/B</td>
+  <td>Optional extensions; no additional graded weekly assignment.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Execution versus independent analysis:</strong> run supplied code cells in order, including the Tasks 6–7 scaffold, so later variables, plots and exports remain valid. Today’s active explanation focuses on Tasks 4, 5, 8 and the bridge. You are not required to complete all 19 original response fields during the 40-minute Lab. Write predictions/explanations for Tasks 4, 5, 8, the three final reflections and the four bridge reflections. Blank extension fields can leave the full-route archive marked draft; that is not automatically an incomplete in-class checkpoint. The demo archive is never a graded Homework submission.</p>
+<p><strong>In-class checkpoint:</strong> show the frozen validation choice, seven specific contract refusals, the 89-ID new-process comparison, your Task 8 evidence audit, both 120-ID thermal vectors, your changed unit and its refusal, and both downloadable classroom archives. State one limitation and actual AI assistance. The 19-field full route remains available for extension study and TA end-to-end acceptance; it is not a new weekly graded assignment.</p>
+<p>Download the original classroom ZIP from <code>artifacts/week10-reference/</code> and the separate bridge ZIP from <code>artifacts/week10-hw9-hw10-demo/</code>. Save your edited .ipynb separately.</p>
+<p><strong>Homework boundary:</strong> the designated individual HW10 is due13 November 2026, 23:59 Asia/Taipei. It requires completed student HW9 evidence, not either classroom ZIP. The16 November midterm remains written and oral only, with no midterm project.</p>
+<p><strong>Worked alternative:</strong> example responses are references; compare them with your actual run.</p>
 </section><section class="cell"><h2>Setup</h2>
 <p>Run once. Missing free libraries are installed only if absent; existing packages are not upgraded. The cell records actual versions and declares candidates, split sizes and tolerances before fitting.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>import os,sys,subprocess,importlib.util,platform,json,csv,hashlib,zipfile,tempfile,shutil
@@ -53,11 +121,12 @@ def candidate(name):
 print(&#x27;Actual environment:&#x27;,ENV);print(&#x27;Declared configuration:&#x27;,CONFIG)
 responses={};observations={};challenge_observations={}
 from IPython.display import display,FileLink
-</code></pre></details></section><section class="cell"><h2>Task 1: Recover observations by ID (7 min)</h2>
+</code></pre></details></section><section class="cell"><h2>Task 1: Recover observations by ID · REQUIRED SETUP</h2>
 <p><strong>Purpose:</strong> Distinguish row membership, row order and a random seed.</p>
 <p><strong>Do:</strong> Use a 20-ID paper-sized example. A seeded permutation saves 15 training IDs. Reverse the source array and reuse positions: identify the changed membership. Recover rows using the SAVED ID sequence, not just a set filter. No model or 442-row dataset is needed yet.</p>
 <p><strong>Stopping check:</strong> Membership is recovered and the final ID sequence is identical. A seed alone does not bind positions to observations.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Run the supplied prerequisite code and check its output; detailed response work can follow as extension study.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task1_prediction&quot;] = &#x27;Reversing rows can change which observations the same positions select.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>toy_ids=np.array([f&#x27;row-{i:02d}&#x27; for i in range(20)])
 positions=np.random.default_rng(2026).permutation(20)[:15]
 saved_ids=toy_ids[positions].tolist(); reversed_ids=toy_ids[::-1]
@@ -66,11 +135,12 @@ recovered=[lookup[row_id] for row_id in saved_ids]
 assert recovered==saved_ids
 observations[&#x27;task1&#x27;]={&#x27;saved&#x27;:saved_ids,&#x27;wrong&#x27;:wrong_ids,&#x27;recovered&#x27;:recovered,
     &#x27;positional_membership_changed&#x27;:set(wrong_ids)!=set(saved_ids),&#x27;same_recovered_sequence&#x27;:recovered==saved_ids}
-print(json.dumps(observations[&#x27;task1&#x27;],indent=2))</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task1_explanation&quot;] = &#x27;A seed fixes the positional procedure under stated conditions. Saved IDs recover membership; iterating in the saved ID order also restores vector alignment.&#x27;</code></pre></details></section><section class="cell"><h2>Task 2: Freeze raw data and check preprocessing scope (8 min)</h2>
+print(json.dumps(observations[&#x27;task1&#x27;],indent=2))</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task1_explanation&quot;] = &#x27;A seed fixes the positional procedure under stated conditions. Saved IDs recover membership; iterating in the saved ID order also restores vector alignment.&#x27;</code></pre></details></section><section class="cell"><h2>Task 2: Freeze raw data and check preprocessing scope · REQUIRED SETUP</h2>
 <p><strong>Purpose:</strong> Make fitted preprocessing belong only to training rows.</p>
 <p><strong>Do:</strong> Load the retained 442-row packaged regression fixture with scaled=False. Create source IDs before splitting; freeze CSV and 265/88/89 membership. Check disjointness and the full union. Fit a diagnostic scaler on training rows ONLY, then compare its means with training means. The all-row mean gap is descriptive, not a second competing leaky model.</p>
 <p><strong>Stopping check:</strong> 442 unique IDs; 265/88/89 disjoint exhaustive membership; training means match the diagnostic scaler. No clinical interpretation is required.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Run the supplied prerequisite code and check its output; detailed response work can follow as extension study.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task2_prediction&quot;] = &#x27;Training-only means can differ from all-row means because the fitted scope differs.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>data=load_diabetes(scaled=False)
 X=np.asarray(data.data,dtype=float);y=np.asarray(data.target,dtype=float)
 FEATURES=list(data.feature_names);IDS=np.array([f&#x27;diabetes-{i:04d}&#x27; for i in range(len(y))])
@@ -104,11 +174,12 @@ observations[&#x27;task2&#x27;]={&#x27;counts&#x27;:{k:len(v) for k,v in SPLITS.
  &#x27;mean_gap_train_sd&#x27;:mean_gap.tolist(),&#x27;row_id_is_feature&#x27;:False}
 fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.bar(FEATURES,mean_gap,color=RED);ax.axhline(0,color=&#x27;black&#x27;)
 ax.set(xlabel=&#x27;Input coordinate&#x27;,ylabel=&#x27;(All-row mean - train mean) / train SD&#x27;);finish(fig,&#x27;w10-preprocessing-scope.png&#x27;)
-print(observations[&#x27;task2&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task2_explanation&quot;] = &#x27;Raw loading avoids the loader’s global scaling. The scaler mean matches training rows, while a mean gap alone does not determine which score would improve.&#x27;</code></pre></details></section><section class="cell"><h2>Task 3: Fit candidates and freeze the validation choice (15 min)</h2>
+print(observations[&#x27;task2&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task2_explanation&quot;] = &#x27;Raw loading avoids the loader’s global scaling. The scaler mean matches training rows, while a mean gap alone does not determine which score would improve.&#x27;</code></pre></details></section><section class="cell"><h2>Task 3: Fit candidates and freeze the validation choice · REQUIRED SETUP</h2>
 <p><strong>Purpose:</strong> Separate training loss, model selection and final evaluation.</p>
 <p><strong>Do:</strong> Fit the training-target median and Ridge alpha 1, 20, 100 pipelines using the SAME training rows. Ridge minimizes squared error plus an L2 penalty; selection uses validation MAE. The listed order breaks exact ties. Save the choice now; final-test outcomes appear only in Task 5. Inspect the actual coefficient-norm curve separately from validation MAE.</p>
 <p><strong>Stopping check:</strong> Four training-only candidates; one saved validation choice; scaler means agree with Task 2. The median baseline remains eligible to win.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Run the supplied prerequisite code and check its output; detailed response work can follow as extension study.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task3_prediction&quot;] = &#x27;A stronger penalty will shrink coefficients, but validation MAE need not improve monotonically.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>models={name:candidate(name).fit(Xtr,ytr) for name in CONFIG[&#x27;candidate_order&#x27;]}
 validation={name:metrics(yva,m.predict(Xva)) for name,m in models.items()}
 selected=min(CONFIG[&#x27;candidate_order&#x27;],key=lambda name:(validation[name][&#x27;MAE&#x27;],CONFIG[&#x27;candidate_order&#x27;].index(name)))
@@ -201,11 +272,12 @@ if __name__==&#x27;__main__&#x27;:
 import importlib.util
 spec=importlib.util.spec_from_file_location(&#x27;reviewed_w10_runner&#x27;,BUNDLE_DIR/&#x27;replay.py&#x27;)
 runner_module=importlib.util.module_from_spec(spec);spec.loader.exec_module(runner_module)
-print(&#x27;Reviewed replay source written; no fitting performed by this cell.&#x27;)</code></pre></details></section><section class="cell"><h2>Task 4: Reject malformed copies before fitting (12 min)</h2>
+print(&#x27;Reviewed replay source written; no fitting performed by this cell.&#x27;)</code></pre></details></section><section class="cell"><h2>Task 4: Reject malformed copies before fitting · IN-CLASS REQUIRED</h2>
 <p><strong>Purpose:</strong> Give the data interface executable stopping conditions.</p>
 <p><strong>Do:</strong> Expand and review the provided replay program before this task. Work on temporary copies. Predict the expected rejection for duplicate IDs, NaN, wrong headers, row width, empty IDs and an invalid partition. Call the schema reader directly, so this test checks input contracts without training. Keep the original CSV hash unchanged.</p>
 <p><strong>Stopping check:</strong> Every declared bad copy is rejected with a recorded reason. The original reference bytes remain unchanged.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Complete this task’s prediction, actual check and explanation during the core Lab.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task4_prediction&quot;] = &#x27;The strict reader should refuse malformed copies rather than silently guess a repair.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>FROZEN_CONFIG={**CONFIG,&#x27;features&#x27;:FEATURES,&#x27;row_count&#x27;:442,&#x27;split_counts&#x27;:{&#x27;train&#x27;:265,&#x27;validation&#x27;:88,&#x27;test&#x27;:89},&#x27;selected&#x27;:selected,&#x27;environment&#x27;:ENV}
 def contract_probe(kind):
  with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-probe-&#x27;) as work:
@@ -229,11 +301,12 @@ assert digest(DATA_PATH)==data_sha256
 observations[&#x27;task4&#x27;]=contract_checks
 print(json.dumps(contract_checks,indent=2))
 fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.barh([r[&#x27;case&#x27;] for r in contract_checks],[1]*len(contract_checks),color=TEAL)
-ax.set(xlim=(0,1.2),xlabel=&#x27;Actual rejection outcome&#x27;);ax.set_xticks([0,1],[&#x27;Accepted&#x27;,&#x27;Rejected&#x27;]);finish(fig,&#x27;w10-contract-tests.png&#x27;)</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task4_explanation&quot;] = &#x27;Expected caught ValueErrors count as successful rejection tests. A passed schema only establishes well-formed inputs relative to this contract.&#x27;</code></pre></details></section><section class="cell"><h2>Task 5: Evaluate once and replay from copied files (18 min)</h2>
+ax.set(xlim=(0,1.2),xlabel=&#x27;Actual rejection outcome&#x27;);ax.set_xticks([0,1],[&#x27;Accepted&#x27;,&#x27;Rejected&#x27;]);finish(fig,&#x27;w10-contract-tests.png&#x27;)</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task4_explanation&quot;] = &#x27;Expected caught ValueErrors count as successful rejection tests. A passed schema only establishes well-formed inputs relative to this contract.&#x27;</code></pre></details></section><section class="cell"><h2>Task 5: Evaluate once and replay from copied files · IN-CLASS REQUIRED</h2>
 <p><strong>Purpose:</strong> Build a handover that can check its own predictions without notebook variables.</p>
 <p><strong>Do:</strong> Open final-test outcomes after the validation choice is frozen. Compare the selected model with the declared median baseline; inspect one actual failure ID. Build six payload files and a manifest. Copy the bundle into a new temporary directory and invoke its replay.py in a NEW Python interpreter. The runner must read the reference-predictions CSV itself and compare all 89 aligned values. Record a different process ID; do not call the runner function in this notebook and call that a fresh process.</p>
 <p><strong>Stopping check:</strong> All file hashes, schema and exact test-ID sequence pass. The child independently compares predictions within atol=1e-8 and rtol=1e-10. This still shares installed dependencies.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Complete this task’s prediction, actual check and explanation during the core Lab.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task5_prediction&quot;] = &#x27;The new interpreter needs the saved files and reviewed code; notebook globals cannot supply them.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>test_prediction={n:models[n].predict(Xte) for n in dict.fromkeys([&#x27;median&#x27;,selected])}
 test_metrics={n:metrics(yte,p) for n,p in test_prediction.items()}
 pred=test_prediction[selected];residual=pred-yte
@@ -283,11 +356,12 @@ np.testing.assert_allclose(replay[&#x27;predictions&#x27;],pred,atol=CONFIG[&#x2
 replay_diff=np.asarray(replay[&#x27;predictions&#x27;])-pred;max_replay_difference=float(np.max(np.abs(replay_diff)))
 observations[&#x27;task5&#x27;]={&#x27;different_process&#x27;:True,&#x27;same_installed_environment&#x27;:True,&#x27;runner_compares_its_own_reference&#x27;:True,&#x27;max_difference&#x27;:max_replay_difference,&#x27;worst_case&#x27;:worst_rows[0]}
 fig,ax=plt.subplots(layout=&#x27;constrained&#x27;);ax.scatter(np.arange(len(pred)),replay_diff,color=TEAL);ax.axhline(0,color=&#x27;black&#x27;);ax.set(ylim=(-1e-7,1e-7),xlabel=&#x27;Saved test-ID position&#x27;,ylabel=&#x27;Fresh process - reference prediction&#x27;);finish(fig,&#x27;w10-replay-differences.png&#x27;)
-print(observations[&#x27;task5&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task5_explanation&quot;] = &#x27;The copied bundle and separate interpreter reconstruct the frozen selected candidate and compare its own reference file. This removes notebook state, not shared packages or dataset limitations.&#x27;</code></pre></details></section><section class="cell"><h2>Task 6: Reorder CSV rows, preserve the records (15 min)</h2>
+print(observations[&#x27;task5&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task5_explanation&quot;] = &#x27;The copied bundle and separate interpreter reconstruct the frozen selected candidate and compare its own reference file. This removes notebook state, not shared packages or dataset limitations.&#x27;</code></pre></details></section><section class="cell"><h2>Task 6: Reorder CSV rows, preserve the records · EXTENSION ANALYSIS</h2>
 <p><strong>Purpose:</strong> Distinguish changed bytes from changed records, then test row-order independence.</p>
 <p><strong>Do:</strong> Reverse data rows in a temporary COPY, keep the header and saved split-ID lists. Confirm that the exact CSV hash changes while the entire ID-keyed record mapping stays equal. Record this reviewed transformation and update ONLY that copy’s CSV digest in its manifest. Run a fresh process and compare aligned predictions. The reference bundle stays unchanged. Updating a manifest alone never proves a transformation is legitimate.</p>
 <p><strong>Stopping check:</strong> Different CSV hashes, equal ID-keyed values, equal test-ID order and predictions within tolerance. No new winner is selected.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Run the supplied scaffold in sequence for valid downstream artifacts. Independent experiments and detailed explanations are extensions, not additional work required in today’s40-minute Lab.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task6_prediction&quot;] = &#x27;Reordering valid records should change bytes but preserve an ID-based replay.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>with tempfile.TemporaryDirectory(prefix=&#x27;mles-w10-reorder-&#x27;) as work:
  copied=Path(work)/&#x27;handover&#x27;;shutil.copytree(BUNDLE_DIR,copied)
  with (copied/&#x27;frozen.csv&#x27;).open(newline=&#x27;&#x27;,encoding=&#x27;utf-8&#x27;) as f:rows=list(csv.reader(f))
@@ -302,11 +376,12 @@ print(observations[&#x27;task5&#x27;])</code></pre></details></section><section 
  assert reordered_replay[&#x27;test_ids&#x27;]==SPLITS[&#x27;test&#x27;]
  np.testing.assert_allclose(reordered_replay[&#x27;predictions&#x27;],pred,atol=CONFIG[&#x27;atol&#x27;],rtol=CONFIG[&#x27;rtol&#x27;])
 observations[&#x27;task6&#x27;]={&#x27;reference_sha256&#x27;:data_sha256,&#x27;reviewed_copy_sha256&#x27;:new_hash,&#x27;ID_keyed_records_equal&#x27;:True,&#x27;saved_ID_sequence_equal&#x27;:True,&#x27;max_prediction_difference&#x27;:reordered_replay[&#x27;max_reference_difference&#x27;],&#x27;reference_unchanged&#x27;:digest(DATA_PATH)==data_sha256}
-assert observations[&#x27;task6&#x27;][&#x27;reference_unchanged&#x27;];print(observations[&#x27;task6&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task6_explanation&quot;] = &#x27;The reader reconstructs cohorts by saved ID sequence. We checked the record mapping before updating the copied manifest, then checked the resulting predictions; a rehashed file alone is not evidence of equivalence.&#x27;</code></pre></details></section><section class="cell"><h2>Task 7: Check a coordinate explanation (12 min)</h2>
+assert observations[&#x27;task6&#x27;][&#x27;reference_unchanged&#x27;];print(observations[&#x27;task6&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task6_explanation&quot;] = &#x27;The reader reconstructs cohorts by saved ID sequence. We checked the record mapping before updating the copied manifest, then checked the resulting predictions; a rehashed file alone is not evidence of equivalence.&#x27;</code></pre></details></section><section class="cell"><h2>Task 7: Check a coordinate explanation · EXTENSION ANALYSIS</h2>
 <p><strong>Purpose:</strong> Explain the fitted function in its declared coordinate system.</p>
 <p><strong>Do:</strong> If the selected candidate is Ridge, inspect it; if the median won, explicitly use the separately declared Ridge-20 interpretation candidate. Recover raw coefficients and intercept, then check all predictions. Increase coordinate bmi by 0.1 TRAINING SD, holding others fixed; compare every prediction delta with 0.1 times its standardized coefficient. This tests a function, not a feasible medical intervention.</p>
 <p><strong>Stopping check:</strong> The raw equation and the entire perturbation vector match within tolerance; the interpretation candidate is recorded.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Run the supplied scaffold in sequence for valid downstream artifacts. Independent experiments and detailed explanations are extensions, not additional work required in today’s40-minute Lab.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task7_prediction&quot;] = &#x27;For this additive Ridge function, every row should change by 0.1 times the chosen standardized coefficient.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>explain_name=selected if selected!=&#x27;median&#x27; else &#x27;ridge-20&#x27;
 explain_model=models[explain_name];scaler=explain_model.named_steps[&#x27;standardscaler&#x27;];reg=explain_model.named_steps[&#x27;ridge&#x27;]
 raw_coef=reg.coef_/scaler.scale_;raw_intercept=float(reg.intercept_-np.dot(raw_coef,scaler.mean_))
@@ -322,16 +397,17 @@ j=FEATURES.index(&#x27;bmi&#x27;);changed=Xte.copy();changed[:,j]+=.1*scaler.sca
 observed_delta=explain_model.predict(changed)-explain_model.predict(Xte);expected_delta=.1*reg.coef_[j]
 np.testing.assert_allclose(observed_delta,np.full(len(yte),expected_delta),atol=CONFIG[&#x27;atol&#x27;],rtol=CONFIG[&#x27;rtol&#x27;])
 observations[&#x27;task7&#x27;]={&#x27;candidate&#x27;:explain_name,&#x27;coordinate&#x27;:FEATURES[j],&#x27;step_training_SD&#x27;:.1,&#x27;expected_delta&#x27;:float(expected_delta),&#x27;max_disagreement&#x27;:float(np.max(np.abs(observed_delta-expected_delta)))}
-print(observations[&#x27;task7&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task7_explanation&quot;] = &#x27;Undoing standardization reconstructs the same function. A coordinate change checks the algebra and units, not causal importance, medical guidance or new accuracy.&#x27;</code></pre></details></section><section class="cell"><h2>Task 8: Audit, explain and hand over (13 min)</h2>
+print(observations[&#x27;task7&#x27;])</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task7_explanation&quot;] = &#x27;Undoing standardization reconstructs the same function. A coordinate change checks the algebra and units, not causal importance, medical guidance or new accuracy.&#x27;</code></pre></details></section><section class="cell"><h2>Task 8: Audit, explain and hand over · IN-CLASS REQUIRED</h2>
 <p><strong>Purpose:</strong> Connect a portable artifact with an actual result and a bounded claim.</p>
 <p><strong>Do:</strong> Verify all six payload hashes again. Show a partner the validation winner, one actual failure row, test MAE and the separate replay difference. Locate the CSV, split, config, reviewed source, reference predictions and result record. Complete the three reflection fields and export below. Keep the eight predictions and explanations tied to your own observed outputs.</p>
 <p><strong>Stopping check:</strong> A partner can locate the evidence without your hidden variables. All 19 fields are checked for completeness; blank fields remain an honest draft.</p>
 <p>Fill the prediction before running, then explain one actual output and its boundary.</p>
+<p><strong>Today:</strong> Complete this task’s prediction, actual check and explanation during the core Lab.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task8_prediction&quot;] = &#x27;A classmate should be able to verify the declared files and reference comparison from the extracted bundle.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>checks={name:digest(BUNDLE_DIR/name)==sha for name,sha in manifest[&#x27;sha256&#x27;].items()}
 assert all(checks.values()) and digest(DATA_PATH)==data_sha256
 observations[&#x27;task8&#x27;]={&#x27;payload_hashes&#x27;:checks,&#x27;selected&#x27;:selected,&#x27;test_metric&#x27;:test_metrics[selected],&#x27;one_failure_ID&#x27;:worst_rows[0][&#x27;row_id&#x27;],&#x27;fresh_process_difference&#x27;:max_replay_difference}
 print(json.dumps(observations[&#x27;task8&#x27;],indent=2))</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&quot;task8_explanation&quot;] = &#x27;The handover links a result to saved inputs and procedure. Replay agreement does not remove prediction error or establish scientific, clinical or deployment validity.&#x27;</code></pre></details></section><section class="cell"><h2>Optional A: tamper detection; Optional B: explicit name adapter</h2>
-<p>Complete all eight core tasks and the HW9 → HW10 bridge first. The challenges are optional extensions outside the required class route. Set <code>RUN_CHALLENGES=True</code> below only if time remains. A changes a copied CSV without updating its manifest and expects rejection before an output is written. B restores the canonical feature order by name and verifies exact values. Both leave the reference unchanged. Neither checksum matching nor a working adapter establishes scientific validity.</p>
+<p>Complete today’s required checkpoint and the HW9 → HW10 bridge first. The challenges are optional extensions outside the required class route. Set <code>RUN_CHALLENGES=True</code> below only if time remains. A changes a copied CSV without updating its manifest and expects rejection before an output is written. B restores the canonical feature order by name and verifies exact values. Both leave the reference unchanged. Neither checksum matching nor a working adapter establishes scientific validity.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>
 RUN_CHALLENGES=False
 challenge_observations={}
@@ -352,8 +428,8 @@ if RUN_CHALLENGES:
  assert digest(DATA_PATH)==data_sha256
  print(challenge_observations)
 else:print(&#x27;Optional branches skipped. Eight core tasks are sufficient.&#x27;)
-</code></pre></details></section><section class="cell"><h2>Reflect, peer-review and download</h2>
-<p>Within Task 8, show the saved winner, one actual failure ID, the prediction error against outcomes, and the separate replay difference. Fill the three fields below. Eight predictions + eight explanations + three reflections = <strong>19 fields</strong>. Blanks produce a draft; filled fields only indicate readiness for discussion. Write an accurate AI-use disclosure (<code>none</code> if appropriate).</p>
+</code></pre></details></section><section class="cell"><h2>In-class evidence and the complete reference export</h2>
+<p>For today’s checkpoint, complete Tasks 4, 5, 8 predictions/explanations and the three fields below. The full reference route retains all 19 response fields, including extension analysis. Its original exporter deliberately marks missing fields as draft: this is a full-route response status, not a grading decision about today’s checkpoint. Keep actual outputs, a frozen winner, one failure ID and a bounded claim. Re-export after edits; do not overwrite reference predictions to force agreement. The bridge has four additional reflections and its own labeled archive.</p>
 </section><section class="cell"><details><summary>Code for this step</summary><pre><code>responses[&#x27;controlled_change&#x27;] = &#x27;Task 6 reversed CSV data rows in a reviewed copy, preserved ID-keyed records and saved membership, and updated only that copy’s CSV digest.&#x27;
 responses[&#x27;limitation&#x27;] = &#x27;A new process shares the installed environment and the same observations. Numerical agreement does not establish external scientific or clinical validity.&#x27;
 responses[&#x27;ai_disclosure&#x27;] = &#x27;Worked course example. Replace this with an accurate disclosure of your own assistance.&#x27;</code></pre></details></section><section class="cell"><details><summary>Code for this step</summary><pre><code>
@@ -384,7 +460,7 @@ display(FileLink(str(HANDOVER_ZIP)))
 </ul>
 <p>Original documentation checked 27 October 2026; HW9 → HW10 teaching bridge updated 9 November. Classroom exercises are ungraded. HW10 is the already designated Workflow Homework, not a midterm project.</p>
 </section><section class="cell"><h2>Bridge: from your HW9 evidence to the HW10 receiver (20 minutes)</h2>
-<p><strong>Keep all eight tasks.</strong> Tasks 1–8 use the packaged diabetes fixture; this bridge transfers the same method to the synthetic equipment case. Task 8 includes the original reflection and classroom ZIP export. Use the final 20 studio minutes for this bridge; optional A/B are extensions after the core work, not extra required class time.</p>
+<p><strong>Keep all eight tasks.</strong> Tasks 1–8 use the packaged diabetes fixture; this bridge transfers the same method to the synthetic equipment case. Today’s core Lab uses Tasks 4, 5, 8 with supplied prerequisites; Tasks 6–7 analysis is extension work. Use16:40–17:00 for this20-minute bridge; optional A/B are extensions after the core work, not extra required class time.</p>
 <table>
 <thead>
 <tr>

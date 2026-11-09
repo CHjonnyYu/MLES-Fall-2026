@@ -1,6 +1,6 @@
 
 \section{Week 10: Reproducible ML Workflow Studio}
-\textbf{Monday, 9 November 2026, 14:00--17:00.} The class contains 60 minutes of explanation and 120 minutes of practice. H1 uses 45/15 minutes, H2 uses 15/45, and H3 is a 60-minute studio. The eight core exercises and the HW9-to-HW10 bridge are formative in-class practice. The designated HW10 is a separate graded Homework; it is not a midterm project. The two optional challenges are extensions outside the required class route. The next scheduled meeting is the written and oral midterm examination; this studio does not replace either examination.
+\textbf{Monday, 9 November 2026, 14:00--17:00.} The meeting starts with a 90-minute Mock block: 75 minutes written practice and15 minutes review/oral examples. The following90 minutes comprise a 10-minute break,20-minute lecture,40-minute core Lab and20-minute HW9-to-HW10 bridge. The three30-slide decks are retained reference modules with selected in-class pages, not three additional lecture hours. The eight core exercises and the HW9-to-HW10 bridge are formative in-class practice. The designated HW10 is a separate graded Homework; it is not a midterm project. The two optional challenges are extensions outside the required class route. The next scheduled meeting is the written and oral midterm examination; this studio does not replace either examination.
 
 The goal is a portable handover: another interpreter receives frozen files, checks their contract, reconstructs a declared model, and compares predictions by stable row identity. A matching screenshot, aggregate score or second notebook variable is not sufficient. Week 9 studied where a model fails; Week 10 asks whether the evidence supporting that analysis can travel.
 
@@ -117,10 +117,19 @@ python handover/replay.py --root handover --out replay-result.json
 The JSON explicitly reports whether the saved reference comparison passed. No notebook variables are required. A missing required file, wrong reference ID order or incorrect numeric reference causes failure instead of a misleading success record. Instructor QA exercises these negative receiver cases as well as normal extraction.
 
 \subsection{Practice timing and stopping conditions}
-H1 uses Tasks1--2 (7 and8minutes); H2 uses Tasks3--5 (15,12 and18); H3 uses Tasks6--8 (15,12 and13), with reflection/export and final summary included in those40minutes, plus20minutes for the HW9-to-HW10 bridge. Read the Markdown purpose, instructions and stopping check before each cell. Save a prediction before executing; explain an actual output afterward. Missing variables after a runtime reset mean running from Setup again, not inserting a copied reference score.
+Required supplied setup uses Tasks 1--3. The core Lab focuses on Tasks 4,5,8; independent Tasks 6--7 analyses are extensions. Run all supplied code cells in order, including the extension scaffolds, so later artifacts remain valid. The full eight-exercise route remains available for extension study and TA acceptance. Today's timing is:
+\begin{center}\begin{tabular}{llr}\toprule Taiwan time & Activity & Minutes\\\midrule
+14:00--15:15 & Mock written practice &75\\
+15:15--15:30 & Review and oral examples &15\\
+15:30--15:40 & Break &10\\
+15:40--16:00 & Lecture &20\\
+16:00--16:40 & Core Lab: Tasks 4,5,8 &40\\
+16:40--17:00 & HW9-to-HW10 bridge and summary &20\\\bottomrule
+\end{tabular}\end{center}
+Read the Markdown purpose, instructions and stopping check before each cell. Save a prediction before executing; explain an actual output afterward. Missing variables after a runtime reset mean running from Setup again, not inserting a copied reference score.
 
 \section{Eight core exercises and two optional challenges}
-Each task requires a prediction before running, an actual observation, an explanation and a stopping check. Alternate driver and reviewer in pairs. Use H1 for Tasks 1--2, guided H2 for Tasks 3--5, and H3 for remaining work, review and export. These tasks share the 120 minutes of practice; they are not extra hours after the walkthrough.
+All eight exercises remain in the complete notebook. During today's core Lab, focus predictions, explanations and stopping checks on Tasks 4,5,8. Tasks 1--3 are supplied prerequisites: execute them and check the frozen inputs and validation choice. Run the supplied Tasks 6--7 scaffold as part of the ordered code path; its independent experiments and detailed response work are extensions. OptionalA/B are also extensions, not additional graded Homework. The lecture and practical work occupy 80 active minutes after a 10-minute break.
 \begin{enumerate}
 \item \textbf{Row-order trap:} reverse a 20-ID toy dataset, reuse seeded positional indices, then recover the exact saved ID sequence. Explain why set equality alone is insufficient.
 \item \textbf{Preprocessing scope:} assert the fitted scaler mean equals training means. Contrast all-row means descriptively without fitting a leaky competing model or claiming a particular score change.
@@ -134,7 +143,7 @@ Each task requires a prediction before running, an actual observation, an explan
 Optional A changes a copied CSV and confirms manifest rejection before training. Optional B explicitly restores reordered numeric columns by unique names and verifies exact recovery of the canonical matrix. Both preserve the reference package and neither is required for core completion.
 
 \subsection{Student responses and evidence export}
-The 19 core fields comprise eight predictions, eight explanations, controlled change, limitation and AI-use/checking disclosure (or ``none''). Student Exercise responses and published execution outputs start blank; the worked alternative contains example reasoning. Missing fields produce status \texttt{draft}; nonempty fields mean \texttt{ready for peer discussion}, not a correctness grade. Rerun only the final export after editing responses; initialization resets them. Every response cell is already supplied, so students do not need to insert new cells. Complete Tasks1--8 in order in one notebook, rather than performing a walkthrough and repeating the tasks afterward.
+The complete reference route retains 19 fields comprising eight predictions, eight explanations, controlled change, limitation and AI-use/checking disclosure (or ``none''). Student Exercise responses and published execution outputs start blank; the worked alternative contains example reasoning. Today's checkpoint uses the predictions/explanations for Tasks 4,5,8 and three final reflections, plus four bridge reflections. Blank extension responses can leave the complete-route archive marked draft without invalidating the narrower in-class evidence checkpoint. Full-route missing fields produce status \texttt{draft}; nonempty fields mean \texttt{ready for peer discussion}, not a correctness grade. Rerun only the final export after editing responses; initialization resets them. Every response cell is already supplied, so students do not need to insert new cells. Complete Tasks 1--8 in order in one notebook, rather than performing a walkthrough and repeating the tasks afterward.
 
 Download the single handover ZIP and save your edited notebook separately before the free runtime ends. The ZIP contains the frozen inner handover, actual plots and the outer response/evidence JSON. After code review, the extracted runner can be executed in a compatible environment using the explicit root and output paths shown in the notebook. No paid AI, GPU, API key or external dataset download is needed. AI may help explain code or suggest hypotheses, but it must not fabricate execution evidence or measured values.
 
@@ -144,7 +153,7 @@ On 27 October 2026 both notebooks were fully executed in fresh local CPU Jupyter
 \noindent\begin{minipage}{\linewidth}\textbf{Reference CSV SHA-256:}\par\noindent{\small\texttt{a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4}}\par\end{minipage}
 
 \section{From HW9 evidence to the HW10 receiver}
-Keep all eight classroom tasks. The final 20 studio minutes transfer their method to the actual synthetic equipment Homework interface. The statistical fixture and equipment case deliberately differ: the capability is preserving and inspecting an experiment across cases, rather than memorizing one file layout.
+Keep all eight classroom tasks. The 16:40--17:00 bridge transfers their method to the actual synthetic equipment Homework interface. The statistical fixture and equipment case deliberately differ: the capability is preserving and inspecting an experiment across cases, rather than memorizing one file layout.
 
 \begin{center}\small
 \begin{tabular}{p{.26\linewidth}p{.31\linewidth}p{.31\linewidth}}\toprule

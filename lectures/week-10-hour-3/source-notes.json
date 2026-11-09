@@ -2,10 +2,10 @@
   "title": "Workflow studio: break, replay, hand over",
   "slides": [
     {
-      "title": "Deliver evidence another student can use",
+      "title": "Bridge: transfer your evidence to HW10",
       "body": [
-        "Week 10 / H3 / 60-minute lab",
-        "Core tasks first; optional challenges last."
+        "16:40\u201317:00: inspect, replay, reject and export.",
+        "Keep all eight exercises; do not submit the classroom example."
       ],
       "kind": "lineage",
       "payload": [
@@ -14,22 +14,28 @@
         "Explain + test",
         "Hand over"
       ],
-      "teach": "Restore the H2 runtime or run the self-contained walkthrough once. Tasks1-2 were begun in H1 and Tasks3-5 guided in H2; H3 completes evidence and additional controlled tests. No new graded weekly homework is added.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Restore the H2 runtime or run the self-contained walkthrough once. Tasks 1-2 were begun in H1 and Tasks 3-5 guided in H2; H3 completes evidence and additional controlled tests. No new graded weekly homework is added.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
-      "title": "Keep eight tasks; reserve the bridge",
+      "title": "Today\u2019s practical route and extensions",
       "body": [
-        "Tasks 6\u20138 and final wrap-up retain 40 minutes.",
-        "Use 20 minutes to inspect, replay, reject and export HW9 \u2192 HW10."
+        "Core Lab 16:00\u201316:40; bridge16:40\u201317:00.",
+        "Run supplied scaffolds; deepen Tasks 6\u20137 as extensions."
       ],
       "kind": "image",
       "payload": "bridge-h3-s02.svg",
-      "teach": "The eight core tasks are retained. Task8 includes the original nineteen-field reflection and classroom ZIP. Slides19\u201328support the four5-minute bridge phases. The final four minutes retrieve the summary and exit judgment. OptionalA/B remain available after required work.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The eight core tasks are retained. Task 8 includes the original nineteen-field reflection and classroom ZIP. Slides19\u201328support the four5-minute bridge phases. The final four minutes retrieve the summary and exit judgment. OptionalA/B remain available after required work.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Restore configuration, not a remembered score",
@@ -44,9 +50,12 @@
         "print(ENV)",
         "print(CONFIG)"
       ],
-      "teach": "The original reference selects Ridge20, but students identify their own record. If variables are missing in a new runtime, run the walkthrough in order rather than copying a number from the slides.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The original reference selects Ridge20, but students identify their own record. If variables are missing in a new runtime, run the walkthrough in order rather than copying a number from the slides.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Check Task 1: set versus sequence",
@@ -73,9 +82,12 @@
           "Compare aligned values"
         ]
       ],
-      "teach": "Students explain both set recovery and ordered lookup. A test that checks only a set cannot establish that individual predictions line up with observations. The runner uses the saved test-ID sequence.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Students explain both set recovery and ordered lookup. A test that checks only a set cannot establish that individual predictions line up with observations. The runner uses the saved test-ID sequence.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Check Task 2: prove training-only scaling",
@@ -89,9 +101,12 @@
         "mu = m.named_steps['standardscaler'].mean_",
         "np.testing.assert_allclose(mu, Xtr.mean(0))"
       ],
-      "teach": "This assertion is necessary for the claimed preprocessing scope, but it is not a complete leakage audit. Have the reviewer locate the actual fit call and check that validation/test targets never fit transformations.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. This assertion is necessary for the claimed preprocessing scope, but it is not a complete leakage audit. Have the reviewer locate the actual fit call and check that validation/test targets never fit transformations.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Check Task 3: preserve the chosen winner",
@@ -118,9 +133,12 @@
           "Evaluation, not reselection"
         ]
       ],
-      "teach": "The validation winner remains fixed through Tasks4\u20138. The new Task6 changes only CSV row order in an explicitly reviewed copy, not the selected alpha.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The validation winner remains fixed through Tasks 4\u20138. The new Task 6 changes only CSV row order in an explicitly reviewed copy, not the selected alpha.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Check Task 4: read rejection messages",
@@ -147,9 +165,12 @@
           "Exact header check"
         ]
       ],
-      "teach": "The notebook operates on temporary copies. Reviewer verifies each case reports rejected=True and that the original CSV hash remains unchanged. Do not remove failing assertions to force a successful demo.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The notebook operates on temporary copies. Reviewer verifies each case reports rejected=True and that the original CSV hash remains unchanged. Do not remove failing assertions to force a successful demo.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Check Task 5: compare the process result",
@@ -164,9 +185,12 @@
         "  replay['predictions'], pred,",
         "  atol=1e-8, rtol=1e-10)"
       ],
-      "teach": "The exported replay process is separate from the notebook interpreter and working directory. It still shares Python packages. Passing establishes a bounded computational replay rather than independent scientific replication.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The exported replay process is separate from the notebook interpreter and working directory. It still shares Python packages. Passing establishes a bounded computational replay rather than independent scientific replication.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Task 6: reorder data rows in a reviewed copy",
@@ -176,10 +200,13 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s09.svg",
-      "teach": "Only the temporary copy changes. The original byte hash and chosen model remain unchanged. This is a reviewed transformation, not blind rehashing to force acceptance.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Only the temporary copy changes. The original byte hash and chosen model remain unchanged. This is a reviewed transformation, not blind rehashing to force acceptance.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Task 6: different bytes can preserve the records",
@@ -189,10 +216,13 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s10.svg",
-      "teach": "Distinguish exact byte identity from record identity. Both are checked rather than assuming a matching prediction means every record is equal.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Distinguish exact byte identity from record identity. Both are checked rather than assuming a matching prediction means every record is equal.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Task 6: test alignment after the reorder",
@@ -202,10 +232,13 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s11.svg",
-      "teach": "The legitimate copy has an explicitly updated CSV digest after record equality is established. Its selected candidate is unchanged. OptionalA instead keeps the old digest and expects rejection.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The legitimate copy has an explicitly updated CSV digest after record equality is established. Its selected candidate is unchanged. OptionalA instead keeps the old digest and expects rejection.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Task 7: predict a coordinate response",
@@ -215,10 +248,13 @@
       ],
       "kind": "image",
       "payload": "diagram-function-delta.png",
-      "teach": "This checks the additive fitted function, not medical causation or a feasible intervention. Record which candidate is being interpreted.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. This checks the additive fitted function, not medical causation or a feasible intervention. Record which candidate is being interpreted.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Recover the same function in raw coordinates",
@@ -228,10 +264,13 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s13.svg",
-      "teach": "The median has no slope interpretation; if it won, the notebook explicitly inspects the separately predeclared Ridge20 candidate.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. The median has no slope interpretation; if it won, the notebook explicitly inspects the separately predeclared Ridge20 candidate.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Check the entire response-change vector",
@@ -241,9 +280,12 @@
       ],
       "kind": "image",
       "payload": "w10-function-check.png",
-      "teach": "All89 differences are compared under the declared tolerance. This uses no new target labels and is not a fresh accuracy estimate.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. All89 differences are compared under the declared tolerance. This uses no new target labels and is not a fresh accuracy estimate.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Task 8: verify all six payload hashes",
@@ -270,9 +312,17 @@
           "Reference evidence"
         ]
       ],
-      "teach": "Compare the manifest key set and every current digest. Missing required files and mismatched digests are errors. The manifest file itself is excluded from its own digest map to avoid a circular definition.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "REQUIRED \u00b7 Core Lab \u00b7 16:37\u201316:40 \u00b7 3 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Compare the manifest key set and every current digest. Missing required files and mismatched digests are errors. The manifest file itself is excluded from its own digest map to avoid a circular definition.",
+      "minutes": 3,
+      "mode": "in-class",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 3,
+        "start": "16:37",
+        "end": "16:40",
+        "phase": "Core Lab"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "An unsigned manifest is not authentication",
@@ -287,9 +337,12 @@
         "Detect changed bytes",
         "Separate trust decision"
       ],
-      "teach": "Ask for an explicit attack counterexample: changing a file and its recorded digest passes a purely local consistency check. Authenticity needs a trusted out-of-band source or signature, beyond this exercise.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Ask for an explicit attack counterexample: changing a file and its recorded digest passes a purely local consistency check. Authenticity needs a trusted out-of-band source or signature, beyond this exercise.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Write a precise result card",
@@ -320,9 +373,12 @@
           "Fresh declared evaluation"
         ]
       ],
-      "teach": "Students fill the controlled-change and limitation reflections. The card should distinguish model error against outcomes from replay difference between computations. A perfect replay may preserve an imperfect model.",
-      "minutes": 2,
-      "mode": "practice"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Students fill the controlled-change and limitation reflections. The card should distinguish model error against outcomes from replay difference between computations. A perfect replay may preserve an imperfect model.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Prediction error and replay difference answer different questions",
@@ -332,23 +388,34 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s18.svg",
-      "teach": "Ask the student to locate one actual failure ID and the separate zero-centered process difference. Do not use a zero process difference as a model-accuracy claim.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "EXTENSION / REFERENCE \u00b7 not additional required class time. Retained for reference and extension study; no scheduled presentation minutes today. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Ask the student to locate one actual failure ID and the separate zero-centered process difference. Do not use a zero process difference as a model-accuracy claim.",
+      "minutes": 0,
+      "mode": "extension/reference",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": false,
+      "session_timing": null,
+      "full_reference_retained": true
     },
     {
       "title": "Transfer the method to your HW9",
       "body": [
-        "Keep all eight classroom tasks.",
-        "Now use the thermal package and its actual receiver."
+        "Use the final20 minutes for the thermal receiver.",
+        "Run the correct package; preserve and explain actual evidence."
       ],
       "kind": "image",
       "payload": "bridge-h3-s19.svg",
-      "teach": "Use 20 minutes across slides 19\u201328: inspect/create 5, receive/compare 5, reject 5, export/transition 5. Tasks 6\u20138 plus the final summary retain their 40 minutes. Students keep the same notebook. Explain the use of two data contexts rather than silently substituting the diabetes ZIP for an HW9 package.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:40\u201316:41 \u00b7 1 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order.  Students keep the same notebook. Explain the use of two data contexts rather than silently substituting the diabetes ZIP for an HW9 package.",
+      "minutes": 1,
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 1,
+        "start": "16:40",
+        "end": "16:41",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Choose the correct ZIP interface",
@@ -358,10 +425,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s20.svg",
-      "teach": "Open both manifests. The diabetes ZIP nests files under handover and its manifest uses sha256; the thermal exporter uses a flat files map. The real HW10 starter now gives a clear refusal for the wrong archive, a draft, or the marked classroom example.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:41\u201316:42 \u00b7 1 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Open both manifests. The diabetes ZIP nests files under handover and its manifest uses sha256; the thermal exporter uses a flat files map. The real HW10 starter now gives a clear refusal for the wrong archive, a draft, or the marked classroom example.",
+      "minutes": 1,
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 1,
+        "start": "16:41",
+        "end": "16:42",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Freeze the sender before test inspection",
@@ -371,10 +446,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s21.svg",
-      "teach": "Run the bridge setup and sender. This is a supplied teaching comparison, not the private HW9 reference solution. Read the recorded selected_on_validation before showing test metrics. A stronger penalty need not improve held-out error. The actual exporter produces two target-error figures and a reviewable package.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:42\u201316:44 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Run the bridge setup and sender. This is a supplied teaching comparison, not the private HW9 reference solution. Read the recorded selected_on_validation before showing test metrics. A stronger penalty need not improve held-out error. The actual exporter produces two target-error figures and a reviewable package.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:42",
+        "end": "16:44",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Inspect the sender status and source",
@@ -384,10 +467,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s22.svg",
-      "teach": "Display replay.py in the notebook and inspect its imports and replay_directory call. The demo package has the actual HW9 format with a truthful classroom_demo marker. The real HW10 upload branch refuses it; the guided receiver can illustrate the common replay functions. Do not claim a manifest authenticates authorship.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:44\u201316:46 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Display replay.py in the notebook and inspect its imports and replay_directory call. The demo package has the actual HW9 format with a truthful classroom_demo marker. The real HW10 upload branch refuses it; the guided receiver can illustrate the common replay functions. Do not claim a manifest authenticates authorship.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:44",
+        "end": "16:46",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Replay in a new receiver process",
@@ -397,10 +488,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s23.svg",
-      "teach": "Run fresh_process_replay and inspect return code, sender/receiver versions, selected model, rows_compared and both maximum differences. Do not replace the process call with an in-kernel function and call it independent. This classroom demonstration is self-replay, not another student or an independently built environment.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:46\u201316:48 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Run fresh_process_replay and inspect return code, sender/receiver versions, selected model, rows_compared and both maximum differences. Do not replace the process call with an in-kernel function and call it independent. This classroom demonstration is self-replay, not another student or an independently built environment.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:46",
+        "end": "16:48",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Compare predictions by observation ID",
@@ -410,10 +509,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s24.svg",
-      "teach": "Read the actual receipt and the measured difference plot. The HW9 receiver aligns by run_id rather than position. The plotted values come from computed prediction vectors; they are not generated artwork. Ask what a swapped pair of IDs would invalidate. The actual receiver result is the authoritative new-process comparison.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:48\u201316:50 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Read the actual receipt and the measured difference plot. The HW9 receiver aligns by run_id rather than position. The plotted values come from computed prediction vectors; they are not generated artwork. Ask what a swapped pair of IDs would invalidate. The actual receiver result is the authoritative new-process comparison.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:48",
+        "end": "16:50",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Keep target error and replay difference apart",
@@ -423,10 +530,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s25.svg",
-      "teach": "Show the sender residual/MAE charts beside the zero-centered replay plot in the notebook. Both are measured on the synthetic fixture. A zero replay difference says nothing about whether the alpha edit improved validation or test prediction, or whether the model is valid on real equipment.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:50\u201316:52 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Show the sender residual/MAE charts beside the zero-centered replay plot in the notebook. Both are measured on the synthetic fixture. A zero replay difference says nothing about whether the alpha edit improved validation or test prediction, or whether the model is valid on real equipment.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:50",
+        "end": "16:52",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Make one invalid unit fail explicitly",
@@ -436,10 +551,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s26.svg",
-      "teach": "Ask students to predict first, then modify BRIDGE_INVALID_UNIT and rerun. The helper compares declared unit dictionaries before reading or fitting. Check the exact ValueError mechanism and unchanged original contract/CSV bytes. The public exercise remains runnable with the supplied km/h example; students must still make and explain their own code edit.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:52\u201316:54 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Ask students to predict first, then modify BRIDGE_INVALID_UNIT and rerun. The helper compares declared unit dictionaries before reading or fitting. Check the exact ValueError mechanism and unchanged original contract/CSV bytes. The public exercise remains runnable with the supplied km/h example; students must still make and explain their own code edit.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:52",
+        "end": "16:54",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "A finished run can still be a draft",
@@ -449,10 +572,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s27.svg",
-      "teach": "Run the intentionally missing-package branch. It exports a draft without an uncaught exception. Contrast this with a genuine replay receipt and with a genuine independent human receiver. The no-peer fallback is self-replay with instructor/TA verification pending; retain actual failed attempts and repairs.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:54\u201316:56 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Run the intentionally missing-package branch. It exports a draft without an uncaught exception. Contrast this with a genuine replay receipt and with a genuine independent human receiver. The no-peer fallback is self-replay with instructor/TA verification pending; retain actual failed attempts and repairs.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:54",
+        "end": "16:56",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Export the demo; submit your own HW10",
@@ -462,10 +593,18 @@
       ],
       "kind": "image",
       "payload": "bridge-h3-s28.svg",
-      "teach": "Update four bridge reflections and export the demonstration archive. Explain its nested demo HW9/HW10 evidence, chart and scope marker. Open the actual HW10 link from the toolbar. Students upload their own completed HW9 or a real peer package, implement a negative test and retain receipts and feedback. Confirm due time Asia/Taipei and preserve the published rubric and self-replay fallback.",
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:56\u201316:58 \u00b7 2 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Update four bridge reflections and export the demonstration archive. Explain its nested demo HW9/HW10 evidence, chart and scope marker. Open the actual HW10 link from the toolbar. Students upload their own completed HW9 or a real peer package, implement a negative test and retain receipts and feedback. Confirm due time Asia/Taipei and preserve the published rubric and self-replay fallback.",
       "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+      "mode": "in-class",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated.",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 2,
+        "start": "16:56",
+        "end": "16:58",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Summary: preserve, replay and explain",
@@ -475,10 +614,18 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s29.svg",
-      "teach": "Ask for one example each of stable identity, training-only fit, a frozen decision, full-vector replay and specific input rejection. Distinguish computational agreement from model quality and independent peer verification.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:58\u201316:59 \u00b7 1 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Ask for one example each of stable identity, training-only fit, a frozen decision, full-vector replay and specific input rejection. Distinguish computational agreement from model quality and independent peer verification.",
+      "minutes": 1,
+      "mode": "in-class",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 1,
+        "start": "16:58",
+        "end": "16:59",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     },
     {
       "title": "Exit: defend the evidence you hand over",
@@ -488,10 +635,96 @@
       ],
       "kind": "image",
       "payload": "diagram-h3-s30.svg",
-      "teach": "Have students explain why no-package execution is a draft, why the class ZIP is not an HW9package and why self-replay is not a peer. The real HW10 is due13November23:59Taiwan; the16November midterm remains written and oral only.",
-      "minutes": 2,
-      "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "teach": "REQUIRED \u00b7 Bridge / summary \u00b7 16:59\u201317:00 \u00b7 1 min. The meeting is Mock 14:00\u201315:30; break15:30\u201315:40; lecture15:40\u201316:00; core Lab 16:00\u201316:40; bridge16:40\u201317:00. Tasks 1\u20133 are supplied prerequisites; Tasks 4, 5, 8 and the bridge are in-class priorities; Tasks 6\u20137 independent analysis is extension. All supplied code still runs in order. Have students explain why no-package execution is a draft, why the class ZIP is not an HW9package and why self-replay is not a peer. The real HW10 is due13November23:59Taiwan; the16 November midterm remains written and oral only.",
+      "minutes": 1,
+      "mode": "in-class",
+      "visual_scope": "Native teaching diagram or actual fitted-function evidence",
+      "in_class_required": true,
+      "session_timing": {
+        "minutes": 1,
+        "start": "16:59",
+        "end": "17:00",
+        "phase": "Bridge / summary"
+      },
+      "full_reference_retained": true
     }
-  ]
+  ],
+  "session_plan": {
+    "date": "2026-11-09",
+    "timezone": "Asia/Taipei",
+    "mock_minutes": 90,
+    "lecture_lab_block_minutes": 90,
+    "lecture_minutes": 20,
+    "practice_minutes": 60,
+    "break_minutes": 10,
+    "bridge_minutes": 20,
+    "blocks": [
+      {
+        "start": "14:00",
+        "end": "15:15",
+        "minutes": 75,
+        "activity": "Mock written practice"
+      },
+      {
+        "start": "15:15",
+        "end": "15:30",
+        "minutes": 15,
+        "activity": "Mock review and two-minute oral examples"
+      },
+      {
+        "start": "15:30",
+        "end": "15:40",
+        "minutes": 10,
+        "activity": "Break"
+      },
+      {
+        "start": "15:40",
+        "end": "16:00",
+        "minutes": 20,
+        "activity": "Lecture: identity, frozen choices and replay evidence"
+      },
+      {
+        "start": "16:00",
+        "end": "16:40",
+        "minutes": 40,
+        "activity": "Core Lab: Tasks 4, 5 and 8 with supplied prerequisites"
+      },
+      {
+        "start": "16:40",
+        "end": "17:00",
+        "minutes": 20,
+        "activity": "HW9 \u2192 HW10 bridge and summary"
+      }
+    ],
+    "preserved_exercises": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "required_setup_tasks": [
+      1,
+      2,
+      3
+    ],
+    "in_class_required_tasks": [
+      4,
+      5,
+      8
+    ],
+    "extension_analysis_tasks": [
+      6,
+      7
+    ],
+    "execution_order": "Run all supplied code in order; Tasks6\u20137 scaffold runs for consistent artifacts, while their independent analyses are extensions.",
+    "mock_written_minutes": 75,
+    "mock_review_minutes": 15,
+    "url": "/notes/week-10-session-plan.html"
+  },
+  "module": 3,
+  "scheduled_minutes": 23
 }

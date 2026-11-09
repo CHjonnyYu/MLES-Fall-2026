@@ -1,12 +1,14 @@
 {
   "week": 10,
   "date": "2026-11-09",
-  "revision": "2026-11-09",
+  "revision": "2026-11-09-90-90",
   "slides": {
     "count": 90,
     "modules": 3,
-    "source_structure_and_branding": "passed",
-    "rendered_browser_and_interaction_review": "Delegated to TA by instructor; not performed in this revision"
+    "scheduled_active_minutes": 80,
+    "reference_pages_scheduled_minutes": 0,
+    "source_structure_branding_and_schedule": "passed",
+    "browser_interaction": "Delegated to TA; pending"
   },
   "core_exercises": 8,
   "bridge_minutes": 20,
@@ -109,5 +111,102 @@
   "execution_scope": "Fresh local CPU Jupyter kernels and receiver subprocesses. No Colab cloud execution claimed.",
   "colab_cloud_validation": "Delegated to TA by instructor; pending",
   "website_interactive_validation": "Delegated to TA by instructor; pending",
-  "assessment": "HW10 remains a separate designated Homework. Midterm is written and oral only; no midterm project."
+  "assessment": "HW10 remains a separate designated Homework. Midterm is written and oral only; no midterm project.",
+  "session_plan": {
+    "date": "2026-11-09",
+    "timezone": "Asia/Taipei",
+    "mock_minutes": 90,
+    "lecture_lab_block_minutes": 90,
+    "lecture_minutes": 20,
+    "practice_minutes": 60,
+    "break_minutes": 10,
+    "bridge_minutes": 20,
+    "blocks": [
+      {
+        "start": "14:00",
+        "end": "15:15",
+        "minutes": 75,
+        "activity": "Mock written practice"
+      },
+      {
+        "start": "15:15",
+        "end": "15:30",
+        "minutes": 15,
+        "activity": "Mock review and two-minute oral examples"
+      },
+      {
+        "start": "15:30",
+        "end": "15:40",
+        "minutes": 10,
+        "activity": "Break"
+      },
+      {
+        "start": "15:40",
+        "end": "16:00",
+        "minutes": 20,
+        "activity": "Lecture: identity, frozen choices and replay evidence"
+      },
+      {
+        "start": "16:00",
+        "end": "16:40",
+        "minutes": 40,
+        "activity": "Core Lab: Tasks 4, 5 and 8 with supplied prerequisites"
+      },
+      {
+        "start": "16:40",
+        "end": "17:00",
+        "minutes": 20,
+        "activity": "HW9 \u2192 HW10 bridge and summary"
+      }
+    ],
+    "preserved_exercises": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "required_setup_tasks": [
+      1,
+      2,
+      3
+    ],
+    "in_class_required_tasks": [
+      4,
+      5,
+      8
+    ],
+    "extension_analysis_tasks": [
+      6,
+      7
+    ],
+    "execution_order": "Run all supplied code in order; Tasks6\u20137 scaffold runs for consistent artifacts, while their independent analyses are extensions.",
+    "mock_written_minutes": 75,
+    "mock_review_minutes": 15,
+    "url": "/notes/week-10-session-plan.html"
+  },
+  "current_notebook_source_validation": [
+    {
+      "source": "notebooks/week-10-practice.ipynb",
+      "sha256": "a88a2de477b2f24d863d368e6e7c42de662174c3cba2cfe7011b75e04ac1a85c",
+      "code_cells": 35,
+      "calculation_sources": "byte-identical to previously fully locally executed notebook",
+      "prior_execution_source_sha256": "59b927e0d174b3b6923e5d1ff10fae65776eba8991d4eceadc23f6e6330613f5",
+      "prior_local_execution": "course-site/reviews/week10-handover-2026-11-09/local-execution.json",
+      "scope": "Only Markdown and scheduling metadata changed; no new model/cloud execution claimed."
+    },
+    {
+      "source": "notebooks/exercises/week-10-exercise.ipynb",
+      "sha256": "08a7ea849080f676da4bda3663fc1d05b778d8b7e094b9f88c07a7615cec1e80",
+      "code_cells": 35,
+      "calculation_sources": "byte-identical to previously fully locally executed notebook",
+      "prior_execution_source_sha256": "6d553a6862488968bf9ed224ec92c603d3153683445783bb74f215a68e90f376",
+      "prior_local_execution": "course-site/reviews/week10-handover-2026-11-09/local-execution.json",
+      "scope": "Only Markdown and scheduling metadata changed; no new model/cloud execution claimed."
+    }
+  ],
+  "current_revision_scope": "Timing, exercise priorities and reference slide labels; all70 notebook code cells unchanged from the fully locally executed prior version."
 }
