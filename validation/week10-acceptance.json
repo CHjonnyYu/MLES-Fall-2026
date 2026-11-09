@@ -14,7 +14,7 @@
     {
       "kind": "worked",
       "source": "notebooks/week-10-practice.ipynb",
-      "sha256": "a3c1b434969c08037f9fe8a4bd74f968247785b0ecad7e541ac447ee3c230924",
+      "sha256": "59b927e0d174b3b6923e5d1ff10fae65776eba8991d4eceadc23f6e6330613f5",
       "status": "passed",
       "code_cells": 35,
       "classroom_test_rows": 89,
@@ -36,7 +36,7 @@
     {
       "kind": "student-blank",
       "source": "notebooks/exercises/week-10-exercise.ipynb",
-      "sha256": "8b0474f721d8af0fb1b103fe5dc32c9ad75180456d24bba6111215008be17a0e",
+      "sha256": "6d553a6862488968bf9ed224ec92c603d3153683445783bb74f215a68e90f376",
       "status": "passed",
       "code_cells": 35,
       "classroom_test_rows": 89,
@@ -58,7 +58,7 @@
     {
       "kind": "student-modified",
       "source": "notebooks/exercises/week-10-exercise.ipynb",
-      "sha256": "8b0474f721d8af0fb1b103fe5dc32c9ad75180456d24bba6111215008be17a0e",
+      "sha256": "6d553a6862488968bf9ed224ec92c603d3153683445783bb74f215a68e90f376",
       "status": "passed",
       "code_cells": 35,
       "classroom_test_rows": 89,
