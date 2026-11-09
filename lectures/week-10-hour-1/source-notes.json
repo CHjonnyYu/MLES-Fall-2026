@@ -14,17 +14,17 @@
       "mode": "explanation"
     },
     {
-      "title": "One notebook, eight tasks, three hours",
+      "title": "Eight tasks, then transfer the workflow",
       "body": [
-        "H1: preserve identity and training scope.",
-        "H2: fit, reject malformed copies, replay; H3: reorder, explain, hand over."
+        "H1: identity and fitting scope; H2: build and replay.",
+        "H3: finish Tasks 6\u20138, then the 20-minute HW9 \u2192 HW10 bridge."
       ],
       "kind": "image",
-      "payload": "diagram-h1-s02.svg",
-      "teach": "Explain the 7/8,15/12/18 and15/12/13-minute task groups. Save20minutes in H3 for peer discussion, optional branches and export. Choose one complete exercise or worked notebook, not both.",
+      "payload": "bridge-h1-s02.svg",
+      "teach": "Keep all eight tasks and the three one-hour modules. Tasks1\u20132 use15 practice minutes, Tasks3\u20135 use45, Tasks6\u20138 including reflection/export and final summary use40. The remaining20 studio minutes transfer the procedure to the actual thermal HW9/HW10 interface. Optional challenges stay optional extensions.",
       "minutes": 2,
       "mode": "explanation",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
       "title": "The same MAE can hide different predictions",
@@ -40,14 +40,14 @@
       "visual_scope": "Analytic teaching illustration"
     },
     {
-      "title": "From same-kernel readback to a new process",
+      "title": "From a frozen experiment to a receiver",
       "body": [
-        "Week 9 reconstructed rows inside the current kernel.",
-        "Week 10 gives a fresh interpreter all required files."
+        "Week 9: diagnose failure and freeze a controlled comparison.",
+        "Week 10: give another process the files needed to replay it."
       ],
       "kind": "image",
       "payload": "diagram-h1-s04.svg",
-      "teach": "The new process is independent of notebook global variables; installed dependencies are still shared. Reliability and computational replay ask different questions.",
+      "teach": "Retrieve the Week9 model-form and shift experiments and independently defended code change. HW9 applies this discipline to temperature rise. Today computational replay preserves that experiment; it does not replace diagnosis or establish new scientific validity.",
       "minutes": 2,
       "mode": "explanation",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"
@@ -400,7 +400,7 @@
     {
       "title": "Task 2: freeze raw data before fitting",
       "body": [
-        "442 raw rows → 265 train / 88 validation / 89 test.",
+        "442 raw rows \u2192 265 train / 88 validation / 89 test.",
         "Fit the diagnostic scaler only on training rows."
       ],
       "kind": "image",

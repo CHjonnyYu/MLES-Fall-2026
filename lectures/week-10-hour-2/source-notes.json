@@ -26,7 +26,7 @@
       ],
       "kind": "image",
       "payload": "diagram-h2-s02.svg",
-      "teach": "Explain why the loader’s globally scaled defaults would obscure the intended training-only fit boundary. Do not assign clinical interpretations to these input coordinates.",
+      "teach": "Explain why the loader\u2019s globally scaled defaults would obscure the intended training-only fit boundary. Do not assign clinical interpretations to these input coordinates.",
       "minutes": 2,
       "mode": "explanation",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"
@@ -60,7 +60,7 @@
     {
       "title": "A new interpreter removes notebook state",
       "body": [
-        "It cannot access a notebook’s fitted model or arrays.",
+        "It cannot access a notebook\u2019s fitted model or arrays.",
         "It still shares the installed environment."
       ],
       "kind": "image",
@@ -98,12 +98,12 @@
     {
       "title": "Task 3: open one complete notebook",
       "body": [
-        "Keep the same notebook for Tasks 1–8.",
+        "Keep the same notebook for Tasks 1\u20138.",
         "If the runtime resets, run again from Setup."
       ],
       "kind": "image",
       "payload": "diagram-h2-s08.svg",
-      "teach": "Choose the complete Exercise or the worked alternative. H1Tasks1–2 are already in the same file; do not repeat another walkthrough.",
+      "teach": "Choose the complete Exercise or the worked alternative. H1Tasks1\u20132 are already in the same file; do not repeat another walkthrough.",
       "minutes": 2,
       "mode": "practice",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"
@@ -173,7 +173,7 @@
     {
       "title": "Review the program another process will run",
       "body": [
-        "Verify → read schema → restore IDs → fit → compare reference.",
+        "Verify \u2192 read schema \u2192 restore IDs \u2192 fit \u2192 compare reference.",
         "The source is visible and reviewable in the notebook."
       ],
       "kind": "image",
@@ -318,7 +318,7 @@
       ],
       "kind": "image",
       "payload": "diagram-h2-s25.svg",
-      "teach": "The child process ID differs from the notebook’s ID. It uses the same installed Python environment; do not call it an independent environment.",
+      "teach": "The child process ID differs from the notebook\u2019s ID. It uses the same installed Python environment; do not call it an independent environment.",
       "minutes": 2,
       "mode": "practice",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"
@@ -349,14 +349,14 @@
       "mode": "practice"
     },
     {
-      "title": "Try the receiver path after ZIP extraction",
+      "title": "Extract the classroom ZIP and check it",
       "body": [
-        "Review replay.py, then execute it using the extracted folder.",
-        "Check its JSON comparison result without notebook memory."
+        "This bundle replays the 89-row classroom example.",
+        "HW10 will need the separate completed HW9 thermal package."
       ],
       "kind": "image",
       "payload": "diagram-h2-s28.svg",
-      "teach": "Instructor QA extracts the actual ZIP and runs the child in a fresh directory. Students should identify the same six payloads and the standalone reference comparison.",
+      "teach": "Review replay.py and run it from the extracted handover directory. Then name the interface: this diabetes bundle nests handover and uses a sha256 map. The flat thermal HW9 package has a files map and two120-row prediction columns. The H3bridge demonstrates the difference.",
       "minutes": 2,
       "mode": "practice",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"

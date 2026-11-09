@@ -19,17 +19,17 @@
       "mode": "practice"
     },
     {
-      "title": "Reserve time for the actual handover",
+      "title": "Keep eight tasks; reserve the bridge",
       "body": [
-        "Task 6: 15 min; Task 7: 12; Task 8: 13.",
-        "Keep 20 min for peer explanation, export and optional work."
+        "Tasks 6\u20138 and final wrap-up retain 40 minutes.",
+        "Use 20 minutes to inspect, replay, reject and export HW9 \u2192 HW10."
       ],
       "kind": "image",
-      "payload": "diagram-h3-s02.svg",
-      "teach": "These are H3 practice allocations. Total class practice is120minutes, not120 plus a second walkthrough.",
+      "payload": "bridge-h3-s02.svg",
+      "teach": "The eight core tasks are retained. Task8 includes the original nineteen-field reflection and classroom ZIP. Slides19\u201328support the four5-minute bridge phases. The final four minutes retrieve the summary and exit judgment. OptionalA/B remain available after required work.",
       "minutes": 2,
       "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
       "title": "Restore configuration, not a remembered score",
@@ -118,7 +118,7 @@
           "Evaluation, not reselection"
         ]
       ],
-      "teach": "The validation winner remains fixed through Tasks4–8. The new Task6 changes only CSV row order in an explicitly reviewed copy, not the selected alpha.",
+      "teach": "The validation winner remains fixed through Tasks4\u20138. The new Task6 changes only CSV row order in an explicitly reviewed copy, not the selected alpha.",
       "minutes": 2,
       "mode": "practice"
     },
@@ -172,7 +172,7 @@
       "title": "Task 6: reorder data rows in a reviewed copy",
       "body": [
         "Reverse CSV data rows; preserve saved ID lists.",
-        "Check every ID-keyed record before updating the copy’s digest."
+        "Check every ID-keyed record before updating the copy\u2019s digest."
       ],
       "kind": "image",
       "payload": "diagram-h3-s09.svg",
@@ -327,7 +327,7 @@
     {
       "title": "Prediction error and replay difference answer different questions",
       "body": [
-        "A good replay retains the original model’s failures.",
+        "A good replay retains the original model\u2019s failures.",
         "Show both numbers and name what each compares."
       ],
       "kind": "image",
@@ -338,253 +338,157 @@
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Use AI for hypotheses, not fabricated runs",
+      "title": "Transfer the method to your HW9",
       "body": [
-        "Ask for an explanation or a debugging hypothesis.",
-        "Verify against files and executed outputs."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Possible AI help",
-          "Required check"
-        ],
-        [
-          "Explain a mismatch",
-          "IDs, versions, feature order"
-        ],
-        [
-          "Suggest a model change",
-          "Declare scope + protocol"
-        ],
-        [
-          "Draft a result card",
-          "Actual measured values"
-        ]
-      ],
-      "teach": "No AI account is required. If used, disclose material assistance and checks. A language model cannot establish that a cell executed or invent a valid test metric. Keep decisions and evidence under student control.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Optional A: alter a copied file",
-      "body": [
-        "Append a blank line to a copied CSV.",
-        "The manifest should reject it before training."
-      ],
-      "kind": "lineage",
-      "payload": [
-        "Copy the handover",
-        "Change CSV bytes",
-        "Check existing manifest",
-        "Reject mismatch"
-      ],
-      "teach": "The original reference remains untouched. A blank line can preserve parsed values while changing exact byte identity. The runner verifies checksums before loading/training, so the copied payload should fail as expected.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Optional A: interpret the rejection honestly",
-      "body": [
-        "Integrity checking worked for this alteration.",
-        "It did not authenticate an unknown sender."
-      ],
-      "kind": "table",
-      "payload": [
-        [
-          "Observation",
-          "Conclusion"
-        ],
-        [
-          "Original digest unchanged",
-          "Reference preserved"
-        ],
-        [
-          "Copied digest differs",
-          "Alteration detected"
-        ],
-        [
-          "Error before training",
-          "Fail-fast check worked"
-        ]
-      ],
-      "teach": "The optional code catches ValueError and asserts the message identifies a checksum mismatch. It does not assert that every malicious alteration or scientific error can be detected by this manifest.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Optional B: make an explicit name adapter",
-      "body": [
-        "A positional model expects canonical feature order.",
-        "Restore names before passing values."
-      ],
-      "kind": "schema",
-      "payload": [
-        [
-          "Step",
-          "Rule"
-        ],
-        [
-          "Reordered columns",
-          "Strict interface rejects"
-        ],
-        [
-          "Declared adapter",
-          "Map values by names"
-        ],
-        [
-          "Canonical matrix",
-          "Then compare numeric values"
-        ]
-      ],
-      "teach": "An adapter must be explicit and tested, not a silent guess. The optional code reverses feature columns in memory, maps each value back by feature name, and asserts exact recovery of the original matrix.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Do not confuse adaptation with acceptance",
-      "body": [
-        "A strict interface can reject bad order.",
-        "A reviewed adapter can produce valid order."
-      ],
-      "kind": "lineage",
-      "payload": [
-        "Wrong header",
-        "Explicit adapter",
-        "Canonical header",
-        "Normal validation"
-      ],
-      "teach": "Both behaviors can be correct if their boundaries are declared. Do not weaken the original contract merely to avoid errors. An adapter also needs missing/duplicate-name handling in a real system; this controlled example uses a known unique list.",
-      "minutes": 2,
-      "mode": "practice"
-    },
-    {
-      "title": "Nineteen fields preserve your reasoning",
-      "body": [
-        "Eight predictions + eight explanations + three reflections.",
-        "Blank fields produce a draft; text completeness is not correctness."
+        "Keep all eight classroom tasks.",
+        "Now use the thermal package and its actual receiver."
       ],
       "kind": "image",
-      "payload": "diagram-h3-s24.svg",
-      "teach": "All response cells are pre-created. There is no need to insert cells or rerun response initialization after writing.",
+      "payload": "bridge-h3-s19.svg",
+      "teach": "Use 20 minutes across slides 19\u201328: inspect/create 5, receive/compare 5, reject 5, export/transition 5. Tasks 6\u20138 plus the final summary retain their 40 minutes. Students keep the same notebook. Explain the use of two data contexts rather than silently substituting the diabetes ZIP for an HW9 package.",
       "minutes": 2,
       "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
-      "title": "Export the handover after updating responses",
+      "title": "Choose the correct ZIP interface",
       "body": [
-        "Download one ZIP and save the edited notebook separately.",
-        "The inner reference bundle remains frozen."
+        "HW10 receives completed student HW9 evidence.",
+        "The classroom handover ZIP has another schema."
       ],
       "kind": "image",
-      "payload": "diagram-h3-s25.svg",
-      "teach": "The ZIP includes the seven-file handover directory, actual plots and the current response/evidence record. Re-export after response edits; do not overwrite a reference file to make a check pass.",
+      "payload": "bridge-h3-s20.svg",
+      "teach": "Open both manifests. The diabetes ZIP nests files under handover and its manifest uses sha256; the thermal exporter uses a flat files map. The real HW10 starter now gives a clear refusal for the wrong archive, a draft, or the marked classroom example.",
       "minutes": 2,
       "mode": "practice",
-      "visual_scope": "Native teaching diagram or actual fitted-function evidence"
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
-      "title": "Peer handover: locate evidence without help",
+      "title": "Freeze the sender before test inspection",
       "body": [
-        "Partner identifies the selected candidate and failure.",
-        "Then follows the readable replay instructions."
+        "The supplied demo changes only Ridge alpha: 1 \u2192 20.",
+        "Validation selects; then freeze and display test outcomes."
       ],
-      "kind": "table",
-      "payload": [
-        [
-          "Peer question",
-          "File to inspect"
-        ],
-        [
-          "Which rows?",
-          "split.json"
-        ],
-        [
-          "Which candidate?",
-          "config.json"
-        ],
-        [
-          "Which failure?",
-          "week10-evidence.json"
-        ],
-        [
-          "How to rerun?",
-          "replay.py + dependencies"
-        ]
-      ],
-      "teach": "Pairs can download the ZIP, inspect its contents and review the source. In a compatible environment, replay can be run after extraction. Do not ask students to execute untrusted arbitrary source merely because another student sent it.",
+      "kind": "image",
+      "payload": "bridge-h3-s21.svg",
+      "teach": "Run the bridge setup and sender. This is a supplied teaching comparison, not the private HW9 reference solution. Read the recorded selected_on_validation before showing test metrics. A stronger penalty need not improve held-out error. The actual exporter produces two target-error figures and a reviewable package.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
-      "title": "Troubleshoot by dependency, not by score",
+      "title": "Inspect the sender status and source",
       "body": [
-        "Check files, IDs, feature order and versions.",
-        "Do not adjust tolerances until the cause is understood."
+        "A ready package retains the whole frozen experiment.",
+        "The example is explicitly marked as classroom material."
       ],
-      "kind": "lineage",
-      "payload": [
-        "File integrity",
-        "Schema + ID alignment",
-        "Config + environment",
-        "Numerical comparison"
-      ],
-      "teach": "This is a diagnostic ordering, not a universal guarantee of cause. Missing dependencies, a wrong path or a stale export should be investigated before model changes. Keep the original failing evidence rather than overwriting it.",
+      "kind": "image",
+      "payload": "bridge-h3-s22.svg",
+      "teach": "Display replay.py in the notebook and inspect its imports and replay_directory call. The demo package has the actual HW9 format with a truthful classroom_demo marker. The real HW10 upload branch refuses it; the guided receiver can illustrate the common replay functions. Do not claim a manifest authenticates authorship.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
-      "title": "Prepare for the written and oral exam",
+      "title": "Replay in a new receiver process",
       "body": [
-        "Explain your choices and one invalidating change.",
-        "The lab does not replace either examination."
+        "The receiver reads saved files and refits the frozen models.",
+        "A fresh process still shares installed dependencies."
       ],
-      "kind": "schema",
-      "payload": [
-        [
-          "Written explanation",
-          "Oral evidence"
-        ],
-        [
-          "Why this split?",
-          "Locate saved IDs"
-        ],
-        [
-          "Why this candidate?",
-          "Read validation rule"
-        ],
-        [
-          "What breaks the claim?",
-          "Name a new population"
-        ]
-      ],
-      "teach": "Week11 remains the written and oral midterm. Use a two-minute explain-back with one actual result and limitation. No new exam policy, project grading or weekly assignment is introduced by this studio.",
+      "kind": "image",
+      "payload": "bridge-h3-s23.svg",
+      "teach": "Run fresh_process_replay and inspect return code, sender/receiver versions, selected model, rows_compared and both maximum differences. Do not replace the process call with an in-kernel function and call it independent. This classroom demonstration is self-replay, not another student or an independently built environment.",
       "minutes": 2,
-      "mode": "practice"
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
     },
     {
-      "title": "Summary: preserve, validate, replay, explain",
+      "title": "Compare predictions by observation ID",
+      "body": [
+        "Match every run_id before comparing values.",
+        "Equal rounded MAE can hide different failed rows."
+      ],
+      "kind": "image",
+      "payload": "bridge-h3-s24.svg",
+      "teach": "Read the actual receipt and the measured difference plot. The HW9 receiver aligns by run_id rather than position. The plotted values come from computed prediction vectors; they are not generated artwork. Ask what a swapped pair of IDs would invalidate. The actual receiver result is the authoritative new-process comparison.",
+      "minutes": 2,
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+    },
+    {
+      "title": "Keep target error and replay difference apart",
+      "body": [
+        "Target error measures prediction against observations.",
+        "Replay difference measures agreement between computations."
+      ],
+      "kind": "image",
+      "payload": "bridge-h3-s25.svg",
+      "teach": "Show the sender residual/MAE charts beside the zero-centered replay plot in the notebook. Both are measured on the synthetic fixture. A zero replay difference says nothing about whether the alpha edit improved validation or test prediction, or whether the model is valid on real equipment.",
+      "minutes": 2,
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+    },
+    {
+      "title": "Make one invalid unit fail explicitly",
+      "body": [
+        "Edit the copied airflow unit to another wrong label.",
+        "Require unit-contract rejection before any model fit."
+      ],
+      "kind": "image",
+      "payload": "bridge-h3-s26.svg",
+      "teach": "Ask students to predict first, then modify BRIDGE_INVALID_UNIT and rerun. The helper compares declared unit dictionaries before reading or fitting. Check the exact ValueError mechanism and unchanged original contract/CSV bytes. The public exercise remains runnable with the supplied km/h example; students must still make and explain their own code edit.",
+      "minutes": 2,
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+    },
+    {
+      "title": "A finished run can still be a draft",
+      "body": [
+        "No uploaded package means no completed replay.",
+        "Read the exported status and evidence, not just green cells."
+      ],
+      "kind": "image",
+      "payload": "bridge-h3-s27.svg",
+      "teach": "Run the intentionally missing-package branch. It exports a draft without an uncaught exception. Contrast this with a genuine replay receipt and with a genuine independent human receiver. The no-peer fallback is self-replay with instructor/TA verification pending; retain actual failed attempts and repairs.",
+      "minutes": 2,
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+    },
+    {
+      "title": "Export the demo; submit your own HW10",
+      "body": [
+        "The demo archive is classroom evidence only.",
+        "Use completed student HW9 in the separate HW10 starter."
+      ],
+      "kind": "image",
+      "payload": "bridge-h3-s28.svg",
+      "teach": "Update four bridge reflections and export the demonstration archive. Explain its nested demo HW9/HW10 evidence, chart and scope marker. Open the actual HW10 link from the toolbar. Students upload their own completed HW9 or a real peer package, implement a negative test and retain receipts and feedback. Confirm due time Asia/Taipei and preserve the published rubric and self-replay fallback.",
+      "minutes": 2,
+      "mode": "practice",
+      "visual_scope": "Declared workflow diagram; fixed synthetic teaching case. No experimental numbers are fabricated."
+    },
+    {
+      "title": "Summary: preserve, replay and explain",
       "body": [
         "Stable IDs and frozen choices make comparisons meaningful.",
-        "A standalone reference check makes the handover inspectable."
+        "Use the correct package; test refusal and label verification honestly."
       ],
       "kind": "image",
       "payload": "diagram-h3-s29.svg",
-      "teach": "Use one concrete example for identity, contract rejection, fresh-process comparison and the limits of the result.",
+      "teach": "Ask for one example each of stable identity, training-only fit, a frozen decision, full-vector replay and specific input rejection. Distinguish computational agreement from model quality and independent peer verification.",
       "minutes": 2,
       "mode": "practice",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"
     },
     {
-      "title": "Exit: explain your result without hidden notebook state",
+      "title": "Exit: defend the evidence you hand over",
       "body": [
-        "Locate the winner, one failure ID and the replay comparison.",
-        "State one limitation and the next needed evaluation."
+        "Why can green cells still produce a draft?",
+        "Which package, prediction vector and limitation support your claim?"
       ],
       "kind": "image",
       "payload": "diagram-h3-s30.svg",
-      "teach": "Prepare for the written and oral midterm on16November. This is formative practice and does not replace either assessment.",
+      "teach": "Have students explain why no-package execution is a draft, why the class ZIP is not an HW9package and why self-replay is not a peer. The real HW10 is due13November23:59Taiwan; the16November midterm remains written and oral only.",
       "minutes": 2,
       "mode": "practice",
       "visual_scope": "Native teaching diagram or actual fitted-function evidence"

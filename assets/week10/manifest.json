@@ -778,167 +778,63 @@
         },
         {
           "slide": 19,
-          "title": "Use AI for hypotheses, not fabricated runs",
-          "kind": "table",
-          "payload": [
-            [
-              "Possible AI help",
-              "Required check"
-            ],
-            [
-              "Explain a mismatch",
-              "IDs, versions, feature order"
-            ],
-            [
-              "Suggest a model change",
-              "Declare scope + protocol"
-            ],
-            [
-              "Draft a result card",
-              "Actual measured values"
-            ]
-          ]
+          "title": "Transfer the method to your HW9",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s19.svg"
         },
         {
           "slide": 20,
-          "title": "Optional A: alter a copied file",
-          "kind": "lineage",
-          "payload": [
-            "Copy the handover",
-            "Change CSV bytes",
-            "Check existing manifest",
-            "Reject mismatch"
-          ]
+          "title": "Choose the correct ZIP interface",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s20.svg"
         },
         {
           "slide": 21,
-          "title": "Optional A: interpret the rejection honestly",
-          "kind": "table",
-          "payload": [
-            [
-              "Observation",
-              "Conclusion"
-            ],
-            [
-              "Original digest unchanged",
-              "Reference preserved"
-            ],
-            [
-              "Copied digest differs",
-              "Alteration detected"
-            ],
-            [
-              "Error before training",
-              "Fail-fast check worked"
-            ]
-          ]
+          "title": "Freeze the sender before test inspection",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s21.svg"
         },
         {
           "slide": 22,
-          "title": "Optional B: make an explicit name adapter",
-          "kind": "schema",
-          "payload": [
-            [
-              "Step",
-              "Rule"
-            ],
-            [
-              "Reordered columns",
-              "Strict interface rejects"
-            ],
-            [
-              "Declared adapter",
-              "Map values by names"
-            ],
-            [
-              "Canonical matrix",
-              "Then compare numeric values"
-            ]
-          ]
+          "title": "Inspect the sender status and source",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s22.svg"
         },
         {
           "slide": 23,
-          "title": "Do not confuse adaptation with acceptance",
-          "kind": "lineage",
-          "payload": [
-            "Wrong header",
-            "Explicit adapter",
-            "Canonical header",
-            "Normal validation"
-          ]
+          "title": "Replay in a new receiver process",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s23.svg"
         },
         {
           "slide": 24,
-          "title": "Nineteen fields preserve your reasoning",
-          "kind": "image",
-          "payload": "diagram-h3-s24.svg"
+          "title": "Compare predictions by observation ID",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s24.svg"
         },
         {
           "slide": 25,
-          "title": "Export the handover after updating responses",
-          "kind": "image",
-          "payload": "diagram-h3-s25.svg"
+          "title": "Keep target error and replay difference apart",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s25.svg"
         },
         {
           "slide": 26,
-          "title": "Peer handover: locate evidence without help",
-          "kind": "table",
-          "payload": [
-            [
-              "Peer question",
-              "File to inspect"
-            ],
-            [
-              "Which rows?",
-              "split.json"
-            ],
-            [
-              "Which candidate?",
-              "config.json"
-            ],
-            [
-              "Which failure?",
-              "week10-evidence.json"
-            ],
-            [
-              "How to rerun?",
-              "replay.py + dependencies"
-            ]
-          ]
+          "title": "Make one invalid unit fail explicitly",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s26.svg"
         },
         {
           "slide": 27,
-          "title": "Troubleshoot by dependency, not by score",
-          "kind": "lineage",
-          "payload": [
-            "File integrity",
-            "Schema + ID alignment",
-            "Config + environment",
-            "Numerical comparison"
-          ]
+          "title": "A finished run can still be a draft",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s27.svg"
         },
         {
           "slide": 28,
-          "title": "Prepare for the written and oral exam",
-          "kind": "schema",
-          "payload": [
-            [
-              "Written explanation",
-              "Oral evidence"
-            ],
-            [
-              "Why this split?",
-              "Locate saved IDs"
-            ],
-            [
-              "Why this candidate?",
-              "Read validation rule"
-            ],
-            [
-              "What breaks the claim?",
-              "Name a new population"
-            ]
-          ]
+          "title": "Export the demo; submit your own HW10",
+          "kind": "workflow SVG",
+          "payload": "bridge-h3-s28.svg"
         },
         {
           "slide": 29,
@@ -952,9 +848,25 @@
           "kind": "image",
           "payload": "diagram-h3-s30.svg"
         }
+      ],
+      "bridge_slides": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
       ]
     }
   ],
   "data_sha256": "a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4",
-  "execution_scope": "Fresh CPU kernels; not the Colab browser"
+  "execution_scope": "Fresh CPU kernels; not the Colab browser",
+  "revision": "2026-11-09",
+  "core_exercises": 8,
+  "bridge_minutes": 20,
+  "bridge_url": "/notes/week-10-hw9-hw10-bridge.html"
 }

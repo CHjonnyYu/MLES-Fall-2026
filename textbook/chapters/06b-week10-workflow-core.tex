@@ -1,6 +1,6 @@
 
 \section{Week 10: Reproducible ML Workflow Studio}
-\textbf{Monday, 9 November 2026, 14:00--17:00.} The class contains 60 minutes of explanation and 120 minutes of practice. H1 uses 45/15 minutes, H2 uses 15/45, and H3 is a 60-minute studio. Eight core exercises and two optional challenges are formative in-class practice, not new weekly graded homework. The next scheduled meeting is the written and oral midterm examination; this studio does not replace either examination.
+\textbf{Monday, 9 November 2026, 14:00--17:00.} The class contains 60 minutes of explanation and 120 minutes of practice. H1 uses 45/15 minutes, H2 uses 15/45, and H3 is a 60-minute studio. The eight core exercises and the HW9-to-HW10 bridge are formative in-class practice. The designated HW10 is a separate graded Homework; it is not a midterm project. The two optional challenges are extensions outside the required class route. The next scheduled meeting is the written and oral midterm examination; this studio does not replace either examination.
 
 The goal is a portable handover: another interpreter receives frozen files, checks their contract, reconstructs a declared model, and compares predictions by stable row identity. A matching screenshot, aggregate score or second notebook variable is not sufficient. Week 9 studied where a model fails; Week 10 asks whether the evidence supporting that analysis can travel.
 
@@ -117,7 +117,7 @@ python handover/replay.py --root handover --out replay-result.json
 The JSON explicitly reports whether the saved reference comparison passed. No notebook variables are required. A missing required file, wrong reference ID order or incorrect numeric reference causes failure instead of a misleading success record. Instructor QA exercises these negative receiver cases as well as normal extraction.
 
 \subsection{Practice timing and stopping conditions}
-H1 uses Tasks1--2 (7 and8minutes); H2 uses Tasks3--5 (15,12 and18); H3 uses Tasks6--8 (15,12 and13), leaving20minutes for peer explanation, optional challenges and export. Read the Markdown purpose, instructions and stopping check before each cell. Save a prediction before executing; explain an actual output afterward. Missing variables after a runtime reset mean running from Setup again, not inserting a copied reference score.
+H1 uses Tasks1--2 (7 and8minutes); H2 uses Tasks3--5 (15,12 and18); H3 uses Tasks6--8 (15,12 and13), with reflection/export and final summary included in those40minutes, plus20minutes for the HW9-to-HW10 bridge. Read the Markdown purpose, instructions and stopping check before each cell. Save a prediction before executing; explain an actual output afterward. Missing variables after a runtime reset mean running from Setup again, not inserting a copied reference score.
 
 \section{Eight core exercises and two optional challenges}
 Each task requires a prediction before running, an actual observation, an explanation and a stopping check. Alternate driver and reviewer in pairs. Use H1 for Tasks 1--2, guided H2 for Tasks 3--5, and H3 for remaining work, review and export. These tasks share the 120 minutes of practice; they are not extra hours after the walkthrough.
@@ -141,7 +141,50 @@ Download the single handover ZIP and save your edited notebook separately before
 \section{Instructor execution and limits}
 On 27 October 2026 both notebooks were fully executed in fresh local CPU Jupyter kernels. Each invoked independent replay interpreters. All eight core tasks, both optional challenges, draft/completed export branches, all plot exports, numerical checks and ZIP integrity were checked. These are fresh local CPU kernels and separate interpreter checks; the Colab browser itself was not the execution environment. Actual versions are recorded in the evidence JSON; a local software check does not establish clinical, causal or external deployment validity.
 
-\textbf{Reference CSV SHA-256:}\par\noindent{\small\texttt{a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4}}\par
+\noindent\begin{minipage}{\linewidth}\textbf{Reference CSV SHA-256:}\par\noindent{\small\texttt{a589d3035403d59869ec18c1007e379a396c9cc53b562cb979be676f2b85c4d4}}\par\end{minipage}
+
+\section{From HW9 evidence to the HW10 receiver}
+Keep all eight classroom tasks. The final 20 studio minutes transfer their method to the actual synthetic equipment Homework interface. The statistical fixture and equipment case deliberately differ: the capability is preserving and inspecting an experiment across cases, rather than memorizing one file layout.
+
+\begin{center}\small
+\begin{tabular}{p{.26\linewidth}p{.31\linewidth}p{.31\linewidth}}\toprule
+Interface & Tasks 1--8 & HW9 to HW10\\\midrule
+Frozen observations & 442 regression-fixture rows & 600 independent synthetic equipment runs\\
+Train / validation / test & 265 / 88 / 89 & 360 / 120 / 120\\
+Predictions compared & Selected model, 89 IDs & Baseline and candidate, 120 IDs each\\
+Manifest & Nested handover, sha256 map & Flat HW9 archive, files map\\
+\bottomrule\end{tabular}\end{center}
+
+\textbf{The ZIPs are not interchangeable.} The classroom archive preserves a \texttt{handover/} directory. A completed student HW9 archive has a root \texttt{manifest.json} with assignment HW9, status ready for review and a \texttt{files} map. It also includes the exact thermal CSV, units contract, frozen experiment, candidate source, reference predictions, runtime versions and replay source. The HW10 starter explains the wrong-interface and draft cases before execution. It also refuses the labeled classroom demonstration as a graded student submission.
+
+\subsection{Inspect and create: five minutes}
+Run the bridge cells already included in either complete classroom notebook. The exact synthetic CSV and reviewed support code are embedded. The supplied teaching comparison retains raw-input Ridge as baseline and changes only its alpha from 1 to 20. The three raw features, fixed split, training-only scaler and SVD solver remain unchanged. Save the validation decision before displaying the predeclared test diagnosis. A larger alpha need not improve held-out error. This guided example is not a private reference solution or a student's independently completed HW9.
+
+Inspect the exported README, recorded dependencies, replay source and manifest. The teacher-supplied package is explicitly labeled as a classroom demonstration. Hashes establish consistency against its saved reference, not authorship or scientific validity.
+
+\subsection{Receive and compare: five minutes}
+The bridge calls the same receiver functions used by HW10. It extracts a new directory and starts a new Python interpreter. The receiver refits the frozen baseline and candidate and checks both complete 120-row prediction vectors by \texttt{run\_id}, using
+\[
+ |p_i^{\mathrm{receiver}}-p_i^{\mathrm{reference}}|
+ \leq 10^{-8}+10^{-10}|p_i^{\mathrm{reference}}|.
+\]
+Inspect the return code, row count, sender/receiver versions and both maximum differences. An additional fresh-process capture supplies the actual vectors for the difference chart; the plot is not inferred from a matching rounded metric. The sender's target-error figures and the receiver's difference figure answer different questions. A poor predictor can reproduce exactly.
+
+\subsection{Modify and reject: five minutes}
+Predict the mechanism, then change the example's wrong airflow-unit string to another incorrect label and rerun. This changes one copied declaration, not the underlying values or a physical conversion. The expected outcome is the specific unit-contract rejection before fitting. The original contract and CSV bytes must remain unchanged. An unrelated exception does not prove the intended check worked.
+
+The notebook also runs a deliberately missing-package branch. It can finish without an uncaught error and still export a draft. Thus green execution cells, nonempty explanations and a completed replay are different claims. Read the actual exported status and supporting records.
+
+\subsection{Export and transfer: five minutes}
+The original 19 task responses remain intact. Four additional bridge reflections record package compatibility, expected vector agreement, expected rejection and completion scope. Export the labeled demonstration archive and save the edited notebook separately. Do not submit this archive or its nested example packages as Homework.
+
+For graded HW10, open its separate starter and upload a completed student HW9 evidence ZIP. Act as author and receiver, implement a negative test and preserve real attempts, repairs and feedback. If no partner responds, label the evidence self-replay and leave instructor/TA verification pending. A new interpreter alone is neither another person nor a rebuilt environment.
+
+\textbf{Due: Friday, 13 November 2026, 23:59 Asia/Taipei.} Submit the executed HW10 notebook, evidence ZIP and one-page English explanation. The existing 100-point rubric, approximately two-hour workload, self-replay fallback, platform TBA and course-grade weight TBA remain unchanged. The 16 November midterm consists only of written and oral examinations, with no midterm project. Stock forecasting remains a separate designated Homework.
+
+\subsection{Bridge summary}
+Preserve the experiment, choose the correct package, inspect its source, compare every prediction by ID, test one specific failure mechanism and state who actually verified the result. Neither byte hashes nor exact replay establishes real-equipment or causal validity.
+
 
 \section{Summary and examination bridge}
 Freeze identities, choices, transformations and environment. Reject malformed interfaces before fitting. Compare aligned prediction vectors in a new process, then state exactly what agreement supports. Keep predictive error, replay error, file integrity and scientific validity separate. For the written and oral midterm, be ready to explain one choice, one failure and one change that would invalidate the claim.
